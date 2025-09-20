@@ -1166,12 +1166,21 @@ body {
 }
 
 /* Focus styles for accessibility */
-button:focus,
-input:focus,
+button:focus:not(.theme-toggle):not(.submit-btn):not(.reset-btn),
+input:focus:not(.field-input),
 textarea:focus,
 .nav-link:focus {
     outline: 2px solid var(--primary-color);
     outline-offset: 2px;
+}
+
+/* Remove outline for modern form inputs and buttons */
+.field-input:focus,
+.field-select:focus,
+.theme-toggle:focus,
+.submit-btn:focus,
+.reset-btn:focus {
+    outline: none;
 }
 
 /* High contrast mode support */
