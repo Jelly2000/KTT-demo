@@ -1788,7 +1788,7 @@ textarea:focus:not(.field-textarea),
 /* Mobile responsiveness for floating contacts */
 @media (max-width: 768px) {
     .floating-contacts {
-        bottom: 15px;
+        bottom: 3rem;
         right: 15px;
         gap: 10px;
     }
@@ -1799,8 +1799,8 @@ textarea:focus:not(.field-textarea),
     }
     
     .contact-icon {
-        width: 24px;
-        height: 24px;
+        width: 32px;
+        height: 32px;
     }
     
     /* Hide tooltips on mobile */
