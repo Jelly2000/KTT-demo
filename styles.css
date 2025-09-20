@@ -313,6 +313,69 @@ body {
     border-radius: 2px;
 }
 
+/* Rental Procedure Section */
+.rental-procedure-section {
+    padding: 80px 0;
+    background: var(--background-alt, var(--card-background));
+}
+
+.procedure-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.procedure-card {
+    background: var(--card-background);
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    padding: 2rem;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.procedure-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--hover-shadow);
+}
+
+.procedure-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.procedure-content h3 {
+    color: var(--text-color);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+.procedure-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.procedure-list li {
+    color: var(--text-color);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+    padding-left: 0;
+}
+
+.procedure-list li strong {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
 /* Cars Grid */
 .cars-grid {
     display: grid;
@@ -1056,8 +1119,27 @@ body {
 
     .cars-section,
     .contact-section,
-    .placeholder-section {
+    .placeholder-section,
+    .rental-procedure-section {
         padding: 60px 0;
+    }
+
+    .procedure-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .procedure-card {
+        padding: 1.5rem;
+    }
+
+    .procedure-content h3 {
+        font-size: 1rem;
+    }
+
+    .procedure-list li {
+        font-size: 0.9rem;
     }
 
     .modern-form {
@@ -1447,6 +1529,402 @@ textarea:focus,
         flex-direction: column;
         text-align: center;
         padding: 1.5rem;
+    }
+}
+
+/* Procedure Page Styles */
+.documents-section,
+.deposit-section,
+.timing-section,
+.process-section,
+.notes-section {
+    padding: 80px 0;
+}
+
+.documents-section {
+    background: var(--background-color);
+}
+
+.deposit-section {
+    background: var(--background-alt, var(--card-background));
+}
+
+.timing-section {
+    background: var(--background-color);
+}
+
+.process-section {
+    background: var(--background-alt, var(--card-background));
+}
+
+.notes-section {
+    background: var(--background-color);
+}
+
+/* Documents Section */
+.documents-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.document-card {
+    background: var(--card-background);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    text-align: center;
+    transition: var(--transition);
+}
+
+.document-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--hover-shadow);
+}
+
+.doc-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.document-card h3 {
+    color: var(--primary-color);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.doc-details {
+    list-style: none;
+    text-align: left;
+    padding: 0;
+}
+
+.doc-details li {
+    color: var(--text-color);
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Deposit Section */
+.deposit-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.deposit-card {
+    background: var(--card-background);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    position: relative;
+    transition: var(--transition);
+}
+
+.deposit-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--hover-shadow);
+}
+
+.deposit-card.recommended {
+    border: 2px solid var(--primary-color);
+    background: linear-gradient(135deg, var(--card-background) 0%, rgba(255, 215, 0, 0.05) 100%);
+}
+
+.deposit-badge {
+    position: absolute;
+    top: -10px;
+    right: 1rem;
+    background: var(--primary-color);
+    color: var(--secondary-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.deposit-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.deposit-card h3 {
+    color: var(--text-color);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.deposit-details ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1rem;
+}
+
+.deposit-details li {
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.deposit-benefit {
+    color: #27ae60;
+    font-weight: 500;
+    margin-top: 1rem;
+}
+
+.deposit-note {
+    color: #e67e22;
+    font-style: italic;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
+
+/* Timing Section */
+.timing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.timing-card {
+    background: var(--card-background);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    text-align: center;
+    transition: var(--transition);
+}
+
+.timing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--hover-shadow);
+}
+
+.timing-card.pickup {
+    border-left: 4px solid #27ae60;
+}
+
+.timing-card.return {
+    border-left: 4px solid #e74c3c;
+}
+
+.timing-card.extension {
+    border-left: 4px solid #3498db;
+}
+
+.timing-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.timing-card h3 {
+    color: var(--text-color);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.time-slot {
+    margin-bottom: 1rem;
+}
+
+.time {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.time.fixed {
+    color: #e74c3c;
+}
+
+.day {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+.timing-notes {
+    text-align: left;
+}
+
+.timing-notes p {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}
+
+/* Process Section */
+.process-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 3rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.process-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    padding: 1.5rem;
+    background: var(--card-background);
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.process-step:hover {
+    transform: translateX(10px);
+    box-shadow: var(--hover-shadow);
+}
+
+.step-number {
+    background: var(--primary-color);
+    color: var(--secondary-color);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.step-content h3 {
+    color: var(--text-color);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.step-content p {
+    color: var(--text-color);
+    opacity: 0.8;
+    line-height: 1.5;
+}
+
+/* Notes Section */
+.notes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.note-card {
+    background: var(--card-background);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.note-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--hover-shadow);
+}
+
+.note-card.warning {
+    border-left: 4px solid #e74c3c;
+    background: linear-gradient(135deg, var(--card-background) 0%, rgba(231, 76, 60, 0.05) 100%);
+}
+
+.note-card.info {
+    border-left: 4px solid #3498db;
+    background: linear-gradient(135deg, var(--card-background) 0%, rgba(52, 152, 219, 0.05) 100%);
+}
+
+.note-card.success {
+    border-left: 4px solid #27ae60;
+    background: linear-gradient(135deg, var(--card-background) 0%, rgba(39, 174, 96, 0.05) 100%);
+}
+
+.note-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.note-card h3 {
+    color: var(--text-color);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.note-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.note-card li {
+    color: var(--text-color);
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Responsive Design for Procedure Page */
+@media (max-width: 768px) {
+    .documents-section,
+    .deposit-section,
+    .timing-section,
+    .process-section,
+    .notes-section {
+        padding: 60px 0;
+    }
+
+    .documents-grid,
+    .deposit-grid,
+    .timing-grid,
+    .notes-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .document-card,
+    .deposit-card,
+    .timing-card,
+    .note-card {
+        padding: 1.5rem;
+    }
+
+    .process-step {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .step-number {
+        margin: 0 auto;
+    }
+
+    .timing-notes {
+        text-align: center;
     }
 }
 
