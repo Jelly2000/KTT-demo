@@ -1,0 +1,39 @@
+<!-- Navigation Component -->
+<header class="header">
+    <nav class="nav">
+        <div class="nav-brand">
+            <!-- Logo content from logo.html -->
+            <div class="logo-container">
+                <img src="logo.webp" alt="KTT Car Logo" class="logo-image">
+                <span class="logo-text">KTT Car</span>
+            </div>
+        </div>
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="#home" class="nav-link home-link" data-vi="Trang chủ" data-en="Home">Trang chủ</a></li>
+            <li><a href="thue-xe.html" class="nav-link" data-vi="Thuê xe" data-en="Rent Car">Thuê xe</a></li>
+            <li><a href="thu-tuc.html" class="nav-link" data-vi="Thủ tục" data-en="Procedures">Thủ tục</a></li>
+            <li><a href="contact.html" class="nav-link" data-vi="Liên hệ" data-en="Contact">Liên hệ</a></li>
+            <li><a href="nap-phi-etc.html" class="nav-link" data-vi="Nạp phí ETC" data-en="ETC Payment">Nạp phí ETC</a></li>
+            <li><a href="bao-hiem-pvi.html" class="nav-link" data-vi="Bảo hiểm PVI" data-en="PVI Insurance">Bảo hiểm PVI</a></li>
+            <li>
+                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </li>
+            <li>
+                <!-- Language Toggle -->
+                <div class="language-toggle">
+                    <select class="language-select" name="language" id="language" onchange="toggleLanguage()">
+                        <option value="vi">English</option>
+                        <option value="en">Tiếng Việt</option>
+                    </select>
+                </div>
+            </li>
+        </ul>
+        <button class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+</header>

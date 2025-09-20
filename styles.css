@@ -174,7 +174,7 @@ body {
 .nav-menu {
     display: flex;
     list-style: none;
-    gap: 2rem;
+    /* gap: 2rem; */
     align-items: center;
 }
 
@@ -213,6 +213,8 @@ body {
     border: none;
     cursor: pointer;
     padding: 0.5rem;
+    z-index: 1003;
+    position: relative;
 }
 
 .hamburger span {
@@ -249,7 +251,7 @@ body {
     z-index: 1;
     max-width: 800px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 40px 20px;
 }
 
 .hero-title {
@@ -1221,20 +1223,76 @@ body {
 @media (max-width: 768px) {
     .nav-menu {
         position: fixed;
-        top: 70px;
+        top: 0;
         right: -100%;
         width: 100%;
-        height: calc(100vh - 70px);
+        height: 100vh;
         background: var(--card-background);
         flex-direction: column;
         justify-content: flex-start;
-        padding: 2rem;
+        align-items: center;
+        padding: 100px 1.5rem 2rem;
         transition: var(--transition);
         box-shadow: var(--shadow);
+        z-index: 1002;
     }
 
     .nav-menu.active {
         right: 0;
+    }
+
+    /* Hide floating contacts and prevent scrolling when mobile menu is open */
+    body.menu-open .floating-contacts {
+        display: none;
+    }
+    
+    body.menu-open {
+        overflow: hidden;
+    }
+
+    /* Style nav menu items for mobile */
+    .nav-menu li {
+        margin: 0;
+        text-align: center;
+        width: 100%;
+    }
+
+    .nav-menu .nav-link {
+        font-size: 1.1rem;
+        font-weight: 500;
+        padding: 0.8rem 1rem;
+        display: block;
+        border-bottom: 1px solid var(--border-color);
+        width: 100%;
+        max-width: 250px;
+        margin: 0 auto;
+    }
+
+    .nav-menu .theme-toggle,
+    .nav-menu .language-toggle {
+        margin-top: 1.5rem;
+    }
+
+    .nav-menu .theme-toggle {
+        padding: 0;
+        font-size: 1rem;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 1.5rem auto 0;
+    }
+
+    .nav-menu .language-select {
+        padding: 0.5rem;
+        font-size: 1rem;
+    }
+
+    .nav-menu .language-toggle {
+        display: flex;
+        justify-content: center;
+        margin: 1rem auto 0;
     }
 
     .hamburger {
@@ -1351,6 +1409,34 @@ body {
 }
 
 @media (max-width: 480px) {
+    /* Further compact mobile nav for small screens */
+    .nav-menu .nav-link {
+        font-size: 1rem;
+        padding: 0.7rem 1rem;
+        max-width: 220px;
+    }
+
+    .nav-menu li {
+        margin: 0;
+    }
+
+    .nav-menu .theme-toggle {
+        padding: 0;
+        font-size: 0.9rem;
+        width: 45px;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 1.2rem auto 0;
+    }
+
+    .nav-menu .language-select {
+        width: fit-content;
+        padding: 0.4rem;
+        font-size: 0.9rem;
+    }
+
     .cars-grid {
         grid-template-columns: 1fr;
     }

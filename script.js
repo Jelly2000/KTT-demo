@@ -1,3 +1,69 @@
+// Navigation Loader Function
+function loadNavigation() {
+    fetch('navbar.html')
+        .then(response => response.text())
+        .then(data => {
+            // Find navbar placeholder or insert at the beginning of body
+            const navbarPlaceholder = document.getElementById('navbar-placeholder');
+            if (navbarPlaceholder) {
+                navbarPlaceholder.innerHTML = data;
+            } else {
+                // Insert at the beginning of body if no placeholder exists
+                document.body.insertAdjacentHTML('afterbegin', data);
+            }
+            
+            // Initialize navigation after loading
+            initializeNavigation();
+            
+            // Initialize language after navigation is loaded
+            initializeLanguage();
+        })
+        .catch(error => {
+            console.error('Error loading navigation:', error);
+        });
+}
+
+// Initialize navigation functionality
+function initializeNavigation() {
+    // Hamburger menu functionality
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+    
+    if (hamburger && navMenu) {
+        hamburger.addEventListener('click', () => {
+            const isActive = hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            
+            // Toggle body class to hide floating contacts
+            if (isActive) {
+                document.body.classList.add('menu-open');
+            } else {
+                document.body.classList.remove('menu-open');
+            }
+        });
+        
+        // Close mobile menu when clicking on links
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.classList.remove('menu-open');
+            });
+        });
+    }
+    
+    // Handle home link based on current page
+    const homeLink = document.querySelector('.home-link');
+    if (homeLink) {
+        if (window.location.pathname.includes('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/')) {
+            homeLink.href = '#home';
+        } else {
+            homeLink.href = 'index.html';
+        }
+    }
+}
+
 // Theme Management
 let currentTheme = localStorage.getItem('theme') || 'light';
 let currentLanguage = localStorage.getItem('language') || 'vi';
@@ -96,8 +162,11 @@ const carsData = {
 
 // Initialize the website
 document.addEventListener('DOMContentLoaded', function() {
+    // Load navigation component first
+    loadNavigation();
+    
     initializeTheme();
-    initializeLanguage();
+    // Language will be initialized after navigation loads
     renderCars();
     setupEventListeners();
     setupIntersectionObserver();
@@ -341,23 +410,8 @@ function closeModal() {
 
 // Event listeners setup
 function setupEventListeners() {
-    // Mobile menu toggle
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.getElementById('nav-menu');
-    
-    hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
-        navMenu.classList.toggle('active');
-    });
-    
-    // Close mobile menu when clicking on links
-    const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-        });
-    });
+    // Navigation event listeners will be handled in initializeNavigation
+    // after the navigation component is loaded
     
     // Modal close functionality
     const modal = document.getElementById('car-modal');
