@@ -18,6 +18,7 @@
     --secondary-color: #FFD700;
     --background-color: #1a1a1a;
     --btn-text-primary: #ffffff;
+    --btn-text-secondary: #000000;
     --text-color: #ffffff;
     --card-background: #393939;
     --border-color: #444444;
@@ -377,6 +378,113 @@ body {
 .procedure-list li strong {
     color: var(--primary-color);
     font-weight: 600;
+}
+
+/* Simplified Rental Procedure Styles */
+.procedure-intro {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--text-color);
+    opacity: 0.8;
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.procedure-grid-simple {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+.procedure-card-simple {
+    background: var(--card-background);
+    padding: 2.5rem 2rem;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    text-align: center;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.procedure-card-simple:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--hover-shadow);
+    border-color: var(--primary-color);
+}
+
+.procedure-card-simple::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), #FFA500);
+    transform: scaleX(0);
+    transition: var(--transition);
+}
+
+.procedure-card-simple:hover::before {
+    transform: scaleX(1);
+}
+
+.procedure-icon-large {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    display: block;
+}
+
+.procedure-card-simple h3 {
+    color: var(--text-color);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.procedure-card-simple p {
+    color: var(--text-color);
+    opacity: 0.8;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.procedure-cta {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.procedure-btn {
+    background: linear-gradient(45deg, var(--primary-color), #FFA500);
+    color: #2d2d2d;
+    border: none;
+    padding: 16px 32px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: var(--transition);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.procedure-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+}
+
+.procedure-btn:active {
+    transform: translateY(-1px);
 }
 
 /* Cars Grid */
@@ -1166,6 +1274,24 @@ body {
         padding: 1.5rem;
     }
 
+    .procedure-grid-simple {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .procedure-card-simple {
+        padding: 2rem 1.5rem;
+    }
+
+    .procedure-icon-large {
+        font-size: 3rem;
+    }
+
+    .procedure-btn {
+        padding: 14px 28px;
+        font-size: 1rem;
+    }
+
     .procedure-content h3 {
         font-size: 1rem;
     }
@@ -1440,6 +1566,161 @@ textarea:focus:not(.field-textarea),
 
 [data-theme="dark"] .field-textarea:focus {
     box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.2);
+}
+
+/* Floating Contact Buttons */
+.floating-contacts {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.contact-item {
+    position: relative;
+}
+
+.contact-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: var(--transition);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+}
+
+.contact-btn:hover {
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+.contact-btn:active {
+    transform: translateY(-1px) scale(1.05);
+}
+
+.phone-btn {
+    background: linear-gradient(135deg, #25D366, #128C7E);
+}
+
+.phone-btn:hover {
+    background: linear-gradient(135deg, #128C7E, #075E54);
+}
+
+.zalo-btn {
+    background: linear-gradient(135deg, #0068FF, #0052CC);
+}
+
+.zalo-btn:hover {
+    background: linear-gradient(135deg, #0052CC, #003D99);
+}
+
+.messenger-btn {
+    background: linear-gradient(135deg, #00B2FF, #006AFF);
+}
+
+.messenger-btn:hover {
+    background: linear-gradient(135deg, #006AFF, #004CCC);
+}
+
+.contact-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    object-fit: contain;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 2;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 0;
+}
+
+/* Pulse animation for attention */
+.contact-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    opacity: 0;
+    /* animation: pulse-ring 2s infinite ease-out; */
+}
+
+@keyframes pulse-ring {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.7;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* Tooltip for contact buttons */
+.contact-item::before {
+    content: attr(title);
+    position: absolute;
+    right: 70px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--card-background);
+    color: var(--text-color);
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    z-index: 1001;
+}
+
+.contact-btn:hover + .contact-item::before,
+.contact-item:hover::before {
+    opacity: 1;
+    /* transform: translateY(-50%) translateX(-10px); */
+}
+
+/* Mobile responsiveness for floating contacts */
+@media (max-width: 768px) {
+    .floating-contacts {
+        bottom: 15px;
+        right: 15px;
+        gap: 10px;
+    }
+    
+    .contact-btn {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .contact-icon {
+        width: 24px;
+        height: 24px;
+    }
+    
+    /* Hide tooltips on mobile */
+    .contact-item::before {
+        display: none;
+    }
 }
 
 /* Contact Divider */
