@@ -102,6 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setupEventListeners();
     setupIntersectionObserver();
     setupConsultationForm();
+    setupContactForm();
     setupFormReset();
     
     // Performance: Preload critical resources
@@ -736,17 +737,154 @@ function formatDate(dateString) {
 }
 
 function setupFormReset() {
-    const resetBtn = document.querySelector('.reset-btn');
-    if (resetBtn) {
+    const resetBtns = document.querySelectorAll('.reset-btn');
+    resetBtns.forEach(resetBtn => {
         resetBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            const form = document.getElementById('consultation-form');
+            const form = this.closest('form');
             if (form) {
                 form.reset();
                 clearFormErrors();
             }
         });
+    });
+}
+
+// Contact Form Functions
+function setupContactForm() {
+    const contactForm = document.getElementById('contact-form');
+    if (!contactForm) return;
+
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const formData = {
+            contactName: document.getElementById('contactName').value,
+            contactPhone: document.getElementById('contactPhone').value,
+            contactEmail: document.getElementById('contactEmail').value,
+            contactSubject: document.getElementById('contactSubject').value,
+            contactMessage: document.getElementById('contactMessage').value
+        };
+
+        // Validation
+        if (!validateContactForm(formData)) {
+            return;
+        }
+
+        // Success message
+        const subjectText = getContactSubjectText(formData.contactSubject);
+        const successMessage = currentLanguage === 'vi'
+            ? `Cảm ơn ${formData.contactName}! Chúng tôi đã nhận được tin nhắn của bạn về "${subjectText}". Nhân viên sẽ liên hệ với bạn qua ${formData.contactPhone || formData.contactEmail} trong thời gian sớm nhất.`
+            : `Thank you ${formData.contactName}! We have received your message about "${subjectText}". Our staff will contact you at ${formData.contactPhone || formData.contactEmail} as soon as possible.`;
+        
+        alert(successMessage);
+        contactForm.reset();
+        clearFormErrors();
+    });
+}
+
+function validateContactForm(formData) {
+    // Clear previous errors
+    clearFormErrors();
+    
+    let isValid = true;
+    const requiredFields = {
+        contactName: {
+            vi: 'Vui lòng nhập họ và tên',
+            en: 'Please enter your full name'
+        },
+        contactPhone: {
+            vi: 'Vui lòng nhập số điện thoại',
+            en: 'Please enter your phone number'
+        },
+        contactSubject: {
+            vi: 'Vui lòng chọn chủ đề',
+            en: 'Please select a subject'
+        },
+        contactMessage: {
+            vi: 'Vui lòng nhập tin nhắn',
+            en: 'Please enter your message'
+        }
+    };
+    
+    // Check required fields
+    for (let [field, messages] of Object.entries(requiredFields)) {
+        if (!formData[field] || formData[field].trim() === '') {
+            showFieldError(field, messages[currentLanguage]);
+            isValid = false;
+        }
     }
+
+    // Name validation (at least 2 characters)
+    if (formData.contactName && formData.contactName.trim().length < 2) {
+        const errorMsg = currentLanguage === 'vi'
+            ? 'Họ và tên phải có ít nhất 2 ký tự'
+            : 'Full name must be at least 2 characters';
+        showFieldError('contactName', errorMsg);
+        isValid = false;
+    }
+
+    // Phone validation
+    if (formData.contactPhone) {
+        const phoneRegex = /^[0-9+\-\s()]{10,15}$/;
+        if (!phoneRegex.test(formData.contactPhone)) {
+            const errorMsg = currentLanguage === 'vi'
+                ? 'Số điện thoại không hợp lệ (10-15 chữ số)'
+                : 'Invalid phone number (10-15 digits)';
+            showFieldError('contactPhone', errorMsg);
+            isValid = false;
+        }
+    }
+
+    // Email validation (if provided)
+    if (formData.contactEmail && formData.contactEmail.trim() !== '') {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(formData.contactEmail)) {
+            const errorMsg = currentLanguage === 'vi'
+                ? 'Địa chỉ email không hợp lệ'
+                : 'Invalid email address';
+            showFieldError('contactEmail', errorMsg);
+            isValid = false;
+        }
+    }
+
+    // Message length validation
+    if (formData.contactMessage && formData.contactMessage.trim().length < 10) {
+        const errorMsg = currentLanguage === 'vi'
+            ? 'Tin nhắn phải có ít nhất 10 ký tự'
+            : 'Message must be at least 10 characters';
+        showFieldError('contactMessage', errorMsg);
+        isValid = false;
+    }
+
+    return isValid;
+}
+
+function getContactSubjectText(value) {
+    const subjectTexts = {
+        vi: {
+            'rental': 'Thuê xe',
+            'support': 'Hỗ trợ kỹ thuật',
+            'complaint': 'Khiếu nại',
+            'suggestion': 'Góp ý',
+            'other': 'Khác'
+        },
+        en: {
+            'rental': 'Car Rental',
+            'support': 'Technical Support',
+            'complaint': 'Complaint',
+            'suggestion': 'Suggestion',
+            'other': 'Other'
+        }
+    };
+
+    return subjectTexts[currentLanguage][value] || value;
+}
+
+// Map function for contact page
+function openMap(coordinates) {
+    const url = `https://www.google.com/maps?q=${coordinates}`;
+    window.open(url, '_blank');
 }
 
 // Analytics and performance monitoring

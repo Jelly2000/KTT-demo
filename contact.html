@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Liên hệ với KTT Car - Dịch vụ cho thuê xe chất lượng cao. Thông tin liên hệ, địa chỉ văn phòng và bãi xe.">
+    <meta name="keywords" content="liên hệ, contact, KTT Car, thuê xe, rental car, địa chỉ, phone">
+    <meta name="author" content="KTT Car Rental">
+    <meta property="og:title" content="Liên hệ - KTT Car">
+    <meta property="og:description" content="Liên hệ với KTT Car để thuê xe chất lượng cao">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://KTT Car.com/contact">
+
+    <title>Liên hệ - KTT Car</title>
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "name": "Contact KTT Car",
+        "description": "Liên hệ với KTT Car - Dịch vụ cho thuê xe chất lượng cao",
+        "url": "https://KTT Car.com/contact"
+    }
+    </script>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-brand">
+                <!-- Logo content from logo.html -->
+                <div class="logo-container">
+                    <img src="logo.webp" alt="KTT Car Logo" class="logo-image">
+                    <span class="logo-text">KTT Car</span>
+                </div>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html" class="nav-link" data-vi="Trang chủ" data-en="Home">Trang chủ</a></li>
+                <li><a href="thue-xe.html" class="nav-link" data-vi="Thuê xe" data-en="Rent Car">Thuê xe</a></li>
+                <li><a href="contact.html" class="nav-link active" data-vi="Liên hệ" data-en="Contact">Liên hệ</a></li>
+                <li><a href="#etc-payment" class="nav-link" data-vi="Nạp phí ETC" data-en="ETC Payment">Nạp phí ETC</a>
+                </li>
+                <li><a href="#insurance" class="nav-link" data-vi="Bảo hiểm PVI" data-en="PVI Insurance">Bảo hiểm
+                        PVI</a></li>
+                <li> <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                        <span class="theme-icon">🌙</span>
+                    </button></li>
+                <li>
+                    <!-- Language Toggle -->
+                    <div class="language-toggle">
+                        <select class="language-select" name="language" id="language" onchange="toggleLanguage()">
+                            <option value="vi">Tiếng Việt</option>
+                            <option value="en">English</option>
+                        </select>
+                    </div>
+                </li>
+            </ul>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title" data-vi="LIÊN HỆ VỚI CHÚNG TÔI" data-en="CONTACT US">
+                LIÊN HỆ VỚI CHÚNG TÔI
+            </h1>
+            <p class="page-subtitle" data-vi="Chúng tôi luôn sẵn sàng hỗ trợ bạn 24/7" 
+               data-en="We are always ready to support you 24/7">
+                Chúng tôi luôn sẵn sàng hỗ trợ bạn 24/7
+            </p>
+        </div>
+    </section>
+
+    <!-- Contact Information Section -->
+    <section class="contact-info-section">
+        <div class="container">
+            <div class="contact-grid">
+                <!-- Company Information -->
+                <div class="contact-card">
+                    <div class="contact-icon">🏢</div>
+                    <h3 data-vi="THÔNG TIN CÔNG TY" data-en="COMPANY INFO">THÔNG TIN CÔNG TY</h3>
+                    <div class="contact-details">
+                        <p><strong>KTT Car</strong></p>
+                        <p data-vi="Công ty TNHH TMDV VẬN TẢI VÀ DU LỊCH KTT CAR"
+                           data-en="KTT CAR TRANSPORT AND TOURISM TRADING SERVICES CO., LTD">
+                            Công ty TNHH TMDV VẬN TẢI VÀ DU LỊCH KTT CAR
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Head Office -->
+                <div class="contact-card">
+                    <div class="contact-icon">📍</div>
+                    <h3 data-vi="TRỤ SỞ CHÍNH" data-en="HEAD OFFICE">TRỤ SỞ CHÍNH</h3>
+                    <div class="contact-details">
+                        <p>499/2 Hương Lộ 3, P.Bình Hưng Hòa, Q.Bình Tân, HCM</p>
+                        <button class="map-btn" onclick="openMap('10.7588585,106.6051226')" 
+                                data-vi="Xem bản đồ" data-en="View Map">
+                            Xem bản đồ
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Parking Lot -->
+                <div class="contact-card">
+                    <div class="contact-icon">🚗</div>
+                    <h3 data-vi="BÃI XE" data-en="PARKING LOT">BÃI XE</h3>
+                    <div class="contact-details">
+                        <p>158 Nguyễn Hữu Tiến, P.Tây Thạnh, Q.Tân Phú, HCM</p>
+                        <button class="map-btn" onclick="openMap('10.7988585,106.6351226')"
+                                data-vi="Xem bản đồ" data-en="View Map">
+                            Xem bản đồ
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Phone Contact -->
+                <div class="contact-card">
+                    <div class="contact-icon">📞</div>
+                    <h3 data-vi="ĐIỆN THOẠI" data-en="PHONE">ĐIỆN THOẠI</h3>
+                    <div class="contact-details">
+                        <p><strong>Hotline:</strong> <a href="tel:0798888373">079.8888.373</a></p>
+                        <p data-vi="Hỗ trợ 24/7" data-en="24/7 Support">Hỗ trợ 24/7</p>
+                    </div>
+                </div>
+
+                <!-- Email Contact -->
+                <div class="contact-card">
+                    <div class="contact-icon">✉️</div>
+                    <h3 data-vi="EMAIL" data-en="EMAIL">EMAIL</h3>
+                    <div class="contact-details">
+                        <p><a href="mailto:jackynguyen23@gmail.com">jackynguyen23@gmail.com</a></p>
+                        <p data-vi="Phản hồi trong 24h" data-en="Reply within 24h">Phản hồi trong 24h</p>
+                    </div>
+                </div>
+
+                <!-- Social Media -->
+                <div class="contact-card">
+                    <div class="contact-icon">📱</div>
+                    <h3 data-vi="MẠNG XÃ HỘI" data-en="SOCIAL MEDIA">MẠNG XÃ HỘI</h3>
+                    <div class="contact-details">
+                        <p><strong>Website:</strong> <a href="https://www.kttcar.com" target="_blank">kttcar.com</a></p>
+                        <p><strong>Facebook:</strong> <a href="https://www.facebook.com/dvtulai" target="_blank">dvtulai</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="contact-form-section">
+        <div class="container">
+            <h2 class="section-title" data-vi="GỬI TIN NHẮN CHO CHÚNG TÔI" 
+                data-en="SEND US A MESSAGE">
+                GỬI TIN NHẮN CHO CHÚNG TÔI
+            </h2>
+            <p class="form-subtitle" data-vi="Điền thông tin bên dưới và chúng tôi sẽ liên hệ với bạn sớm nhất có thể"
+               data-en="Fill in the information below and we will contact you as soon as possible">
+                Điền thông tin bên dưới và chúng tôi sẽ liên hệ với bạn sớm nhất có thể
+            </p>
+
+            <form class="modern-form" id="contact-form">
+                <div class="form-container">
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="contactName" class="field-label">
+                                <span class="label-text" data-vi="Họ và tên" data-en="Full Name">Họ và tên</span>
+                                <span class="required-asterisk">*</span>
+                            </label>
+                            <input type="text" id="contactName" name="contactName" required class="field-input"
+                                data-vi-placeholder="Nhập họ và tên" data-en-placeholder="Enter your full name"
+                                placeholder="Nhập họ và tên">
+                            <div class="field-border"></div>
+                            <div class="error-message" id="contactName-error"></div>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="contactPhone" class="field-label">
+                                <span class="label-text" data-vi="Số điện thoại" data-en="Phone Number">Số điện thoại</span>
+                                <span class="required-asterisk">*</span>
+                            </label>
+                            <input type="tel" id="contactPhone" name="contactPhone" required class="field-input"
+                                data-vi-placeholder="Nhập số điện thoại" data-en-placeholder="Enter your phone number"
+                                placeholder="Nhập số điện thoại">
+                            <div class="field-border"></div>
+                            <div class="error-message" id="contactPhone-error"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="contactEmail" class="field-label">
+                            <span class="label-text" data-vi="Email" data-en="Email">Email</span>
+                        </label>
+                        <input type="email" id="contactEmail" name="contactEmail" class="field-input"
+                            data-vi-placeholder="Nhập địa chỉ email" data-en-placeholder="Enter your email address"
+                            placeholder="Nhập địa chỉ email">
+                        <div class="field-border"></div>
+                        <div class="error-message" id="contactEmail-error"></div>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="contactSubject" class="field-label">
+                            <span class="label-text" data-vi="Chủ đề" data-en="Subject">Chủ đề</span>
+                            <span class="required-asterisk">*</span>
+                        </label>
+                        <div class="select-wrapper">
+                            <select id="contactSubject" name="contactSubject" required class="field-select">
+                                <option value="" data-vi="Chọn chủ đề" data-en="Select subject">Chọn chủ đề</option>
+                                <option value="rental" data-vi="Thuê xe" data-en="Car Rental">Thuê xe</option>
+                                <option value="support" data-vi="Hỗ trợ kỹ thuật" data-en="Technical Support">Hỗ trợ kỹ thuật</option>
+                                <option value="complaint" data-vi="Khiếu nại" data-en="Complaint">Khiếu nại</option>
+                                <option value="suggestion" data-vi="Góp ý" data-en="Suggestion">Góp ý</option>
+                                <option value="other" data-vi="Khác" data-en="Other">Khác</option>
+                            </select>
+                            <div class="select-arrow">
+                                <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+                                    <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="field-border"></div>
+                        <div class="error-message" id="contactSubject-error"></div>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="contactMessage" class="field-label">
+                            <span class="label-text" data-vi="Tin nhắn" data-en="Message">Tin nhắn</span>
+                            <span class="required-asterisk">*</span>
+                        </label>
+                        <textarea id="contactMessage" name="contactMessage" required class="field-textarea"
+                            rows="5" data-vi-placeholder="Nhập tin nhắn của bạn..." 
+                            data-en-placeholder="Enter your message..."
+                            placeholder="Nhập tin nhắn của bạn..."></textarea>
+                        <div class="field-border"></div>
+                        <div class="error-message" id="contactMessage-error"></div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="submit-btn">
+                            <span class="btn-text" data-vi="Gửi tin nhắn" data-en="Send Message">Gửi tin nhắn</span>
+                        </button>
+                        <button type="reset" class="reset-btn">
+                            <span class="btn-text" data-vi="Làm mới" data-en="Reset">Làm mới</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Business Hours Section -->
+    <section class="business-hours-section">
+        <div class="container">
+            <div class="hours-grid">
+                <div class="hours-card">
+                    <div class="hours-icon">🕐</div>
+                    <h3 data-vi="GIỜ LÀM VIỆC" data-en="BUSINESS HOURS">GIỜ LÀM VIỆC</h3>
+                    <div class="hours-list">
+                        <div class="hours-item">
+                            <span data-vi="Thứ 2 - Thứ 6:" data-en="Monday - Friday:">Thứ 2 - Thứ 6:</span>
+                            <span>8:00 - 18:00</span>
+                        </div>
+                        <div class="hours-item">
+                            <span data-vi="Thứ 7 - Chủ nhật:" data-en="Saturday - Sunday:">Thứ 7 - Chủ nhật:</span>
+                            <span>8:00 - 17:00</span>
+                        </div>
+                        <div class="hours-item special">
+                            <span data-vi="Hỗ trợ khẩn cấp:" data-en="Emergency Support:">Hỗ trợ khẩn cấp:</span>
+                            <span>24/7</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hours-card">
+                    <div class="hours-icon">🚀</div>
+                    <h3 data-vi="DỊCH VỤ NHANH" data-en="QUICK SERVICE">DỊCH VỤ NHANH</h3>
+                    <div class="service-list">
+                        <div class="service-item">
+                            <span class="service-icon">⚡</span>
+                            <span data-vi="Đặt xe online 24/7" data-en="Online booking 24/7">Đặt xe online 24/7</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-icon">🚗</span>
+                            <span data-vi="Giao xe tận nơi" data-en="Car delivery service">Giao xe tận nơi</span>
+                        </div>
+                        <div class="service-item">
+                            <span class="service-icon">💬</span>
+                            <span data-vi="Tư vấn miễn phí" data-en="Free consultation">Tư vấn miễn phí</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>KTT Car</h3>
+                    <p data-vi="Công ty TNHH TMDV VẬN TẢI VÀ DU LỊCH KTT CAR"
+                        data-en="KTT CAR TRANSPORT AND TOURISM TRADING SERVICES CO., LTD">
+                        Công ty TNHH TMDV VẬN TẢI VÀ DU LỊCH KTT CAR
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h4 data-vi="Địa chỉ" data-en="Address">Địa chỉ</h4>
+                    <p><strong data-vi="Trụ sở chính:" data-en="Head Office:">Trụ sở chính:</strong><br>
+                        499/2 Hương Lộ 3, P.Bình Hưng Hòa, Q.Bình Tân, HCM</p>
+                    <p><strong data-vi="Bãi xe:" data-en="Parking Lot:">Bãi xe:</strong><br>
+                        158 Nguyễn Hữu Tiến, P.Tây Thạnh, Q.Tân Phú, HCM</p>
+                </div>
+                <div class="footer-section">
+                    <h4 data-vi="Liên hệ" data-en="Contact">Liên hệ</h4>
+                    <p><strong>Website:</strong> <a href="https://www.kttcar.com"
+                            target="_blank">https://www.kttcar.com</a></p>
+                    <p><strong>Email:</strong> <a href="mailto:jackynguyen23@gmail.com">jackynguyen23@gmail.com</a></p>
+                    <p><strong>Hotline:</strong> <a href="tel:0798888373">079.8888.373</a></p>
+                    <p><strong>Facebook:</strong> <a href="https://www.facebook.com/dvtulai" target="_blank">dvtulai</a>
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p data-vi="© 2024 KTT Car. Tất cả quyền được bảo lưu." data-en="© 2024 KTT Car. All rights reserved.">
+                    © 2024 KTT Car. Tất cả quyền được bảo lưu.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
