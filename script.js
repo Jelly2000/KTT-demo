@@ -64,6 +64,28 @@ function initializeNavigation() {
     }
 }
 
+// Footer Loader Function
+function loadFooter() {
+    fetch('footer.html')
+        .then(response => response.text())
+        .then(data => {
+            // Find footer placeholder or append at the end of body
+            const footerPlaceholder = document.getElementById('footer-placeholder');
+            if (footerPlaceholder) {
+                footerPlaceholder.innerHTML = data;
+            } else {
+                // Append at the end of body if no placeholder exists
+                document.body.insertAdjacentHTML('beforeend', data);
+            }
+            
+            // Update footer language content after loading
+            updateContent();
+        })
+        .catch(error => {
+            console.error('Error loading footer:', error);
+        });
+}
+
 // Theme Management
 let currentTheme = localStorage.getItem('theme') || 'light';
 let currentLanguage = localStorage.getItem('language') || 'vi';
@@ -164,6 +186,9 @@ const carsData = {
 document.addEventListener('DOMContentLoaded', function() {
     // Load navigation component first
     loadNavigation();
+    
+    // Load footer component
+    loadFooter();
     
     initializeTheme();
     // Language will be initialized after navigation loads
