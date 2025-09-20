@@ -28,7 +28,7 @@
                 <!-- Vehicle Image -->
                 <div class="vehicle-image-container">
                     <div class="vehicle-image" id="vehicle-image">
-                        🚗
+                        <img src="sample-car.webp" alt="Vehicle Image" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
                     </div>
                     <div class="image-gallery" id="image-gallery">
                         <!-- Additional images will be populated by JavaScript -->
@@ -63,7 +63,7 @@
                                 data-vi="Thuê xe ngay" data-en="Rent Now">
                             Thuê xe ngay
                         </button>
-                        <button class="contact-button secondary" onclick="contactAboutVehicle()" 
+                        <button class="contact-button secondary"
                                 data-vi="Liên hệ tư vấn" data-en="Contact for Consultation">
                             Liên hệ tư vấn
                         </button>
@@ -279,7 +279,9 @@
             const summary = document.getElementById('selected-vehicle-summary');
             summary.innerHTML = `
                 <div class="selected-vehicle">
-                    <div class="selected-vehicle-image">🚗</div>
+                    <div class="selected-vehicle-image">
+                        <img src="sample-car.webp" alt="Selected Vehicle" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">
+                    </div>
                     <div class="selected-vehicle-details">
                         <div class="selected-vehicle-name">${document.getElementById('vehicle-title').textContent}</div>
                         <div class="selected-vehicle-price">${document.getElementById('vehicle-price').textContent}</div>

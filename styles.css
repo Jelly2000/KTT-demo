@@ -584,20 +584,21 @@ body {
 .car-actions {
     display: flex;
     gap: 0.5rem;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 .rent-button {
     background: var(--primary-color);
     color: var(--btn-text-secondary);
     border: none;
-    padding: 10px 20px;
+    padding: 12px 20px;
     border-radius: 25px;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 0.9rem;
     cursor: pointer;
     transition: var(--transition);
     flex: 1;
+    text-align: center;
 }
 
 .rent-button:hover {
@@ -609,13 +610,14 @@ body {
     background: transparent;
     color: var(--text-color);
     border: 2px solid var(--border-color);
-    padding: 8px 20px;
+    padding: 10px 20px;
     border-radius: 25px;
     font-weight: 600;
     font-size: 0.9rem;
     cursor: pointer;
     transition: var(--transition);
     flex: 1;
+    text-align: center;
 }
 
 .details-button:hover {

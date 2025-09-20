@@ -407,13 +407,13 @@ function createCarCardElement(car) {
     const lang = (typeof currentLanguage !== 'undefined') ? currentLanguage : 'vi';
     const featuresText = lang === 'vi' ? 'Tính năng:' : 'Features:';
     const rentButtonText = lang === 'vi' ? 'Thuê xe này' : 'Rent this car';
+    const detailsButtonText = lang === 'vi' ? 'Xem chi tiết' : 'View Details';
     
     const cardDiv = document.createElement('div');
     cardDiv.className = 'car-card';
     cardDiv.setAttribute('role', 'button');
     cardDiv.setAttribute('tabindex', '0');
     cardDiv.setAttribute('aria-label', `View details for ${car.name}`);
-    cardDiv.onclick = () => showCarDetails(car.id);
     
     cardDiv.innerHTML = `
         <div class="car-image" aria-hidden="true">
@@ -426,9 +426,14 @@ function createCarCardElement(car) {
             <ul class="car-features">
                 ${car.features.map(feature => `<li>• ${feature}</li>`).join('')}
             </ul>
-            <button class="rent-button" onclick="event.stopPropagation(); rentCar(${car.id})" aria-label="Rent ${car.name}">
-                ${rentButtonText}
-            </button>
+            <div class="car-actions">
+                <button class="rent-button" onclick="rentCar(${car.id})" aria-label="Rent ${car.name}">
+                    ${rentButtonText}
+                </button>
+                <button class="details-button" onclick="window.location.href='vehicle-detail.html?id=${car.id}'" aria-label="View details for ${car.name}">
+                    ${detailsButtonText}
+                </button>
+            </div>
         </div>
     `;
     

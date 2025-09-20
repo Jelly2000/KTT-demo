@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     initializeTheme();
     // Language will be initialized after navigation loads
-    renderCars();
+    // renderCars() will be called after initializeLanguage()
     setupEventListeners();
     setupIntersectionObserver();
     setupConsultationForm();
@@ -225,6 +225,8 @@ function updateThemeIcon() {
 function initializeLanguage() {
     updateLanguageDisplay();
     updateContent();
+    // Render cars after language is initialized
+    renderCars();
 }
 
 function toggleLanguage() {
@@ -335,7 +337,18 @@ function updatePlaceholders() {
 // Car rendering functions
 function renderCars() {
     const carsGrid = document.getElementById('cars-grid');
+    
+    if (!carsGrid) {
+        console.error('cars-grid element not found');
+        return;
+    }
+    
     const cars = carsData[currentLanguage];
+    
+    if (!cars) {
+        console.error('No cars data for language:', currentLanguage);
+        return;
+    }
     
     carsGrid.innerHTML = cars.map(car => createCarCard(car)).join('');
     
