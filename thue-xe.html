@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Thuê xe chất lượng cao tại Việt Nam. Xem tất cả các loại xe có sẵn với giá cả hợp lý.">
+    <meta name="keywords" content="thuê xe, cho thuê xe, rental car, car rental vietnam, thuê xe tự lái">
+    <meta name="author" content="KTT Car Rental">
+    <meta property="og:title" content="Thuê Xe - KTT Car">
+    <meta property="og:description" content="Xem tất cả các loại xe cho thuê với giá cả hợp lý">
+    <meta property="og:type" content="website">
+    
+    <title>Thuê Xe - KTT Car</title>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "AutoRental",
+        "name": "KTT Car Rental",
+        "description": "Dịch vụ cho thuê xe chất lượng cao tại Việt Nam",
+        "url": "https://kttcar.com/thue-xe",
+        "telephone": "+84-xxx-xxx-xxx",
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "VN",
+            "addressLocality": "Ho Chi Minh City"
+        }
+    }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-brand">
+                <!-- Logo content from logo.html -->
+                <div class="logo-container">
+                    <img src="logo.webp" alt="KTT Car Logo" class="logo-image">
+                    <span class="logo-text">KTT Car</span>
+                </div>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html" class="nav-link" data-vi="Trang chủ" data-en="Home">Trang chủ</a></li>
+                <li><a href="thue-xe.html" class="nav-link active" data-vi="Thuê xe" data-en="Rent Car">Thuê xe</a></li>
+                <li><a href="index.html#contact" class="nav-link" data-vi="Liên hệ" data-en="Contact">Liên hệ</a></li>
+                <li><a href="index.html#etc-payment" class="nav-link" data-vi="Nạp phí ETC" data-en="ETC Payment">Nạp phí ETC</a></li>
+                <li><a href="#insurance" class="nav-link" data-vi="Bảo hiểm PVI" data-en="PVI Insurance">Bảo hiểm PVI</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="navbar-actions">
+                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                    <span class="theme-icon">🌙</span>
+                </button>
+
+                <!-- Language Toggle -->
+                <div class="language-toggle">
+                    <select class="language-select" name="language" id="language" onchange="toggleLanguage()">
+                        <option value="vi">VI</option>
+                        <option value="en">EN</option>
+                    </select>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title" data-vi="Thuê xe" data-en="Car Rental">
+                Thuê xe
+            </h1>
+            <p class="page-subtitle" data-vi="Chọn xe phù hợp với nhu cầu của bạn" data-en="Choose the car that fits your needs">
+                Chọn xe phù hợp với nhu cầu của bạn
+            </p>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="filter-section">
+        <div class="container">
+            <h2 class="filter-title" data-vi="Lọc xe theo tiêu chí" data-en="Filter Cars">
+                Lọc xe theo tiêu chí
+            </h2>
+            <div class="filter-controls">
+                <div class="filter-group">
+                    <label data-vi="Loại xe:" data-en="Car Type:">Loại xe:</label>
+                    <select id="car-type-filter">
+                        <option value="" data-vi="Tất cả" data-en="All">Tất cả</option>
+                        <option value="sedan" data-vi="Sedan" data-en="Sedan">Sedan</option>
+                        <option value="suv" data-vi="SUV" data-en="SUV">SUV</option>
+                        <option value="luxury" data-vi="Sang trọng" data-en="Luxury">Sang trọng</option>
+                        <option value="minivan" data-vi="Minivan" data-en="Minivan">Minivan</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label data-vi="Số chỗ ngồi:" data-en="Seats:">Số chỗ ngồi:</label>
+                    <select id="seats-filter">
+                        <option value="" data-vi="Tất cả" data-en="All">Tất cả</option>
+                        <option value="4">4 chỗ</option>
+                        <option value="5">5 chỗ</option>
+                        <option value="7">7 chỗ</option>
+                        <option value="9">9+ chỗ</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label data-vi="Khoảng giá:" data-en="Price Range:">Khoảng giá:</label>
+                    <select id="price-filter">
+                        <option value="" data-vi="Tất cả" data-en="All">Tất cả</option>
+                        <option value="0-1000000" data-vi="Dưới 1 triệu/ngày" data-en="Under 1M/day">Dưới 1 triệu/ngày</option>
+                        <option value="1000000-2000000" data-vi="1-2 triệu/ngày" data-en="1-2M/day">1-2 triệu/ngày</option>
+                        <option value="2000000-5000000" data-vi="2-5 triệu/ngày" data-en="2-5M/day">2-5 triệu/ngày</option>
+                        <option value="5000000+" data-vi="Trên 5 triệu/ngày" data-en="Over 5M/day">Trên 5 triệu/ngày</option>
+                    </select>
+                </div>
+                <button class="filter-reset" onclick="resetFilters()" data-vi="Xóa bộ lọc" data-en="Reset Filters">
+                    Xóa bộ lọc
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cars Section -->
+    <section class="cars-section">
+        <div class="container">
+            <div class="cars-header">
+                <h2 class="section-title" data-vi="Tất cả xe cho thuê" data-en="All Available Cars">
+                    Tất cả xe cho thuê
+                </h2>
+            </div>
+            <div class="cars-grid" id="all-cars-grid">
+                <!-- Car cards will be populated by JavaScript -->
+            </div>
+            <div class="cars-list" id="all-cars-list" style="display: none;">
+                <!-- Car list items will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Car Detail Modal -->
+    <div id="car-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="car-detail-content">
+                <!-- Car details will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>KTT Car</h3>
+                    <p data-vi="Công ty TNHH TMDV VẬN TẢI VÀ DU LỊCH KTT CAR"
+                        data-en="KTT CAR TRANSPORT AND TOURISM TRADING SERVICES CO., LTD">
+                        Công ty TNHH TMDV VẬN TẢI VÀ DU LỊCH KTT CAR
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h4 data-vi="Địa chỉ" data-en="Address">Địa chỉ</h4>
+                    <p><strong data-vi="Trụ sở chính:" data-en="Head Office:">Trụ sở chính:</strong><br>
+                    499/2 Hương Lộ 3, P.Bình Hưng Hòa, Q.Bình Tân, HCM</p>
+                    <p><strong data-vi="Bãi xe:" data-en="Parking Lot:">Bãi xe:</strong><br>
+                    158 Nguyễn Hữu Tiến, P.Tây Thạnh, Q.Tân Phú, HCM</p>
+                </div>
+                <div class="footer-section">
+                    <h4 data-vi="Liên hệ" data-en="Contact">Liên hệ</h4>
+                    <p><strong>Website:</strong> <a href="https://www.kttcar.com" target="_blank">https://www.kttcar.com</a></p>
+                    <p><strong>Email:</strong> <a href="mailto:jackynguyen23@gmail.com">jackynguyen23@gmail.com</a></p>
+                    <p><strong>Hotline:</strong> <a href="tel:0798888373">079.8888.373</a></p>
+                    <p><strong>Facebook:</strong> <a href="https://www.facebook.com/dvtulai" target="_blank">dvtulai</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p data-vi="© 2024 KTT Car. Tất cả quyền được bảo lưu." data-en="© 2024 KTT Car. All rights reserved.">
+                    © 2024 KTT Car. Tất cả quyền được bảo lưu.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="thue-xe.js"></script>
+</body>
+</html>
