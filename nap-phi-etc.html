@@ -59,15 +59,15 @@
                         <span class="theme-icon">🌙</span>
                     </button></li>
                 <li>
-                    <button class="language-toggle" onclick="toggleLanguage()" aria-label="Toggle language">
-                        <span class="language-text">EN</span>
-                    </button>
+                    <!-- Language Toggle -->
+                    <div class="language-toggle">
+                        <select class="language-select" name="language" id="language" onchange="toggleLanguage()">
+                            <option value="vi">Tiếng Việt</option>
+                            <option value="en">English</option>
+                        </select>
+                    </div>
                 </li>
-                <div class="hamburger" onclick="toggleMobileMenu()">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
+
             </ul>
         </nav>
     </header>
@@ -93,7 +93,7 @@
                         </p>
                     </div>
                     <div class="coming-soon-actions">
-                        <a href="contact.html" class="btn btn-primary" data-vi="Liên hệ với chúng tôi" data-en="Contact Us">
+                        <a href="contact.html" style="color: black;" class="btn btn-primary" data-vi="Liên hệ với chúng tôi" data-en="Contact Us">
                             Liên hệ với chúng tôi
                         </a>
                         <a href="index.html" class="btn btn-secondary" data-vi="Về trang chủ" data-en="Back to Home">

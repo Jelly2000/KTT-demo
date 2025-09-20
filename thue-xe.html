@@ -50,29 +50,25 @@
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="index.html" class="nav-link" data-vi="Trang chủ" data-en="Home">Trang chủ</a></li>
                 <li><a href="thue-xe.html" class="nav-link active" data-vi="Thuê xe" data-en="Rent Car">Thuê xe</a></li>
-                <li><a href="index.html#contact" class="nav-link" data-vi="Liên hệ" data-en="Contact">Liên hệ</a></li>
-                <li><a href="index.html#etc-payment" class="nav-link" data-vi="Nạp phí ETC" data-en="ETC Payment">Nạp phí ETC</a></li>
-                <li><a href="#insurance" class="nav-link" data-vi="Bảo hiểm PVI" data-en="PVI Insurance">Bảo hiểm PVI</a></li>
+                <li><a href="thu-tuc.html" class="nav-link " data-vi="Thủ tục" data-en="Procedure">Thủ tục</a></li>
+                <li><a href="contact.html" class="nav-link" data-vi="Liên hệ" data-en="Contact">Liên hệ</a></li>
+                <li><a href="nap-phi-etc.html" class="nav-link" data-vi="Nạp phí ETC" data-en="ETC Payment">Nạp phí ETC</a>
+                </li>
+                <li><a href="bao-hiem-pvi.html" class="nav-link" data-vi="Bảo hiểm PVI" data-en="PVI Insurance">Bảo hiểm
+                        PVI</a></li>
+                <li> <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                        <span class="theme-icon">🌙</span>
+                    </button></li>
+                <li>
+                    <!-- Language Toggle -->
+                    <div class="language-toggle">
+                        <select class="language-select" name="language" id="language" onchange="toggleLanguage()">
+                            <option value="vi">Tiếng Việt</option>
+                            <option value="en">English</option>
+                        </select>
+                    </div>
+                </li>
             </ul>
-            <button class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-
-            <div class="navbar-actions">
-                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
-                    <span class="theme-icon">🌙</span>
-                </button>
-
-                <!-- Language Toggle -->
-                <div class="language-toggle">
-                    <select class="language-select" name="language" id="language" onchange="toggleLanguage()">
-                        <option value="vi">VI</option>
-                        <option value="en">EN</option>
-                    </select>
-                </div>
-            </div>
         </nav>
     </header>
 
