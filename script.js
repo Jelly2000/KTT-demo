@@ -346,9 +346,10 @@ function renderCars() {
 function createCarCard(car) {
     const featuresText = currentLanguage === 'vi' ? 'Tính năng:' : 'Features:';
     const rentButtonText = currentLanguage === 'vi' ? 'Thuê xe này' : 'Rent this car';
+    const detailsButtonText = currentLanguage === 'vi' ? 'Xem chi tiết' : 'View Details';
     
     return `
-        <div class="car-card" onclick="showCarDetail(${car.id})" role="button" tabindex="0" aria-label="View details for ${car.name}">
+        <div class="car-card" role="button" tabindex="0" aria-label="View details for ${car.name}">
             <div class="car-image" aria-hidden="true">
                 <img src="${car.image}" alt="${car.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px 8px 0 0;">
             </div>
@@ -359,9 +360,14 @@ function createCarCard(car) {
                 <ul class="car-features">
                     ${car.features.map(feature => `<li>• ${feature}</li>`).join('')}
                 </ul>
-                <button class="rent-button" onclick="event.stopPropagation(); rentCar(${car.id})" aria-label="Rent ${car.name}">
-                    ${rentButtonText}
-                </button>
+                <div class="car-actions">
+                    <button class="rent-button" onclick="rentCar(${car.id})" aria-label="Rent ${car.name}">
+                        ${rentButtonText}
+                    </button>
+                    <button class="details-button" onclick="window.location.href='vehicle-detail.html?id=${car.id}'" aria-label="View details for ${car.name}">
+                        ${detailsButtonText}
+                    </button>
+                </div>
             </div>
         </div>
     `;
@@ -379,44 +385,6 @@ function addCarCardListeners() {
     });
 }
 
-// Car detail modal functions
-function showCarDetail(carId) {
-    const car = carsData[currentLanguage].find(c => c.id === carId);
-    if (!car) return;
-    
-    const modal = document.getElementById('car-modal');
-    const content = document.getElementById('car-detail-content');
-    
-    const specsText = currentLanguage === 'vi' ? 'Thông số kỹ thuật:' : 'Specifications:';
-    const rentButtonText = currentLanguage === 'vi' ? 'Thuê xe này ngay' : 'Rent this car now';
-    
-    content.innerHTML = `
-        <div class="car-detail">
-            <div class="car-detail-image">${car.image}</div>
-            <h2>${car.name}</h2>
-            <div class="car-detail-price">${car.price}</div>
-            <p class="car-description">${car.description}</p>
-            
-            <h3>${specsText}</h3>
-            <div class="car-specs">
-                ${Object.entries(car.specs).map(([key, value]) => 
-                    `<div class="spec-item"><strong>${key}:</strong> ${value}</div>`
-                ).join('')}
-            </div>
-            
-            <button class="rent-button" onclick="rentCar(${car.id})" style="margin-top: 20px;">
-                ${rentButtonText}
-            </button>
-        </div>
-    `;
-    
-    modal.style.display = 'block';
-    document.body.style.overflow = 'hidden'; // Prevent background scrolling
-    
-    // Focus management for accessibility
-    content.querySelector('h2').focus();
-}
-
 function rentCar(carId) {
     const car = carsData[currentLanguage].find(c => c.id === carId);
     const message = currentLanguage === 'vi' 
@@ -424,38 +392,12 @@ function rentCar(carId) {
         : `Thank you for your interest in ${car.name}. We will contact you soon!`;
     
     alert(message);
-    closeModal();
-}
-
-function closeModal() {
-    const modal = document.getElementById('car-modal');
-    modal.style.display = 'none';
-    document.body.style.overflow = 'auto'; // Restore scrolling
 }
 
 // Event listeners setup
 function setupEventListeners() {
     // Navigation event listeners will be handled in initializeNavigation
     // after the navigation component is loaded
-    
-    // Modal close functionality
-    const modal = document.getElementById('car-modal');
-    const closeBtn = document.querySelector('.close');
-    
-    closeBtn.addEventListener('click', closeModal);
-    
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            closeModal();
-        }
-    });
-    
-    // Keyboard navigation for modal
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.style.display === 'block') {
-            closeModal();
-        }
-    });
     
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {

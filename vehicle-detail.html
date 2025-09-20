@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết xe - KTT Car</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!-- Preload critical assets -->
+    <link rel="preload" href="logo.webp" as="image">
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Chi tiết thông tin xe thuê tại KTT Car - Dịch vụ cho thuê xe tự lái cao cấp">
+    <meta name="keywords" content="chi tiết xe, thuê xe tự lái, KTT Car, thông số xe">
+    <meta property="og:title" content="Chi tiết xe - KTT Car">
+    <meta property="og:description" content="Xem thông tin chi tiết về xe thuê tại KTT Car">
+    <meta property="og:type" content="website">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- Vehicle Details Section -->
+    <section class="vehicle-detail-section">
+        <div class="container">
+            <div class="vehicle-detail-grid">
+                <!-- Vehicle Image -->
+                <div class="vehicle-image-container">
+                    <div class="vehicle-image" id="vehicle-image">
+                        🚗
+                    </div>
+                    <div class="image-gallery" id="image-gallery">
+                        <!-- Additional images will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Vehicle Info -->
+                <div class="vehicle-info">
+                    <div class="vehicle-header">
+                        <h2 class="vehicle-title" id="vehicle-title">Tên xe</h2>
+                        <div class="vehicle-price" id="vehicle-price">Giá thuê</div>
+                        <div class="vehicle-rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="rating-text" data-vi="(Đánh giá tuyệt vời)" data-en="(Excellent rating)">(Đánh giá tuyệt vời)</span>
+                        </div>
+                    </div>
+
+                    <div class="vehicle-description">
+                        <h3 data-vi="Mô tả" data-en="Description">Mô tả</h3>
+                        <p id="vehicle-description">Mô tả chi tiết về xe sẽ được hiển thị ở đây.</p>
+                    </div>
+
+                    <div class="vehicle-features">
+                        <h3 data-vi="Tính năng nổi bật" data-en="Key Features">Tính năng nổi bật</h3>
+                        <ul id="vehicle-features-list">
+                            <!-- Features will be populated by JavaScript -->
+                        </ul>
+                    </div>
+
+                    <div class="vehicle-actions">
+                        <button class="rent-button primary" onclick="openBookingForm()" 
+                                data-vi="Thuê xe ngay" data-en="Rent Now">
+                            Thuê xe ngay
+                        </button>
+                        <button class="contact-button secondary" onclick="contactAboutVehicle()" 
+                                data-vi="Liên hệ tư vấn" data-en="Contact for Consultation">
+                            Liên hệ tư vấn
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vehicle Specifications -->
+    <section class="vehicle-specs-section">
+        <div class="container">
+            <h2 class="section-title" data-vi="Thông số kỹ thuật" data-en="Technical Specifications">
+                Thông số kỹ thuật
+            </h2>
+            <div class="specs-grid" id="specs-grid">
+                <!-- Specifications will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Form Section -->
+    <section class="booking-section" id="booking-form-section" style="display: none;">
+        <div class="container">
+            <h2 class="section-title" data-vi="Đặt xe ngay" data-en="Book Now">Đặt xe ngay</h2>
+            <p class="booking-subtitle" data-vi="Điền thông tin để đặt xe thuê" data-en="Fill in the information to book your rental">
+                Điền thông tin để đặt xe thuê
+            </p>
+            
+            <div class="modern-form">
+                <form id="vehicle-booking-form" class="form-container">
+                    <!-- Selected Vehicle Info -->
+                    <div class="selected-vehicle-info">
+                        <h3 data-vi="Xe đã chọn" data-en="Selected Vehicle">Xe đã chọn</h3>
+                        <div class="selected-vehicle-summary" id="selected-vehicle-summary">
+                            <!-- Vehicle summary will be populated -->
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-field">
+                            <div class="field-label">
+                                <span class="label-text" data-vi="Họ và tên" data-en="Full Name">Họ và tên</span>
+                                <span class="required-asterisk">*</span>
+                            </div>
+                            <input type="text" id="fullName" name="fullName" class="field-input" 
+                                   data-vi="Nhập họ và tên của bạn" data-en="Enter your full name"
+                                   placeholder="Nhập họ và tên của bạn" required>
+                            <div class="error-message" id="fullName-error"></div>
+                        </div>
+                        
+                        <div class="form-field">
+                            <div class="field-label">
+                                <span class="label-text" data-vi="Số điện thoại" data-en="Phone Number">Số điện thoại</span>
+                                <span class="required-asterisk">*</span>
+                            </div>
+                            <input type="tel" id="phone" name="phone" class="field-input" 
+                                   data-vi="Nhập số điện thoại" data-en="Enter phone number"
+                                   placeholder="Nhập số điện thoại" required>
+                            <div class="error-message" id="phone-error"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-field">
+                            <div class="field-label">
+                                <span class="label-text" data-vi="Ngày nhận xe" data-en="Pickup Date">Ngày nhận xe</span>
+                                <span class="required-asterisk">*</span>
+                            </div>
+                            <input type="date" id="pickupDate" name="pickupDate" class="field-input date-input" required>
+                            <div class="error-message" id="pickupDate-error"></div>
+                        </div>
+                        
+                        <div class="form-field">
+                            <div class="field-label">
+                                <span class="label-text" data-vi="Ngày trả xe" data-en="Return Date">Ngày trả xe</span>
+                                <span class="required-asterisk">*</span>
+                            </div>
+                            <input type="date" id="returnDate" name="returnDate" class="field-input date-input" required>
+                            <div class="error-message" id="returnDate-error"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-label">
+                            <span class="label-text" data-vi="Ghi chú" data-en="Notes">Ghi chú</span>
+                        </div>
+                        <textarea id="notes" name="notes" class="field-input field-textarea" rows="4" 
+                                  data-vi="Nhập ghi chú (tùy chọn)" data-en="Enter notes (optional)"
+                                  placeholder="Nhập ghi chú (tùy chọn)"></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="submit-btn">
+                            <span class="btn-text" data-vi="Đặt xe ngay" data-en="Book Now">Đặt xe ngay</span>
+                        </button>
+                        <button type="button" class="reset-btn" onclick="hideBookingForm()"
+                                data-vi="Hủy" data-en="Cancel">
+                            Hủy
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Floating Contact Buttons -->
+    <div class="floating-contacts">
+        <div class="contact-item" title="Gọi điện thoại">
+            <a href="tel:0798888373" class="contact-btn phone-btn" aria-label="Gọi điện thoại">
+                <img src="phone.png" alt="Phone" class="contact-icon">
+            </a>
+        </div>
+        <div class="contact-item" title="Liên hệ qua Zalo">
+            <a href="https://zalo.me/0798888373" class="contact-btn zalo-btn" target="_blank" rel="noopener" aria-label="Liên hệ qua Zalo">
+                <img src="zalo.webp" alt="Zalo" class="contact-icon">
+            </a>
+        </div>
+        <div class="contact-item" title="Liên hệ qua Messenger">
+            <a href="https://m.me/dvtulai" class="contact-btn messenger-btn" target="_blank" rel="noopener" aria-label="Liên hệ qua Messenger">
+                <img src="messenger.webp" alt="Messenger" class="contact-icon">
+            </a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Vehicle detail page specific JavaScript
+        let currentVehicle = null;
+
+        // Get vehicle ID from URL parameters
+        function getVehicleIdFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('id');
+        }
+
+        // Load vehicle details when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const vehicleId = getVehicleIdFromUrl();
+            if (vehicleId) {
+                loadVehicleDetails(vehicleId);
+            } else {
+                // Redirect to car listing if no ID provided
+                window.location.href = 'thue-xe.html';
+            }
+        });
+
+        // Load vehicle details
+        function loadVehicleDetails(vehicleId) {
+            // This will be implemented when carsData is available
+            // For now, showing placeholder content
+            showPlaceholderContent();
+        }
+
+        // Show placeholder content
+        function showPlaceholderContent() {
+            document.getElementById('vehicle-title').textContent = 'Toyota Vios 2023';
+            document.getElementById('vehicle-price').textContent = '800.000đ/ngày';
+            document.getElementById('vehicle-description').textContent = 'Xe sedan 4 chỗ tiết kiệm nhiên liệu, phù hợp cho gia đình và công việc.';
+            
+            const specsList = document.getElementById('specs-grid');
+            specsList.innerHTML = `
+                <div class="spec-card">
+                    <div class="spec-icon">🚗</div>
+                    <div class="spec-content">
+                        <div class="spec-label">Loại xe</div>
+                        <div class="spec-value">Sedan 4 chỗ</div>
+                    </div>
+                </div>
+                <div class="spec-card">
+                    <div class="spec-icon">⛽</div>
+                    <div class="spec-content">
+                        <div class="spec-label">Nhiên liệu</div>
+                        <div class="spec-value">Xăng</div>
+                    </div>
+                </div>
+                <div class="spec-card">
+                    <div class="spec-icon">⚙️</div>
+                    <div class="spec-content">
+                        <div class="spec-label">Hộp số</div>
+                        <div class="spec-value">Tự động CVT</div>
+                    </div>
+                </div>
+                <div class="spec-card">
+                    <div class="spec-icon">💺</div>
+                    <div class="spec-content">
+                        <div class="spec-label">Số chỗ ngồi</div>
+                        <div class="spec-value">5 chỗ</div>
+                    </div>
+                </div>
+            `;
+
+            const featuresList = document.getElementById('vehicle-features-list');
+            featuresList.innerHTML = `
+                <li>✅ Điều hòa tự động</li>
+                <li>✅ Camera lùi</li>
+                <li>✅ Bluetooth kết nối</li>
+                <li>✅ USB/AUX</li>
+                <li>✅ Túi khí an toàn</li>
+                <li>✅ ABS + EBD</li>
+            `;
+        }
+
+        // Show booking form
+        function openBookingForm() {
+            document.getElementById('booking-form-section').style.display = 'block';
+            document.getElementById('booking-form-section').scrollIntoView({ behavior: 'smooth' });
+            
+            // Populate selected vehicle info
+            const summary = document.getElementById('selected-vehicle-summary');
+            summary.innerHTML = `
+                <div class="selected-vehicle">
+                    <div class="selected-vehicle-image">🚗</div>
+                    <div class="selected-vehicle-details">
+                        <div class="selected-vehicle-name">${document.getElementById('vehicle-title').textContent}</div>
+                        <div class="selected-vehicle-price">${document.getElementById('vehicle-price').textContent}</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Hide booking form
+        function hideBookingForm() {
+            document.getElementById('booking-form-section').style.display = 'none';
+        }
+
+        // Contact about vehicle
+        function contactAboutVehicle() {
+            const vehicleName = document.getElementById('vehicle-title').textContent;
+            const message = `Tôi muốn tư vấn về xe ${vehicleName}`;
+            window.open(`https://zalo.me/0798888373?message=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        // Handle booking form submission
+        document.getElementById('vehicle-booking-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const vehicleName = document.getElementById('vehicle-title').textContent;
+            
+            alert(`Cảm ơn bạn đã đặt xe ${vehicleName}! Chúng tôi sẽ liên hệ với bạn sớm nhất.`);
+            hideBookingForm();
+        });
+    </script>
+</body>
+
+</html>

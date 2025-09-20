@@ -554,50 +554,6 @@ function rentCar(carId) {
 
 // Extend the existing showCarDetails function to work with extended data
 function showCarDetails(carId) {
-    const lang = (typeof currentLanguage !== 'undefined') ? currentLanguage : 'vi';
-    const car = (extendedCarsData[lang] || extendedCarsData.vi).find(c => c.id === carId);
-    if (!car) return;
-    
-    const modal = document.getElementById('car-modal');
-    const content = document.getElementById('car-detail-content');
-    
-    content.innerHTML = `
-        <div class="car-detail-header">
-            <div class="car-detail-icon">${car.image}</div>
-            <div class="car-detail-title">
-                <h2>${car.name}</h2>
-                <div class="car-detail-price">${car.price}</div>
-            </div>
-        </div>
-        <div class="car-detail-body">
-            <p class="car-detail-description">${car.description}</p>
-            <div class="car-detail-features">
-                <h3 data-vi="Tính năng" data-en="Features">Tính năng</h3>
-                <div class="features-grid">
-                    ${car.features.map(feature => `<span class="feature-badge">${feature}</span>`).join('')}
-                </div>
-            </div>
-            <div class="car-detail-specs">
-                <h3 data-vi="Thông số kỹ thuật" data-en="Specifications">Thông số kỹ thuật</h3>
-                <div class="specs-grid">
-                    ${Object.entries(car.specs).map(([key, value]) => `
-                        <div class="spec-item">
-                            <span class="spec-key">${key}:</span>
-                            <span class="spec-value">${value}</span>
-                        </div>
-                    `).join('')}
-                </div>
-            </div>
-            <div class="car-detail-actions">
-                <button class="btn-rent-large" onclick="rentCar(${car.id})">
-                    <span data-vi="Thuê xe ngay" data-en="Rent Now">Thuê xe ngay</span>
-                </button>
-            </div>
-        </div>
-    `;
-    
-    // Update language for modal content
-    updateLanguage();
-    
-    modal.style.display = 'block';
+    // Redirect to vehicle detail page instead of showing modal
+    window.location.href = `vehicle-detail.html?id=${carId}`;
 }
