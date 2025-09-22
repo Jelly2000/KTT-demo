@@ -1,3 +1,91 @@
+// Navigation Loader Function
+function loadNavigation() {
+    fetch('navbar.html')
+        .then(response => response.text())
+        .then(data => {
+            // Find navbar placeholder or insert at the beginning of body
+            const navbarPlaceholder = document.getElementById('navbar-placeholder');
+            if (navbarPlaceholder) {
+                navbarPlaceholder.innerHTML = data;
+            } else {
+                // Insert at the beginning of body if no placeholder exists
+                document.body.insertAdjacentHTML('afterbegin', data);
+            }
+            
+            // Initialize navigation after loading
+            initializeNavigation();
+            
+            // Initialize language after navigation is loaded
+            initializeLanguage();
+        })
+        .catch(error => {
+            console.error('Error loading navigation:', error);
+        });
+}
+
+// Initialize navigation functionality
+function initializeNavigation() {
+    // Hamburger menu functionality
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+    
+    if (hamburger && navMenu) {
+        hamburger.addEventListener('click', () => {
+            const isActive = hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            
+            // Toggle body class to hide floating contacts
+            if (isActive) {
+                document.body.classList.add('menu-open');
+            } else {
+                document.body.classList.remove('menu-open');
+            }
+        });
+        
+        // Close mobile menu when clicking on links
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.classList.remove('menu-open');
+            });
+        });
+    }
+    
+    // Handle home link based on current page
+    const homeLink = document.querySelector('.home-link');
+    if (homeLink) {
+        if (window.location.pathname.includes('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/')) {
+            homeLink.href = '#home';
+        } else {
+            homeLink.href = 'index.html';
+        }
+    }
+}
+
+// Footer Loader Function
+function loadFooter() {
+    fetch('footer.html')
+        .then(response => response.text())
+        .then(data => {
+            // Find footer placeholder or append at the end of body
+            const footerPlaceholder = document.getElementById('footer-placeholder');
+            if (footerPlaceholder) {
+                footerPlaceholder.innerHTML = data;
+            } else {
+                // Append at the end of body if no placeholder exists
+                document.body.insertAdjacentHTML('beforeend', data);
+            }
+            
+            // Update footer language content after loading
+            updateContent();
+        })
+        .catch(error => {
+            console.error('Error loading footer:', error);
+        });
+}
+
 // Theme Management
 let currentTheme = localStorage.getItem('theme') || 'light';
 let currentLanguage = localStorage.getItem('language') || 'vi';
@@ -96,12 +184,19 @@ const carsData = {
 
 // Initialize the website
 document.addEventListener('DOMContentLoaded', function() {
+    // Load navigation component first
+    loadNavigation();
+    
+    // Load footer component
+    loadFooter();
+    
     initializeTheme();
-    initializeLanguage();
-    renderCars();
+    // Language will be initialized after navigation loads
+    // renderCars() will be called after initializeLanguage()
     setupEventListeners();
     setupIntersectionObserver();
     setupConsultationForm();
+    setupContactForm();
     setupFormReset();
     
     // Performance: Preload critical resources
@@ -130,6 +225,8 @@ function updateThemeIcon() {
 function initializeLanguage() {
     updateLanguageDisplay();
     updateContent();
+    // Render cars after language is initialized
+    renderCars();
 }
 
 function toggleLanguage() {
@@ -240,7 +337,18 @@ function updatePlaceholders() {
 // Car rendering functions
 function renderCars() {
     const carsGrid = document.getElementById('cars-grid');
+    
+    if (!carsGrid) {
+        console.error('cars-grid element not found');
+        return;
+    }
+    
     const cars = carsData[currentLanguage];
+    
+    if (!cars) {
+        console.error('No cars data for language:', currentLanguage);
+        return;
+    }
     
     carsGrid.innerHTML = cars.map(car => createCarCard(car)).join('');
     
@@ -251,9 +359,10 @@ function renderCars() {
 function createCarCard(car) {
     const featuresText = currentLanguage === 'vi' ? 'Tính năng:' : 'Features:';
     const rentButtonText = currentLanguage === 'vi' ? 'Thuê xe này' : 'Rent this car';
+    const detailsButtonText = currentLanguage === 'vi' ? 'Xem chi tiết' : 'View Details';
     
     return `
-        <div class="car-card" onclick="showCarDetail(${car.id})" role="button" tabindex="0" aria-label="View details for ${car.name}">
+        <div class="car-card" role="button" tabindex="0" aria-label="View details for ${car.name}">
             <div class="car-image" aria-hidden="true">
                 <img src="${car.image}" alt="${car.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px 8px 0 0;">
             </div>
@@ -264,9 +373,14 @@ function createCarCard(car) {
                 <ul class="car-features">
                     ${car.features.map(feature => `<li>• ${feature}</li>`).join('')}
                 </ul>
-                <button class="rent-button" onclick="event.stopPropagation(); rentCar(${car.id})" aria-label="Rent ${car.name}">
-                    ${rentButtonText}
-                </button>
+                <div class="car-actions">
+                    <button class="rent-button" onclick="rentCar(${car.id})" aria-label="Rent ${car.name}">
+                        ${rentButtonText}
+                    </button>
+                    <button class="details-button" onclick="window.location.href='vehicle-detail.html?id=${car.id}'" aria-label="View details for ${car.name}">
+                        ${detailsButtonText}
+                    </button>
+                </div>
             </div>
         </div>
     `;
@@ -284,44 +398,6 @@ function addCarCardListeners() {
     });
 }
 
-// Car detail modal functions
-function showCarDetail(carId) {
-    const car = carsData[currentLanguage].find(c => c.id === carId);
-    if (!car) return;
-    
-    const modal = document.getElementById('car-modal');
-    const content = document.getElementById('car-detail-content');
-    
-    const specsText = currentLanguage === 'vi' ? 'Thông số kỹ thuật:' : 'Specifications:';
-    const rentButtonText = currentLanguage === 'vi' ? 'Thuê xe này ngay' : 'Rent this car now';
-    
-    content.innerHTML = `
-        <div class="car-detail">
-            <div class="car-detail-image">${car.image}</div>
-            <h2>${car.name}</h2>
-            <div class="car-detail-price">${car.price}</div>
-            <p class="car-description">${car.description}</p>
-            
-            <h3>${specsText}</h3>
-            <div class="car-specs">
-                ${Object.entries(car.specs).map(([key, value]) => 
-                    `<div class="spec-item"><strong>${key}:</strong> ${value}</div>`
-                ).join('')}
-            </div>
-            
-            <button class="rent-button" onclick="rentCar(${car.id})" style="margin-top: 20px;">
-                ${rentButtonText}
-            </button>
-        </div>
-    `;
-    
-    modal.style.display = 'block';
-    document.body.style.overflow = 'hidden'; // Prevent background scrolling
-    
-    // Focus management for accessibility
-    content.querySelector('h2').focus();
-}
-
 function rentCar(carId) {
     const car = carsData[currentLanguage].find(c => c.id === carId);
     const message = currentLanguage === 'vi' 
@@ -329,53 +405,12 @@ function rentCar(carId) {
         : `Thank you for your interest in ${car.name}. We will contact you soon!`;
     
     alert(message);
-    closeModal();
-}
-
-function closeModal() {
-    const modal = document.getElementById('car-modal');
-    modal.style.display = 'none';
-    document.body.style.overflow = 'auto'; // Restore scrolling
 }
 
 // Event listeners setup
 function setupEventListeners() {
-    // Mobile menu toggle
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.getElementById('nav-menu');
-    
-    hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
-        navMenu.classList.toggle('active');
-    });
-    
-    // Close mobile menu when clicking on links
-    const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-        });
-    });
-    
-    // Modal close functionality
-    const modal = document.getElementById('car-modal');
-    const closeBtn = document.querySelector('.close');
-    
-    closeBtn.addEventListener('click', closeModal);
-    
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            closeModal();
-        }
-    });
-    
-    // Keyboard navigation for modal
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.style.display === 'block') {
-            closeModal();
-        }
-    });
+    // Navigation event listeners will be handled in initializeNavigation
+    // after the navigation component is loaded
     
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -736,17 +771,154 @@ function formatDate(dateString) {
 }
 
 function setupFormReset() {
-    const resetBtn = document.querySelector('.reset-btn');
-    if (resetBtn) {
+    const resetBtns = document.querySelectorAll('.reset-btn');
+    resetBtns.forEach(resetBtn => {
         resetBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            const form = document.getElementById('consultation-form');
+            const form = this.closest('form');
             if (form) {
                 form.reset();
                 clearFormErrors();
             }
         });
+    });
+}
+
+// Contact Form Functions
+function setupContactForm() {
+    const contactForm = document.getElementById('contact-form');
+    if (!contactForm) return;
+
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const formData = {
+            contactName: document.getElementById('contactName').value,
+            contactPhone: document.getElementById('contactPhone').value,
+            contactEmail: document.getElementById('contactEmail').value,
+            contactSubject: document.getElementById('contactSubject').value,
+            contactMessage: document.getElementById('contactMessage').value
+        };
+
+        // Validation
+        if (!validateContactForm(formData)) {
+            return;
+        }
+
+        // Success message
+        const subjectText = getContactSubjectText(formData.contactSubject);
+        const successMessage = currentLanguage === 'vi'
+            ? `Cảm ơn ${formData.contactName}! Chúng tôi đã nhận được tin nhắn của bạn về "${subjectText}". Nhân viên sẽ liên hệ với bạn qua ${formData.contactPhone || formData.contactEmail} trong thời gian sớm nhất.`
+            : `Thank you ${formData.contactName}! We have received your message about "${subjectText}". Our staff will contact you at ${formData.contactPhone || formData.contactEmail} as soon as possible.`;
+        
+        alert(successMessage);
+        contactForm.reset();
+        clearFormErrors();
+    });
+}
+
+function validateContactForm(formData) {
+    // Clear previous errors
+    clearFormErrors();
+    
+    let isValid = true;
+    const requiredFields = {
+        contactName: {
+            vi: 'Vui lòng nhập họ và tên',
+            en: 'Please enter your full name'
+        },
+        contactPhone: {
+            vi: 'Vui lòng nhập số điện thoại',
+            en: 'Please enter your phone number'
+        },
+        contactSubject: {
+            vi: 'Vui lòng chọn chủ đề',
+            en: 'Please select a subject'
+        },
+        contactMessage: {
+            vi: 'Vui lòng nhập tin nhắn',
+            en: 'Please enter your message'
+        }
+    };
+    
+    // Check required fields
+    for (let [field, messages] of Object.entries(requiredFields)) {
+        if (!formData[field] || formData[field].trim() === '') {
+            showFieldError(field, messages[currentLanguage]);
+            isValid = false;
+        }
     }
+
+    // Name validation (at least 2 characters)
+    if (formData.contactName && formData.contactName.trim().length < 2) {
+        const errorMsg = currentLanguage === 'vi'
+            ? 'Họ và tên phải có ít nhất 2 ký tự'
+            : 'Full name must be at least 2 characters';
+        showFieldError('contactName', errorMsg);
+        isValid = false;
+    }
+
+    // Phone validation
+    if (formData.contactPhone) {
+        const phoneRegex = /^[0-9+\-\s()]{10,15}$/;
+        if (!phoneRegex.test(formData.contactPhone)) {
+            const errorMsg = currentLanguage === 'vi'
+                ? 'Số điện thoại không hợp lệ (10-15 chữ số)'
+                : 'Invalid phone number (10-15 digits)';
+            showFieldError('contactPhone', errorMsg);
+            isValid = false;
+        }
+    }
+
+    // Email validation (if provided)
+    if (formData.contactEmail && formData.contactEmail.trim() !== '') {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(formData.contactEmail)) {
+            const errorMsg = currentLanguage === 'vi'
+                ? 'Địa chỉ email không hợp lệ'
+                : 'Invalid email address';
+            showFieldError('contactEmail', errorMsg);
+            isValid = false;
+        }
+    }
+
+    // Message length validation
+    if (formData.contactMessage && formData.contactMessage.trim().length < 10) {
+        const errorMsg = currentLanguage === 'vi'
+            ? 'Tin nhắn phải có ít nhất 10 ký tự'
+            : 'Message must be at least 10 characters';
+        showFieldError('contactMessage', errorMsg);
+        isValid = false;
+    }
+
+    return isValid;
+}
+
+function getContactSubjectText(value) {
+    const subjectTexts = {
+        vi: {
+            'rental': 'Thuê xe',
+            'support': 'Hỗ trợ kỹ thuật',
+            'complaint': 'Khiếu nại',
+            'suggestion': 'Góp ý',
+            'other': 'Khác'
+        },
+        en: {
+            'rental': 'Car Rental',
+            'support': 'Technical Support',
+            'complaint': 'Complaint',
+            'suggestion': 'Suggestion',
+            'other': 'Other'
+        }
+    };
+
+    return subjectTexts[currentLanguage][value] || value;
+}
+
+// Map function for contact page
+function openMap(coordinates) {
+    const url = `https://www.google.com/maps?q=${coordinates}`;
+    window.open(url, '_blank');
 }
 
 // Analytics and performance monitoring

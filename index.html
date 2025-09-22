@@ -45,59 +45,26 @@
     <!-- Theme Toggle -->
 
     <!-- Header -->
-    <header class="header">
-        <nav class="nav">
-            <div class="nav-brand">
-                <!-- Logo content from logo.html -->
-                <div class="logo-container">
-                    <img src="logo.webp" alt="KTT Car Logo" class="logo-image">
-                    <span class="logo-text">KTT Car</span>
-                </div>
-            </div>
-            <ul class="nav-menu" id="nav-menu">
-                <li><a href="#home" class="nav-link" data-vi="Trang chủ" data-en="Home">Trang chủ</a></li>
-                <li><a href="thue-xe.html" class="nav-link" data-vi="Thuê xe" data-en="Rent Car">Thuê xe</a></li>
-                <li><a href="#contact" class="nav-link" data-vi="Liên hệ" data-en="Contact">Liên hệ</a></li>
-                <li><a href="#etc-payment" class="nav-link" data-vi="Nạp phí ETC" data-en="ETC Payment">Nạp phí ETC</a>
-                </li>
-                <li><a href="#insurance" class="nav-link" data-vi="Bảo hiểm PVI" data-en="PVI Insurance">Bảo hiểm
-                        PVI</a></li>
-                <li> <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
-                        <span class="theme-icon">🌙</span>
-                    </button></li>
-                <li>
-                    <!-- Language Toggle -->
-                    <div class="language-toggle">
-                        <select class="language-select" name="language" id="language" onchange="toggleLanguage()">
-                            <option value="vi">Tiếng Việt</option>
-                            <option value="en">Tiếng Anh</option>
-                        </select>
-                    </div>
-                </li>
-                <!-- <li>
+    <div id="navbar-placeholder"></div>
 
-                    <div class="navbar-actions">
-                        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
-                            <span class="theme-icon">🌙</span>
-                        </button>
-
-                        <div class="language-toggle">
-                            <select class="language-select" name="language" id="language" onchange="toggleLanguage()">
-                                <option value="vi">Tiếng Việt</option>
-                                <option value="en">Tiếng Anh</option>
-                            </select>
-                        </div>
-                    </div>
-                </li> -->
-            </ul>
-            <button class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-
-        </nav>
-    </header>
+    <!-- Floating Contact Buttons -->
+    <div class="floating-contacts">
+        <div class="contact-item" title="Gọi điện thoại">
+            <a href="tel:0798888373" class="contact-btn phone-btn" aria-label="Gọi điện thoại">
+                <img src="phone.png" alt="Phone" class="contact-icon">
+            </a>
+        </div>
+        <div class="contact-item" title="Liên hệ qua Zalo">
+            <a href="https://zalo.me/0798888373" class="contact-btn zalo-btn" target="_blank" rel="noopener" aria-label="Liên hệ qua Zalo">
+                <img src="zalo.webp" alt="Zalo" class="contact-icon">
+            </a>
+        </div>
+        <div class="contact-item" title="Liên hệ qua Messenger">
+            <a href="https://m.me/dvtulai" class="contact-btn messenger-btn" target="_blank" rel="noopener" aria-label="Liên hệ qua Messenger">
+                <img src="messenger.webp" alt="Messenger" class="contact-icon">
+            </a>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
@@ -112,6 +79,72 @@
             <button class="cta-button" data-vi="Thuê xe ngay" data-en="Rent Now">
                 Thuê xe ngay
             </button>
+        </div>
+    </section>
+
+    <!-- Rental Procedure Section -->
+    <section class="rental-procedure-section">
+        <div class="container">
+            <h2 class="section-title" data-vi="THỦ TỤC THUÊ XE" data-en="RENTAL PROCEDURE">
+                THỦ TỤC THUÊ XE
+            </h2>
+            <p class="procedure-intro" data-vi="Thủ tục đơn giản, nhanh chóng và tiện lợi" 
+               data-en="Simple, fast and convenient procedures">
+                Thủ tục đơn giản, nhanh chóng và tiện lợi
+            </p>
+            
+            <div class="procedure-grid-simple">
+                <!-- Documents Required -->
+                <div class="procedure-card-simple">
+                    <div class="procedure-icon-large">�</div>
+                    <h3 data-vi="Giấy tờ cần thiết" data-en="Required Documents">
+                        Giấy tờ cần thiết
+                    </h3>
+                    <p data-vi="CCCD + GPLX bản gốc" data-en="ID Card + Driver's License">
+                        CCCD + GPLX bản gốc
+                    </p>
+                </div>
+
+                <!-- Deposit Options -->
+                <div class="procedure-card-simple">
+                    <div class="procedure-icon-large">💰</div>
+                    <h3 data-vi="Hình thức đặt cọc" data-en="Deposit Options">
+                        Hình thức đặt cọc
+                    </h3>
+                    <p data-vi="Xe máy hoặc tiền mặt" data-en="Motorbike or Cash">
+                        Xe máy hoặc tiền mặt
+                    </p>
+                </div>
+
+                <!-- Flexible Timing -->
+                <div class="procedure-card-simple">
+                    <div class="procedure-icon-large">⏰</div>
+                    <h3 data-vi="Thời gian linh hoạt" data-en="Flexible Timing">
+                        Thời gian linh hoạt
+                    </h3>
+                    <p data-vi="Nhận xe tối hôm trước" data-en="Pick up evening before">
+                        Nhận xe tối hôm trước
+                    </p>
+                </div>
+
+                <!-- Home Delivery -->
+                <div class="procedure-card-simple">
+                    <div class="procedure-icon-large">🚗</div>
+                    <h3 data-vi="Giao xe tận nơi" data-en="Home Delivery">
+                        Giao xe tận nơi
+                    </h3>
+                    <p data-vi="Hỗ trợ khách hàng xa" data-en="Support for distant customers">
+                        Hỗ trợ khách hàng xa
+                    </p>
+                </div>
+            </div>
+
+            <div class="procedure-cta">
+                <button class="procedure-btn" onclick="window.location.href='thu-tuc.html'" 
+                        data-vi="Xem chi tiết thủ tục" data-en="View Detailed Procedures">
+                    Xem chi tiết thủ tục
+                </button>
+            </div>
         </div>
     </section>
 
@@ -217,7 +250,7 @@
 
                     <div class="form-actions">
                         <button type="submit" class="submit-btn">
-                            <span class="btn-text" data-vi="Gửi thông tin" data-en="Submit">Gửi thông tin</span>
+                            <span style="color: black;" class="btn-text" data-vi="Gửi thông tin" data-en="Submit">Gửi thông tin</span>
                         </button>
                         <button type="reset" class="reset-btn">
                             <span class="btn-text" data-vi="Làm mới" data-en="Reset">Làm mới</span>
@@ -228,81 +261,9 @@
         </div>
     </section>
 
-    <!-- ETC Payment Section (Placeholder) -->
-    <section id="etc-payment" class="placeholder-section">
-        <div class="container">
-            <h2 class="section-title" data-vi="Nạp phí ETC" data-en="ETC Payment">
-                Nạp phí ETC
-            </h2>
-            <div class="placeholder-content">
-                <p data-vi="Tính năng này sẽ được triển khai trong thời gian tới"
-                    data-en="This feature will be implemented soon">
-                    Tính năng này sẽ được triển khai trong thời gian tới
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Insurance Section (Placeholder) -->
-    <section id="insurance" class="placeholder-section">
-        <div class="container">
-            <h2 class="section-title" data-vi="Bảo hiểm" data-en="Insurance">
-                Bảo hiểm
-            </h2>
-            <div class="placeholder-content">
-                <p data-vi="Tính năng này sẽ được triển khai trong thời gian tới"
-                    data-en="This feature will be implemented soon">
-                    Tính năng này sẽ được triển khai trong thời gian tới
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Car Detail Modal -->
-    <div id="car-modal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <div id="car-detail-content">
-                <!-- Car details will be populated by JavaScript -->
-            </div>
-        </div>
-    </div>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>KTT Car</h3>
-                    <p data-vi="Công ty TNHH TMDV VẬN TẢI VÀ DU LỊCH KTT CAR"
-                        data-en="KTT CAR TRANSPORT AND TOURISM TRADING SERVICES CO., LTD">
-                        Công ty TNHH TMDV VẬN TẢI VÀ DU LỊCH KTT CAR
-                    </p>
-                </div>
-                <div class="footer-section">
-                    <h4 data-vi="Địa chỉ" data-en="Address">Địa chỉ</h4>
-                    <p><strong data-vi="Trụ sở chính:" data-en="Head Office:">Trụ sở chính:</strong><br>
-                        499/2 Hương Lộ 3, P.Bình Hưng Hòa, Q.Bình Tân, HCM</p>
-                    <p><strong data-vi="Bãi xe:" data-en="Parking Lot:">Bãi xe:</strong><br>
-                        158 Nguyễn Hữu Tiến, P.Tây Thạnh, Q.Tân Phú, HCM</p>
-                </div>
-                <div class="footer-section">
-                    <h4 data-vi="Liên hệ" data-en="Contact">Liên hệ</h4>
-                    <p><strong>Website:</strong> <a href="https://www.kttcar.com"
-                            target="_blank">https://www.kttcar.com</a></p>
-                    <p><strong>Email:</strong> <a href="mailto:jackynguyen23@gmail.com">jackynguyen23@gmail.com</a></p>
-                    <p><strong>Hotline:</strong> <a href="tel:0798888373">079.8888.373</a></p>
-                    <p><strong>Facebook:</strong> <a href="https://www.facebook.com/dvtulai" target="_blank">dvtulai</a>
-                    </p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p data-vi="© 2024 KTT Car. Tất cả quyền được bảo lưu." data-en="© 2024 KTT Car. All rights reserved.">
-                    © 2024 KTT Car. Tất cả quyền được bảo lưu.
-                </p>
-            </div>
-        </div>
-    </footer>
+    <div id="footer-placeholder"></div>
 
     <script src="script.js"></script>
 </body>

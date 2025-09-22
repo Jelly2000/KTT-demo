@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Thủ tục thuê xe tại KTT Car - Hướng dẫn chi tiết quy trình thuê xe, giấy tờ cần thiết và thông tin quan trọng.">
+    <meta name="keywords" content="thủ tục thuê xe, rental procedu                <img src="messenger.webp" alt="Messenger" class="contact-icon">e, KTT Car, giấy tờ thuê xe, quy trình thuê xe">
+    <meta name="author" content="KTT Car Rental">
+    <meta property="og:title" content="Thủ Tục Thuê Xe - KTT Car">
+    <meta property="og:description" content="Hướng dẫn chi tiết thủ tục thuê xe tại KTT Car">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://KTT Car.com/thu-tuc">
+
+    <title>Thủ Tục Thuê Xe - KTT Car</title>
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Thủ Tục Thuê Xe - KTT Car",
+        "description": "Hướng dẫn chi tiết thủ tục thuê xe tại KTT Car",
+        "url": "https://KTT Car.com/thu-tuc"
+    }
+    </script>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-brand">
+                <!-- Logo content from logo.html -->
+                <div class="logo-container">
+                    <img src="logo.webp" alt="KTT Car Logo" class="logo-image">
+                    <span class="logo-text">KTT Car</span>
+                </div>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html" class="nav-link" data-vi="Trang chủ" data-en="Home">Trang chủ</a></li>
+                <li><a href="thue-xe.html" class="nav-link" data-vi="Thuê xe" data-en="Rent Car">Thuê xe</a></li>
+                <li><a href="thu-tuc.html" class="nav-link active" data-vi="Thủ tục" data-en="Procedure">Thủ tục</a></li>
+                <li><a href="contact.html" class="nav-link" data-vi="Liên hệ" data-en="Contact">Liên hệ</a></li>
+                <li><a href="nap-phi-etc.html" class="nav-link" data-vi="Nạp phí ETC" data-en="ETC Payment">Nạp phí ETC</a>
+                </li>
+                <li><a href="bao-hiem-pvi.html" class="nav-link" data-vi="Bảo hiểm PVI" data-en="PVI Insurance">Bảo hiểm
+                        PVI</a></li>
+                <li> <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                        <span class="theme-icon">🌙</span>
+                    </button></li>
+                <li>
+                    <!-- Language Toggle -->
+                    <div class="language-toggle">
+                        <select class="language-select" name="language" id="language" onchange="toggleLanguage()">
+                            <option value="vi">Tiếng Việt</option>
+                            <option value="en">English</option>
+                        </select>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title" data-vi="THỦ TỤC THUÊ XE" data-en="RENTAL PROCEDURE">
+                THỦ TỤC THUÊ XE
+            </h1>
+            <p class="page-subtitle" data-vi="Hướng dẫn chi tiết quy trình thuê xe tại KTT Car" 
+               data-en="Detailed guide for car rental process at KTT Car">
+                Hướng dẫn chi tiết quy trình thuê xe tại KTT Car
+            </p>
+            <button class="cta-button" onclick="window.location.href='thue-xe.html'" 
+                    data-vi="Thuê xe ngay" data-en="Rent Now">
+                Thuê xe ngay
+            </button>
+        </div>
+    </section>
+
+    <!-- Required Documents Section -->
+    <section class="documents-section">
+        <div class="container">
+            <h2 class="section-title" data-vi="GIẤY TỜ CẦN THIẾT" data-en="REQUIRED DOCUMENTS">
+                GIẤY TỜ CẦN THIẾT
+            </h2>
+            <div class="documents-grid">
+                <div class="document-card">
+                    <div class="doc-icon">🆔</div>
+                    <h3 data-vi="Căn cước công dân (CCCD)" data-en="Citizen Identification Card">Căn cước công dân (CCCD)</h3>
+                    <ul class="doc-details">
+                        <li data-vi="Bản gốc còn hạn sử dụng" data-en="Original copy with valid expiration">✓ Bản gốc còn hạn sử dụng</li>
+                        <li data-vi="Chỉ để đối chiếu, không giữ lại" data-en="For verification only, not retained">✓ Chỉ để đối chiếu, không giữ lại</li>
+                        <li data-vi="Phải trùng khớp với người thuê xe" data-en="Must match the renter's identity">✓ Phải trùng khớp với người thuê xe</li>
+                    </ul>
+                </div>
+
+                <div class="document-card">
+                    <div class="doc-icon">🚗</div>
+                    <h3 data-vi="Giấy phép lái xe (GPLX)" data-en="Driver's License">Giấy phép lái xe (GPLX)</h3>
+                    <ul class="doc-details">
+                        <li data-vi="Bằng lái hạng B2 trở lên" data-en="Class B2 license or higher">✓ Bằng lái hạng B2 trở lên</li>
+                        <li data-vi="Còn hạn sử dụng" data-en="Valid and not expired">✓ Còn hạn sử dụng</li>
+                        <li data-vi="Bản gốc để đối chiếu" data-en="Original copy for verification">✓ Bản gốc để đối chiếu</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deposit Options Section -->
+    <section class="deposit-section">
+        <div class="container">
+            <h2 class="section-title" data-vi="HÌNH THỨC ĐẶT CỌC" data-en="DEPOSIT OPTIONS">
+                HÌNH THỨC ĐẶT CỌC
+            </h2>
+            <div class="deposit-grid">
+                <div class="deposit-card recommended">
+                    <div class="deposit-badge" data-vi="Khuyến nghị" data-en="Recommended">Khuyến nghị</div>
+                    <div class="deposit-icon">🛵</div>
+                    <h3 data-vi="Cọc xe máy + Cà vẹt" data-en="Motorbike + Vehicle Registration">Cọc xe máy + Cà vẹt</h3>
+                    <div class="deposit-details">
+                        <p><strong data-vi="Điều kiện:" data-en="Conditions:">Điều kiện:</strong></p>
+                        <ul>
+                            <li data-vi="Xe máy có giá trị trên 20 triệu" data-en="Motorbike value above 20 million VND">• Xe máy có giá trị trên 20 triệu</li>
+                            <li data-vi="Cà vẹt bản gốc chính chủ" data-en="Original vehicle registration under owner's name">• Cà vẹt bản gốc chính chủ</li>
+                            <li data-vi="Xe máy trong tình trạng tốt" data-en="Motorbike in good condition">• Xe máy trong tình trạng tốt</li>
+                        </ul>
+                        <p class="deposit-benefit" data-vi="✓ Thủ tục nhanh gọn và thuận tiện" 
+                           data-en="✓ Quick and convenient procedure">✓ Thủ tục nhanh gọn và thuận tiện</p>
+                    </div>
+                </div>
+
+                <div class="deposit-card">
+                    <div class="deposit-icon">💰</div>
+                    <h3 data-vi="Cọc tiền mặt" data-en="Cash Deposit">Cọc tiền mặt</h3>
+                    <div class="deposit-details">
+                        <p><strong data-vi="Số tiền:" data-en="Amount:">Số tiền:</strong></p>
+                        <ul>
+                            <li data-vi="20-30 triệu VND" data-en="20-30 million VND">• 20-30 triệu VND</li>
+                            <li data-vi="Tùy thuộc vào loại xe thuê" data-en="Depends on car type rented">• Tùy thuộc vào loại xe thuê</li>
+                            <li data-vi="Hoàn trả 100% khi trả xe" data-en="100% refund upon car return">• Hoàn trả 100% khi trả xe</li>
+                        </ul>
+                        <p class="deposit-note" data-vi="* Áp dụng khi không thể cọc xe máy" 
+                           data-en="* Applied when cannot deposit motorbike">* Áp dụng khi không thể cọc xe máy</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timing Schedule Section -->
+    <section class="timing-section">
+        <div class="container">
+            <h2 class="section-title" data-vi="LỊCH TRÌNH THỜI GIAN" data-en="TIME SCHEDULE">
+                LỊCH TRÌNH THỜI GIAN
+            </h2>
+            <div class="timing-grid">
+                <div class="timing-card pickup">
+                    <div class="timing-icon">📥</div>
+                    <h3 data-vi="Thời gian nhận xe" data-en="Pickup Time">Thời gian nhận xe</h3>
+                    <div class="timing-details">
+                        <div class="time-slot">
+                            <span class="time" data-vi="21:00 - 23:00" data-en="9:00 PM - 11:00 PM">21:00 - 23:00</span>
+                            <span class="day" data-vi="Tối hôm trước" data-en="Night before">Tối hôm trước</span>
+                        </div>
+                        <div class="timing-notes">
+                            <p data-vi="🕐 Có thể giao sớm hơn nếu xe trống" data-en="🕐 Can deliver earlier if car available">🕐 Có thể giao sớm hơn nếu xe trống</p>
+                            <p data-vi="🆓 Không phụ thu nếu xe sẵn sàng" data-en="🆓 No extra charge if car ready">🆓 Không phụ thu nếu xe sẵn sàng</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timing-card return">
+                    <div class="timing-icon">📤</div>
+                    <h3 data-vi="Thời gian trả xe" data-en="Return Time">Thời gian trả xe</h3>
+                    <div class="timing-details">
+                        <div class="time-slot">
+                            <span class="time fixed" data-vi="20:00" data-en="8:00 PM">20:00</span>
+                            <span class="day" data-vi="Cố định" data-en="Fixed">Cố định</span>
+                        </div>
+                        <div class="timing-notes">
+                            <p data-vi="⚠️ Phụ thu 150,000 VND/giờ nếu trễ" data-en="⚠️ Late fee 150,000 VND/hour">⚠️ Phụ thu 150,000 VND/giờ nếu trễ</p>
+                            <p data-vi="🌙 Qua 12h đêm tính thêm 1 ngày" data-en="🌙 After midnight counts as +1 day">🌙 Qua 12h đêm tính thêm 1 ngày</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timing-card extension">
+                    <div class="timing-icon">📞</div>
+                    <h3 data-vi="Gia hạn thêm ngày" data-en="Extension">Gia hạn thêm ngày</h3>
+                    <div class="timing-details">
+                        <div class="time-slot">
+                            <span class="time" data-vi="4-6 giờ trước" data-en="4-6 hours before">4-6 giờ trước</span>
+                            <span class="day" data-vi="Phải báo trước" data-en="Must notify">Phải báo trước</span>
+                        </div>
+                        <div class="timing-notes">
+                            <p data-vi="📋 Để sắp xếp xe cho khách tiếp theo" data-en="📋 To arrange car for next customer">📋 Để sắp xếp xe cho khách tiếp theo</p>
+                            <p data-vi="🤝 Tránh ảnh hưởng chuyến đi khác" data-en="🤝 Avoid affecting other trips">🤝 Tránh ảnh hưởng chuyến đi khác</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Steps Section -->
+    <section class="process-section">
+        <div class="container">
+            <h2 class="section-title" data-vi="QUY TRÌNH THUÊ XE" data-en="RENTAL PROCESS">
+                QUY TRÌNH THUÊ XE
+            </h2>
+            <div class="process-timeline">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3 data-vi="Liên hệ đặt xe" data-en="Contact & Book">Liên hệ đặt xe</h3>
+                        <p data-vi="Gọi hotline hoặc đặt xe online qua website/Facebook" 
+                           data-en="Call hotline or book online via website/Facebook">
+                            Gọi hotline hoặc đặt xe online qua website/Facebook
+                        </p>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3 data-vi="Chuẩn bị giấy tờ" data-en="Prepare Documents">Chuẩn bị giấy tờ</h3>
+                        <p data-vi="Chuẩn bị CCCD + GPLX bản gốc và hình thức đặt cọc" 
+                           data-en="Prepare original ID card + driver's license and deposit method">
+                            Chuẩn bị CCCD + GPLX bản gốc và hình thức đặt cọc
+                        </p>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3 data-vi="Nhận xe" data-en="Vehicle Pickup">Nhận xe</h3>
+                        <p data-vi="Kiểm tra xe cùng nhân viên, ký hợp đồng và nhận chìa khóa" 
+                           data-en="Inspect vehicle with staff, sign contract and receive keys">
+                            Kiểm tra xe cùng nhân viên, ký hợp đồng và nhận chìa khóa
+                        </p>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3 data-vi="Sử dụng xe" data-en="Use Vehicle">Sử dụng xe</h3>
+                        <p data-vi="Sử dụng xe theo hợp đồng, liên hệ hỗ trợ 24/7 nếu cần" 
+                           data-en="Use vehicle according to contract, contact 24/7 support if needed">
+                            Sử dụng xe theo hợp đồng, liên hệ hỗ trợ 24/7 nếu cần
+                        </p>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3 data-vi="Trả xe" data-en="Vehicle Return">Trả xe</h3>
+                        <p data-vi="Trả xe đúng giờ, kiểm tra và hoàn thành thủ tục" 
+                           data-en="Return vehicle on time, inspect and complete procedures">
+                            Trả xe đúng giờ, kiểm tra và hoàn thành thủ tục
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Important Notes Section -->
+    <section class="notes-section">
+        <div class="container">
+            <h2 class="section-title" data-vi="LƯU Ý QUAN TRỌNG" data-en="IMPORTANT NOTES">
+                LƯU Ý QUAN TRỌNG
+            </h2>
+            <div class="notes-grid">
+                <div class="note-card warning">
+                    <div class="note-icon">⚠️</div>
+                    <h3 data-vi="Quy định về thời gian" data-en="Time Regulations">Quy định về thời gian</h3>
+                    <ul>
+                        <li data-vi="Trả xe đúng giờ để tránh phụ thu" data-en="Return on time to avoid extra charges">Trả xe đúng giờ để tránh phụ thu</li>
+                        <li data-vi="Báo trước nếu muốn gia hạn" data-en="Notify in advance for extensions">Báo trước nếu muốn gia hạn</li>
+                        <li data-vi="Phí phụ thu: 150k/giờ" data-en="Late fee: 150k/hour">Phí phụ thu: 150k/giờ</li>
+                    </ul>
+                </div>
+
+                <div class="note-card info">
+                    <div class="note-icon">ℹ️</div>
+                    <h3 data-vi="Điều kiện sử dụng" data-en="Usage Conditions">Điều kiện sử dụng</h3>
+                    <ul>
+                        <li data-vi="Không sử dụng vào mục đích bất hợp pháp" data-en="No illegal use">Không sử dụng vào mục đích bất hợp pháp</li>
+                        <li data-vi="Không cho người khác lái không có trong hợp đồng" data-en="Only contracted drivers allowed">Không cho người khác lái không có trong hợp đồng</li>
+                        <li data-vi="Báo ngay khi có sự cố" data-en="Report incidents immediately">Báo ngay khi có sự cố</li>
+                    </ul>
+                </div>
+
+                <div class="note-card success">
+                    <div class="note-icon">✅</div>
+                    <h3 data-vi="Hỗ trợ 24/7" data-en="24/7 Support">Hỗ trợ 24/7</h3>
+                    <ul>
+                        <li data-vi="Hotline: 079.8888.373" data-en="Hotline: 079.8888.373">Hotline: 079.8888.373</li>
+                        <li data-vi="Hỗ trợ sự cố khẩn cấp" data-en="Emergency breakdown support">Hỗ trợ sự cố khẩn cấp</li>
+                        <li data-vi="Tư vấn miễn phí" data-en="Free consultation">Tư vẫn miễn phí</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="navbar-placeholder"></div>
+
+    <!-- Floating Contact Buttons -->
+    <div class="floating-contacts">
+        <div class="contact-item" title="Gọi điện thoại">
+            <a href="tel:0798888373" class="contact-btn phone-btn" aria-label="Gọi điện thoại">
+                <img src="phone.png" alt="Phone" class="contact-icon">
+            </a>
+        </div>
+        <div class="contact-item" title="Liên hệ qua Zalo">
+            <a href="https://zalo.me/0798888373" class="contact-btn zalo-btn" target="_blank" rel="noopener" aria-label="Liên hệ qua Zalo">
+                <img src="zalo.webp" alt="Zalo" class="contact-icon">
+            </a>
+        </div>
+        <div class="contact-item" title="Liên hệ qua Messenger">
+            <a href="https://m.me/dvtulai" class="contact-btn messenger-btn" target="_blank" rel="noopener" aria-label="Liên hệ qua Messenger">
+                <img src="messenger.webp" alt="Messenger" class="contact-icon">
+            </a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
