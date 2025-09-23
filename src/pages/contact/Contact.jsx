@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import './Pages.css';
+import '../shared-styles.css';
+import './styles.css';
 
 const Contact = () => {
   const { t } = useTranslation();

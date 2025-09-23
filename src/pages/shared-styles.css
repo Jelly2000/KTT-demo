@@ -1,0 +1,21 @@
+/* Shared page component styles - common elements across all pages */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Common responsive design patterns used across pages */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .page-title {
+        font-size: 2rem !important;
+    }
+    
+    .page-subtitle {
+        font-size: 1rem !important;
+    }
+}
