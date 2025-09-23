@@ -1,0 +1,300 @@
+/* Shared page styles */
+.page-header {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, #2d2d2d 100%);
+    color: white;
+    padding: 120px 0 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    margin-top: 70px;
+}
+
+.page-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="0.5" fill="%23FFD700" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.3;
+}
+
+.page-header .container {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.page-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(45deg, #ffdb0c, #FFA500);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.189);
+}
+
+.page-subtitle {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.content-section {
+    padding: 80px 0;
+    background: var(--background-color);
+}
+
+.placeholder-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.placeholder-content h2 {
+    font-size: 2.5rem;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+}
+
+.placeholder-content > p {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    opacity: 0.8;
+    margin-bottom: 3rem;
+    line-height: 1.6;
+}
+
+/* Feature grids */
+.features-list, .contact-info-grid, .service-features, .insurance-types {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.feature-item, .contact-card, .feature-card, .insurance-card {
+    background: var(--card-background);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    text-align: left;
+    transition: var(--transition);
+}
+
+.feature-item:hover, .contact-card:hover, .feature-card:hover, .insurance-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--hover-shadow);
+}
+
+.feature-item h3, .contact-card h3, .feature-card h3, .insurance-card h3 {
+    color: var(--text-color);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.feature-item p, .contact-card p, .feature-card p, .insurance-card p {
+    color: var(--text-color);
+    opacity: 0.8;
+    line-height: 1.5;
+}
+
+/* Procedure steps */
+.procedure-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 3rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.step {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    padding: 1.5rem;
+    background: var(--card-background);
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+    text-align: left;
+}
+
+.step:hover {
+    transform: translateX(10px);
+    box-shadow: var(--hover-shadow);
+}
+
+.step-number {
+    background: var(--primary-color);
+    color: var(--btn-text-secondary);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.step-content h3 {
+    color: var(--text-color);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.step-content p {
+    color: var(--text-color);
+    opacity: 0.8;
+    line-height: 1.5;
+}
+
+/* Insurance benefits */
+.insurance-benefits {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: var(--card-background);
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    text-align: left;
+}
+
+.insurance-benefits h3 {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.insurance-benefits ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.insurance-benefits li {
+    color: var(--text-color);
+    padding: 0.5rem;
+    font-size: 1rem;
+}
+
+/* Partnership section */
+.pvi-partnership {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, var(--card-background) 0%, rgba(255, 215, 0, 0.05) 100%);
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    border: 2px solid var(--primary-color);
+    text-align: left;
+}
+
+.pvi-partnership h3 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.pvi-partnership p {
+    color: var(--text-color);
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* Coming soon section */
+.coming-soon {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: var(--background-alt);
+    border-radius: 15px;
+    border: 2px dashed var(--border-color);
+    text-align: center;
+}
+
+.coming-soon h3 {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.coming-soon p {
+    color: var(--text-color);
+    opacity: 0.7;
+}
+
+/* Contact form section */
+.contact-form-section {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: var(--background-alt);
+    border-radius: 15px;
+    text-align: center;
+}
+
+.contact-form-section h3 {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.contact-form-section p {
+    color: var(--text-color);
+    opacity: 0.7;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .page-header {
+        padding: 80px 0 60px;
+        margin-top: 60px;
+    }
+    
+    .content-section {
+        padding: 60px 0;
+    }
+    
+    .placeholder-content h2 {
+        font-size: 2rem;
+    }
+    
+    .features-list, .contact-info-grid, .service-features, .insurance-types {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .feature-item, .contact-card, .feature-card, .insurance-card {
+        padding: 1.5rem;
+        text-align: center;
+    }
+    
+    .step {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .step-number {
+        margin: 0 auto;
+    }
+    
+    .insurance-benefits ul {
+        grid-template-columns: 1fr;
+    }
+}

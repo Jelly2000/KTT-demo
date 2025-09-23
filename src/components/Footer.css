@@ -1,0 +1,129 @@
+/* Footer Component Styles */
+.footer {
+    background: var(--secondary-color);
+    color: white;
+    padding: 3rem 0 1rem;
+    margin-top: 4rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section h3,
+.footer-section h4 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.footer-section h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.footer-section p {
+    color: white;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.footer-section a {
+    color: var(--footer-link);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.footer-section a:hover {
+    color: #E6C200;
+    text-decoration: underline;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-section ul li a {
+    color: white;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.footer-section ul li a:hover {
+    color: var(--primary-color);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: 1rem;
+    text-align: center;
+    opacity: 0.8;
+}
+
+.footer-bottom p {
+    margin: 0;
+    color: white;
+}
+
+/* Dark theme footer text color adjustments */
+[data-theme="dark"] .footer {
+    color: black;
+}
+
+[data-theme="dark"] .footer-section h3,
+[data-theme="dark"] .footer-section h4 {
+    color: black;
+}
+
+[data-theme="dark"] .footer-section p {
+    color: black;
+}
+
+[data-theme="dark"] .footer-section ul li a {
+    color: black;
+}
+
+[data-theme="dark"] .footer-bottom {
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .footer-bottom p {
+    color: black;
+}
+
+/* Responsive footer styles */
+@media (max-width: 768px) {
+    .footer {
+        padding: 2rem 0 1rem;
+        margin-top: 2rem;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        text-align: center;
+    }
+    
+    .footer-section {
+        padding: 0 1rem;
+    }
+    
+    .footer-section h3,
+    .footer-section h4 {
+        font-size: 1.1rem;
+    }
+    
+    .footer-section h3 {
+        font-size: 1.3rem;
+    }
+}

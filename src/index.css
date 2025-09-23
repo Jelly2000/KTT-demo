@@ -1,0 +1,93 @@
+/* CSS Variables for theming */
+:root {
+    --primary-color: #FFD700;
+    --footer-link: #FFD700;
+    --secondary-color: #1a1a1a;
+    --background-color: #ffffff;
+    --background-alt: #f8f9fa;
+    --btn-text-primary: #000000;
+    --btn-text-secondary: #000000;
+    --text-color: #333333;
+    --card-background: #ffffff;
+    --border-color: #e1e1e1;
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    --hover-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="dark"] {
+    --primary-color: #FFD700;
+    --footer-link: #073a9f;
+    --secondary-color: #FFD700;
+    --background-color: #1a1a1a;
+    --background-alt: #2d2d2d;
+    --btn-text-primary: #ffffff;
+    --btn-text-secondary: #000000;
+    --text-color: #ffffff;
+    --card-background: #393939;
+    --border-color: #444444;
+    --shadow: 0 2px 10px rgba(255, 215, 0, 0.1);
+    --hover-shadow: 0 4px 20px rgba(255, 215, 0, 0.2);
+}
+
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    transition: var(--transition);
+    margin: 0;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+a:hover {
+  color: #E6C200;
+  text-decoration: underline;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-color);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+/* button:focus,
+button:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+} */
