@@ -28,7 +28,6 @@
 
 .footer-section p {
     color: white;
-    margin-bottom: 1rem;
     line-height: 1.6;
 }
 
@@ -99,6 +98,11 @@
 
 [data-theme="dark"] .footer-bottom p {
     color: black;
+}
+
+footer .footer-link {
+    color: var(--footer-link);
+    text-decoration: underline;
 }
 
 /* Responsive footer styles */

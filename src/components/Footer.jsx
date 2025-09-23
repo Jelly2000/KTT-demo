@@ -33,9 +33,9 @@ const Footer = () => {
           <div className="footer-section">
             <h4>{t('footer_contact_title')}</h4>
             <p>
-              <strong>Website:</strong> 
+              <strong>Website: </strong> 
               <a 
-                style={{color: 'var(--footer-link)'}} 
+                className='footer-link'
                 href="https://www.kttcar.com"
                 target="_blank" 
                 rel="noopener noreferrer"
@@ -44,32 +44,33 @@ const Footer = () => {
               </a>
             </p>
             <p>
-              <strong>Email:</strong> 
+              <strong>Email: </strong> 
               <a 
-                style={{color: 'var(--footer-link)'}} 
+                className='footer-link'
                 href="mailto:jackynguyen23@gmail.com"
               >
                 jackynguyen23@gmail.com
               </a>
             </p>
             <p>
-              <strong>Hotline:</strong> 
+              <strong>Hotline: </strong> 
               <a 
-                style={{color: 'var(--footer-link)'}} 
+                className='footer-link'
                 href="tel:0798888373"
               >
                 079.8888.373
               </a>
             </p>
             <p>
-              <strong>Facebook:</strong> 
+              <strong>Facebook: </strong> 
               <a 
-                style={{color: 'var(--footer-link)'}} 
+                style={{color: 'var(--footer-link)'}}
+                className='footer-link'
                 href="https://www.facebook.com/dvtulai" 
                 target="_blank" 
                 rel="noopener noreferrer"
               >
-                dvtulai
+                KTT CAR 
               </a>
             </p>
           </div>
