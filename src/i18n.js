@@ -24,7 +24,8 @@ i18n
   .init({
     resources,
     fallbackLng: 'vi', // Default language
-    debug: process.env.NODE_ENV === 'development',
+    // eslint-disable-next-line no-undef
+    debug: typeof process !== 'undefined' && process.env && process.env.NODE_ENV === 'development',
 
     // Language detection options
     detection: {
