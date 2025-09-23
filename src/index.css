@@ -8,6 +8,7 @@
     --btn-text-primary: #000000;
     --btn-text-secondary: #000000;
     --text-color: #333333;
+    --text-color-muted: #666666;
     --card-background: #ffffff;
     --border-color: #e1e1e1;
     --nav-link-active: #998100;
@@ -26,6 +27,7 @@
     --btn-text-secondary: #000000;
     --nav-link-active: #FFD700;
     --text-color: #ffffff;
+    --text-color-muted: #cccccc;
     --card-background: #393939;
     --border-color: #444444;
     --shadow: 0 2px 10px rgba(255, 215, 0, 0.1);

@@ -1,7 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import '../shared-styles.css';
-import './styles.css';
+import './Home.css';
+import Heading from '../../components/Heading/Heading';
 
 const Home = () => {
   const { t } = useTranslation();
@@ -24,32 +25,14 @@ const Home = () => {
       {/* Main Content */}
       <section className="content-section">
         <div className="container">
-          <h2>{t('content_welcome')}</h2>
-          <p>
-            {t('content_description')}
-          </p>
-          
-          <div className="services-grid">
-            <div className="service-card">
-              <h3>🚗 {t('content_services_selfDrive')}</h3>
-              <p>{t('content_services_selfDriveDesc')}</p>
-            </div>
-            
-            <div className="service-card">
-              <h3>👨‍✈️ {t('content_services_withDriver')}</h3>
-              <p>{t('content_services_withDriverDesc')}</p>
-            </div>
-            
-            <div className="service-card">
-              <h3>🛡️ {t('content_services_insurance')}</h3>
-              <p>{t('content_services_insuranceDesc')}</p>
-            </div>
-            
-            <div className="service-card">
-              <h3>💳 {t('content_services_etc')}</h3>
-              <p>{t('content_services_etcDesc')}</p>
-            </div>
-          </div>
+          <Heading 
+            level={2} 
+            subtitle={t('rental_procedure_subtitle')}
+            centered={true}
+            withUnderline={true}
+          >
+            {t('rental_procedure').toUpperCase()}
+          </Heading>
         </div>
       </section>
     </div>

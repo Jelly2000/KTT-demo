@@ -9,8 +9,8 @@
   "ui_toggleMenu": "Toggle menu",
   "ui_language_vietnamese": "Tiếng Việt",
   "ui_language_english": "English",
-  "hero_title": "KTT Car",
-  "hero_subtitle": "Reliable and quality car rental service in Ho Chi Minh City",
+  "hero_title": "Premium Car Rental",
+  "hero_subtitle": "Diverse vehicles, reasonable prices, quick procedures",
   "hero_ctaButton": "Rent Now",
   "content_welcome": "Welcome to KTT Car",
   "content_description": "We provide high-quality car rental services with professional drivers and new cars that are regularly maintained.",
@@ -28,5 +28,7 @@
   "footer_address_headOffice": "Head Office:",
   "footer_address_parkingLot": "Parking Lot:",
   "footer_contact_title": "Contact",
+  "rental_procedure": "Rental Procedure",
+  "rental_procedure_subtitle": "Simple, fast and convenient procedures",
   "footer_copyright": "© 2024 KTT Car. All rights reserved."
 }

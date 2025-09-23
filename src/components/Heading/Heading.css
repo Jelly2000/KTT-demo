@@ -1,0 +1,134 @@
+/* Base heading wrapper styles */
+.heading-wrapper {
+    margin-bottom: 2rem;
+    color: var(--text-color);
+}
+
+/* Centered alignment modifier */
+.heading-wrapper.heading-centered {
+    text-align: center;
+}
+
+/* Underline modifier - positioned between heading and subtitle */
+.heading-wrapper.heading-with-underline .heading-1,
+.heading-wrapper.heading-with-underline .heading-2,
+.heading-wrapper.heading-with-underline .heading-3,
+.heading-wrapper.heading-with-underline .heading-4 {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.heading-wrapper.heading-with-underline .heading-1::after,
+.heading-wrapper.heading-with-underline .heading-2::after,
+.heading-wrapper.heading-with-underline .heading-3::after,
+.heading-wrapper.heading-with-underline .heading-4::after {
+    content: '';
+    position: absolute;
+    bottom: -0.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: var(--primary-color);
+    border-radius: 2px;
+}
+
+.heading-wrapper.heading-with-underline:not(.heading-centered) .heading-1::after,
+.heading-wrapper.heading-with-underline:not(.heading-centered) .heading-2::after,
+.heading-wrapper.heading-with-underline:not(.heading-centered) .heading-3::after,
+.heading-wrapper.heading-with-underline:not(.heading-centered) .heading-4::after {
+    left: 0;
+    transform: none;
+}
+
+/* Individual heading level styles */
+.heading-1 {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 0.5rem 0;
+}
+
+.heading-2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 0 0 0.5rem 0;
+}
+
+.heading-3 {
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1.4;
+    margin: 0 0 0.5rem 0;
+}
+
+.heading-4 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.4;
+    margin: 0 0 0.5rem 0;
+}
+
+/* Subtitle styles */
+.heading-subtitle {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--text-color-muted);
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.5;
+    opacity: 0.8;
+    padding-top: 1rem;
+    margin-bottom: 3rem;
+}
+
+/* Adjust subtitle margin when there's an underline */
+.heading-wrapper.heading-with-underline .heading-subtitle {
+    margin-top: 0.75rem;
+}
+
+/* Legacy support for existing container-heading class */
+.container-heading {
+    position: relative;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    color: var(--text-color);
+}
+
+.container-heading::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: var(--primary-color);
+    border-radius: 2px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .heading-1 {
+        font-size: 2.5rem;
+    }
+    
+    .heading-2 {
+        font-size: 2rem;
+    }
+    
+    .heading-3 {
+        font-size: 1.75rem;
+    }
+    
+    .heading-4 {
+        font-size: 1.25rem;
+    }
+    
+    .heading-subtitle {
+        font-size: 1rem;
+    }
+}
