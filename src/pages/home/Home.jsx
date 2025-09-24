@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import '../shared-styles.css';
 import './Home.css';
 import Heading from '../../components/Heading/Heading';
+import Card from '../../components/card/Card';
 
 const Home = () => {
   const { t } = useTranslation();
@@ -25,14 +26,40 @@ const Home = () => {
       {/* Main Content */}
       <section className="content-section">
         <div className="container">
-          <Heading 
-            level={2} 
+          <Heading
+            level={2}
             subtitle={t('rental_procedure_subtitle')}
             centered={true}
             withUnderline={true}
           >
             {t('rental_procedure').toUpperCase()}
           </Heading>
+          <div className='home-card-container'>
+            <Card
+              icon='💰'
+              heading={t('needed_information')}
+              subheading={t('needed_information_subheading')}
+              uiContext='small-flat'
+            />
+            <Card
+              icon='💰'
+              heading={t('needed_information')}
+              subheading={t('needed_information_subheading')}
+              uiContext='small-flat'
+            />
+            <Card
+              icon='💰'
+              heading={t('needed_information')}
+              subheading={t('needed_information_subheading')}
+              uiContext='small-flat'
+            />
+            <Card
+              icon='💰'
+              heading={t('needed_information')}
+              subheading={t('needed_information_subheading')}
+              uiContext='small-flat'
+            />
+          </div>
         </div>
       </section>
     </div>
