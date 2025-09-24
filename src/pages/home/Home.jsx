@@ -5,6 +5,7 @@ import './Home.css';
 import Heading from '../../components/Heading/Heading';
 import Card from '../../components/card/Card';
 import HighlightedButton from '../../components/HighlightedButton/HighlightedButton';
+import { VehicleCard } from '../../components';
 
 const Home = () => {
   const { t } = useTranslation();
@@ -37,7 +38,7 @@ const Home = () => {
           >
             {t('rental_procedure').toUpperCase()}
           </Heading>
-          <div className='home-card-container'>
+          <div className='grid-container-2'>
             <Card
               icon='💰'
               heading={t('needed_information')}
@@ -69,6 +70,19 @@ const Home = () => {
           >
             {t('seemore_procedures')}
           </HighlightedButton>
+        </div>
+
+        <div className='container'>
+          <Heading
+            level={2}
+            centered={true}
+            withUnderline={true}
+          >
+            {t('top_vehicles').toUpperCase()}
+          </Heading>
+          <div className='grid-container-2'>
+   
+          </div>
         </div>
       </section>
     </div>
