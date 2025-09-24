@@ -5,7 +5,7 @@ import './Home.css';
 import Heading from '../../components/Heading/Heading';
 import Card from '../../components/card/Card';
 import HighlightedButton from '../../components/HighlightedButton/HighlightedButton';
-import { VehicleCard } from '../../components';
+import { VehicleCard, ConsultationForm } from '../../components';
 
 const Home = () => {
   const { t } = useTranslation();
@@ -111,6 +111,9 @@ const Home = () => {
           </HighlightedButton>
         </div>
       </section>
+
+      {/* Consultation Form Section */}
+      <ConsultationForm />
     </div>
   );
 };

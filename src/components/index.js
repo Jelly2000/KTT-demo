@@ -4,4 +4,5 @@ export { default as Heading } from './Heading/Heading.jsx';
 export { default as HighlightedButton } from './HighlightedButton/HighlightedButton.jsx';
 export { default as Footer } from './Footer/Footer.jsx';
 export { default as Header } from './header/Header.jsx';
+export { default as ConsultationForm } from './consultation/ConsultationForm';
 
