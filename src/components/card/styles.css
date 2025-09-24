@@ -9,19 +9,25 @@
     transition: var(--transition);
     position: relative;
     overflow: hidden;
+}
 
-    .card-icon {
-        font-size: 4rem;
-        padding: 1rem;
-        margin: auto;
-    }
+.small-flat-card .card-icon {
+    font-size: 4rem;
+    padding: 1rem;
+    margin: auto;
+}
 
-    .card-heading {
-        font-size: 1.3rem;
-        font-weight: 600;
-        margin: 1.5rem 0 1rem 0;
-        color: var(--text-color);
-    }
+.small-flat-card .card-heading {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 1.5rem 0 1rem 0;
+    color: var(--text-color);
+}
+
+.small-flat-card .card-subheading {
+    color: var(--text-color);
+    opacity: 0.8;
+    margin-bottom: 0.5rem;
 }
 
 .small-flat-card:hover {

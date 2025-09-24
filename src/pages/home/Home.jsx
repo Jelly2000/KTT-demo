@@ -80,9 +80,35 @@ const Home = () => {
           >
             {t('top_vehicles').toUpperCase()}
           </Heading>
-          <div className='grid-container-2'>
-   
+          <div className='cars-grid'>
+            <VehicleCard
+              id={1}
+              image="/src/assets/sample-car.webp"
+              vehicleName="Honda City"
+              price="800,000 VNĐ/ngày"
+              features={['4 chỗ ngồi', 'Tự động', 'Điều hòa', 'GPS']}
+            />
+            <VehicleCard
+              id={2}
+              image="/src/assets/sample-car.webp"
+              vehicleName="Toyota Fortuner"
+              price="1,500,000 VNĐ/ngày"
+              features={['7 chỗ ngồi', '4WD', 'Điều hòa', 'Camera lùi']}
+            />
+            <VehicleCard
+              id={3}
+              image="/src/assets/sample-car.webp"
+              vehicleName="Mercedes-Benz E-Class"
+              price="3,000,000 VNĐ/ngày"
+              features={['5 chỗ ngồi', 'Sang trọng', 'Da cao cấp', 'Âm thanh Burmester']}
+            />
           </div>
+          <HighlightedButton
+            className="procedure-cta"
+            onClick={() => console.log('View all vehicles')}
+          >
+            {t('navigation_rentCar')}
+          </HighlightedButton>
         </div>
       </section>
     </div>

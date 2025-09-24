@@ -5,6 +5,29 @@
     padding: 0 20px;
 }
 
+/* Grid Container Styles */
+.grid-container-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+/* Cars Grid - matches template exactly */
+.cars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+/* Procedure CTA Button */
+.procedure-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
 /* Common responsive design patterns used across pages */
 @media (max-width: 480px) {
     .container {
