@@ -23,3 +23,25 @@
         color: var(--text-color);
     }
 }
+
+.small-flat-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--hover-shadow);
+    border-color: var(--primary-color);
+}
+
+.small-flat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), #FFA500);
+    transform: scaleX(0);
+    transition: var(--transition);
+}
+
+.small-flat-card:hover::before {
+    transform: scaleX(1);
+}

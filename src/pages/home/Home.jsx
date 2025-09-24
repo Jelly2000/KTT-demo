@@ -4,6 +4,7 @@ import '../shared-styles.css';
 import './Home.css';
 import Heading from '../../components/Heading/Heading';
 import Card from '../../components/card/Card';
+import HighlightedButton from '../../components/HighlightedButton/HighlightedButton';
 
 const Home = () => {
   const { t } = useTranslation();
@@ -17,9 +18,11 @@ const Home = () => {
           <p className="hero-subtitle">
             {t('hero_subtitle')}
           </p>
-          <button className="cta-button">
+          <HighlightedButton
+            onClick={() => console.log('Button clicked')}
+          >
             {t('hero_ctaButton')}
-          </button>
+          </HighlightedButton>
         </div>
       </section>
 
@@ -60,6 +63,12 @@ const Home = () => {
               uiContext='small-flat'
             />
           </div>
+          <HighlightedButton
+            className="procedure-cta"
+            onClick={() => console.log('Button clicked')}
+          >
+            {t('seemore_procedures')}
+          </HighlightedButton>
         </div>
       </section>
     </div>
