@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import './styles.css';
 
-const ConsultationForm = () => {
+const ConsultationForm = ({heading = 'consultation_title', subHeading = 'consultation_subtitle' }) => {
   const { t } = useTranslation();
 
   const [formData, setFormData] = useState({
     fullName: '',
     phoneNumber: '',
-    carType: '',
-    departureDate: '',
-    returnDate: ''
+    email: '',
+    subject: '',
+    message: ''
   });
 
   const handleInputChange = (e) => {
@@ -32,9 +32,9 @@ const ConsultationForm = () => {
     setFormData({
       fullName: '',
       phoneNumber: '',
-      carType: '',
-      departureDate: '',
-      returnDate: ''
+      email: '',
+      subject: '',
+      message: ''
     });
   };
 
@@ -42,67 +42,84 @@ const ConsultationForm = () => {
     <section id="contact" className="consultation-section">
       <div className="consultation-container">
         <form className="modern-form" onSubmit={handleSubmit}>
-          <h2 className="consultation-title">{t('consultation_title')}</h2>
-          <p className="consultation-subtitle">{t('consultation_subtitle')}</p>
+          <h2 className="consultation-title">{t(heading)}</h2>
+          <p className="consultation-subtitle">{t(subHeading)}</p>
 
           <div className="form-container">
-            {/* Full Name */}
+            {/* First Row - Name and Phone */}
+            <div className="form-row">
+              <div className="form-field">
+                <label htmlFor="fullName" className="field-label">
+                  <span className="label-text">{t('full_name_label')}</span>
+                  <span className="required-asterisk">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="fullName"
+                  name="fullName"
+                  value={formData.fullName}
+                  onChange={handleInputChange}
+                  placeholder={t('full_name_label')}
+                  className="field-input"
+                  required
+                />
+              </div>
+
+              <div className="form-field">
+                <label htmlFor="phoneNumber" className="field-label">
+                  <span className="label-text">{t('phone_number_label')}</span>
+                  <span className="required-asterisk">*</span>
+                </label>
+                <input
+                  type="tel"
+                  id="phoneNumber"
+                  name="phoneNumber"
+                  value={formData.phoneNumber}
+                  onChange={handleInputChange}
+                  placeholder={t('phone_number_label')}
+                  className="field-input"
+                  required
+                />
+              </div>
+            </div>
+
+            {/* Email Field */}
             <div className="form-field">
-              <label htmlFor="fullName" className="field-label">
-                <span className="label-text">{t('full_name')}</span>
-                <span className="required-asterisk">*</span>
+              <label htmlFor="email" className="field-label">
+                <span className="label-text">{t('email_label')}</span>
               </label>
               <input
-                type="text"
-                id="fullName"
-                name="fullName"
-                value={formData.fullName}
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
                 onChange={handleInputChange}
-                placeholder={t('enter_full_name')}
+                placeholder={t('email_label')}
                 className="field-input"
-                required
               />
             </div>
 
-            {/* Phone Number */}
+            {/* Subject Field */}
             <div className="form-field">
-              <label htmlFor="phoneNumber" className="field-label">
-                <span className="label-text">{t('phone_number')}</span>
-                <span className="required-asterisk">*</span>
-              </label>
-              <input
-                type="tel"
-                id="phoneNumber"
-                name="phoneNumber"
-                value={formData.phoneNumber}
-                onChange={handleInputChange}
-                placeholder={t('enter_phone_number')}
-                className="field-input"
-                required
-              />
-            </div>
-
-            {/* Car Type */}
-            <div className="form-field">
-              <label htmlFor="carType" className="field-label">
-                <span className="label-text">{t('car_type')}</span>
+              <label htmlFor="subject" className="field-label">
+                <span className="label-text">{t('subject')}</span>
                 <span className="required-asterisk">*</span>
               </label>
               <div className="select-wrapper">
                 <select
-                  id="carType"
-                  name="carType"
-                  value={formData.carType}
+                  id="subject"
+                  name="subject"
+                  value={formData.subject}
                   onChange={handleInputChange}
                   className="field-input select-input"
                   required
                 >
-                  <option value="">{t('select_car_type')}</option>
-                  <option value="sedan">{t('sedan_4_seats')}</option>
-                  <option value="suv5">{t('suv_5_seats')}</option>
-                  <option value="suv7">{t('suv_7_seats')}</option>
-                  <option value="minivan">{t('minivan_16_seats')}</option>
-                  <option value="luxury">{t('luxury_car')}</option>
+                  <option value="">{t('select_subject')}</option>
+                  <option value="rental">{t('car_rental')}</option>
+                  <option value="support">{t('technical_support')}</option>
+                  <option value="complaint">{t('complaint')}</option>
+                  <option value="suggestion">{t('suggestion')}</option>
+                  <option value="other">{t('other')}</option>
                 </select>
                 <div className="select-arrow">
                   <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
@@ -112,49 +129,32 @@ const ConsultationForm = () => {
               </div>
             </div>
 
-            {/* Departure Date */}
+            {/* Message Field */}
             <div className="form-field">
-              <label htmlFor="departureDate" className="field-label">
-                <span className="label-text">{t('departure_date')}</span>
+              <label htmlFor="message" className="field-label">
+                <span className="label-text">{t('message')}</span>
                 <span className="required-asterisk">*</span>
               </label>
-              <input
-                type="date"
-                id="departureDate"
-                name="departureDate"
-                value={formData.departureDate}
+              <textarea
+                id="message"
+                name="message"
+                value={formData.message}
                 onChange={handleInputChange}
-                className="field-input date-input"
-                required
-              />
-            </div>
-
-            {/* Return Date */}
-            <div className="form-field">
-              <label htmlFor="returnDate" className="field-label">
-                <span className="label-text">{t('return_date')}</span>
-                <span className="required-asterisk">*</span>
-              </label>
-              <input
-                type="date"
-                id="returnDate"
-                name="returnDate"
-                value={formData.returnDate}
-                onChange={handleInputChange}
-                className="field-input date-input"
+                placeholder={t('message')}
+                className="field-input field-textarea"
+                rows="4"
                 required
               />
             </div>
 
             {/* Form Actions */}
             <div className="form-actions">
-              <button type="button" onClick={handleReset} className="reset-btn">
-                <span className="btn-text">{t('reset_form')}</span>
-              </button>
               <button type="submit" className="submit-btn">
-                <span className="btn-text">{t('submit_info')}</span>
+                <span className="btn-text">{t('send_message_btn')}</span>
               </button>
-
+              <button type="button" onClick={handleReset} className="reset-btn">
+                <span className="btn-text">{t('reset')}</span>
+              </button>
             </div>
           </div>
         </form>

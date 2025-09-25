@@ -1,9 +1,10 @@
-/* Contact page styles */
+/* Contact Page Styles - Matching Template */
+
 .contact-page {
-  min-height: 100vh;
+    min-height: 100vh;
 }
 
-/* Page header */
+/* Page Header */
 .page-header {
     background: linear-gradient(135deg, var(--secondary-color) 0%, #2d2d2d 100%);
     color: white;
@@ -45,42 +46,38 @@
 
 .page-subtitle {
     font-size: 1.25rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     opacity: 0.9;
-}
-
-.content-section {
-    padding: 80px 0;
-    background: var(--background-color);
-}
-
-/* Contact specific styles */
-.placeholder-content {
-    text-align: center;
-    margin-bottom: 3rem;
-}
-
-.placeholder-content h2 {
-    font-size: 2.5rem;
-    color: var(--text-color);
-    margin-bottom: 2rem;
-}
-
-.placeholder-content p {
-    color: var(--text-color);
-    font-size: 1.1rem;
-    line-height: 1.7;
-    margin-bottom: 3rem;
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
 }
 
-.contact-info-grid {
+/* Section Styles */
+.contact-info-section,
+.contact-form-section,
+.business-hours-section {
+    padding: 80px 0;
+}
+
+.contact-info-section {
+    background: var(--background-color);
+}
+
+.contact-form-section {
+    background: var(--background-alt, var(--card-background));
+}
+
+.business-hours-section {
+    background: var(--background-color);
+}
+
+/* Contact Information Section */
+.contact-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 2rem;
-    margin: 3rem 0;
+    margin-top: 3rem;
 }
 
 .contact-card {
@@ -88,94 +85,225 @@
     padding: 2rem;
     border-radius: 15px;
     box-shadow: var(--shadow);
-    transition: var(--transition);
     border: 1px solid var(--border-color);
     text-align: center;
+    transition: var(--transition);
 }
 
 .contact-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(255, 215, 0, 0.2);
-    border-color: var(--primary-color);
+    box-shadow: var(--hover-shadow);
+}
+
+.contact-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
 }
 
 .contact-card h3 {
     color: var(--primary-color);
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
 }
 
-.contact-card p {
+.contact-details {
+    text-align: center;
+}
+
+.contact-details p {
     color: var(--text-color);
-    line-height: 1.6;
-    margin: 0.5rem 0;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
 }
 
-.contact-card strong {
+.contact-details a {
     color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
 }
 
-/* Contact form section */
-.contact-form-section {
-    margin-top: 3rem;
-    padding: 2rem;
-    background: var(--background-alt);
-    border-radius: 15px;
+.contact-details a:hover {
+    text-decoration: underline;
+}
+
+.map-btn {
+    background: var(--primary-color);
+    color: var(--btn-text-secondary);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-top: 0.5rem;
+}
+
+.map-btn:hover {
+    background: #e6c300;
+    transform: translateY(-2px);
+}
+
+/* Contact Form Section */
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
     text-align: center;
-}
-
-.contact-form-section h3 {
-    color: var(--text-color);
-    font-size: 1.5rem;
     margin-bottom: 1rem;
-}
-
-.contact-form-section p {
     color: var(--text-color);
-    opacity: 0.7;
+    position: relative;
 }
 
-.coming-soon {
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: var(--primary-color);
+    border-radius: 2px;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Business Hours Section */
+.hours-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
     margin-top: 3rem;
+}
+
+.hours-card {
+    background: var(--card-background);
     padding: 2rem;
-    background: var(--background-alt);
     border-radius: 15px;
-    border: 2px dashed var(--border-color);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
     text-align: center;
+    transition: var(--transition);
+    position: relative;
 }
 
-.coming-soon h3 {
+.hours-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--hover-shadow);
+}
+
+.hours-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    display: block;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.hours-card h3 {
+    color: var(--primary-color);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+}
+
+.hours-list,
+.service-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.service-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--card-background);
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
     color: var(--text-color);
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+    transition: var(--transition);
 }
 
-.coming-soon p {
+.hours-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border-color);
     color: var(--text-color);
-    opacity: 0.7;
 }
 
-/* Responsive design for Contact page */
+.hours-item {
+    justify-content: space-between;
+}
+
+
+.hours-item.special {
+    color: var(--primary-color);
+    font-weight: 700;
+    border-bottom: 2px solid var(--primary-color);
+    padding: 0.75rem 0;
+}
+
+.service-icon {
+    margin-right: 0.75rem;
+    font-size: 1.2rem;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-    .page-header {
-        padding: 80px 0 60px;
-        margin-top: 60px;
-    }
-    
-    .content-section {
+
+    .contact-info-section,
+    .contact-form-section,
+    .business-hours-section {
         padding: 60px 0;
     }
-    
-    .placeholder-content h2 {
-        font-size: 2rem;
-    }
-    
-    .contact-info-grid {
+
+    .contact-grid,
+    .hours-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
-    
-    .contact-card {
+
+    .contact-card,
+    .hours-card {
         padding: 1.5rem;
+    }
+
+
+
+    .section-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-header {
+        padding: 100px 0 60px;
+    }
+
+    .section-title {
+        font-size: 1.75rem;
+    }
+
+    .contact-grid,
+    .hours-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-details {
+        text-align: center;
     }
 }

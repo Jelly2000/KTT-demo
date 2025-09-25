@@ -1,63 +1,158 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { ConsultationForm, HighlightedButton } from '../../components';
 import '../shared-styles.css';
 import './styles.css';
 
 const Contact = () => {
   const { t } = useTranslation();
 
+  const handleReset = () => {
+    setFormData({
+      name: '',
+      phone: '',
+      email: '',
+      subject: '',
+      message: ''
+    });
+  };
+
   return (
     <div className="contact-page">
-      <div className="page-header">
+      {/* Page Header */}
+      <section className="page-header">
         <div className="container">
-          <h1 className="page-title">{t('navigation_contact')}</h1>
-          <p className="page-subtitle">
-            Get in touch with us for any questions or bookings
-          </p>
+          <h1 className="page-title">{t('contact_title')}</h1>
+          <p className="page-subtitle">{t('contact_subtitle')}</p>
+          <HighlightedButton 
+            onClick={() => document.querySelector('.contact-form-section').scrollIntoView({behavior: 'smooth'})}
+          >
+            {t('contact_now')}
+          </HighlightedButton>
         </div>
-      </div>
-      
-      <section className="content-section">
+      </section>
+
+      {/* Contact Information Section */}
+      <section className="contact-info-section">
         <div className="container">
-          <div className="placeholder-content">
-            <h2>📞 Contact Information</h2>
-            <p>This is a placeholder for the contact page. It will include:</p>
-            
-            <div className="contact-info-grid">
-              <div className="contact-card">
-                <h3>🏢 Head Office</h3>
-                <p><strong>Address:</strong><br/>499/2 Hương Lộ 3, P.Bình Hưng Hòa, Q.Bình Tân, HCM</p>
-              </div>
-              
-              <div className="contact-card">
-                <h3>🚗 Parking Lot</h3>
-                <p><strong>Address:</strong><br/>158 Nguyễn Hữu Tiến, P.Tây Thạnh, Q.Tân Phú, HCM</p>
-              </div>
-              
-              <div className="contact-card">
-                <h3>📱 Hotline</h3>
-                <p><strong>Phone:</strong><br/>079.8888.373</p>
-              </div>
-              
-              <div className="contact-card">
-                <h3>📧 Email</h3>
-                <p><strong>Email:</strong><br/>jackynguyen23@gmail.com</p>
-              </div>
-              
-              <div className="contact-card">
-                <h3>🌐 Website</h3>
-                <p><strong>Website:</strong><br/>https://www.kttcar.com</p>
-              </div>
-              
-              <div className="contact-card">
-                <h3>📘 Facebook</h3>
-                <p><strong>Page:</strong><br/>dvtulai</p>
+          <div className="contact-grid">
+            {/* Company Information */}
+            <div className="contact-card">
+              <div className="contact-icon">🏢</div>
+              <h3>{t('company_info')}</h3>
+              <div className="contact-details">
+                <p><strong>{t('company_name')}</strong></p>
+                <p>{t('company_full_name')}</p>
               </div>
             </div>
-            
-            <div className="contact-form-section">
-              <h3>📝 Contact Form</h3>
-              <p>Contact form will be implemented here for customer inquiries.</p>
+
+            {/* Head Office */}
+            <div className="contact-card">
+              <div className="contact-icon">📍</div>
+              <h3>{t('head_office')}</h3>
+              <div className="contact-details">
+                <p>{t('head_office_address')}</p>
+                <button className="map-btn" onClick={() => window.open('https://maps.google.com/?q=10.7588585,106.6051226', '_blank')}>
+                  {t('view_map')}
+                </button>
+              </div>
+            </div>
+
+            {/* Parking Lot */}
+            <div className="contact-card">
+              <div className="contact-icon">🚗</div>
+              <h3>{t('parking_lot')}</h3>
+              <div className="contact-details">
+                <p>{t('parking_lot_address')}</p>
+                <button className="map-btn" onClick={() => window.open('https://maps.google.com/?q=10.7988585,106.6351226', '_blank')}>
+                  {t('view_map')}
+                </button>
+              </div>
+            </div>
+
+            {/* Phone Contact */}
+            <div className="contact-card">
+              <div className="contact-icon">📞</div>
+              <h3>{t('phone')}</h3>
+              <div className="contact-details">
+                <p><strong>{t('hotline')}</strong> <a href="tel:0798888373">079.8888.373</a></p>
+                <p>{t('support_24_7')}</p>
+              </div>
+            </div>
+
+            {/* Email Contact */}
+            <div className="contact-card">
+              <div className="contact-icon">✉️</div>
+              <h3>{t('email')}</h3>
+              <div className="contact-details">
+                <p><a href="mailto:jackynguyen23@gmail.com">jackynguyen23@gmail.com</a></p>
+                <p>{t('reply_within_24h')}</p>
+              </div>
+            </div>
+
+            {/* Social Media */}
+            <div className="contact-card">
+              <div className="contact-icon">📱</div>
+              <h3>{t('social_media')}</h3>
+              <div className="contact-details">
+                <p><strong>{t('website')}</strong> <a href="https://www.kttcar.com" target="_blank" rel="noopener noreferrer">kttcar.com</a></p>
+                <p><strong>{t('facebook')}</strong> <a href="https://www.facebook.com/dvtulai" target="_blank" rel="noopener noreferrer">dvtulai</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Form Section */}
+      <section className="contact-form-section">
+        <div className="container">
+          <ConsultationForm 
+            heading={t('send_message')}
+            subHeading={t('send_message_subtitle')}
+          />
+        </div>
+      </section>
+
+      {/* Business Hours Section */}
+      <section className="business-hours-section">
+        <div className="container">
+          <div className="hours-grid">
+            <div className="hours-card">
+              <div className="hours-icon">🕐</div>
+              <h3>{t('business_hours')}</h3>
+              <div className="hours-list">
+                <div className="hours-item">
+                  <span>{t('monday_friday')}</span>
+                  <span>8:00 - 18:00</span>
+                </div>
+                <div className="hours-item">
+                  <span>{t('saturday_sunday')}</span>
+                  <span>8:00 - 17:00</span>
+                </div>
+                <div className="hours-item special">
+                  <span>{t('emergency_support')}</span>
+                  <span>24/7</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="hours-card">
+              <div className="hours-icon">🚀</div>
+              <h3>{t('quick_service')}</h3>
+              <div className="service-list">
+                <div className="service-item">
+                  <span className="service-icon">⚡</span>
+                  <span>{t('online_booking_24_7')}</span>
+                </div>
+                <div className="service-item">
+                  <span className="service-icon">🚗</span>
+                  <span>{t('car_delivery_service')}</span>
+                </div>
+                <div className="service-item">
+                  <span className="service-icon">💬</span>
+                  <span>{t('free_consultation')}</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
