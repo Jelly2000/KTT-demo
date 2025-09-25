@@ -1,0 +1,394 @@
+{
+  "vehicles": [
+    {
+      "id": 1,
+      "name": "Toyota Vios",
+      "category": "sedan",
+      "seats": 4,
+      "transmission": "manual",
+      "fuel": "gasoline",
+      "pricePerDay": 800000,
+      "pricePerWeek": 5200000,
+      "pricePerMonth": 20000000,
+      "image": "/src/assets/sample-car.webp",
+      "gallery": [
+        "/src/assets/sample-car.webp"
+      ],
+      "features": [
+        "Điều hòa",
+        "Bluetooth",
+        "Camera lùi",
+        "Cửa sổ trời"
+      ],
+      "description": "Toyota Vios là dòng xe sedan 4 chỗ được ưa chuộng với thiết kế hiện đại và tiết kiệm nhiên liệu.",
+      "specifications": {
+        "engine": "1.5L DOHC",
+        "power": "107 HP",
+        "fuelConsumption": "5.2L/100km",
+        "tankCapacity": "42L"
+      },
+      "availability": true,
+      "rating": 4.5,
+      "reviewCount": 128
+    },
+    {
+      "id": 2,
+      "name": "Honda City",
+      "category": "sedan",
+      "seats": 4,
+      "transmission": "automatic",
+      "fuel": "gasoline",
+      "pricePerDay": 900000,
+      "pricePerWeek": 5800000,
+      "pricePerMonth": 22000000,
+      "image": "/src/assets/sample-car.webp",
+      "gallery": [
+        "/src/assets/sample-car.webp"
+      ],
+      "features": [
+        "Điều hòa tự động",
+        "Honda SENSING",
+        "Màn hình cảm ứng",
+        "Phanh tay điện tử"
+      ],
+      "description": "Honda City mang đến trải nghiệm lái xe an toàn với công nghệ Honda SENSING tiên tiến.",
+      "specifications": {
+        "engine": "1.5L i-VTEC",
+        "power": "121 HP",
+        "fuelConsumption": "5.5L/100km",
+        "tankCapacity": "40L"
+      },
+      "availability": true,
+      "rating": 4.7,
+      "reviewCount": 95
+    },
+    {
+      "id": 3,
+      "name": "Toyota Innova Cross",
+      "category": "suv",
+      "seats": 7,
+      "transmission": "automatic",
+      "fuel": "gasoline",
+      "pricePerDay": 1500000,
+      "pricePerWeek": 9500000,
+      "pricePerMonth": 35000000,
+      "image": "/src/assets/sample-car.webp",
+      "gallery": [
+        "/src/assets/sample-car.webp"
+      ],
+      "features": [
+        "7 chỗ ngồi",
+        "Cửa sổ trời toàn cảnh",
+        "Màn hình 9 inch",
+        "6 túi khí an toàn"
+      ],
+      "description": "Toyota Innova Cross - SUV 7 chỗ hoàn hảo cho gia đình với không gian rộng rãi và tính năng an toàn cao.",
+      "specifications": {
+        "engine": "2.0L Dynamic Force",
+        "power": "174 HP",
+        "fuelConsumption": "7.8L/100km",
+        "tankCapacity": "55L"
+      },
+      "availability": true,
+      "rating": 4.8,
+      "reviewCount": 156
+    },
+    {
+      "id": 4,
+      "name": "Honda CR-V",
+      "category": "suv",
+      "seats": 5,
+      "transmission": "cvt",
+      "fuel": "gasoline",
+      "pricePerDay": 1800000,
+      "pricePerWeek": 11500000,
+      "pricePerMonth": 42000000,
+      "image": "/src/assets/sample-car.webp",
+      "gallery": [
+        "/src/assets/sample-car.webp"
+      ],
+      "features": [
+        "Honda SENSING",
+        "Cửa cốp điện",
+        "Ghế da cao cấp",
+        "Hệ thống âm thanh Bose"
+      ],
+      "description": "Honda CR-V - SUV 5 chỗ sang trọng với công nghệ tiên tiến và khả năng vận hành uyệt vời.",
+      "specifications": {
+        "engine": "1.5L VTEC Turbo",
+        "power": "188 HP",
+        "fuelConsumption": "7.0L/100km",
+        "tankCapacity": "57L"
+      },
+      "availability": true,
+      "rating": 4.6,
+      "reviewCount": 89
+    },
+    {
+      "id": 5,
+      "name": "Ford Transit",
+      "category": "minivan",
+      "seats": 16,
+      "transmission": "manual",
+      "fuel": "diesel",
+      "pricePerDay": 2500000,
+      "pricePerWeek": 16000000,
+      "pricePerMonth": 60000000,
+      "image": "/src/assets/sample-car.webp",
+      "gallery": [
+        "/src/assets/sample-car.webp"
+      ],
+      "features": [
+        "16 chỗ ngồi",
+        "Điều hòa 2 chiều",
+        "Cửa trượt điện",
+        "Camera 360 độ"
+      ],
+      "description": "Ford Transit - Xe 16 chỗ lý tưởng cho tour du lịch nhóm với không gian thoải mái và an toàn cao.",
+      "specifications": {
+        "engine": "2.0L EcoBlue",
+        "power": "130 HP",
+        "fuelConsumption": "8.5L/100km",
+        "tankCapacity": "80L"
+      },
+      "availability": true,
+      "rating": 4.3,
+      "reviewCount": 67
+    },
+    {
+      "id": 6,
+      "name": "Mercedes-Benz E-Class",
+      "category": "luxury",
+      "seats": 5,
+      "transmission": "automatic",
+      "fuel": "gasoline",
+      "pricePerDay": 3000000,
+      "pricePerWeek": 19000000,
+      "pricePerMonth": 70000000,
+      "image": "/src/assets/sample-car.webp",
+      "gallery": [
+        "/src/assets/sample-car.webp"
+      ],
+      "features": [
+        "Sang trọng",
+        "Da cao cấp",
+        "Âm thanh Burmester",
+        "Hệ thống massage ghế"
+      ],
+      "description": "Mercedes-Benz E-Class - Xe sang đẳng cấp với thiết kế tinh tế và công nghệ tiên tiến nhất.",
+      "specifications": {
+        "engine": "2.0L Turbo",
+        "power": "258 HP",
+        "fuelConsumption": "8.2L/100km",
+        "tankCapacity": "66L"
+      },
+      "availability": true,
+      "rating": 4.9,
+      "reviewCount": 34
+    },
+    {
+      "id": 7,
+      "name": "BMW 5 Series",
+      "category": "luxury",
+      "seats": 5,
+      "transmission": "automatic",
+      "fuel": "gasoline",
+      "pricePerDay": 3500000,
+      "pricePerWeek": 22000000,
+      "pricePerMonth": 80000000,
+      "image": "/src/assets/sample-car.webp",
+      "gallery": [
+        "/src/assets/sample-car.webp"
+      ],
+      "features": [
+        "Driving Assistant",
+        "Harman Kardon",
+        "Ghế thể thao",
+        "Head-up Display"
+      ],
+      "description": "BMW 5 Series - Sedan hạng sang với động cơ mạnh mẽ và trải nghiệm lái xe thể thao.",
+      "specifications": {
+        "engine": "2.0L TwinPower",
+        "power": "248 HP",
+        "fuelConsumption": "7.5L/100km",
+        "tankCapacity": "68L"
+      },
+      "availability": true,
+      "rating": 4.8,
+      "reviewCount": 42
+    },
+    {
+      "id": 8,
+      "name": "Mitsubishi Xpander",
+      "category": "suv",
+      "seats": 7,
+      "transmission": "manual",
+      "fuel": "gasoline",
+      "pricePerDay": 1200000,
+      "pricePerWeek": 7500000,
+      "pricePerMonth": 28000000,
+      "image": "/src/assets/sample-car.webp",
+      "gallery": [
+        "/src/assets/sample-car.webp"
+      ],
+      "features": [
+        "7 chỗ linh hoạt",
+        "Khoang hành lý rộng",
+        "Tiết kiệm nhiên liệu",
+        "Dễ lái trong phố"
+      ],
+      "description": "Mitsubishi Xpander - MPV 7 chỗ tiết kiệm với thiết kế năng động và không gian linh hoạt.",
+      "specifications": {
+        "engine": "1.5L MIVEC",
+        "power": "105 HP",
+        "fuelConsumption": "6.1L/100km",
+        "tankCapacity": "45L"
+      },
+      "availability": true,
+      "rating": 4.4,
+      "reviewCount": 118
+    },
+    {
+      "id": 9,
+      "name": "Toyota Camry",
+      "category": "sedan",
+      "seats": 5,
+      "transmission": "automatic",
+      "fuel": "gasoline",
+      "pricePerDay": 1800000,
+      "pricePerWeek": 11500000,
+      "pricePerMonth": 42000000,
+      "image": "/src/assets/sample-car.webp",
+      "gallery": [
+        "/src/assets/sample-car.webp"
+      ],
+      "features": [
+        "Toyota Safety Sense",
+        "JBL Premium Audio",
+        "Wireless charging",
+        "LED Matrix headlights"
+      ],
+      "description": "Toyota Camry - Sedan cao cấp với thiết kế thể thao và công nghệ an toàn hàng đầu.",
+      "specifications": {
+        "engine": "2.5L Dynamic Force",
+        "power": "209 HP",
+        "fuelConsumption": "6.8L/100km",
+        "tankCapacity": "60L"
+      },
+      "availability": true,
+      "rating": 4.7,
+      "reviewCount": 73
+    },
+    {
+      "id": 10,
+      "name": "Hyundai Tucson",
+      "category": "suv",
+      "seats": 5,
+      "transmission": "automatic",
+      "fuel": "gasoline",
+      "pricePerDay": 1600000,
+      "pricePerWeek": 10200000,
+      "pricePerMonth": 38000000,
+      "image": "/src/assets/sample-car.webp",
+      "gallery": [
+        "/src/assets/sample-car.webp"
+      ],
+      "features": [
+        "Smartsense",
+        "Panoramic sunroof",
+        "Wireless Apple CarPlay",
+        "Bose Premium Sound"
+      ],
+      "description": "Hyundai Tucson - SUV hiện đại với thiết kế táo bạo và công nghệ thông minh.",
+      "specifications": {
+        "engine": "2.0L Smartstream",
+        "power": "156 HP",
+        "fuelConsumption": "7.2L/100km",
+        "tankCapacity": "62L"
+      },
+      "availability": false,
+      "rating": 4.5,
+      "reviewCount": 91
+    }
+  ],
+  "categories": [
+    {
+      "id": "sedan",
+      "name": "Sedan",
+      "nameVi": "Sedan (4-5 chỗ)",
+      "description": "Xe sedan sang trọng, phù hợp cho gia đình nhỏ và công việc"
+    },
+    {
+      "id": "suv",
+      "name": "SUV/MPV", 
+      "nameVi": "SUV/MPV (5-7 chỗ)",
+      "description": "Xe SUV và MPV rộng rãi, phù hợp cho gia đình đông người"
+    },
+    {
+      "id": "minivan",
+      "name": "Minivan",
+      "nameVi": "Minivan (16 chỗ)",
+      "description": "Xe 16 chỗ cho nhóm đông người, tour du lịch"
+    },
+    {
+      "id": "luxury",
+      "name": "Luxury",
+      "nameVi": "Xe sang",
+      "description": "Xe hạng sang cao cấp, dịch vụ VIP"
+    }
+  ],
+  "filters": {
+    "priceRanges": [
+      {
+        "id": "budget",
+        "label": "Tiết kiệm",
+        "labelEn": "Budget",
+        "min": 0,
+        "max": 1000000
+      },
+      {
+        "id": "standard",
+        "label": "Tiêu chuẩn", 
+        "labelEn": "Standard",
+        "min": 1000000,
+        "max": 2000000
+      },
+      {
+        "id": "premium",
+        "label": "Cao cấp",
+        "labelEn": "Premium", 
+        "min": 2000000,
+        "max": 4000000
+      }
+    ],
+    "transmissions": [
+      {
+        "id": "manual",
+        "label": "Số sàn",
+        "labelEn": "Manual"
+      },
+      {
+        "id": "automatic",
+        "label": "Số tự động",
+        "labelEn": "Automatic"
+      },
+      {
+        "id": "cvt",
+        "label": "CVT",
+        "labelEn": "CVT"
+      }
+    ],
+    "fuels": [
+      {
+        "id": "gasoline",
+        "label": "Xăng",
+        "labelEn": "Gasoline"
+      },
+      {
+        "id": "diesel",
+        "label": "Dầu diesel",
+        "labelEn": "Diesel"
+      }
+    ]
+  }
+}

@@ -107,7 +107,7 @@ const Home = () => {
             className="procedure-cta"
             onClick={() => console.log('View all vehicles')}
           >
-            {t('navigation_rentCar')}
+            {t('see_more_vehicles')}
           </HighlightedButton>
         </div>
       </section>

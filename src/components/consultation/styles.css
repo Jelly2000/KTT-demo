@@ -49,6 +49,7 @@
 
 /* Modern Form Styles */
 .modern-form {
+    margin: auto;
     max-width: 600px;
     background: var(--card-background, #fff);
     padding: 40px;
@@ -183,9 +184,9 @@
 }
 
 .reset-btn:hover {
-    background: #d1d5db;
-    /* border-color: var(--primary-color, #FFD700); */
-    color: #000;
+    /* background: var(--primary-color, #FFD700); */
+    border-color: var(--primary-color, #FFD700);
+    color: var(--primary-color, #FFD700);
     transform: translateY(-2px);
 }
 

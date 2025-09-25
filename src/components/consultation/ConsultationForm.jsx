@@ -4,7 +4,7 @@ import './styles.css';
 
 const ConsultationForm = () => {
   const { t } = useTranslation();
-  
+
   const [formData, setFormData] = useState({
     fullName: '',
     phoneNumber: '',
@@ -44,7 +44,7 @@ const ConsultationForm = () => {
         <form className="modern-form" onSubmit={handleSubmit}>
           <h2 className="consultation-title">{t('consultation_title')}</h2>
           <p className="consultation-subtitle">{t('consultation_subtitle')}</p>
-          
+
           <div className="form-container">
             {/* Full Name */}
             <div className="form-field">
@@ -148,12 +148,13 @@ const ConsultationForm = () => {
 
             {/* Form Actions */}
             <div className="form-actions">
-              <button type="submit" className="submit-btn">
-                <span className="btn-text">{t('submit_info')}</span>
-              </button>
               <button type="button" onClick={handleReset} className="reset-btn">
                 <span className="btn-text">{t('reset_form')}</span>
               </button>
+              <button type="submit" className="submit-btn">
+                <span className="btn-text">{t('submit_info')}</span>
+              </button>
+
             </div>
           </div>
         </form>

@@ -52,7 +52,11 @@
 .car-features li {
     margin-bottom: 0.25rem;
     color: var(--text-color);
-    opacity: 0.8;
+    opacity: 0.6;
+}
+
+.unavailable > .car-features > li {
+    opacity: 0.2;
 }
 
 /* Car Actions */
