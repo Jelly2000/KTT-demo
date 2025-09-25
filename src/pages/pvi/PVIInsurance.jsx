@@ -1,5 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+import { HighlightedButton } from '../../components';
 import '../shared-styles.css';
 import './styles.css';
 
@@ -8,58 +10,25 @@ const PVIInsurance = () => {
 
   return (
     <div className="pvi-insurance-page">
-      <div className="page-header">
-        <div className="container">
-          <h1 className="page-title">{t('navigation_pviInsurance')}</h1>
-          <p className="page-subtitle">
-            Comprehensive insurance coverage for your peace of mind
-          </p>
-        </div>
-      </div>
-      
-      <section className="content-section">
-        <div className="container">
-          <div className="placeholder-content">
-            <h2>🛡️ PVI Insurance Services</h2>
-            <p>This is a placeholder for the PVI Insurance page. Services will include:</p>
-            
-            <div className="insurance-types">
-              <div className="insurance-card">
-                <h3>🚗 Vehicle Insurance</h3>
-                <p>Comprehensive coverage for rental vehicles including collision, theft, and damage protection</p>
-              </div>
-              
-              <div className="insurance-card">
-                <h3>👥 Third Party Liability</h3>
-                <p>Protection against claims from third parties in case of accidents</p>
-              </div>
-              
-              <div className="insurance-card">
-                <h3>👤 Personal Accident</h3>
-                <p>Coverage for personal injury and medical expenses</p>
-              </div>
-              
-              <div className="insurance-card">
-                <h3>🧳 Personal Belongings</h3>
-                <p>Protection for personal items and luggage in the vehicle</p>
-              </div>
+      {/* Coming Soon Section */}
+      <section className="coming-soon-section">
+        <div className="container" style={{ marginTop: '50px' }}>
+          <div className="coming-soon-content">
+            <div className="coming-soon-icon">
+              🛡️
             </div>
-            
-            <div className="insurance-benefits">
-              <h3>✅ Benefits</h3>
-              <ul>
-                <li>🏥 24/7 Emergency Assistance</li>
-                <li>🔧 Roadside Assistance</li>
-                <li>🚛 Towing Services</li>
-                <li>🏨 Accommodation Coverage</li>
-                <li>🎯 No Claim Bonus</li>
-                <li>📞 Dedicated Support Hotline</li>
-              </ul>
+            <h1>{t('pvi_insurance')}</h1>
+            <div className="coming-soon-message">
+              <h2>{t('pvi_coming_soon')}</h2>
+              <p>{t('pvi_description')}</p>
             </div>
-            
-            <div className="pvi-partnership">
-              <h3>🤝 PVI Partnership</h3>
-              <p>We partner with PVI Insurance - one of Vietnam's leading insurance companies - to provide you with reliable and comprehensive coverage.</p>
+            <div className="coming-soon-actions">
+              <Link to="/contact" className="btn btn-primary">
+                {t('contact_us')}
+              </Link>
+              <Link to="/" className="btn btn-secondary">
+                {t('back_to_home')}
+              </Link>
             </div>
           </div>
         </div>

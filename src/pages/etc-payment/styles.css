@@ -1,157 +1,149 @@
-/* ETC Payment page styles */
+/* ETC Payment Coming Soon Styles */
 .etc-payment-page {
-  min-height: 100vh;
+    min-height: 100vh;
+    background: var(--background-color);
+    padding-top: 80px;
 }
 
-/* Page header */
-.page-header {
-    background: linear-gradient(135deg, var(--secondary-color) 0%, #2d2d2d 100%);
-    color: white;
-    padding: 120px 0 80px;
+/* Coming Soon Section */
+.coming-soon-section {
+    padding: 80px 0;
+    background: var(--background-color);
+    min-height: calc(100vh - 160px);
+    display: flex;
+    justify-content: center;
+}
+
+.coming-soon-content {
     text-align: center;
-    position: relative;
-    overflow: hidden;
-}
-
-.page-header::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="0.5" fill="%23FFD700" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-    opacity: 0.3;
-}
-
-.page-header .container {
-    position: relative;
-    z-index: 1;
     max-width: 800px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 3rem;
+    background: var(--card-background);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
 }
 
-.page-title {
-    font-size: clamp(2.5rem, 5vw, 4rem);
+.coming-soon-icon {
+    font-size: 6rem;
+    margin-bottom: 2rem;
+    display: block;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.coming-soon-content h1 {
+    font-size: 3rem;
     font-weight: 700;
-    margin-bottom: 1rem;
-    background: linear-gradient(45deg, #ffdb0c, #FFA500);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.189);
+    color: var(--text-color);
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
-.page-subtitle {
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
+.coming-soon-message h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
     opacity: 0.9;
 }
 
-.content-section {
-    padding: 80px 0;
-    background: var(--background-color);
-}
-
-/* ETC Payment specific styles */
-.placeholder-content {
-    text-align: center;
-    margin-bottom: 3rem;
-}
-
-.placeholder-content h2 {
-    font-size: 2.5rem;
-    color: var(--text-color);
-    margin-bottom: 2rem;
-}
-
-.placeholder-content p {
-    color: var(--text-color);
+.coming-soon-message p {
     font-size: 1.1rem;
-    line-height: 1.7;
+    line-height: 1.6;
+    color: var(--text-color);
+    opacity: 0.8;
     margin-bottom: 3rem;
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
 }
 
-.service-features {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin: 3rem 0;
+.coming-soon-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
-.feature-card {
-    background: var(--card-background);
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: var(--shadow);
+.btn {
+    padding: 16px 32px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
     transition: var(--transition);
-    border: 1px solid var(--border-color);
-    text-align: center;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    min-width: 160px;
 }
 
-.feature-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(255, 215, 0, 0.2);
+.btn-primary {
+    background: linear-gradient(45deg, var(--primary-color), #FFA500);
+    color: #2d2d2d;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+    color: #1a1a1a;
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--text-color);
+    border: 2px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+    background: var(--card-background);
     border-color: var(--primary-color);
-}
-
-.feature-card h3 {
-    color: var(--primary-color);
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
-}
-
-.feature-card p {
+    transform: translateY(-2px);
     color: var(--text-color);
-    line-height: 1.6;
-    margin: 0;
 }
 
-.coming-soon {
-    margin-top: 3rem;
-    padding: 2rem;
-    background: var(--background-alt);
-    border-radius: 15px;
-    border: 2px dashed var(--border-color);
-    text-align: center;
-}
-
-.coming-soon h3 {
-    color: var(--text-color);
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-}
-
-.coming-soon p {
-    color: var(--text-color);
-    opacity: 0.7;
-}
-
-/* Responsive design for ETC Payment page */
+/* Responsive Design */
 @media (max-width: 768px) {
-    .page-header {
-        padding: 80px 0 60px;
-        margin-top: 60px;
+    .coming-soon-content {
+        margin: 0 20px;
+        padding: 2rem 1.5rem;
     }
     
-    .content-section {
-        padding: 60px 0;
-    }
-    
-    .placeholder-content h2 {
+    .coming-soon-content h1 {
         font-size: 2rem;
     }
     
-    .service-features {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
+    .coming-soon-icon {
+        font-size: 4rem;
     }
     
-    .feature-card {
-        padding: 1.5rem;
+    .coming-soon-message h2 {
+        font-size: 1.2rem;
+    }
+    
+    .coming-soon-message p {
+        font-size: 1rem;
+    }
+    
+    .coming-soon-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 280px;
     }
 }

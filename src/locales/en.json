@@ -190,5 +190,13 @@
   "quick_service": "QUICK SERVICE",
   "online_booking_24_7": "Online booking 24/7",
   "car_delivery_service": "Car delivery service",
-  "free_consultation": "Free consultation"
+  "free_consultation": "Free consultation",
+  "etc_payment": "ETC Payment",
+  "etc_coming_soon": "This feature will be implemented soon",
+  "etc_description": "We are developing the ETC payment service to bring the best convenience to our customers. Please come back later or contact us for more detailed information.",
+  "pvi_insurance": "PVI Insurance",
+  "pvi_coming_soon": "This feature will be implemented soon",
+  "pvi_description": "We are developing PVI insurance service to bring the best peace of mind and protection to our customers. Please come back later or contact us for more detailed information.",
+  "contact_us": "Contact Us",
+  "back_to_home": "Back to Home"
 }
