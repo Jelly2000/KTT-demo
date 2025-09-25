@@ -27,8 +27,8 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Main Content */}
-      <section className="content-section">
+      {/* Rental Procedures Section */}
+      <section className="procedures-section">
         <div className="container">
           <Heading
             level={2}
@@ -71,7 +71,10 @@ const Home = () => {
             {t('seemore_procedures')}
           </HighlightedButton>
         </div>
+      </section>
 
+      {/* Top Vehicles Section */}
+      <section className="vehicles-section">
         <div className='container'>
           <Heading
             level={2}
@@ -111,9 +114,10 @@ const Home = () => {
           </HighlightedButton>
         </div>
       </section>
-
+      <section className="testimonials-section">
+        <ConsultationForm />
+      </section>
       {/* Consultation Form Section */}
-      <ConsultationForm />
     </div>
   );
 };
