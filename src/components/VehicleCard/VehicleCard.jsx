@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link, useNavigate } from 'react-router-dom';
 import './VehicleCard.css';
 
 const VehicleCard = ({ 
@@ -13,6 +14,7 @@ const VehicleCard = ({
     viewMode = 'grid' 
 }) => {
     const { t, i18n } = useTranslation();
+    const navigate = useNavigate();
     
     const rentButtonText = t('hero_ctaButton'); // "Thuê xe ngay" 
     const detailsButtonText = t('view_details'); // "Xem chi tiết" 
@@ -78,19 +80,19 @@ const VehicleCard = ({
                 <div className="car-actions">
                     <button 
                         className={`rent-button ${!availability ? 'disabled' : ''}`} 
-                        onClick={() => availability && console.log(`Rent ${vehicleName}`)} 
+                        onClick={() => availability && navigate(`/thue-xe/${id}`)} 
                         aria-label={`Rent ${vehicleName}`}
                         disabled={!availability}
                     >
                         {rentButtonText}
                     </button>
-                    <button 
+                    <Link 
+                        to={`/thue-xe/${id}`}
                         className="details-button" 
-                        onClick={() => console.log(`View details for ${vehicleName}`)} 
                         aria-label={`View details for ${vehicleName}`}
                     >
                         {detailsButtonText}
-                    </button>
+                    </Link>
                 </div>
             </div>
         </div>

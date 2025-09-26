@@ -6,9 +6,20 @@ import Heading from '../../components/Heading/Heading';
 import Card from '../../components/card/Card';
 import HighlightedButton from '../../components/HighlightedButton/HighlightedButton';
 import { VehicleCard, ConsultationForm } from '../../components';
+import vehiclesData from '../../data/vehicles.json';
 
 const Home = () => {
   const { t } = useTranslation();
+  
+  // Get first 3 vehicles for display
+  const featuredVehicles = vehiclesData.vehicles.slice(0, 3);
+  
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat('vi-VN', {
+      style: 'currency',
+      currency: 'VND'
+    }).format(price);
+  };
 
   return (
     <div className="home-page">
@@ -84,27 +95,18 @@ const Home = () => {
             {t('top_vehicles').toUpperCase()}
           </Heading>
           <div className='cars-grid'>
-            <VehicleCard
-              id={1}
-              image="/src/assets/sample-car.webp"
-              vehicleName="Honda City"
-              price="800,000 VNĐ/ngày"
-              features={['4 chỗ ngồi', 'Tự động', 'Điều hòa', 'GPS']}
-            />
-            <VehicleCard
-              id={2}
-              image="/src/assets/sample-car.webp"
-              vehicleName="Toyota Fortuner"
-              price="1,500,000 VNĐ/ngày"
-              features={['7 chỗ ngồi', '4WD', 'Điều hòa', 'Camera lùi']}
-            />
-            <VehicleCard
-              id={3}
-              image="/src/assets/sample-car.webp"
-              vehicleName="Mercedes-Benz E-Class"
-              price="3,000,000 VNĐ/ngày"
-              features={['5 chỗ ngồi', 'Sang trọng', 'Da cao cấp', 'Âm thanh Burmester']}
-            />
+            {featuredVehicles.map(vehicle => (
+              <VehicleCard
+                key={vehicle.id}
+                id={vehicle.id}
+                image={vehicle.image}
+                vehicleName={vehicle.name}
+                price={`${formatPrice(vehicle.pricePerDay)}/ngày`}
+                features={vehicle.features}
+                rating={vehicle.rating}
+                availability={vehicle.availability}
+              />
+            ))}
           </div>
           <HighlightedButton
             className="procedure-cta"

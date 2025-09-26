@@ -5,6 +5,7 @@ import Footer from './components/Footer/Footer'
 import FloatingContacts from './components/FloatingContacts/FloatingContacts'
 import Home from './pages/home/Home'
 import RentCar from './pages/rent-car/RentCar'
+import VehicleDetail from './pages/vehicle-detail/VehicleDetail'
 import Procedures from './pages/procedure/Procedures'
 import Contact from './pages/contact/Contact'
 import ETCPayment from './pages/etc-payment/ETCPayment'
@@ -20,6 +21,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/thue-xe" element={<RentCar />} />
+            <Route path="/thue-xe/:id" element={<VehicleDetail />} />
             <Route path="/thu-tuc" element={<Procedures />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/nap-phi-etc" element={<ETCPayment />} />

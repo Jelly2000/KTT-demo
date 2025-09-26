@@ -12,6 +12,8 @@
       "pricePerMonth": 20000000,
       "image": "/src/assets/sample-car.webp",
       "gallery": [
+        "/src/assets/sample-car.webp",
+        "/src/assets/sample-car.webp",
         "/src/assets/sample-car.webp"
       ],
       "features": [
@@ -43,6 +45,8 @@
       "pricePerMonth": 22000000,
       "image": "/src/assets/sample-car.webp",
       "gallery": [
+        "/src/assets/sample-car.webp",
+        "/src/assets/sample-car.webp",
         "/src/assets/sample-car.webp"
       ],
       "features": [
@@ -74,6 +78,9 @@
       "pricePerMonth": 35000000,
       "image": "/src/assets/sample-car.webp",
       "gallery": [
+        "/src/assets/sample-car.webp",
+        "/src/assets/sample-car.webp",
+        "/src/assets/sample-car.webp",
         "/src/assets/sample-car.webp"
       ],
       "features": [
