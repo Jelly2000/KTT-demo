@@ -6,13 +6,13 @@ import Heading from '../../components/Heading/Heading';
 import Card from '../../components/card/Card';
 import HighlightedButton from '../../components/HighlightedButton/HighlightedButton';
 import { VehicleCard, ConsultationForm } from '../../components';
-import vehiclesData from '../../data/vehicles.json';
+import { getVehicles } from '../../utils/vehicleUtils';
 
 const Home = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   
-  // Get first 3 vehicles for display
-  const featuredVehicles = vehiclesData.vehicles.slice(0, 3);
+  // Get first 3 vehicles for display in current language
+  const featuredVehicles = getVehicles(i18n.language).slice(0, 3);
   
   const formatPrice = (price) => {
     return new Intl.NumberFormat('vi-VN', {
@@ -98,12 +98,7 @@ const Home = () => {
             {featuredVehicles.map(vehicle => (
               <VehicleCard
                 key={vehicle.id}
-                vehicle={{
-                  id: vehicle.id,
-                  image: vehicle.image,
-                  name: vehicle.name,
-                  price: vehicle.pricePerDay
-                }}
+                vehicle={vehicle}
                 id={vehicle.id}
                 image={vehicle.image}
                 vehicleName={vehicle.name}

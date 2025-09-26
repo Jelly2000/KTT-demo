@@ -1,0 +1,626 @@
+{
+  "vehicles": [
+    {
+      "id": 1,
+      "name": "Hyundai Accent",
+      "category": "sedan",
+      "seats": 5,
+      "transmission": "automatic",
+      "fuel": "gasoline",
+      "pricePerDay": 850000,
+      "pricePerWeek": 5500000,
+      "pricePerMonth": 21000000,
+      "image": "/src/assets/vehicles/Hyundai Accent/1.jpg",
+      "gallery": [
+        "/src/assets/vehicles/Hyundai Accent/1.jpg",
+        "/src/assets/vehicles/Hyundai Accent/2.jpg",
+        "/src/assets/vehicles/Hyundai Accent/3.jpg",
+        "/src/assets/vehicles/Hyundai Accent/4.jpg",
+        "/src/assets/vehicles/Hyundai Accent/5.jpg",
+        "/src/assets/vehicles/Hyundai Accent/6.jpg",
+        "/src/assets/vehicles/Hyundai Accent/7.jpg",
+        "/src/assets/vehicles/Hyundai Accent/8.jpg",
+        "/src/assets/vehicles/Hyundai Accent/9.jpg",
+        "/src/assets/vehicles/Hyundai Accent/10.jpg",
+        "/src/assets/vehicles/Hyundai Accent/11.jpg",
+        "/src/assets/vehicles/Hyundai Accent/12.jpg",
+        "/src/assets/vehicles/Hyundai Accent/13.jpg"
+      ],
+      "features": [
+        "Automatic air conditioning",
+        "Bluetooth connectivity",
+        "Rear camera",
+        "Rear parking sensors",
+        "6-speaker audio system",
+        "Push-button start",
+        "Smart key system"
+      ],
+      "description": "New generation Hyundai Accent with modern design, fuel-efficient Gamma 1.4L MPI engine, and high standard safety equipment.",
+      "specifications": {
+        "engine": "1.4L Gamma MPI",
+        "power": "100 HP @ 6,000 rpm",
+        "torque": "132 Nm @ 4,000 rpm",
+        "fuelConsumption": "5.8L/100km",
+        "tankCapacity": "45L",
+        "transmission": "6-speed Automatic"
+      },
+      "availability": true,
+      "rating": 4.2,
+      "reviewCount": 87
+    },
+    {
+      "id": 2,
+      "name": "Hyundai Custin 2.0",
+      "category": "suv",
+      "seats": 8,
+      "transmission": "automatic",
+      "fuel": "gasoline",
+      "pricePerDay": 1800000,
+      "pricePerWeek": 11700000,
+      "pricePerMonth": 45000000,
+      "image": "/src/assets/vehicles/Hyundai Custin 2.0/1.jpg",
+      "gallery": [
+        "/src/assets/vehicles/Hyundai Custin 2.0/1.jpg",
+        "/src/assets/vehicles/Hyundai Custin 2.0/2.jpg",
+        "/src/assets/vehicles/Hyundai Custin 2.0/3.jpg",
+        "/src/assets/vehicles/Hyundai Custin 2.0/4.jpg",
+        "/src/assets/vehicles/Hyundai Custin 2.0/5.jpg",
+        "/src/assets/vehicles/Hyundai Custin 2.0/6.jpg",
+        "/src/assets/vehicles/Hyundai Custin 2.0/7.jpg",
+        "/src/assets/vehicles/Hyundai Custin 2.0/8.jpg",
+        "/src/assets/vehicles/Hyundai Custin 2.0/9.jpg",
+        "/src/assets/vehicles/Hyundai Custin 2.0/10.jpg",
+        "/src/assets/vehicles/Hyundai Custin 2.0/11.jpg",
+        "/src/assets/vehicles/Hyundai Custin 2.0/12.jpg",
+        "/src/assets/vehicles/Hyundai Custin 2.0/13.jpg",
+        "/src/assets/vehicles/Hyundai Custin 2.0/14.jpg",
+        "/src/assets/vehicles/Hyundai Custin 2.0/15.jpg",
+        "/src/assets/vehicles/Hyundai Custin 2.0/16.jpg",
+        "/src/assets/vehicles/Hyundai Custin 2.0/17.jpg",
+        "/src/assets/vehicles/Hyundai Custin 2.0/18.jpg"
+      ],
+      "features": [
+        "3-zone independent air conditioning",
+        "12.3\" touchscreen display",
+        "360-degree camera",
+        "Automatic sliding doors",
+        "Premium leather seats",
+        "Infinity 8-speaker audio",
+        "Wireless charging",
+        "Hyundai SmartSense safety system"
+      ],
+      "description": "Hyundai Custin 2.0 - Premium 8-seater MPV with powerful Smartstream 2.0L engine, luxurious design and advanced technology.",
+      "specifications": {
+        "engine": "2.0L Smartstream MPI",
+        "power": "159 HP @ 6,500 rpm",
+        "torque": "191 Nm @ 4,500 rpm",
+        "fuelConsumption": "7.2L/100km",
+        "tankCapacity": "60L",
+        "transmission": "CVT"
+      },
+      "availability": true,
+      "rating": 4.6,
+      "reviewCount": 45
+    },
+    {
+      "id": 3,
+      "name": "Hyundai Elantra",
+      "category": "sedan",
+      "seats": 5,
+      "transmission": "automatic",
+      "fuel": "gasoline",
+      "pricePerDay": 1200000,
+      "pricePerWeek": 7800000,
+      "pricePerMonth": 30000000,
+      "image": "/src/assets/vehicles/Hyundai Elantra/1.jpg",
+      "gallery": [
+        "/src/assets/vehicles/Hyundai Elantra/1.jpg",
+        "/src/assets/vehicles/Hyundai Elantra/2.jpg",
+        "/src/assets/vehicles/Hyundai Elantra/3.jpg",
+        "/src/assets/vehicles/Hyundai Elantra/4.jpg",
+        "/src/assets/vehicles/Hyundai Elantra/5.jpg",
+        "/src/assets/vehicles/Hyundai Elantra/6.jpg",
+        "/src/assets/vehicles/Hyundai Elantra/7.jpg",
+        "/src/assets/vehicles/Hyundai Elantra/8.jpg",
+        "/src/assets/vehicles/Hyundai Elantra/9.jpg",
+        "/src/assets/vehicles/Hyundai Elantra/10.jpg",
+        "/src/assets/vehicles/Hyundai Elantra/11.jpg",
+        "/src/assets/vehicles/Hyundai Elantra/12.jpg",
+        "/src/assets/vehicles/Hyundai Elantra/13.jpg"
+      ],
+      "features": [
+        "Dual-zone automatic air conditioning",
+        "10.25\" touchscreen display",
+        "Rear camera",
+        "Blind spot warning",
+        "Adaptive cruise control",
+        "Bose audio system",
+        "Heated seats",
+        "Remote engine start"
+      ],
+      "description": "7th generation Hyundai Elantra with Parametric Dynamic design, Smartstream 2.0L engine and advanced Hyundai SmartSense technology.",
+      "specifications": {
+        "engine": "2.0L Smartstream MPI",
+        "power": "159 HP @ 6,200 rpm",
+        "torque": "191 Nm @ 4,500 rpm",
+        "fuelConsumption": "6.8L/100km",
+        "tankCapacity": "50L",
+        "transmission": "CVT"
+      },
+      "availability": true,
+      "rating": 4.5,
+      "reviewCount": 112
+    },
+    {
+      "id": 4,
+      "name": "Hyundai Santa Fe 2.5T",
+      "category": "suv",
+      "seats": 7,
+      "transmission": "automatic",
+      "fuel": "gasoline",
+      "pricePerDay": 2200000,
+      "pricePerWeek": 14300000,
+      "pricePerMonth": 55000000,
+      "image": "/src/assets/vehicles/Hyundai Santafe 2.5T/1.jpg",
+      "gallery": [
+        "/src/assets/vehicles/Hyundai Santafe 2.5T/1.jpg",
+        "/src/assets/vehicles/Hyundai Santafe 2.5T/2.jpg",
+        "/src/assets/vehicles/Hyundai Santafe 2.5T/3.jpg",
+        "/src/assets/vehicles/Hyundai Santafe 2.5T/4.jpg",
+        "/src/assets/vehicles/Hyundai Santafe 2.5T/5.jpg",
+        "/src/assets/vehicles/Hyundai Santafe 2.5T/6.jpg",
+        "/src/assets/vehicles/Hyundai Santafe 2.5T/7.jpg",
+        "/src/assets/vehicles/Hyundai Santafe 2.5T/8.jpg",
+        "/src/assets/vehicles/Hyundai Santafe 2.5T/9.jpg",
+        "/src/assets/vehicles/Hyundai Santafe 2.5T/10.jpg"
+      ],
+      "features": [
+        "3-zone independent air conditioning",
+        "12.3\" touchscreen display",
+        "360-degree camera system",
+        "Panoramic sunroof",
+        "Premium Nappa leather seats",
+        "Harman Kardon audio system",
+        "Wireless charging pad",
+        "SmartSense safety system"
+      ],
+      "description": "Hyundai Santa Fe 2.5T - Premium 7-seater SUV with powerful 2.5L turbo engine, Bold & Tough design and cutting-edge technology.",
+      "specifications": {
+        "engine": "2.5L Smartstream T-GDI",
+        "power": "281 HP @ 5,800 rpm",
+        "torque": "422 Nm @ 1,700-4,000 rpm",
+        "fuelConsumption": "8.9L/100km",
+        "tankCapacity": "71L",
+        "transmission": "8-speed Automatic"
+      },
+      "availability": true,
+      "rating": 4.8,
+      "reviewCount": 203
+    },
+    {
+      "id": 5,
+      "name": "Hyundai Venue",
+      "category": "suv",
+      "seats": 5,
+      "transmission": "automatic",
+      "fuel": "gasoline",
+      "pricePerDay": 950000,
+      "pricePerWeek": 6175000,
+      "pricePerMonth": 23750000,
+      "image": "/src/assets/vehicles/Hyundai Venue/1.jpg",
+      "gallery": [
+        "/src/assets/vehicles/Hyundai Venue/1.jpg",
+        "/src/assets/vehicles/Hyundai Venue/2.jpg",
+        "/src/assets/vehicles/Hyundai Venue/3.jpg",
+        "/src/assets/vehicles/Hyundai Venue/4.jpg",
+        "/src/assets/vehicles/Hyundai Venue/5.jpg",
+        "/src/assets/vehicles/Hyundai Venue/6.jpg",
+        "/src/assets/vehicles/Hyundai Venue/7.jpg",
+        "/src/assets/vehicles/Hyundai Venue/8.jpg",
+        "/src/assets/vehicles/Hyundai Venue/9.jpg",
+        "/src/assets/vehicles/Hyundai Venue/10.jpg",
+        "/src/assets/vehicles/Hyundai Venue/11.jpg",
+        "/src/assets/vehicles/Hyundai Venue/12.jpg",
+        "/src/assets/vehicles/Hyundai Venue/13.jpg",
+        "/src/assets/vehicles/Hyundai Venue/14.jpg",
+        "/src/assets/vehicles/Hyundai Venue/15.jpg",
+        "/src/assets/vehicles/Hyundai Venue/16.jpg"
+      ],
+      "features": [
+        "Automatic air conditioning",
+        "8\" touchscreen display",
+        "Rear camera",
+        "Bluetooth connectivity",
+        "Dual USB ports",
+        "Steering wheel audio controls",
+        "LED lighting",
+        "Push-button start"
+      ],
+      "description": "Hyundai Venue - Compact urban SUV with youthful design, efficient 1.0L T-GDI turbo engine and modern technology features.",
+      "specifications": {
+        "engine": "1.0L T-GDI Turbo",
+        "power": "120 HP @ 6,000 rpm",
+        "torque": "172 Nm @ 1,500-4,500 rpm",
+        "fuelConsumption": "6.2L/100km",
+        "tankCapacity": "45L",
+        "transmission": "7-speed DCT"
+      },
+      "availability": true,
+      "rating": 4.3,
+      "reviewCount": 89
+    },
+    {
+      "id": 6,
+      "name": "Kia Carnival Signature",
+      "category": "suv",
+      "seats": 8,
+      "transmission": "automatic",
+      "fuel": "diesel",
+      "pricePerDay": 2500000,
+      "pricePerWeek": 16250000,
+      "pricePerMonth": 62500000,
+      "image": "/src/assets/vehicles/Kia Carnival Signature/1.jpg",
+      "gallery": [
+        "/src/assets/vehicles/Kia Carnival Signature/1.jpg",
+        "/src/assets/vehicles/Kia Carnival Signature/2.jpg",
+        "/src/assets/vehicles/Kia Carnival Signature/3.jpg",
+        "/src/assets/vehicles/Kia Carnival Signature/4.jpg",
+        "/src/assets/vehicles/Kia Carnival Signature/5.jpg",
+        "/src/assets/vehicles/Kia Carnival Signature/6.jpg",
+        "/src/assets/vehicles/Kia Carnival Signature/7.jpg",
+        "/src/assets/vehicles/Kia Carnival Signature/8.jpg",
+        "/src/assets/vehicles/Kia Carnival Signature/9.jpg",
+        "/src/assets/vehicles/Kia Carnival Signature/10.jpg",
+        "/src/assets/vehicles/Kia Carnival Signature/11.jpg",
+        "/src/assets/vehicles/Kia Carnival Signature/12.jpg",
+        "/src/assets/vehicles/Kia Carnival Signature/13.jpg",
+        "/src/assets/vehicles/Kia Carnival Signature/14.jpg",
+        "/src/assets/vehicles/Kia Carnival Signature/15.jpg",
+        "/src/assets/vehicles/Kia Carnival Signature/16.jpg",
+        "/src/assets/vehicles/Kia Carnival Signature/17.jpg",
+        "/src/assets/vehicles/Kia Carnival Signature/18.jpg",
+        "/src/assets/vehicles/Kia Carnival Signature/19.jpg",
+        "/src/assets/vehicles/Kia Carnival Signature/20.jpg",
+        "/src/assets/vehicles/Kia Carnival Signature/21.jpg"
+      ],
+      "features": [
+        "3-zone independent air conditioning",
+        "Premium Nappa leather seats",
+        "Electric sliding doors",
+        "12.3\" entertainment display",
+        "360-degree camera system",
+        "Harman Kardon 12-speaker audio",
+        "Wireless charging pad",
+        "Adaptive cruise control"
+      ],
+      "description": "Kia Carnival Signature - Luxury 8-seater MPV with powerful 2.2L CRDi diesel engine, ultra-premium interior and advanced safety technology.",
+      "specifications": {
+        "engine": "2.2L Smartstream D CRDi",
+        "power": "199 HP @ 3,800 rpm",
+        "torque": "441 Nm @ 1,750-2,750 rpm",
+        "fuelConsumption": "7.8L/100km",
+        "tankCapacity": "75L",
+        "transmission": "8-speed Automatic"
+      },
+      "availability": true,
+      "rating": 4.9,
+      "reviewCount": 156
+    },
+    {
+      "id": 7,
+      "name": "Kia Carnival Signature New",
+      "category": "suv",
+      "seats": 8,
+      "transmission": "automatic",
+      "fuel": "gasoline",
+      "pricePerDay": 2800000,
+      "pricePerWeek": 18200000,
+      "pricePerMonth": 70000000,
+      "image": "/src/assets/vehicles/Kia Carnival Signature New/1.jpg",
+      "gallery": [
+        "/src/assets/vehicles/Kia Carnival Signature New/1.jpg",
+        "/src/assets/vehicles/Kia Carnival Signature New/2.jpg",
+        "/src/assets/vehicles/Kia Carnival Signature New/3.jpg",
+        "/src/assets/vehicles/Kia Carnival Signature New/4.jpg",
+        "/src/assets/vehicles/Kia Carnival Signature New/5.jpg",
+        "/src/assets/vehicles/Kia Carnival Signature New/6.jpg",
+        "/src/assets/vehicles/Kia Carnival Signature New/7.jpg",
+        "/src/assets/vehicles/Kia Carnival Signature New/8.jpg",
+        "/src/assets/vehicles/Kia Carnival Signature New/9.jpg",
+        "/src/assets/vehicles/Kia Carnival Signature New/10.jpg",
+        "/src/assets/vehicles/Kia Carnival Signature New/11.jpg",
+        "/src/assets/vehicles/Kia Carnival Signature New/12.jpg",
+        "/src/assets/vehicles/Kia Carnival Signature New/13.jpg",
+        "/src/assets/vehicles/Kia Carnival Signature New/14.jpg",
+        "/src/assets/vehicles/Kia Carnival Signature New/15.jpg",
+        "/src/assets/vehicles/Kia Carnival Signature New/16.jpg",
+        "/src/assets/vehicles/Kia Carnival Signature New/17.jpg",
+        "/src/assets/vehicles/Kia Carnival Signature New/18.jpg",
+        "/src/assets/vehicles/Kia Carnival Signature New/19.jpg",
+        "/src/assets/vehicles/Kia Carnival Signature New/20.jpg",
+        "/src/assets/vehicles/Kia Carnival Signature New/21.jpg"
+      ],
+      "features": [
+        "Premium 3-zone independent air conditioning",
+        "Nappa leather seats with massage",
+        "Dual electric sliding doors",
+        "12.3\" 4K entertainment display",
+        "High-resolution 360-degree camera",
+        "Harman Kardon 12-speaker premium audio",
+        "Dual wireless charging pads",
+        "Drive Wise safety system"
+      ],
+      "description": "Kia Carnival Signature New - Latest version with 3.5L V6 gasoline engine, enhanced luxury design and most advanced technology.",
+      "specifications": {
+        "engine": "3.5L V6 GDI",
+        "power": "294 HP @ 6,400 rpm",
+        "torque": "355 Nm @ 5,000 rpm",
+        "fuelConsumption": "9.2L/100km",
+        "tankCapacity": "80L",
+        "transmission": "8-speed Automatic"
+      },
+      "availability": true,
+      "rating": 4.9,
+      "reviewCount": 78
+    },
+    {
+      "id": 8,
+      "name": "Kia Sedona",
+      "category": "suv",
+      "seats": 7,
+      "transmission": "automatic",
+      "fuel": "diesel",
+      "pricePerDay": 1800000,
+      "pricePerWeek": 11700000,
+      "pricePerMonth": 45000000,
+      "image": "/src/assets/vehicles/Kia Sedona/1.jpg",
+      "gallery": [
+        "/src/assets/vehicles/Kia Sedona/1.jpg",
+        "/src/assets/vehicles/Kia Sedona/2.jpg",
+        "/src/assets/vehicles/Kia Sedona/3.jpg",
+        "/src/assets/vehicles/Kia Sedona/4.jpg",
+        "/src/assets/vehicles/Kia Sedona/5.jpg",
+        "/src/assets/vehicles/Kia Sedona/6.jpg",
+        "/src/assets/vehicles/Kia Sedona/7.jpg",
+        "/src/assets/vehicles/Kia Sedona/8.jpg",
+        "/src/assets/vehicles/Kia Sedona/9.jpg",
+        "/src/assets/vehicles/Kia Sedona/10.jpg",
+        "/src/assets/vehicles/Kia Sedona/11.jpg",
+        "/src/assets/vehicles/Kia Sedona/12.jpg"
+      ],
+      "features": [
+        "Dual-zone automatic air conditioning",
+        "Premium leather seats",
+        "Electric sliding doors",
+        "8\" touchscreen display",
+        "Rear camera",
+        "6-speaker audio system",
+        "Bluetooth connectivity",
+        "ESC safety system"
+      ],
+      "description": "Kia Sedona - Practical 7-seater MPV with fuel-efficient 2.2L diesel engine, functional design and spacious interior.",
+      "specifications": {
+        "engine": "2.2L CRDi Diesel",
+        "power": "197 HP @ 3,800 rpm",
+        "torque": "441 Nm @ 1,750-2,750 rpm",
+        "fuelConsumption": "7.5L/100km",
+        "tankCapacity": "75L",
+        "transmission": "8-speed Automatic"
+      },
+      "availability": true,
+      "rating": 4.4,
+      "reviewCount": 134
+    },
+    {
+      "id": 9,
+      "name": "Mercedes C300 AMG",
+      "category": "sedan",
+      "seats": 5,
+      "transmission": "automatic",
+      "fuel": "gasoline",
+      "pricePerDay": 3500000,
+      "pricePerWeek": 22750000,
+      "pricePerMonth": 87500000,
+      "image": "/src/assets/vehicles/Mercedes C300 AMG/1.jpg",
+      "gallery": [
+        "/src/assets/vehicles/Mercedes C300 AMG/1.jpg",
+        "/src/assets/vehicles/Mercedes C300 AMG/2.jpg",
+        "/src/assets/vehicles/Mercedes C300 AMG/3.jpg",
+        "/src/assets/vehicles/Mercedes C300 AMG/4.jpg",
+        "/src/assets/vehicles/Mercedes C300 AMG/5.jpg",
+        "/src/assets/vehicles/Mercedes C300 AMG/6.jpg",
+        "/src/assets/vehicles/Mercedes C300 AMG/7.jpg",
+        "/src/assets/vehicles/Mercedes C300 AMG/8.jpg",
+        "/src/assets/vehicles/Mercedes C300 AMG/9.jpg",
+        "/src/assets/vehicles/Mercedes C300 AMG/10.jpg",
+        "/src/assets/vehicles/Mercedes C300 AMG/11.jpg",
+        "/src/assets/vehicles/Mercedes C300 AMG/12.jpg",
+        "/src/assets/vehicles/Mercedes C300 AMG/13.jpg",
+        "/src/assets/vehicles/Mercedes C300 AMG/14.jpg",
+        "/src/assets/vehicles/Mercedes C300 AMG/15.jpg"
+      ],
+      "features": [
+        "THERMOTRONIC automatic air conditioning",
+        "Premium ARTICO leather seats",
+        "11.9\" MBUX display",
+        "Burmester surround sound system",
+        "360-degree camera system",
+        "Adaptive cruise control",
+        "Multibeam LED intelligent lighting",
+        "MBUX remote engine start"
+      ],
+      "description": "Mercedes-Benz C300 AMG - Luxury sedan with mild-hybrid 2.0L engine, sporty AMG design and advanced MBUX technology.",
+      "specifications": {
+        "engine": "2.0L Turbo + EQBoost",
+        "power": "258 HP @ 5,800 rpm",
+        "torque": "400 Nm @ 2,000-3,000 rpm",
+        "fuelConsumption": "7.8L/100km",
+        "tankCapacity": "66L",
+        "transmission": "9G-TRONIC"
+      },
+      "availability": true,
+      "rating": 4.9,
+      "reviewCount": 67
+    },
+    {
+      "id": 10,
+      "name": "MG5",
+      "category": "sedan",
+      "seats": 5,
+      "transmission": "automatic",
+      "fuel": "gasoline",
+      "pricePerDay": 900000,
+      "pricePerWeek": 5850000,
+      "pricePerMonth": 22500000,
+      "image": "/src/assets/vehicles/MG5/1.jpg",
+      "gallery": [
+        "/src/assets/vehicles/MG5/1.jpg",
+        "/src/assets/vehicles/MG5/2.jpg",
+        "/src/assets/vehicles/MG5/3.jpg",
+        "/src/assets/vehicles/MG5/4.jpg",
+        "/src/assets/vehicles/MG5/5.jpg",
+        "/src/assets/vehicles/MG5/6.jpg",
+        "/src/assets/vehicles/MG5/7.jpg",
+        "/src/assets/vehicles/MG5/8.jpg",
+        "/src/assets/vehicles/MG5/9.jpg",
+        "/src/assets/vehicles/MG5/10.jpg",
+        "/src/assets/vehicles/MG5/11.jpg",
+        "/src/assets/vehicles/MG5/12.jpg",
+        "/src/assets/vehicles/MG5/13.jpg",
+        "/src/assets/vehicles/MG5/14.jpg",
+        "/src/assets/vehicles/MG5/15.jpg",
+        "/src/assets/vehicles/MG5/16.jpg"
+      ],
+      "features": [
+        "Automatic air conditioning",
+        "10.25\" touchscreen display",
+        "HD rear camera",
+        "Dual Bluetooth connectivity",
+        "USB-C ports",
+        "Full LED lighting",
+        "Cruise control",
+        "Push-button start"
+      ],
+      "description": "MG5 - Compact C-segment sedan with youthful design, efficient 1.5L engine and modern technology at an affordable price.",
+      "specifications": {
+        "engine": "1.5L VTi-TECH",
+        "power": "114 HP @ 6,000 rpm",
+        "torque": "150 Nm @ 4,500 rpm",
+        "fuelConsumption": "6.1L/100km",
+        "tankCapacity": "45L",
+        "transmission": "CVT"
+      },
+      "availability": true,
+      "rating": 4.2,
+      "reviewCount": 98
+    },
+    {
+      "id": 11,
+      "name": "Mitsubishi Xpander Premium",
+      "category": "suv",
+      "seats": 7,
+      "transmission": "automatic",
+      "fuel": "gasoline",
+      "pricePerDay": 1400000,
+      "pricePerWeek": 9100000,
+      "pricePerMonth": 35000000,
+      "image": "/src/assets/vehicles/Mitsubishi Xpander Premium/1.jpg",
+      "gallery": [
+        "/src/assets/vehicles/Mitsubishi Xpander Premium/1.jpg",
+        "/src/assets/vehicles/Mitsubishi Xpander Premium/2.jpg",
+        "/src/assets/vehicles/Mitsubishi Xpander Premium/3.jpg",
+        "/src/assets/vehicles/Mitsubishi Xpander Premium/4.jpg",
+        "/src/assets/vehicles/Mitsubishi Xpander Premium/5.jpg",
+        "/src/assets/vehicles/Mitsubishi Xpander Premium/6.jpg",
+        "/src/assets/vehicles/Mitsubishi Xpander Premium/7.jpg",
+        "/src/assets/vehicles/Mitsubishi Xpander Premium/8.jpg",
+        "/src/assets/vehicles/Mitsubishi Xpander Premium/9.jpg",
+        "/src/assets/vehicles/Mitsubishi Xpander Premium/10.jpg",
+        "/src/assets/vehicles/Mitsubishi Xpander Premium/11.jpg",
+        "/src/assets/vehicles/Mitsubishi Xpander Premium/12.jpg",
+        "/src/assets/vehicles/Mitsubishi Xpander Premium/13.jpg",
+        "/src/assets/vehicles/Mitsubishi Xpander Premium/14.jpg",
+        "/src/assets/vehicles/Mitsubishi Xpander Premium/15.jpg"
+      ],
+      "features": [
+        "Automatic air conditioning",
+        "9\" touchscreen display",
+        "Rear camera",
+        "Bluetooth connectivity",
+        "Dual USB ports",
+        "LED lighting",
+        "Cruise control",
+        "RISE safety system"
+      ],
+      "description": "Mitsubishi Xpander Premium - Versatile 7-seater MPV with MIVEC 1.5L engine, Dynamic Shield design and flexible interior space for families.",
+      "specifications": {
+        "engine": "1.5L MIVEC",
+        "power": "105 HP @ 6,000 rpm",
+        "torque": "141 Nm @ 4,000 rpm",
+        "fuelConsumption": "6.9L/100km",
+        "tankCapacity": "45L",
+        "transmission": "4-speed Automatic"
+      },
+      "availability": true,
+      "rating": 4.4,
+      "reviewCount": 187
+    }
+  ],
+  "categories": [
+    {
+      "id": "sedan",
+      "name": "Sedan",
+      "description": "Comfortable 4-5 seat passenger cars"
+    },
+    {
+      "id": "suv",
+      "name": "SUV/MPV",
+      "description": "All-terrain and family multipurpose vehicles"
+    },
+    {
+      "id": "hatchback",
+      "name": "Hatchback",
+      "description": "Compact city-friendly vehicles"
+    }
+  ],
+  "filters": {
+    "seats": [
+      {
+        "id": 4,
+        "label": "4 Seats"
+      },
+      {
+        "id": 5,
+        "label": "5 Seats"
+      },
+      {
+        "id": 7,
+        "label": "7 Seats"
+      },
+      {
+        "id": 8,
+        "label": "8 Seats"
+      }
+    ],
+    "transmission": [
+      {
+        "id": "automatic",
+        "label": "Automatic"
+      },
+      {
+        "id": "manual",
+        "label": "Manual"
+      }
+    ],
+    "fuel": [
+      {
+        "id": "gasoline",
+        "label": "Gasoline"
+      },
+      {
+        "id": "diesel",
+        "label": "Diesel"
+      }
+    ]
+  }
+}

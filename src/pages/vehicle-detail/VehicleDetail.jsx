@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useRentModal } from '../../components/RentCarModal';
-import vehiclesData from '../../data/vehicles.json';
+import { getVehicleById } from '../../utils/vehicleUtils';
 import './VehicleDetail.css';
 
 const VehicleDetail = () => {
@@ -16,12 +16,12 @@ const VehicleDetail = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const foundVehicle = vehiclesData.vehicles.find(v => v.id === parseInt(id));
+        const foundVehicle = getVehicleById(parseInt(id), i18n.language);
         if (foundVehicle) {
             setVehicle(foundVehicle);
         }
         setLoading(false);
-    }, [id]);
+    }, [id, i18n.language]);
 
     // Keyboard navigation for modal
     useEffect(() => {

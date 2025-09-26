@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 import { useRentModal } from '../RentCarModal';
+import { getVehicleName, getVehicleDescription, getVehicleFeatures } from '../../utils/vehicleUtils';
 import './VehicleCard.css';
 
 const VehicleCard = ({ 
@@ -18,6 +19,11 @@ const VehicleCard = ({
     const { t, i18n } = useTranslation();
     const navigate = useNavigate();
     const { openRentModal } = useRentModal();
+    
+    // Get localized vehicle data
+    const currentLanguage = i18n.language;
+    const localizedVehicleName = vehicle ? getVehicleName(vehicle, currentLanguage) : vehicleName;
+    const localizedFeatures = vehicle ? getVehicleFeatures(vehicle, currentLanguage) : features;
     
     const rentButtonText = t('hero_ctaButton'); // "Thuê xe ngay" 
     const detailsButtonText = t('view_details'); // "Xem chi tiết" 
@@ -53,7 +59,7 @@ const VehicleCard = ({
             </div>
             <div className="car-info">
                 <div className="car-header">
-                    <h3 className="car-name">{vehicleName}</h3>
+                    <h3 className="car-name">{localizedVehicleName}</h3>
                     {rating && (
                         <div className="car-rating">
                             <span className="rating-stars">⭐</span>
@@ -70,12 +76,12 @@ const VehicleCard = ({
                 <div className="car-features-section">
                     <p><strong>{featuresText}</strong></p>
                     <ul className="car-features">
-                        {features.slice(0, viewMode === 'list' ? 6 : 4).map((feature, index) => (
+                        {localizedFeatures.slice(0, viewMode === 'list' ? 6 : 4).map((feature, index) => (
                             <li key={index}>• {feature}</li>
                         ))}
-                        {features.length > (viewMode === 'list' ? 6 : 4) && (
+                        {localizedFeatures.length > (viewMode === 'list' ? 6 : 4) && (
                             <li className="more-features">
-                                +{features.length - (viewMode === 'list' ? 6 : 4)} {t('more_features_text')}
+                                +{localizedFeatures.length - (viewMode === 'list' ? 6 : 4)} {t('more_features_text')}
                             </li>
                         )}
                     </ul>
@@ -83,8 +89,8 @@ const VehicleCard = ({
                 <div className="car-actions">
                     <button 
                         className={`rent-button ${!availability ? 'disabled' : ''}`} 
-                        onClick={() => availability && openRentModal(vehicle || { id, image, name: vehicleName, price })} 
-                        aria-label={`Rent ${vehicleName}`}
+                        onClick={() => availability && openRentModal(vehicle || { id, image, name: localizedVehicleName, price })} 
+                        aria-label={`Rent ${localizedVehicleName}`}
                         disabled={!availability}
                     >
                         {rentButtonText}
@@ -92,7 +98,7 @@ const VehicleCard = ({
                     <Link 
                         to={`/thue-xe/${id}`}
                         className="details-button" 
-                        aria-label={`View details for ${vehicleName}`}
+                        aria-label={`View details for ${localizedVehicleName}`}
                     >
                         {detailsButtonText}
                     </Link>

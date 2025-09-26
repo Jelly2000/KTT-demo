@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import '../shared-styles.css';
 import './styles.css';
 import { VehicleCard } from '../../components';
-import vehiclesData from '../../data/vehicles.json';
+import { getVehicles, getCategories, getFilters } from '../../utils/vehicleUtils';
 
 const RentCar = () => {
   const { t, i18n } = useTranslation();
@@ -16,9 +16,14 @@ const RentCar = () => {
     availability: 'all'
   });
 
+  // Get vehicles and metadata in current language
+  const vehicles = getVehicles(i18n.language);
+  const categories = getCategories(i18n.language);
+  const filterOptions = getFilters(i18n.language);
+
   // Filter and sort vehicles
   const filteredVehicles = useMemo(() => {
-    let filtered = vehiclesData.vehicles;
+    let filtered = vehicles;
 
     // Filter by availability
     if (filters.availability === 'available') {
@@ -32,7 +37,7 @@ const RentCar = () => {
 
     // Filter by price range
     if (filters.priceRange) {
-      const priceRange = vehiclesData.filters.priceRanges.find(range => range.id === filters.priceRange);
+      const priceRange = filterOptions.priceRanges?.find(range => range.id === filters.priceRange);
       if (priceRange) {
         filtered = filtered.filter(vehicle => 
           vehicle.pricePerDay >= priceRange.min && vehicle.pricePerDay <= priceRange.max
@@ -124,9 +129,9 @@ const RentCar = () => {
                 <option value="">
                   {t('all_types')}
                 </option>
-                {vehiclesData.categories.map(category => (
+                {categories.map(category => (
                   <option key={category.id} value={category.id}>
-                    {i18n.language === 'vi' ? category.nameVi : category.name}
+                    {category.name}
                   </option>
                 ))}
               </select>
@@ -142,11 +147,15 @@ const RentCar = () => {
                 <option value="">
                   {t('all_prices')}
                 </option>
-                {vehiclesData.filters.priceRanges.map(range => (
+                {filterOptions.priceRanges?.map(range => (
                   <option key={range.id} value={range.id}>
-                    {i18n.language === 'vi' ? range.label : range.labelEn}
+                    {range.label}
                   </option>
-                ))}
+                )) || [
+                  <option key="low" value="low">{t('under_1m')}</option>,
+                  <option key="mid" value="mid">{t('1m_to_2m')}</option>,
+                  <option key="high" value="high">{t('above_2m')}</option>
+                ]}
               </select>
             </div>
 
@@ -191,12 +200,7 @@ const RentCar = () => {
               filteredVehicles.map(vehicle => (
                 <VehicleCard
                   key={vehicle.id}
-                  vehicle={{
-                    id: vehicle.id,
-                    image: vehicle.image,
-                    name: vehicle.name,
-                    price: vehicle.pricePerDay
-                  }}
+                  vehicle={vehicle}
                   id={vehicle.id}
                   image={vehicle.image}
                   vehicleName={vehicle.name}
