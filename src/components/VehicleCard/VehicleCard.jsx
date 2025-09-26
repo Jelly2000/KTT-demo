@@ -1,9 +1,11 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
+import { useRentModal } from '../RentCarModal';
 import './VehicleCard.css';
 
 const VehicleCard = ({ 
+    vehicle,
     id, 
     image, 
     vehicleName, 
@@ -15,6 +17,7 @@ const VehicleCard = ({
 }) => {
     const { t, i18n } = useTranslation();
     const navigate = useNavigate();
+    const { openRentModal } = useRentModal();
     
     const rentButtonText = t('hero_ctaButton'); // "Thuê xe ngay" 
     const detailsButtonText = t('view_details'); // "Xem chi tiết" 
@@ -80,7 +83,7 @@ const VehicleCard = ({
                 <div className="car-actions">
                     <button 
                         className={`rent-button ${!availability ? 'disabled' : ''}`} 
-                        onClick={() => availability && navigate(`/thue-xe/${id}`)} 
+                        onClick={() => availability && openRentModal(vehicle || { id, image, name: vehicleName, price })} 
                         aria-label={`Rent ${vehicleName}`}
                         disabled={!availability}
                     >

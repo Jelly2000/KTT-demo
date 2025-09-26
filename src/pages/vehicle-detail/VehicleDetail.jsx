@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useRentModal } from '../../components/RentCarModal';
 import vehiclesData from '../../data/vehicles.json';
 import './VehicleDetail.css';
 
@@ -8,6 +9,7 @@ const VehicleDetail = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const { t, i18n } = useTranslation();
+    const { openRentModal } = useRentModal();
     const [vehicle, setVehicle] = useState(null);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -83,6 +85,8 @@ const VehicleDetail = () => {
             setCurrentImageIndex((prev) => (prev - 1 + vehicle.gallery.length) % vehicle.gallery.length);
         }
     };
+
+
 
     if (loading) {
         return (
@@ -221,7 +225,7 @@ const VehicleDetail = () => {
                             <div className="vehicle-actions">
                                 <button 
                                     className="rent-button primary"
-                                    onClick={() => console.log('Rent vehicle')}
+                                    onClick={() => openRentModal(vehicle)}
                                 >
                                     {i18n.language === 'vi' ? 'Thuê xe ngay' : 'Rent Now'}
                                 </button>
