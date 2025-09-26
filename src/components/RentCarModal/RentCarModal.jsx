@@ -1,7 +1,8 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useRentModal } from './RentModalContext';
+import DatePicker from '../DatePicker';
 import './RentCarModal.css';
 
 const RentCarModal = () => {
@@ -15,6 +16,10 @@ const RentCarModal = () => {
         submitRentalRequest
     } = useRentModal();
 
+    // State for date pickers
+    const [pickupDate, setPickupDate] = useState(null);
+    const [returnDate, setReturnDate] = useState(null);
+
     // Keyboard navigation for modal
     useEffect(() => {
         const handleKeyDown = (e) => {
@@ -27,12 +32,15 @@ const RentCarModal = () => {
         return () => document.removeEventListener('keydown', handleKeyDown);
     }, [isRentModalOpen, closeRentModal]);
 
-    // Prevent body scroll when modal is open
+    // Prevent body scroll when modal is open and reset dates when closed
     useEffect(() => {
         if (isRentModalOpen) {
             document.body.style.overflow = 'hidden';
         } else {
             document.body.style.overflow = 'unset';
+            // Reset dates when modal is closed
+            setPickupDate(null);
+            setReturnDate(null);
         }
 
         return () => {
@@ -50,12 +58,18 @@ const RentCarModal = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        // Validate dates
+        if (!pickupDate || !returnDate) {
+            alert('Vui lòng chọn ngày nhận xe và ngày trả xe');
+            return;
+        }
+
         // Get form data
         const formData = new FormData(e.target);
         const rentalData = {
             vehicle: vehicle,
-            pickupDate: formData.get('pickupDate'),
-            returnDate: formData.get('returnDate'),
+            pickupDate: pickupDate ? pickupDate.toISOString().split('T')[0] : null,
+            returnDate: returnDate ? returnDate.toISOString().split('T')[0] : null,
             fullName: formData.get('fullName'),
             phone: formData.get('phone'),
             email: formData.get('email'),
@@ -136,10 +150,14 @@ const RentCarModal = () => {
                                 <label htmlFor="pickup-date">
                                     {t('pickup_date')}
                                 </label>
-                                <input
-                                    type="date"
+                                <DatePicker
                                     id="pickup-date"
                                     name="pickupDate"
+                                    value={pickupDate}
+                                    onChange={(e) => setPickupDate(e.target.value)}
+                                    placeholder="DD/MM/YYYY"
+                                    minDate={new Date()}
+                                    maxDate={returnDate || undefined}
                                     required
                                 />
                             </div>
@@ -147,10 +165,13 @@ const RentCarModal = () => {
                                 <label htmlFor="return-date">
                                     {t('rental_return_date')}
                                 </label>
-                                <input
-                                    type="date"
+                                <DatePicker
                                     id="return-date"
                                     name="returnDate"
+                                    value={returnDate}
+                                    onChange={(e) => setReturnDate(e.target.value)}
+                                    placeholder="DD/MM/YYYY"
+                                    minDate={pickupDate || new Date()}
                                     required
                                 />
                             </div>
