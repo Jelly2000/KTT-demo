@@ -198,5 +198,8 @@
   "pvi_coming_soon": "This feature will be implemented soon",
   "pvi_description": "We are developing PVI insurance service to bring the best peace of mind and protection to our customers. Please come back later or contact us for more detailed information.",
   "contact_us": "Contact Us",
-  "back_to_home": "Back to Home"
+  "back_to_home": "Back to Home",
+  "call_phone": "Call Phone",
+  "contact_zalo": "Contact via Zalo",
+  "contact_messenger": "Contact via Messenger"
 }

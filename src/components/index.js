@@ -5,4 +5,5 @@ export { default as HighlightedButton } from './HighlightedButton/HighlightedBut
 export { default as Footer } from './Footer/Footer.jsx';
 export { default as Header } from './header/Header.jsx';
 export { default as ConsultationForm } from './consultation/ConsultationForm';
+export { default as FloatingContacts } from './FloatingContacts/FloatingContacts';
 
