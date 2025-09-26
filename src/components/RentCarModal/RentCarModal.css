@@ -17,6 +17,7 @@
 .rent-modal-content {
     background: white;
     border-radius: 16px;
+    min-height: 20rem;
     border: 2px solid #ddd;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     max-width: 800px;

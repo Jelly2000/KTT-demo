@@ -15,6 +15,7 @@ export const RentModalProvider = ({ children }) => {
     const [selectedVehicle, setSelectedVehicle] = useState(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [showSuccessNotification, setShowSuccessNotification] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
 
     const openRentModal = (vehicle) => {
         setSelectedVehicle(vehicle);
@@ -34,19 +35,19 @@ export const RentModalProvider = ({ children }) => {
         
         try {
             // Simulate API call
-            await new Promise(resolve => setTimeout(resolve, 2000));
+            await new Promise(resolve => setTimeout(resolve, 5000));
             
             // Show success notification
             setShowSuccessNotification(true);
             setIsSubmitting(false);
             
-            // Auto close after 3 seconds
+            // Auto close after 5 seconds
             setTimeout(() => {
                 closeRentModal();
-            }, 3000);
+            }, 5000);
         } catch (error) {
             setIsSubmitting(false);
-            console.error('Failed to submit rental request:', error);
+            setErrorMessage('Failed to submit rental request. Please try again.' + error.message);
         }
     };
 
@@ -57,6 +58,7 @@ export const RentModalProvider = ({ children }) => {
         showSuccessNotification,
         openRentModal,
         closeRentModal,
+        errorMessage,
         submitRentalRequest
     };
 
