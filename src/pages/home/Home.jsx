@@ -40,27 +40,27 @@ const Home = () => {
           </Heading>
           <div className='grid-container-2'>
             <Card
-              icon='💰'
+              icon='�'
               heading={t('needed_information')}
               subheading={t('needed_information_subheading')}
               uiContext='small-flat'
             />
             <Card
               icon='💰'
-              heading={t('needed_information')}
-              subheading={t('needed_information_subheading')}
+              heading={t('deposit_options')}
+              subheading={t('deposit_options_desc')}
               uiContext='small-flat'
             />
             <Card
-              icon='💰'
-              heading={t('needed_information')}
-              subheading={t('needed_information_subheading')}
+              icon='⏰'
+              heading={t('flexible_timing')}
+              subheading={t('flexible_timing_desc')}
               uiContext='small-flat'
             />
             <Card
-              icon='💰'
-              heading={t('needed_information')}
-              subheading={t('needed_information_subheading')}
+              icon='�'
+              heading={t('home_delivery')}
+              subheading={t('home_delivery_desc')}
               uiContext='small-flat'
             />
           </div>
