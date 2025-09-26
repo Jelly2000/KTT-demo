@@ -29,7 +29,12 @@
       },
       "availability": true,
       "rating": 4.5,
-      "reviewCount": 128
+      "reviewCount": 128,
+      "availableVariants": [
+        "Toyota Vios E CVT 2022",
+        "Toyota Vios E CVT 2023",
+        "Toyota Vios G CVT 2023"
+      ]
     },
     {
       "id": 2,
@@ -60,7 +65,12 @@
       },
       "availability": true,
       "rating": 4.7,
-      "reviewCount": 95
+      "reviewCount": 95,
+      "availableVariants": [
+        "Honda City L CVT 2022",
+        "Honda City RS CVT 2023",
+        "Honda City G CVT 2024"
+      ]
     },
     {
       "id": 3,
@@ -91,7 +101,11 @@
       },
       "availability": true,
       "rating": 4.8,
-      "reviewCount": 156
+      "reviewCount": 156,
+      "availableVariants": [
+        "Toyota Innova Cross V CVT 2023",
+        "Toyota Innova Cross G CVT 2024"
+      ]
     },
     {
       "id": 4,

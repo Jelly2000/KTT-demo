@@ -90,6 +90,7 @@ const Home = () => {
               vehicleName="Honda City"
               price="800,000 VNĐ/ngày"
               features={['4 chỗ ngồi', 'Tự động', 'Điều hòa', 'GPS']}
+              availableVariants={['Honda City L CVT 2022', 'Honda City RS CVT 2023']}
             />
             <VehicleCard
               id={2}
@@ -97,6 +98,7 @@ const Home = () => {
               vehicleName="Toyota Fortuner"
               price="1,500,000 VNĐ/ngày"
               features={['7 chỗ ngồi', '4WD', 'Điều hòa', 'Camera lùi']}
+              availableVariants={['Toyota Fortuner 2.4G MT 2023', 'Toyota Fortuner 2.8V AT 4WD 2024']}
             />
             <VehicleCard
               id={3}
@@ -104,6 +106,7 @@ const Home = () => {
               vehicleName="Mercedes-Benz E-Class"
               price="3,000,000 VNĐ/ngày"
               features={['5 chỗ ngồi', 'Sang trọng', 'Da cao cấp', 'Âm thanh Burmester']}
+              availableVariants={['Mercedes E200 Sport 2023', 'Mercedes E300 AMG 2024']}
             />
           </div>
           <HighlightedButton

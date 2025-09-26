@@ -9,6 +9,7 @@ import Procedures from './pages/procedure/Procedures'
 import Contact from './pages/contact/Contact'
 import ETCPayment from './pages/etc-payment/ETCPayment'
 import PVIInsurance from './pages/pvi/PVIInsurance'
+import VehicleDetail from './pages/vehicle-detail/VehicleDetail'
 import './App.css'
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/thue-xe" element={<RentCar />} />
+            <Route path="/thue-xe/:id" element={<VehicleDetail />} />
             <Route path="/thu-tuc" element={<Procedures />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/nap-phi-etc" element={<ETCPayment />} />

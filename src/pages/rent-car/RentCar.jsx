@@ -191,10 +191,12 @@ const RentCar = () => {
               filteredVehicles.map(vehicle => (
                 <VehicleCard
                   key={vehicle.id}
+                  id={vehicle.id}
                   image={vehicle.image}
                   vehicleName={vehicle.name}
                   price={`${formatPrice(vehicle.pricePerDay)}/ngày`}
                   features={vehicle.features}
+                  availableVariants={vehicle.availableVariants}
                   rating={vehicle.rating}
                   availability={vehicle.availability}
                 />

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link, useNavigate } from 'react-router-dom';
 import './VehicleCard.css';
 
 const VehicleCard = ({ 
@@ -8,17 +9,29 @@ const VehicleCard = ({
     vehicleName, 
     price, 
     features = [], 
+    availableVariants = [],
     rating, 
     availability = true, 
     viewMode = 'grid' 
 }) => {
     const { t, i18n } = useTranslation();
+    const navigate = useNavigate();
     
     const rentButtonText = t('hero_ctaButton'); // "Thuê xe ngay" 
     const detailsButtonText = t('view_details'); // "Xem chi tiết" 
     const featuresText = i18n.language === 'vi' ? 'Tính năng:' : 'Features:';
     const availableText = i18n.language === 'vi' ? 'Có sẵn' : 'Available';
     const unavailableText = i18n.language === 'vi' ? 'Không có sẵn' : 'Unavailable';
+    
+    // Function to extract short variant name (remove car brand name)
+    const getShortVariantName = (fullName) => {
+        // Remove car brand (e.g. "Toyota Vios" -> keep "E CVT 2022")
+        const parts = fullName.split(' ');
+        if (parts.length > 2) {
+            return parts.slice(2).join(' ');
+        }
+        return fullName;
+    };
     
     return (
         <div className={`car-card ${viewMode} ${!availability ? 'unavailable' : ''}`} role="button" tabIndex="0" aria-label={`View details for ${vehicleName}`}>
@@ -75,22 +88,37 @@ const VehicleCard = ({
                         )}
                     </ul>
                 </div>
+                {availableVariants.length > 0 && (
+                    <div className="car-variants-section">
+                        <p><strong>{t('available_variants')}:</strong></p>
+                        <div className="car-variants">
+                            {availableVariants.slice(0, 2).map((variant, index) => (
+                                <span key={index} className="variant-tag">{getShortVariantName(variant)}</span>
+                            ))}
+                            {availableVariants.length > 2 && (
+                                <span className="more-variants">
+                                    +{availableVariants.length - 2} {i18n.language === 'vi' ? 'đời xe khác' : 'more'}
+                                </span>
+                            )}
+                        </div>
+                    </div>
+                )}
                 <div className="car-actions">
                     <button 
                         className={`rent-button ${!availability ? 'disabled' : ''}`} 
-                        onClick={() => availability && console.log(`Rent ${vehicleName}`)} 
+                        onClick={() => availability && navigate(`/thue-xe/${id}`)} 
                         aria-label={`Rent ${vehicleName}`}
                         disabled={!availability}
                     >
                         {rentButtonText}
                     </button>
-                    <button 
+                    <Link 
+                        to={`/thue-xe/${id}`}
                         className="details-button" 
-                        onClick={() => console.log(`View details for ${vehicleName}`)} 
                         aria-label={`View details for ${vehicleName}`}
                     >
                         {detailsButtonText}
-                    </button>
+                    </Link>
                 </div>
             </div>
         </div>
