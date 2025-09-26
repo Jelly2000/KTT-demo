@@ -21,9 +21,9 @@ const VehicleCard = ({
     
     const rentButtonText = t('hero_ctaButton'); // "Thuê xe ngay" 
     const detailsButtonText = t('view_details'); // "Xem chi tiết" 
-    const featuresText = i18n.language === 'vi' ? 'Tính năng:' : 'Features:';
-    const availableText = i18n.language === 'vi' ? 'Có sẵn' : 'Available';
-    const unavailableText = i18n.language === 'vi' ? 'Không có sẵn' : 'Unavailable';
+    const featuresText = t('vehicle_features');
+    const availableText = t('vehicle_available');
+    const unavailableText = t('vehicle_unavailable');
     
     return (
         <div className={`car-card ${viewMode} ${!availability ? 'unavailable' : ''}`} role="button" tabIndex="0" aria-label={`View details for ${vehicleName}`}>
@@ -75,7 +75,7 @@ const VehicleCard = ({
                         ))}
                         {features.length > (viewMode === 'list' ? 6 : 4) && (
                             <li className="more-features">
-                                +{features.length - (viewMode === 'list' ? 6 : 4)} {i18n.language === 'vi' ? 'tính năng khác' : 'more'}
+                                +{features.length - (viewMode === 'list' ? 6 : 4)} {t('more_features_text')}
                             </li>
                         )}
                     </ul>

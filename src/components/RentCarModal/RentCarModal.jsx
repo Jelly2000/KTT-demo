@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useRentModal } from './RentModalContext';
@@ -5,7 +6,14 @@ import './RentCarModal.css';
 
 const RentCarModal = () => {
     const { t, i18n } = useTranslation();
-    const { isRentModalOpen, selectedVehicle, closeRentModal } = useRentModal();
+    const {
+        isRentModalOpen,
+        selectedVehicle,
+        isSubmitting,
+        showSuccessNotification,
+        closeRentModal,
+        submitRentalRequest
+    } = useRentModal();
 
     // Keyboard navigation for modal
     useEffect(() => {
@@ -26,7 +34,7 @@ const RentCarModal = () => {
         } else {
             document.body.style.overflow = 'unset';
         }
-        
+
         return () => {
             document.body.style.overflow = 'unset';
         };
@@ -39,52 +47,97 @@ const RentCarModal = () => {
         }).format(price);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Handle form submission here
-        console.log('Rent car form submitted');
-        // You can add form validation and API call here
-        closeRentModal();
+
+        // Get form data
+        const formData = new FormData(e.target);
+        const rentalData = {
+            vehicle: vehicle,
+            pickupDate: formData.get('pickupDate'),
+            returnDate: formData.get('returnDate'),
+            fullName: formData.get('fullName'),
+            phone: formData.get('phone'),
+            email: formData.get('email'),
+            notes: formData.get('notes')
+        };
+
+        await submitRentalRequest(rentalData);
     };
 
     if (!isRentModalOpen || !selectedVehicle) return null;
+
+    // Debug logging
+    console.log('selectedVehicle:', selectedVehicle);
+
+    // Ensure vehicle object has consistent structure
+    const vehicle = {
+        id: selectedVehicle.id,
+        name: selectedVehicle.name || 'Unknown Vehicle',
+        image: selectedVehicle.image || '/src/assets/sample-car.webp',
+        price: selectedVehicle.price || selectedVehicle.pricePerDay || 0
+    };
 
     return (
         <div className="rent-modal" onClick={closeRentModal}>
             <div className="rent-modal-content" onClick={(e) => e.stopPropagation()}>
                 <div className="rent-modal-header">
-                    <h2>{i18n.language === 'vi' ? 'Thuê xe' : 'Rent Car'}</h2>
-                    <button className="rent-modal-close" onClick={closeRentModal}>
+                    <h2>{t('rent_car_modal_title')}</h2>
+                    <button className="rent-modal-close" onClick={closeRentModal} disabled={isSubmitting}>
                         ✕
                     </button>
                 </div>
-                
-                <div className="rent-modal-body">
+
+                {/* Loading Overlay */}
+                {isSubmitting && (
+                    <div className="loading-overlay">
+                        <div className="loading-spinner"></div>
+                        <p className="loading-text">
+                            {t('submitting_request')}
+                        </p>
+                    </div>
+                )}
+
+                {/* Success Notification */}
+                {showSuccessNotification && (
+                    <div className="success-notification">
+                        <div className="success-icon">✓</div>
+                        <h3>{t('request_submitted')}</h3>
+                        <p>
+                            {t('request_submitted_message')}
+                        </p>
+                        <small>
+                            {t('window_auto_close')}
+                        </small>
+                    </div>
+                )}
+
+                <div className={`rent-modal-body ${isSubmitting || showSuccessNotification ? 'hidden' : ''}`}>
                     {/* Vehicle Summary */}
                     <div className="vehicle-summary">
-                        <img 
-                            src={selectedVehicle.image} 
-                            alt={selectedVehicle.name}
+                        <img
+                            src={vehicle.image}
+                            alt={vehicle.name}
                             className="summary-image"
                         />
                         <div className="summary-details">
-                            <h3>{selectedVehicle.name}</h3>
+                            <h3>{vehicle.name}</h3>
                             <p className="summary-price">
-                                {formatPrice(selectedVehicle.price)}/{i18n.language === 'vi' ? 'ngày' : 'day'}
+                                {formatPrice(vehicle.price)}/{t('day_unit')}
                             </p>
                         </div>
                     </div>
 
                     {/* Rental Form */}
-                    <form className="rent-form" onSubmit={handleSubmit}>
+                    <form id="rent-form" className="rent-form" onSubmit={handleSubmit}>
                         <div className="form-section">
-                            <h4>{i18n.language === 'vi' ? 'Thông tin thuê xe' : 'Rental Information'}</h4>
+                            <h4>{t('rental_information')}</h4>
                             <div className="form-group">
                                 <label htmlFor="pickup-date">
-                                    {i18n.language === 'vi' ? 'Ngày nhận xe' : 'Pickup Date'}
+                                    {t('pickup_date')}
                                 </label>
-                                <input 
-                                    type="date" 
+                                <input
+                                    type="date"
                                     id="pickup-date"
                                     name="pickupDate"
                                     required
@@ -92,10 +145,10 @@ const RentCarModal = () => {
                             </div>
                             <div className="form-group">
                                 <label htmlFor="return-date">
-                                    {i18n.language === 'vi' ? 'Ngày trả xe' : 'Return Date'}
+                                    {t('rental_return_date')}
                                 </label>
-                                <input 
-                                    type="date" 
+                                <input
+                                    type="date"
                                     id="return-date"
                                     name="returnDate"
                                     required
@@ -104,74 +157,82 @@ const RentCarModal = () => {
                         </div>
 
                         <div className="form-section">
-                            <h4>{i18n.language === 'vi' ? 'Thông tin khách hàng' : 'Customer Information'}</h4>
+                            <h4>{t('customer_information')}</h4>
                             <div className="form-row">
                                 <div className="form-group">
                                     <label htmlFor="full-name">
-                                        {i18n.language === 'vi' ? 'Họ và tên' : 'Full Name'}
+                                        {t('full_name')}
                                     </label>
-                                    <input 
-                                        type="text" 
+                                    <input
+                                        type="text"
                                         id="full-name"
                                         name="fullName"
                                         required
-                                        placeholder={i18n.language === 'vi' ? 'Nhập họ và tên' : 'Enter full name'}
+                                        placeholder={t('enter_full_name')}
                                     />
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="phone">
-                                        {i18n.language === 'vi' ? 'Số điện thoại' : 'Phone Number'}
+                                        {t('phone_number')}
                                     </label>
-                                    <input 
-                                        type="tel" 
+                                    <input
+                                        type="tel"
                                         id="phone"
                                         name="phone"
                                         required
-                                        placeholder={i18n.language === 'vi' ? 'Số điện thoại' : 'Phone number'}
+                                        placeholder={t('enter_phone_number')}
                                     />
                                 </div>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="email">Email</label>
-                                <input 
-                                    type="email" 
+                                <label htmlFor="email">{t('email_label')}</label>
+                                <input
+                                    type="email"
                                     id="email"
                                     name="email"
                                     required
-                                    placeholder={i18n.language === 'vi' ? 'Địa chỉ email' : 'Email address'}
+                                    placeholder={t('email_address')}
                                 />
                             </div>
                         </div>
 
                         <div className="form-section">
-                            <h4>{i18n.language === 'vi' ? 'Ghi chú' : 'Additional Notes'}</h4>
+                            <h4>{t('additional_notes')}</h4>
                             <div className="form-group">
-                                <textarea 
+                                <textarea
                                     id="notes"
                                     name="notes"
                                     rows="3"
-                                    placeholder={i18n.language === 'vi' ? 'Ghi chú thêm (tùy chọn)' : 'Additional notes (optional)'}
+                                    placeholder={t('additional_notes_placeholder')}
                                 />
                             </div>
                         </div>
                     </form>
                 </div>
                 
-                <div className="rent-modal-footer">
-                    <button 
-                        type="button" 
-                        className="cancel-button"
-                        onClick={closeRentModal}
-                    >
-                        {i18n.language === 'vi' ? 'Hủy' : 'Cancel'}
-                    </button>
-                    <button 
-                        type="submit" 
-                        className="submit-button"
-                        onClick={handleSubmit}
-                    >
-                        {i18n.language === 'vi' ? 'Gửi yêu cầu thuê xe' : 'Submit Rental Request'}
-                    </button>
+                {/* Form Actions Footer - outside scrollable area */}
+                <div className={`rent-modal-footer ${isSubmitting || showSuccessNotification ? 'hidden' : ''}`}>
+                    <div className="form-actions">
+                        <button
+                            type="button"
+                            className="reset-btn"
+                            onClick={closeRentModal}
+                            disabled={isSubmitting}
+                        >
+                            {t('cancel')}
+                        </button>
+                        <button
+                            type="submit"
+                            form="rent-form"
+                            className="submit-btn"
+                            disabled={isSubmitting}
+                        >
+                            {isSubmitting
+                                ? t('submitting')
+                                : t('submit_rental_request')
+                            }
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

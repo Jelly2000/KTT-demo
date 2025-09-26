@@ -91,7 +91,7 @@ const VehicleDetail = () => {
     if (loading) {
         return (
             <div className="container" style={{ textAlign: 'center', padding: '3rem 0' }}>
-                <p>{i18n.language === 'vi' ? 'Đang tải...' : 'Loading...'}</p>
+                <p>{t('loading_text')}</p>
             </div>
         );
     }
@@ -99,9 +99,9 @@ const VehicleDetail = () => {
     if (!vehicle) {
         return (
             <div className="container" style={{ textAlign: 'center', padding: '3rem 0' }}>
-                <h2>{i18n.language === 'vi' ? 'Không tìm thấy xe' : 'Vehicle not found'}</h2>
+                <h2>{t('vehicle_not_found_title')}</h2>
                 <button onClick={() => navigate('/thue-xe')} style={{ marginTop: '1rem' }}>
-                    {i18n.language === 'vi' ? 'Quay lại danh sách' : 'Back to list'}
+                    {t('back_to_list_button')}
                 </button>
             </div>
         );
@@ -203,18 +203,18 @@ const VehicleDetail = () => {
                                 <div className="vehicle-rating">
                                     <span className="stars">⭐⭐⭐⭐⭐</span>
                                     <span className="rating-text">
-                                        {i18n.language === 'vi' ? '(Đánh giá tuyệt vời)' : '(Excellent rating)'}
+                                        {t('excellent_rating_text')}
                                     </span>
                                 </div>
                             </div>
 
                             <div className="vehicle-description">
-                                <h3>{i18n.language === 'vi' ? 'Mô tả' : 'Description'}</h3>
+                                <h3>{t('description_title')}</h3>
                                 <p id="vehicle-description">{vehicle.description}</p>
                             </div>
 
                             <div className="vehicle-features">
-                                <h3>{i18n.language === 'vi' ? 'Tính năng nổi bật' : 'Key Features'}</h3>
+                                <h3>{t('key_features_title')}</h3>
                                 <ul id="vehicle-features-list">
                                     {vehicle.features.map((feature, index) => (
                                         <li key={index}>• {feature}</li>
@@ -227,12 +227,7 @@ const VehicleDetail = () => {
                                     className="rent-button primary"
                                     onClick={() => openRentModal(vehicle)}
                                 >
-                                    {i18n.language === 'vi' ? 'Thuê xe ngay' : 'Rent Now'}
-                                </button>
-                                <button 
-                                    className="contact-button secondary"
-                                >
-                                    {i18n.language === 'vi' ? 'Liên hệ tư vấn' : 'Contact for Consultation'}
+                                    {t('rent_now_button')}
                                 </button>
                             </div>
                         </div>
@@ -244,27 +239,27 @@ const VehicleDetail = () => {
             <section className="vehicle-specs-section">
                 <div className="container">
                     <h2 className="section-title">
-                        {i18n.language === 'vi' ? 'Thông số kỹ thuật' : 'Technical Specifications'}
+                        {t('technical_specifications_title')}
                     </h2>
                     <div className="specs-grid" id="specs-grid">
                         <div className="spec-card">
                             <div className="spec-icon">🚗</div>
                             <div className="spec-content">
-                                <div className="spec-label">{i18n.language === 'vi' ? 'Số chỗ ngồi' : 'Seats'}</div>
+                                <div className="spec-label">{t('seats_label')}</div>
                                 <div className="spec-value">{vehicle.seats} chỗ</div>
                             </div>
                         </div>
                         <div className="spec-card">
                             <div className="spec-icon">⚙️</div>
                             <div className="spec-content">
-                                <div className="spec-label">{i18n.language === 'vi' ? 'Hộp số' : 'Transmission'}</div>
+                                <div className="spec-label">{t('transmission_label')}</div>
                                 <div className="spec-value">{vehicle.transmission === 'automatic' ? 'Tự động' : 'Số sàn'}</div>
                             </div>
                         </div>
                         <div className="spec-card">
                             <div className="spec-icon">⛽</div>
                             <div className="spec-content">
-                                <div className="spec-label">{i18n.language === 'vi' ? 'Nhiên liệu' : 'Fuel'}</div>
+                                <div className="spec-label">{t('fuel_label')}</div>
                                 <div className="spec-value">{vehicle.fuel === 'gasoline' ? 'Xăng' : vehicle.fuel}</div>
                             </div>
                         </div>
@@ -273,21 +268,21 @@ const VehicleDetail = () => {
                                 <div className="spec-card">
                                     <div className="spec-icon">🔧</div>
                                     <div className="spec-content">
-                                        <div className="spec-label">{i18n.language === 'vi' ? 'Động cơ' : 'Engine'}</div>
+                                        <div className="spec-label">{t('engine_label')}</div>
                                         <div className="spec-value">{vehicle.specifications.engine}</div>
                                     </div>
                                 </div>
                                 <div className="spec-card">
                                     <div className="spec-icon">💨</div>
                                     <div className="spec-content">
-                                        <div className="spec-label">{i18n.language === 'vi' ? 'Công suất' : 'Power'}</div>
+                                        <div className="spec-label">{t('power_label')}</div>
                                         <div className="spec-value">{vehicle.specifications.power}</div>
                                     </div>
                                 </div>
                                 <div className="spec-card">
                                     <div className="spec-icon">📊</div>
                                     <div className="spec-content">
-                                        <div className="spec-label">{i18n.language === 'vi' ? 'Tiêu thụ nhiên liệu' : 'Fuel Consumption'}</div>
+                                        <div className="spec-label">{t('fuel_consumption_label')}</div>
                                         <div className="spec-value">{vehicle.specifications.fuelConsumption}</div>
                                     </div>
                                 </div>
