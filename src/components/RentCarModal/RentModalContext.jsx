@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
-import { sendCarRentalRequest } from '../../utils/telegramUtils';
+import { sendCarRentalRequest, formatPhoneNumber } from '../../utils/telegramUtils';
+import { getVehicleById } from '../../utils/vehicleUtils';
 
 const RentModalContext = createContext();
 
@@ -41,18 +42,30 @@ export const RentModalProvider = ({ children }) => {
             const totalDays = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
             const estimatedCost = totalDays * (selectedVehicle?.pricePerDay || 0);
             
+            // Get Vietnamese vehicle name from database
+            let vietnameseVehicleName = selectedVehicle?.name || 'Xe không xác định';
+            if (selectedVehicle?.id) {
+                const vehicleVi = getVehicleById(selectedVehicle.id, 'vi');
+                if (vehicleVi) {
+                    vietnameseVehicleName = vehicleVi.name;
+                }
+            }
+            
             // Prepare data for Telegram
             const rentalData = {
-                vehicleName: selectedVehicle?.name || 'Unknown Vehicle',
+                vehicleName: vietnameseVehicleName,
                 customerName: formData.fullName,
-                customerPhone: formData.phone,
+                customerPhone: formatPhoneNumber(formData.phone),
                 customerEmail: formData.email,
                 startDate: startDate.toLocaleDateString('vi-VN'),
                 endDate: endDate.toLocaleDateString('vi-VN'),
+                pickupLocation: formData.pickupLocation,
+                returnLocation: formData.returnLocation,
                 additionalNotes: formData.notes,
                 pricePerDay: selectedVehicle?.pricePerDay || 0,
                 totalDays: totalDays,
-                estimatedCost: estimatedCost
+                estimatedCost: estimatedCost,
+                source: 'Modal Thuê Xe'
             };
             
             // Send to Telegram

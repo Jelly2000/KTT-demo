@@ -29,8 +29,8 @@ export const testSimpleNotification = async () => {
   
   console.log('🧪 Testing simple notification...');
   const success = await sendTelegramNotification(
-    'Test Notification',
-    'This is a test message from your website. If you receive this, the Telegram integration is working correctly! 🎉',
+    'Thông Báo Test',
+    'Đây là tin nhắn test từ website của bạn. Nếu bạn nhận được tin nhắn này, tích hợp Telegram đang hoạt động tốt! 🎉',
     'success'
   );
   
@@ -76,7 +76,7 @@ export const testConsultationRequest = async () => {
     serviceType: 'Thuê xe dài hạn',
     preferredTime: 'Buổi sáng',
     message: 'Tôi muốn được tư vấn về dịch vụ thuê xe dài hạn. Đây là tin nhắn test.',
-    source: 'Test Suite'
+    source: 'Bộ Test'
   };
   
   const success = await sendConsultationRequest(testData);
@@ -95,7 +95,7 @@ export const testContactFormSubmission = async () => {
     email: 'test.contact@example.com',
     subject: 'Câu hỏi về dịch vụ',
     message: 'Xin chào, tôi có một số câu hỏi về dịch vụ thuê xe của công ty. Đây là tin nhắn test từ contact form.',
-    source: 'Test Contact Form'
+    source: 'Form Liên Hệ Test'
   };
   
   const success = await sendContactFormSubmission(testData);

@@ -37,7 +37,7 @@ const ConsultationForm = ({ heading = 'consultation_title', subHeading = 'consul
         email: formData.email,
         serviceType: formData.subject,
         message: formData.message,
-        source: 'Homepage Consultation Form'
+        source: 'Form Tư Vấn Trang Chủ'
       };
       
       const success = await sendConsultationRequest(consultationData);
@@ -190,8 +190,8 @@ const ConsultationForm = ({ heading = 'consultation_title', subHeading = 'consul
                     required
                   >
                     <option value="">{t('select_subject')}</option>
-                    <option value="rental">{t('car_rental')}</option>
-                    <option value="support">{t('technical_support')}</option>
+                    <option value="car_rental">{t('car_rental')}</option>
+                    <option value="technical_support">{t('technical_support')}</option>
                     <option value="complaint">{t('complaint')}</option>
                     <option value="suggestion">{t('suggestion')}</option>
                     <option value="other">{t('other')}</option>

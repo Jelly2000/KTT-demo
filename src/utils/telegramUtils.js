@@ -7,6 +7,59 @@ const TELEGRAM_BOT_TOKEN = import.meta.env.VITE_TELEGRAM_BOT_TOKEN || '';
 const TELEGRAM_CHAT_ID = import.meta.env.VITE_TELEGRAM_CHAT_ID || '';
 
 /**
+ * Convert English source text to Vietnamese
+ * @param {string} sourceText - Source text in English
+ * @returns {string} - Vietnamese translation
+ */
+const getVietnameseSource = (sourceText) => {
+  const sourceMap = {
+    'Homepage Consultation Form': 'Form Tư Vấn Trang Chủ',
+    'Homepage Consultation': 'Tư Vấn Trang Chủ',
+    'Contact Form': 'Form Liên Hệ',
+    'Website Contact Form': 'Form Liên Hệ Website',
+    'Contact Page': 'Trang Liên Hệ',
+    'Rent Car Modal': 'Modal Thuê Xe',
+    'Car Rental Request': 'Yêu Cầu Thuê Xe',
+    'Website': 'Website',
+    'Test Suite': 'Bộ Test'
+  };
+  return sourceMap[sourceText] || sourceText;
+};
+
+/**
+ * Translate common English phrases to Vietnamese
+ * @param {string} text - Text that might contain English phrases
+ * @returns {string} - Text with Vietnamese translations
+ */
+const translateToVietnamese = (text) => {
+  if (!text) return text;
+
+  const translations = {
+    // Common form subjects
+    'car_rental': 'Hỏi về thuê xe',
+    'technical_support': 'Tư Vấn Kỹ Thuật',
+    'complaint': 'Phàn nàn',
+    'suggestion': 'Góp ý',
+    'other': 'Khác',
+    
+    // Common phrases
+    'No subject': 'Không có chủ đề',
+    'No message': 'Không có tin nhắn',
+    'Unknown Vehicle': 'Xe không xác định',
+    'Not specified': 'Chưa chỉ định',
+    'No additional notes': 'Không có ghi chú thêm'
+  };
+  
+  let translatedText = text;
+  Object.keys(translations).forEach(englishPhrase => {
+    const regex = new RegExp(englishPhrase, 'gi');
+    translatedText = translatedText.replace(regex, translations[englishPhrase]);
+  });
+  
+  return translatedText;
+};
+
+/**
  * Send message to Telegram bot
  * @param {string} message - Message to send
  * @returns {Promise<boolean>} - Success status
@@ -55,8 +108,11 @@ export const sendCarRentalRequest = async (requestData) => {
     additionalNotes,
     pricePerDay,
     totalDays,
-    estimatedCost
+    estimatedCost,
+    source = 'Website'
   } = requestData;
+
+
 
   const message = `
 🚗 <b>YÊU CẦU THUÊ XE MỚI</b>
@@ -77,7 +133,9 @@ export const sendCarRentalRequest = async (requestData) => {
 • Tổng chi phí dự kiến: ${estimatedCost?.toLocaleString('vi-VN')}đ
 
 📝 <b>Ghi chú:</b>
-${additionalNotes || 'Không có ghi chú thêm'}
+${translateToVietnamese(additionalNotes) || 'Không có ghi chú thêm'}
+
+📍 <b>Nguồn:</b> ${getVietnameseSource(source)}
 
 ⏰ Thời gian yêu cầu: ${new Date().toLocaleString('vi-VN')}
   `;
@@ -100,6 +158,8 @@ export const sendContactFormSubmission = async (contactData) => {
     source = 'Website Contact Form'
   } = contactData;
 
+
+
   const telegramMessage = `
 📞 <b>LIÊN HỆ MỚI TỪ WEBSITE</b>
 
@@ -109,10 +169,10 @@ export const sendContactFormSubmission = async (contactData) => {
 • Email: ${email || 'Không cung cấp'}
 
 📋 <b>Nội dung liên hệ:</b>
-• Chủ đề: ${subject || 'Không có chủ đề'}
-• Tin nhắn: ${message}
+• Chủ đề: ${translateToVietnamese(subject) || 'Không có chủ đề'}
+• Tin nhắn: ${translateToVietnamese(message)}
 
-📍 <b>Nguồn:</b> ${source}
+📍 <b>Nguồn:</b> ${getVietnameseSource(source)}
 
 ⏰ Thời gian: ${new Date().toLocaleString('vi-VN')}
   `;
@@ -135,8 +195,22 @@ export const sendConsultationRequest = async (consultationData) => {
     source = 'Homepage Consultation'
   } = consultationData;
 
+  // Convert source to Vietnamese
+  const getVietnameseSource = (sourceText) => {
+    const sourceMap = {
+      'Homepage Consultation Form': 'Form Tư Vấn Trang Chủ',
+      'Homepage Consultation': 'Tư Vấn Trang Chủ', 
+      'Contact Form': 'Form Liên Hệ',
+      'Website Contact Form': 'Form Liên Hệ Website',
+      'Contact Page': 'Trang Liên Hệ',
+      'Rent Car Modal': 'Modal Thuê Xe',
+      'Car Rental Request': 'Yêu Cầu Thuê Xe'
+    };
+    return sourceMap[sourceText] || sourceText;
+  };
+
   const telegramMessage = `
-💼 <b>YÊU CẦU TU VẤN MỚI</b>
+💼 <b>YÊU CẦU TƯ VẤN MỚI</b>
 
 👤 <b>Thông tin khách hàng:</b>
 • Tên: ${name}
@@ -144,12 +218,12 @@ export const sendConsultationRequest = async (consultationData) => {
 • Email: ${email || 'Không cung cấp'}
 
 🔧 <b>Dịch vụ quan tâm:</b>
-• Loại dịch vụ: ${serviceType || 'Thuê xe'}
+• Loại dịch vụ: ${translateToVietnamese(serviceType) || 'Thuê xe'}
 
 📝 <b>Nội dung:</b>
-${message || 'Khách hàng muốn được tư vấn thêm'}
+${translateToVietnamese(message) || 'Khách hàng muốn được tư vấn thêm'}
 
-📍 <b>Nguồn:</b> ${source}
+📍 <b>Nguồn:</b> ${getVietnameseSource(source)}
 
 ⏰ Thời gian yêu cầu: ${new Date().toLocaleString('vi-VN')}
   `;
