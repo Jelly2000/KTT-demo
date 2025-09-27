@@ -189,7 +189,7 @@
 }
 
 /* Mobile Navigation */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .logo-text {
         display: none;
     }
@@ -250,8 +250,8 @@
     } */
 }
 
-/* Desktop Navigation Layout - for screens 769px and larger */
-@media (min-width: 769px) {
+/* Desktop Navigation Layout - for screens 1024px and larger */
+@media (min-width: 1024px) {
     .nav {
         justify-content: space-between;
         align-items: center;
