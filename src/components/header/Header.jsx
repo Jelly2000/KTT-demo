@@ -8,7 +8,7 @@ const Header = () => {
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDarkTheme, setIsDarkTheme] = useState(false);
-
+  
   useEffect(() => {
     // Initialize theme from localStorage or system preference
     const savedTheme = localStorage.getItem('theme');
@@ -36,6 +36,15 @@ const Header = () => {
   const toggleLanguage = (event) => {
     const newLanguage = event.target.value;
     i18n.changeLanguage(newLanguage);
+  };
+
+  // Normalize language code for select display
+  const getCurrentLanguage = () => {
+    const currentLang = i18n.language;
+    // Convert 'en-GB', 'en-US', etc. to 'en'
+    if (currentLang.startsWith('en')) return 'en';
+    if (currentLang.startsWith('vi')) return 'vi';
+    return 'en'; // fallback
   };
 
   const toggleMenu = () => {
@@ -111,11 +120,11 @@ const Header = () => {
                 className="language-select"
                 name="language"
                 id="language"
-                value={i18n.language}
+                value={getCurrentLanguage()}
                 onChange={toggleLanguage}
               >
-                <option value="vi">{t('ui_language_vietnamese')} </option>
-                <option value="en">{t('ui_language_english')}</option>
+                <option value="vi">Tiếng Việt</option>
+                <option value="en">English</option>
               </select>
             </div>
           </li>

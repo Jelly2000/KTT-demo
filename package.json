@@ -11,7 +11,8 @@
     "test": "vitest run --config vite.config.test.js",
     "test:watch": "vitest --config vite.config.test.js",
     "test:ui": "vitest --ui --config vite.config.test.js",
-    "test:coverage": "vitest --coverage --config vite.config.test.js"
+    "test:coverage": "vitest --coverage --config vite.config.test.js",
+    "optimize-images": "bash optimize-images.sh"
   },
   "dependencies": {
     "i18next": "^25.5.2",

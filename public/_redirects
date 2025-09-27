@@ -1,1 +1,15 @@
+# Redirect old numeric vehicle IDs to new slug-based URLs
+/thue-xe/1  /thue-xe/hyundai-accent  301
+/thue-xe/2  /thue-xe/hyundai-custin-2-0  301
+/thue-xe/3  /thue-xe/hyundai-elantra  301
+/thue-xe/4  /thue-xe/hyundai-santafe-2-5t  301
+/thue-xe/5  /thue-xe/hyundai-venue  301
+/thue-xe/6  /thue-xe/kia-carnival-signature  301
+/thue-xe/7  /thue-xe/kia-carnival-signature-new  301
+/thue-xe/8  /thue-xe/kia-sedona  301
+/thue-xe/9  /thue-xe/mercedes-c300-amg  301
+/thue-xe/10 /thue-xe/mg5  301
+/thue-xe/11 /thue-xe/mitsubishi-xpander-premium  301
+
+# Netlify redirects for SPA
 /*    /index.html   200

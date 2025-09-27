@@ -18,9 +18,10 @@ const RentCar = () => {
   });
 
   // Get vehicles and metadata in current language
-  const vehicles = getVehicles(i18n.language);
-  const categories = getCategories(i18n.language);
-  const filterOptions = getFilters(i18n.language);
+  // Re-fetch when language changes
+  const vehicles = React.useMemo(() => getVehicles(i18n.language), [i18n.language]);
+  const categories = React.useMemo(() => getCategories(i18n.language), [i18n.language]);
+  const filterOptions = React.useMemo(() => getFilters(i18n.language), [i18n.language]);
 
   // Filter and sort vehicles
   const filteredVehicles = useMemo(() => {
@@ -119,6 +120,7 @@ const RentCar = () => {
         titleKey="seo_rentcar_title"
         descriptionKey="seo_rentcar_description"
         structuredData={structuredData}
+        canonicalUrl="https://kttcar.com/thue-xe"
       />
       
       {/* Page Header */}

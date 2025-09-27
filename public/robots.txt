@@ -1,0 +1,33 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://kttcar.com/sitemap.xml
+
+# Allow all major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Disallow admin or private areas (if any)
+Disallow: /admin/
+Disallow: /private/
+Disallow: /.git/
+Disallow: /node_modules/
+
+# Allow important pages
+Allow: /
+Allow: /thue-xe
+Allow: /thue-xe/*
+Allow: /thu-tuc
+Allow: /contact
+Allow: /nap-phi-etc
+Allow: /bao-hiem-pvi
+
+# Crawl delay (optional - helps with server load)
+Crawl-delay: 1

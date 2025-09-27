@@ -7,12 +7,25 @@ import vehiclesVi from '../data/vehicles-vi.json';
 import vehiclesEn from '../data/vehicles-en.json';
 
 /**
+ * Normalize language code to base language
+ * @param {string} language - Language code (e.g., 'en-GB', 'en-US', 'vi-VN')
+ * @returns {string} - Base language code ('en' or 'vi')
+ */
+const normalizeLanguage = (language) => {
+  if (typeof language !== 'string') return 'en';
+  if (language.startsWith('en')) return 'en';
+  if (language.startsWith('vi')) return 'vi';
+  return 'en'; // fallback
+};
+
+/**
  * Get vehicles data for the specified language
- * @param {string} language - Language code ('vi' or 'en')
+ * @param {string} language - Language code ('vi' or 'en' or locale like 'en-GB')
  * @returns {Object} - Vehicles data object with vehicles, categories, and filters
  */
 export const getVehiclesData = (language) => {
-  switch (language) {
+  const normalizedLang = normalizeLanguage(language);
+  switch (normalizedLang) {
     case 'en':
       return vehiclesEn;
     case 'vi':
@@ -39,6 +52,17 @@ export const getVehicles = (language) => {
 export const getVehicleById = (vehicleId, language) => {
   const vehicles = getVehicles(language);
   return vehicles.find(vehicle => vehicle.id === vehicleId) || null;
+};
+
+/**
+ * Get vehicle by slug for the specified language
+ * @param {string} vehicleSlug - Vehicle slug (e.g., 'hyundai-accent')
+ * @param {string} language - Language code ('vi' or 'en')
+ * @returns {Object|null} - Vehicle object or null if not found
+ */
+export const getVehicleBySlug = (vehicleSlug, language) => {
+  const vehicles = getVehicles(language);
+  return vehicles.find(vehicle => vehicle.slug === vehicleSlug) || null;
 };
 
 /**

@@ -2,6 +2,7 @@
   "vehicles": [
     {
       "id": 1,
+      "slug": "hyundai-accent",
       "name": "Hyundai Accent",
       "category": "sedan",
       "seats": 5,
@@ -48,6 +49,7 @@
     },
     {
       "id": 2,
+      "slug": "hyundai-custin-2-0",
       "name": "Hyundai Custin 2.0",
       "category": "suv",
       "seats": 8,
@@ -100,6 +102,7 @@
     },
     {
       "id": 3,
+      "slug": "hyundai-elantra",
       "name": "Hyundai Elantra",
       "category": "sedan",
       "seats": 5,
@@ -147,6 +150,7 @@
     },
     {
       "id": 4,
+      "slug": "hyundai-santafe-2-5t",
       "name": "Hyundai Santa Fe 2.5T",
       "category": "suv",
       "seats": 7,
@@ -191,6 +195,7 @@
     },
     {
       "id": 5,
+      "slug": "hyundai-venue",
       "name": "Hyundai Venue",
       "category": "suv",
       "seats": 5,
@@ -241,6 +246,7 @@
     },
     {
       "id": 6,
+      "slug": "kia-carnival-signature",
       "name": "Kia Carnival Signature",
       "category": "suv",
       "seats": 8,
@@ -296,6 +302,7 @@
     },
     {
       "id": 7,
+      "slug": "kia-carnival-signature-new",
       "name": "Kia Carnival Signature New",
       "category": "suv",
       "seats": 8,
@@ -351,6 +358,7 @@
     },
     {
       "id": 8,
+      "slug": "kia-sedona",
       "name": "Kia Sedona",
       "category": "suv",
       "seats": 7,
@@ -397,6 +405,7 @@
     },
     {
       "id": 9,
+      "slug": "mercedes-c300-amg",
       "name": "Mercedes C300 AMG",
       "category": "sedan",
       "seats": 5,
@@ -446,6 +455,7 @@
     },
     {
       "id": 10,
+      "slug": "mg5",
       "name": "MG5",
       "category": "sedan",
       "seats": 5,
@@ -496,6 +506,7 @@
     },
     {
       "id": 11,
+      "slug": "mitsubishi-xpander-premium",
       "name": "Mitsubishi Xpander Premium",
       "category": "suv",
       "seats": 7,

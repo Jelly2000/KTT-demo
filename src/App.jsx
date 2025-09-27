@@ -25,7 +25,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/thue-xe" element={<RentCar />} />
-                <Route path="/thue-xe/:id" element={<VehicleDetail />} />
+                <Route path="/thue-xe/:slug" element={<VehicleDetail />} />
                 <Route path="/thu-tuc" element={<Procedures />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/nap-phi-etc" element={<ETCPayment />} />

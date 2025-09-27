@@ -14,6 +14,7 @@ const PVIInsurance = () => {
       <SEO 
         titleKey="seo_pvi_title"
         descriptionKey="seo_pvi_description"
+        canonicalUrl="https://kttcar.com/bao-hiem-pvi"
       />
       
       {/* Coming Soon Section */}

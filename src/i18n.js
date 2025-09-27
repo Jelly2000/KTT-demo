@@ -23,7 +23,7 @@ i18n
   // Initialize i18next
   .init({
     resources,
-    fallbackLng: 'vi', // Default language
+    fallbackLng: 'en', // Default language
     // eslint-disable-next-line no-undef
     debug: typeof process !== 'undefined' && process.env && process.env.NODE_ENV === 'development',
 
@@ -32,7 +32,10 @@ i18n
       order: ['localStorage', 'navigator', 'htmlTag'],
       lookupLocalStorage: 'language',
       caches: ['localStorage'],
+      checkWhitelist: true
     },
+    supportedLngs: ['vi', 'en'],
+    nonExplicitSupportedLngs: true,
 
     interpolation: {
       escapeValue: false, // React already does escaping

@@ -10,12 +10,11 @@ const Procedures = () => {
 
   return (
     <div className="procedures-page">
-      <SEO
+      <SEO 
         titleKey="seo_procedure_title"
         descriptionKey="seo_procedure_description"
-      />
-
-      {/* Page Header */}
+        canonicalUrl="https://kttcar.com/thu-tuc"
+      />      {/* Page Header */}
       <section className="page-header">
         <div className="container">
           <h1 className="page-title">{t('procedures_title')}</h1>

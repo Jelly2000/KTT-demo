@@ -13,7 +13,10 @@ const Home = () => {
   const { t, i18n } = useTranslation();
   
   // Get first 3 vehicles for display in current language
-  const featuredVehicles = getVehicles(i18n.language).slice(0, 3);
+  // Re-fetch vehicles when language changes
+  const featuredVehicles = React.useMemo(() => {
+    return getVehicles(i18n.language).slice(0, 3);
+  }, [i18n.language]);
   
   const formatPrice = (price) => {
     return new Intl.NumberFormat('vi-VN', {
@@ -47,6 +50,7 @@ const Home = () => {
         titleKey="seo_home_title"
         descriptionKey="seo_home_description"
         structuredData={structuredData}
+        canonicalUrl="https://kttcar.com/"
       />
       
       {/* Hero Section */}

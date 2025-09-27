@@ -14,6 +14,7 @@ const ETCPayment = () => {
       <SEO 
         titleKey="seo_etc_title"
         descriptionKey="seo_etc_description"
+        canonicalUrl="https://kttcar.com/nap-phi-etc"
       />
       
       {/* Coming Soon Section */}

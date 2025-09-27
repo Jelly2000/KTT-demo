@@ -41,6 +41,7 @@ const Contact = () => {
         titleKey="seo_contact_title"
         descriptionKey="seo_contact_description"
         structuredData={structuredData}
+        canonicalUrl="https://kttcar.com/contact"
       />
       
       {/* Page Header */}

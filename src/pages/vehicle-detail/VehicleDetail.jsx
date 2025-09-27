@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useRentModal } from '../../components/RentCarModal';
-import { getVehicleById } from '../../utils/vehicleUtils';
+import { getVehicleById, getVehicleBySlug } from '../../utils/vehicleUtils';
 import SEO from '../../components/SEO/SEO';
 import './VehicleDetail.css';
 
 const VehicleDetail = () => {
-    const { id } = useParams();
+    const { slug } = useParams();
     const navigate = useNavigate();
     const { t, i18n } = useTranslation();
     const { openRentModal } = useRentModal();
@@ -17,12 +17,12 @@ const VehicleDetail = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const foundVehicle = getVehicleById(parseInt(id), i18n.language);
+        const foundVehicle = getVehicleBySlug(slug, i18n.language);
         if (foundVehicle) {
             setVehicle(foundVehicle);
         }
         setLoading(false);
-    }, [id, i18n.language]);
+    }, [slug, i18n.language]);
 
     // Keyboard navigation for modal
     useEffect(() => {
@@ -174,6 +174,7 @@ const VehicleDetail = () => {
                 structuredData={structuredData}
                 ogImage={vehicle.image}
                 ogType="product"
+                canonicalUrl={`https://kttcar.com/thue-xe/${slug}`}
             />
             
             {/* Vehicle Details Section - matching demo structure */}
@@ -186,6 +187,7 @@ const VehicleDetail = () => {
                                 <img 
                                     src={vehicle.gallery && vehicle.gallery.length > 0 ? vehicle.gallery[currentImageIndex] : vehicle.image}
                                     alt={`Thuê xe ${vehicle.name} tự lái tại TP.HCM - Hình ${currentImageIndex + 1} - KTT Car`}
+                                    loading="lazy"
                                     style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '20px', cursor: 'pointer' }}
                                     onClick={openModal}
                                 />
@@ -248,7 +250,12 @@ const VehicleDetail = () => {
                                             className={`gallery-thumb ${currentImageIndex === index ? 'active' : ''}`}
                                             onClick={() => setCurrentImageIndex(index)}
                                         >
-                                            <img src={image} alt={`Xe ${vehicle.name} cho thuê tự lái - Ảnh chi tiết ${index + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '10px' }} />
+                                            <img 
+                                                src={image} 
+                                                alt={`Xe ${vehicle.name} cho thuê tự lái - Ảnh chi tiết ${index + 1}`} 
+                                                loading="lazy"
+                                                style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '10px' }} 
+                                            />
                                         </div>
                                     ))}
                                 </div>
@@ -362,6 +369,7 @@ const VehicleDetail = () => {
                         <img 
                             src={vehicle.gallery && vehicle.gallery.length > 0 ? vehicle.gallery[currentImageIndex] : vehicle.image}
                             alt={`Thuê xe ${vehicle.name} tự lái tại TP.HCM - Xem chi tiết đầy đủ - KTT Car`}
+                            loading="lazy"
                             className="modal-image"
                         />
                         {vehicle.gallery && vehicle.gallery.length > 1 && (
