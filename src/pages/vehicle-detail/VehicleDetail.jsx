@@ -115,11 +115,29 @@ const VehicleDetail = () => {
         }).format(price);
     };
 
+    // Get vehicle-specific features for SEO
+    const getVehicleFeatures = (vehicleName) => {
+        const name = vehicleName.toLowerCase();
+        if (name.includes('accent')) return t('vehicle_hyundai_accent_features');
+        if (name.includes('elantra')) return t('vehicle_hyundai_elantra_features');
+        if (name.includes('santafe') || name.includes('santa fe')) return t('vehicle_hyundai_santafe_features');
+        if (name.includes('venue')) return t('vehicle_hyundai_venue_features');
+        if (name.includes('custin')) return t('vehicle_hyundai_custin_features');
+        if (name.includes('carnival')) return t('vehicle_kia_carnival_features');
+        if (name.includes('sedona')) return t('vehicle_kia_sedona_features');
+        if (name.includes('c300') || name.includes('mercedes')) return t('vehicle_mercedes_c300_features');
+        if (name.includes('mg5')) return t('vehicle_mg5_features');
+        if (name.includes('xpander')) return t('vehicle_mitsubishi_xpander_features');
+        return 'xe đời mới, chất lượng cao';
+    };
+
+    const vehicleFeatures = getVehicleFeatures(vehicle.name);
+
     const structuredData = {
         "@context": "https://schema.org",
         "@type": "Product",
         "name": vehicle.name,
-        "description": vehicle.description,
+        "description": `${vehicle.description} - ${vehicleFeatures}`,
         "image": vehicle.image,
         "brand": {
             "@type": "Brand",
@@ -149,7 +167,9 @@ const VehicleDetail = () => {
                 descriptionKey="seo_vehicle_detail_description"
                 variables={{
                     vehicleName: vehicle.name,
-                    price: formatPrice(vehicle.pricePerDay)
+                    price: formatPrice(vehicle.pricePerDay),
+                    vehicleFeatures: vehicleFeatures,
+                    vehicleDescription: vehicleFeatures
                 }}
                 structuredData={structuredData}
                 ogImage={vehicle.image}

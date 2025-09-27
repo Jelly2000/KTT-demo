@@ -33,8 +33,8 @@ const SEO = ({
       <title>{title}</title>
       <meta name="description" content={description} />
       <meta name="keywords" content={i18n.language === 'vi' ? 
-        'thuê xe, cho thuê xe tự lái, rental car, car rental ho chi minh city, thuê xe TP.HCM, KTT Car, xe đời mới' : 
-        'car rental, self drive car rental, rent car ho chi minh city, car rental vietnam, KTT Car, new cars'
+        'thuê xe tự lái TP.HCM, thuê xe Hyundai Accent, thuê xe Hyundai Elantra, thuê xe Hyundai Santafe, thuê xe Kia Carnival, thuê xe Mercedes C300, thuê xe tự lái giá rẻ, giao xe tận nơi, thuê xe không cần thế chấp, thuê xe tự lái quận 1, thuê xe tự lái Bình Thạnh, KTT Car' : 
+        'self drive car rental ho chi minh city, rent Hyundai Accent, rent Hyundai Elantra, rent Hyundai Santafe, rent Kia Carnival, rent Mercedes C300, cheap car rental, doorstep delivery, no deposit car rental, district 1 car rental, Binh Thanh car rental, KTT Car'
       } />
       <meta name="author" content="KTT Car Rental" />
       <meta name="robots" content="index, follow" />

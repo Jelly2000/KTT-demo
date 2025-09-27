@@ -35,7 +35,7 @@ const VehicleCard = ({
         <div className={`car-card ${viewMode} ${!availability ? 'unavailable' : ''}`} role="button" tabIndex="0" aria-label={`View details for ${vehicleName}`}>
             <div className="car-image" aria-hidden="true">
                 {image ? (
-                    <img src={image} alt={`Thuê xe ${vehicleName} tự lái tại TP.HCM - KTT Car`} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: viewMode === 'grid' ? '15px 15px 0 0' : '15px 0 0 15px' }} />
+                    <img src={image} alt={`Thuê xe ${vehicleName} tự lái TP.HCM - giao tận nơi, giá rẻ - KTT Car`} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: viewMode === 'grid' ? '15px 15px 0 0' : '15px 0 0 15px' }} />
                 ) : (
                     <div style={{ 
                         width: '100%', 
