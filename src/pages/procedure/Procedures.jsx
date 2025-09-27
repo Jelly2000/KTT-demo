@@ -10,17 +10,17 @@ const Procedures = () => {
 
   return (
     <div className="procedures-page">
-      <SEO 
+      <SEO
         titleKey="seo_procedure_title"
         descriptionKey="seo_procedure_description"
       />
-      
+
       {/* Page Header */}
       <section className="page-header">
         <div className="container">
           <h1 className="page-title">{t('procedures_title')}</h1>
           <p className="page-subtitle">{t('procedures_subtitle')}</p>
-          <HighlightedButton 
+          <HighlightedButton
             onClick={() => window.location.href = '/thue-xe'}
           >
             {t('rent_now')}
@@ -34,7 +34,7 @@ const Procedures = () => {
           <h2 className="section-title">{t('required_documents')}</h2>
           <div className="documents-grid">
             <div className="document-card">
-              <div className="doc-icon">🆔</div>
+              <div className="doc-icon">📄</div>
               <h3>{t('citizen_id')}</h3>
               <ul className="doc-details">
                 <li>{t('citizen_id_details_1')}</li>
@@ -44,7 +44,7 @@ const Procedures = () => {
             </div>
 
             <div className="document-card">
-              <div className="doc-icon">🚗</div>
+              <div className="doc-icon">🪪</div>
               <h3>{t('drivers_license')}</h3>
               <ul className="doc-details">
                 <li>{t('drivers_license_details_1')}</li>
@@ -99,7 +99,7 @@ const Procedures = () => {
           <h2 className="section-title">{t('time_schedule')}</h2>
           <div className="timing-grid">
             <div className="timing-card pickup">
-              <div className="timing-icon">📥</div>
+              <div className="timing-icon">⏰</div>
               <h3>{t('pickup_time')}</h3>
               <div className="timing-details">
                 <div className="time-slot">
@@ -114,7 +114,8 @@ const Procedures = () => {
             </div>
 
             <div className="timing-card return">
-              <div className="timing-icon">📤</div>
+              <div className="timing-icon">
+                🕗</div>
               <h3>{t('return_time')}</h3>
               <div className="timing-details">
                 <div className="time-slot">

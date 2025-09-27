@@ -77,7 +77,7 @@ const Home = () => {
           </Heading>
           <div className='grid-container-2'>
             <Card
-              icon='�'
+              icon='📋'
               heading={t('needed_information')}
               subheading={t('needed_information_subheading')}
               uiContext='small-flat'
@@ -95,7 +95,7 @@ const Home = () => {
               uiContext='small-flat'
             />
             <Card
-              icon='�'
+              icon='🚚'
               heading={t('home_delivery')}
               subheading={t('home_delivery_desc')}
               uiContext='small-flat'
