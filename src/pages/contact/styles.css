@@ -96,10 +96,12 @@
 }
 
 .contact-icon {
-    align-items: center;
     font-size: 3rem;
     margin-bottom: 1rem;
-    display: block;
+    text-align: center;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .contact-card h3 {
@@ -207,7 +209,10 @@
 .hours-icon {
     font-size: 3.5rem;
     margin-bottom: 1.5rem;
-    display: block;
+    text-align: center;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
@@ -261,6 +266,10 @@
 .service-icon {
     margin-right: 0.75rem;
     font-size: 1.2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.5rem;
 }
 
 /* Responsive Design */
