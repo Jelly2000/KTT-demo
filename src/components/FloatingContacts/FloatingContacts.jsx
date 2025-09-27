@@ -16,7 +16,7 @@ const FloatingContacts = () => {
           className="contact-btn phone-btn" 
           aria-label={t('call_phone', 'Gọi điện thoại')}
         >
-          <img src={phoneIcon} alt="Phone" className="contact-icon" />
+          <img src={phoneIcon} alt="Hotline KTT Car - Gọi ngay để thuê xe tự lái" className="contact-icon" />
         </a>
       </div>
       
@@ -28,7 +28,7 @@ const FloatingContacts = () => {
           rel="noopener noreferrer" 
           aria-label={t('contact_zalo', 'Liên hệ qua Zalo')}
         >
-          <img src={zaloIcon} alt="Zalo" className="contact-icon" />
+          <img src={zaloIcon} alt="Chat Zalo KTT Car - Tư vấn thuê xe tự lái miễn phí" className="contact-icon" />
         </a>
       </div>
       
@@ -40,7 +40,7 @@ const FloatingContacts = () => {
           rel="noopener noreferrer" 
           aria-label={t('contact_messenger', 'Liên hệ qua Messenger')}
         >
-          <img src={messengerIcon} alt="Messenger" className="contact-icon" />
+          <img src={messengerIcon} alt="Facebook Messenger KTT Car - Liên hệ thuê xe nhanh chóng" className="contact-icon" />
         </a>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ConsultationForm, HighlightedButton } from '../../components';
+import SEO from '../../components/SEO/SEO';
 import '../shared-styles.css';
 import './styles.css';
 
@@ -17,8 +18,31 @@ const Contact = () => {
     });
   };
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": t('seo_contact_title'),
+    "description": t('seo_contact_description'),
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "KTT Car Rental",
+      "telephone": "+84-xxx-xxx-xxx",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "VN",
+        "addressLocality": "Ho Chi Minh City"
+      }
+    }
+  };
+
   return (
     <div className="contact-page">
+      <SEO 
+        titleKey="seo_contact_title"
+        descriptionKey="seo_contact_description"
+        structuredData={structuredData}
+      />
+      
       {/* Page Header */}
       <section className="page-header">
         <div className="container">

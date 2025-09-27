@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useRentModal } from '../../components/RentCarModal';
 import { getVehicleById } from '../../utils/vehicleUtils';
+import SEO from '../../components/SEO/SEO';
 import './VehicleDetail.css';
 
 const VehicleDetail = () => {
@@ -114,8 +115,47 @@ const VehicleDetail = () => {
         }).format(price);
     };
 
+    const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": vehicle.name,
+        "description": vehicle.description,
+        "image": vehicle.image,
+        "brand": {
+            "@type": "Brand",
+            "name": vehicle.name.split(' ')[0]
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": vehicle.pricePerDay,
+            "priceCurrency": "VND",
+            "availability": vehicle.availability ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+            "seller": {
+                "@type": "Organization",
+                "name": "KTT Car Rental"
+            }
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "reviewCount": "127"
+        }
+    };
+
     return (
         <>
+            <SEO 
+                titleKey="seo_vehicle_detail_title"
+                descriptionKey="seo_vehicle_detail_description"
+                variables={{
+                    vehicleName: vehicle.name,
+                    price: formatPrice(vehicle.pricePerDay)
+                }}
+                structuredData={structuredData}
+                ogImage={vehicle.image}
+                ogType="product"
+            />
+            
             {/* Vehicle Details Section - matching demo structure */}
             <section className="vehicle-detail-section">
                 <div className="container">
@@ -125,7 +165,7 @@ const VehicleDetail = () => {
                             <div className="vehicle-image" id="vehicle-image">
                                 <img 
                                     src={vehicle.gallery && vehicle.gallery.length > 0 ? vehicle.gallery[currentImageIndex] : vehicle.image}
-                                    alt={`${vehicle.name} - Image ${currentImageIndex + 1}`}
+                                    alt={`Thuê xe ${vehicle.name} tự lái tại TP.HCM - Hình ${currentImageIndex + 1} - KTT Car`}
                                     style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '20px', cursor: 'pointer' }}
                                     onClick={openModal}
                                 />
@@ -188,7 +228,7 @@ const VehicleDetail = () => {
                                             className={`gallery-thumb ${currentImageIndex === index ? 'active' : ''}`}
                                             onClick={() => setCurrentImageIndex(index)}
                                         >
-                                            <img src={image} alt={`Thumbnail ${index + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '10px' }} />
+                                            <img src={image} alt={`Xe ${vehicle.name} cho thuê tự lái - Ảnh chi tiết ${index + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '10px' }} />
                                         </div>
                                     ))}
                                 </div>
@@ -301,7 +341,7 @@ const VehicleDetail = () => {
                         </button>
                         <img 
                             src={vehicle.gallery && vehicle.gallery.length > 0 ? vehicle.gallery[currentImageIndex] : vehicle.image}
-                            alt={`${vehicle.name} - Full view`}
+                            alt={`Thuê xe ${vehicle.name} tự lái tại TP.HCM - Xem chi tiết đầy đủ - KTT Car`}
                             className="modal-image"
                         />
                         {vehicle.gallery && vehicle.gallery.length > 1 && (

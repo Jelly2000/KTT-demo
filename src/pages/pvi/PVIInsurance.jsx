@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { HighlightedButton } from '../../components';
+import SEO from '../../components/SEO/SEO';
 import '../shared-styles.css';
 import './styles.css';
 
@@ -10,6 +11,11 @@ const PVIInsurance = () => {
 
   return (
     <div className="pvi-insurance-page">
+      <SEO 
+        titleKey="seo_pvi_title"
+        descriptionKey="seo_pvi_description"
+      />
+      
       {/* Coming Soon Section */}
       <section className="coming-soon-section">
         <div className="container" style={{ marginTop: '50px' }}>

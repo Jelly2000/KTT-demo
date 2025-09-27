@@ -79,7 +79,7 @@ const Header = () => {
       <nav className="nav">
         <div className="nav-brand">
           <Link to="/" className="logo-container">
-            <img src="/logo.webp" alt="KTT Car Logo" className="logo-image" />
+            <img src="/logo.webp" alt="KTT Car - Dịch vụ cho thuê xe tự lái cao cấp tại TP.HCM" className="logo-image" />
             <span className="logo-text">KTT Car</span>
           </Link>
         </div>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { HelmetProvider } from 'react-helmet-async'
 import Header from './components/header/Header'
 import Footer from './components/Footer/Footer'
 import FloatingContacts from './components/FloatingContacts/FloatingContacts'
@@ -15,27 +16,29 @@ import './App.css'
 
 function App() {
   return (
-    <Router>
-      <RentModalProvider>
-        <div className="app">
-          <Header />
-          <main className="main-content">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/thue-xe" element={<RentCar />} />
-              <Route path="/thue-xe/:id" element={<VehicleDetail />} />
-              <Route path="/thu-tuc" element={<Procedures />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/nap-phi-etc" element={<ETCPayment />} />
-              <Route path="/bao-hiem-pvi" element={<PVIInsurance />} />
-            </Routes>
-          </main>
-          <Footer />
-          <FloatingContacts />
-          <RentCarModal />
-        </div>
-      </RentModalProvider>
-    </Router>
+    <HelmetProvider>
+      <Router>
+        <RentModalProvider>
+          <div className="app">
+            <Header />
+            <main className="main-content">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/thue-xe" element={<RentCar />} />
+                <Route path="/thue-xe/:id" element={<VehicleDetail />} />
+                <Route path="/thu-tuc" element={<Procedures />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/nap-phi-etc" element={<ETCPayment />} />
+                <Route path="/bao-hiem-pvi" element={<PVIInsurance />} />
+              </Routes>
+            </main>
+            <Footer />
+            <FloatingContacts />
+            <RentCarModal />
+          </div>
+        </RentModalProvider>
+      </Router>
+    </HelmetProvider>
   )
 }
 

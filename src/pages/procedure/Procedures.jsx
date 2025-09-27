@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { HighlightedButton } from '../../components';
+import SEO from '../../components/SEO/SEO';
 import '../shared-styles.css';
 import './styles.css';
 
@@ -9,6 +10,11 @@ const Procedures = () => {
 
   return (
     <div className="procedures-page">
+      <SEO 
+        titleKey="seo_procedure_title"
+        descriptionKey="seo_procedure_description"
+      />
+      
       {/* Page Header */}
       <section className="page-header">
         <div className="container">

@@ -131,7 +131,7 @@ const RentCarModal = () => {
                     <div className="vehicle-summary">
                         <img
                             src={vehicle.image}
-                            alt={vehicle.name}
+                            alt={`Đặt thuê xe ${vehicle.name} tự lái - KTT Car`}
                             className="summary-image"
                         />
                         <div className="summary-details">

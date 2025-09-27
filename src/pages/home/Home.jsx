@@ -7,6 +7,7 @@ import Card from '../../components/card/Card';
 import HighlightedButton from '../../components/HighlightedButton/HighlightedButton';
 import { VehicleCard, ConsultationForm } from '../../components';
 import { getVehicles } from '../../utils/vehicleUtils';
+import SEO from '../../components/SEO/SEO';
 
 const Home = () => {
   const { t, i18n } = useTranslation();
@@ -21,8 +22,33 @@ const Home = () => {
     }).format(price);
   };
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "AutoRental",
+    "name": "KTT Car Rental",
+    "description": t('seo_home_description'),
+    "url": "https://kttcar.com",
+    "telephone": "+84-xxx-xxx-xxx",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "VN",
+      "addressLocality": "Ho Chi Minh City"
+    },
+    "offers": {
+      "@type": "Offer",
+      "category": "Car Rental",
+      "priceRange": "800000-2500000 VND"
+    }
+  };
+
   return (
     <div className="home-page">
+      <SEO 
+        titleKey="seo_home_title"
+        descriptionKey="seo_home_description"
+        structuredData={structuredData}
+      />
+      
       {/* Hero Section */}
       <section className="hero">
         <div className="hero-content">

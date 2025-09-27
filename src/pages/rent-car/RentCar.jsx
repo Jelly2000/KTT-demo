@@ -4,6 +4,7 @@ import '../shared-styles.css';
 import './styles.css';
 import { VehicleCard } from '../../components';
 import { getVehicles, getCategories, getFilters } from '../../utils/vehicleUtils';
+import SEO from '../../components/SEO/SEO';
 
 const RentCar = () => {
   const { t, i18n } = useTranslation();
@@ -92,8 +93,34 @@ const RentCar = () => {
     }).format(price);
   };
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": t('seo_rentcar_title'),
+    "description": t('seo_rentcar_description'),
+    "numberOfItems": filteredVehicles.length,
+    "itemListElement": filteredVehicles.slice(0, 10).map((vehicle, index) => ({
+      "@type": "Product",
+      "position": index + 1,
+      "name": vehicle.name,
+      "description": vehicle.description,
+      "offers": {
+        "@type": "Offer",
+        "price": vehicle.pricePerDay,
+        "priceCurrency": "VND",
+        "availability": vehicle.availability ? "https://schema.org/InStock" : "https://schema.org/OutOfStock"
+      }
+    }))
+  };
+
   return (
     <div className="rent-car-page">
+      <SEO 
+        titleKey="seo_rentcar_title"
+        descriptionKey="seo_rentcar_description"
+        structuredData={structuredData}
+      />
+      
       {/* Page Header */}
       <div className="page-header">
         <div className="container">
