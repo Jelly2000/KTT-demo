@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
+import { sendCarRentalRequest } from '../../utils/telegramUtils';
 
 const RentModalContext = createContext();
 
@@ -34,8 +35,34 @@ export const RentModalProvider = ({ children }) => {
         setIsSubmitting(true);
         
         try {
-            // Simulate API call
-            await new Promise(resolve => setTimeout(resolve, 5000));
+            // Calculate rental details
+            const startDate = new Date(formData.pickupDate);
+            const endDate = new Date(formData.returnDate);
+            const totalDays = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
+            const estimatedCost = totalDays * (selectedVehicle?.pricePerDay || 0);
+            
+            // Prepare data for Telegram
+            const rentalData = {
+                vehicleName: selectedVehicle?.name || 'Unknown Vehicle',
+                customerName: formData.fullName,
+                customerPhone: formData.phone,
+                customerEmail: formData.email,
+                startDate: startDate.toLocaleDateString('vi-VN'),
+                endDate: endDate.toLocaleDateString('vi-VN'),
+                additionalNotes: formData.notes,
+                pricePerDay: selectedVehicle?.pricePerDay || 0,
+                totalDays: totalDays,
+                estimatedCost: estimatedCost
+            };
+            
+            // Send to Telegram
+            const success = await sendCarRentalRequest(rentalData);
+            
+            if (success) {
+                console.log('Rental request sent to Telegram successfully');
+            } else {
+                console.log('Failed to send to Telegram, but form was processed');
+            }
             
             // Show success notification
             setShowSuccessNotification(true);

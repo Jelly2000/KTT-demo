@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { sendConsultationRequest, formatPhoneNumber } from '../../utils/telegramUtils';
 import './styles.css';
 
 const ConsultationForm = ({ heading = 'consultation_title', subHeading = 'consultation_subtitle' }) => {
@@ -29,9 +30,23 @@ const ConsultationForm = ({ heading = 'consultation_title', subHeading = 'consul
     setIsSubmitting(true);
 
     try {
-      // Simulate API call
-      console.log('Form submitted:', formData);
-      await new Promise(resolve => setTimeout(resolve, 5000));
+      // Send consultation request to Telegram
+      const consultationData = {
+        name: formData.fullName,
+        phone: formatPhoneNumber(formData.phoneNumber),
+        email: formData.email,
+        serviceType: formData.subject,
+        message: formData.message,
+        source: 'Homepage Consultation Form'
+      };
+      
+      const success = await sendConsultationRequest(consultationData);
+      
+      if (success) {
+        console.log('Consultation request sent to Telegram successfully');
+      } else {
+        console.warn('Failed to send to Telegram, but form was processed');
+      }
 
       // Show success notification
       setShowSuccessNotification(true);

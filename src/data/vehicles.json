@@ -9,8 +9,6 @@
       "transmission": "automatic",
       "fuel": "gasoline",
       "pricePerDay": 850000,
-      "pricePerWeek": 5500000,
-      "pricePerMonth": 21000000,
       "image": "/src/assets/vehicles/Hyundai Accent/1.jpg",
       "gallery": [
         "/src/assets/vehicles/Hyundai Accent/1.jpg",

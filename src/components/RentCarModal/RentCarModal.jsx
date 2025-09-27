@@ -201,6 +201,7 @@ const RentCarModal = () => {
                                         id="phone"
                                         name="phone"
                                         required
+                                        pattern="[0-9]{10,11}"
                                         placeholder={t('enter_phone_number')}
                                     />
                                 </div>
@@ -211,7 +212,6 @@ const RentCarModal = () => {
                                     type="email"
                                     id="email"
                                     name="email"
-                                    required
                                     placeholder={t('email_address')}
                                 />
                             </div>
