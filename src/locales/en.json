@@ -242,6 +242,7 @@
   "engine_label": "Engine",
   "power_label": "Power",
   "fuel_consumption_label": "Fuel Consumption",
+  "see_more_vehicles": "See More Vehicles",
   "consultation_request_submitted_message": "Thank you for your interest in our services. We will contact you as soon as possible.",
   "notification_auto_close": "Notification will close automatically..."
 }

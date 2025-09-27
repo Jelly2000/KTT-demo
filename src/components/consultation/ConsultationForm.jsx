@@ -189,7 +189,7 @@ const ConsultationForm = ({ heading = 'consultation_title', subHeading = 'consul
                     className="field-input select-input"
                     required
                   >
-                    <option value="">{t('select_subject')}</option>
+                    <option hidden value="">{t('select_subject')}</option>
                     <option value="car_rental">{t('car_rental')}</option>
                     <option value="technical_support">{t('technical_support')}</option>
                     <option value="complaint">{t('complaint')}</option>
