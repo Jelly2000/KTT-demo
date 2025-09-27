@@ -54,10 +54,10 @@ describe('Header Component', () => {
     it('should render logo with correct classes and content', () => {
       renderHeader();
       
-      const logoContainer = screen.getByRole('link', { name: /ktt car logo/i });
+      const logoContainer = screen.getByRole('link', { name: /ktt car/i });
       expect(logoContainer).toHaveClass('logo-container');
       
-      const logoImage = screen.getByAltText('KTT Car Logo');
+      const logoImage = screen.getByAltText(/KTT Car.*TP\.HCM/);
       expect(logoImage).toHaveClass('logo-image');
       expect(logoImage).toHaveAttribute('src', '/logo.webp');
       
@@ -267,7 +267,7 @@ describe('Header Component', () => {
     it('should have nav-brand class for logo section', () => {
       renderHeader();
       
-      const navBrand = screen.getByRole('link', { name: /ktt car logo/i }).parentElement;
+      const navBrand = screen.getByRole('link', { name: /ktt car/i }).parentElement;
       expect(navBrand).toHaveClass('nav-brand');
     });
 
@@ -295,7 +295,7 @@ describe('Header Component', () => {
     it('should have proper alt text for logo image', () => {
       renderHeader();
       
-      const logoImage = screen.getByAltText('KTT Car Logo');
+      const logoImage = screen.getByAltText(/KTT Car.*TP\.HCM/);
       expect(logoImage).toBeInTheDocument();
     });
 
