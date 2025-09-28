@@ -265,6 +265,7 @@
 .no-results {
     text-align: center;
     padding: 4rem 2rem;
+    /* margin-top: 5rem; */
     background: var(--card-background, #fff);
     border-radius: 15px;
     border: 2px dashed var(--border-color, #e5e7eb);

@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useRentModal } from '../../components/RentCarModal';
-import { getVehicleById } from '../../utils/vehicleUtils';
+import { getVehicleBySlug } from '../../utils/vehicleUtils';
 import SEO from '../../components/SEO/SEO';
 import './VehicleDetail.css';
 
 const VehicleDetail = () => {
-    const { id } = useParams();
+    const { slug } = useParams();
     const navigate = useNavigate();
     const { t, i18n } = useTranslation();
     const { openRentModal } = useRentModal();
@@ -17,12 +17,12 @@ const VehicleDetail = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const foundVehicle = getVehicleById(parseInt(id), i18n.language);
+        const foundVehicle = getVehicleBySlug(slug, i18n.language);
         if (foundVehicle) {
             setVehicle(foundVehicle);
         }
         setLoading(false);
-    }, [id, i18n.language]);
+    }, [slug, i18n.language]);
 
     // Keyboard navigation for modal
     useEffect(() => {
@@ -99,7 +99,7 @@ const VehicleDetail = () => {
 
     if (!vehicle) {
         return (
-            <div className="container" style={{ textAlign: 'center', padding: '3rem 0' }}>
+            <div className="container" style={{ textAlign: 'center', padding: '3rem 0', marginTop: '5rem' }}>
                 <h2>{t('vehicle_not_found_title')}</h2>
                 <button onClick={() => navigate('/thue-xe')} style={{ marginTop: '1rem' }}>
                     {t('back_to_list_button')}

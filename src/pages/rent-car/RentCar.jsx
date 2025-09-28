@@ -9,11 +9,9 @@ import SEO from '../../components/SEO/SEO';
 const RentCar = () => {
   const { t, i18n } = useTranslation();
   const [filters, setFilters] = useState({
-    category: '',
+    brand: '',
     seats: '',
     priceRange: '',
-    transmission: '',
-    fuel: '',
     search: '',
     availability: 'all'
   });
@@ -33,9 +31,13 @@ const RentCar = () => {
       filtered = filtered.filter(vehicle => vehicle.availability);
     }
 
-    // Filter by category
-    if (filters.category) {
-      filtered = filtered.filter(vehicle => vehicle.category === filters.category);
+    // Filter by brand (extract from vehicle name)
+    if (filters.brand) {
+      filtered = filtered.filter(vehicle => {
+        const vehicleName = vehicle.name.toLowerCase();
+        const brandName = filters.brand.toLowerCase();
+        return vehicleName.startsWith(brandName);
+      });
     }
 
     // Filter by seats
@@ -88,11 +90,9 @@ const RentCar = () => {
 
   const handleClearFilters = () => {
     setFilters({
-      category: '',
+      brand: '',
       seats: '',
       priceRange: '',
-      transmission: '',
-      fuel: '',
       search: '',
       availability: 'all'
     });
@@ -147,36 +147,25 @@ const RentCar = () => {
       <section className="filters-section">
         <div className="container">
           <div className="filters-container">
-            {/* Search */}
-            <div className="filter-group">
-              <input
-                type="text"
-                placeholder={t('search_placeholder')}
-                value={filters.search}
-                onChange={(e) => handleFilterChange('search', e.target.value)}
-                className="search-input"
-              />
-            </div>
-
-            {/* Category Filter */}
+            {/* Brand Filter - Hãng xe */}
             <div className="filter-group">
               <select
-                value={filters.category}
-                onChange={(e) => handleFilterChange('category', e.target.value)}
+                value={filters.brand}
+                onChange={(e) => handleFilterChange('brand', e.target.value)}
                 className="filter-select"
               >
                 <option value="">
-                  {t('all_types')}
+                  {t('all_brands')}
                 </option>
-                {categories.map(category => (
-                  <option key={category.id} value={category.id}>
-                    {category.name}
-                  </option>
-                ))}
+                <option value="hyundai">{t('hyundai')}</option>
+                <option value="kia">{t('kia')}</option>
+                <option value="mercedes">{t('mercedes')}</option>
+                <option value="mg">{t('mg')}</option>
+                <option value="mitsubishi">{t('mitsubishi')}</option>
               </select>
             </div>
 
-            {/* Seats Filter */}
+            {/* Seats Filter - Số chỗ */}
             <div className="filter-group">
               <select
                 value={filters.seats}
@@ -195,7 +184,7 @@ const RentCar = () => {
               </select>
             </div>
 
-            {/* Price Range Filter */}
+            {/* Price Range Filter - Giá tiền */}
             <div className="filter-group">
               <select
                 value={filters.priceRange}
@@ -214,22 +203,6 @@ const RentCar = () => {
                   <option key="mid" value="mid">{t('price_1m_2m')}</option>,
                   <option key="high" value="high">{t('price_over_3m')}</option>
                 ]}
-              </select>
-            </div>
-
-            {/* Availability Filter */}
-            <div className="filter-group">
-              <select
-                value={filters.availability}
-                onChange={(e) => handleFilterChange('availability', e.target.value)}
-                className="filter-select"
-              >
-                <option value="all">
-                  {t('all_vehicles')}
-                </option>
-                <option value="available">
-                  {t('available')}
-                </option>
               </select>
             </div>
 
