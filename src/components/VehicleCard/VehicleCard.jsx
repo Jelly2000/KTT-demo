@@ -101,7 +101,7 @@ const VehicleCard = ({
                         {rentButtonText}
                     </button>
                     <Link 
-                        to={`/thue-xe/${vehicle?.slug || id}`}
+                        to={`/thue-xe/${id}`}
                         className="details-button" 
                         aria-label={`View details for ${localizedVehicleName}`}
                     >

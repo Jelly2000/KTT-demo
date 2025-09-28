@@ -49,6 +49,16 @@ describe('ScrollToTop Component', () => {
       </BrowserRouter>
     );
 
+    expect(mockScrollTo).toHaveBeenCalledWith(0, 0);
+  });
+
+  it('should call window.scrollTo with smooth behavior when smooth prop is true', () => {
+    render(
+      <BrowserRouter>
+        <ScrollToTop smooth={true} />
+      </BrowserRouter>
+    );
+
     expect(mockScrollTo).toHaveBeenCalledWith({
       top: 0,
       left: 0,

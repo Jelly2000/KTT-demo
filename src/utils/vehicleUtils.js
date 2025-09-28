@@ -55,17 +55,6 @@ export const getVehicleById = (vehicleId, language) => {
 };
 
 /**
- * Get vehicle by slug for the specified language
- * @param {string} vehicleSlug - Vehicle slug (e.g., 'hyundai-accent')
- * @param {string} language - Language code ('vi' or 'en')
- * @returns {Object|null} - Vehicle object or null if not found
- */
-export const getVehicleBySlug = (vehicleSlug, language) => {
-  const vehicles = getVehicles(language);
-  return vehicles.find(vehicle => vehicle.slug === vehicleSlug) || null;
-};
-
-/**
  * Get vehicle categories for the specified language
  * @param {string} language - Language code ('vi' or 'en')
  * @returns {Array} - Array of category objects
