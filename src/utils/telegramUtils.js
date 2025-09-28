@@ -4,7 +4,7 @@
 import i18n from '../i18n.js';
 
 // Server Configuration
-const TELEGRAM_SERVER_URL = 'https://kttnotifyserver.netlify.aps';
+const TELEGRAM_SERVER_URL = 'https://kttnotifyserver.netlify.app';
 
 /**
  * Convert English source text to Vietnamese
