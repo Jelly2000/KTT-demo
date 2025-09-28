@@ -11,6 +11,8 @@ const RentCarModal = () => {
         selectedVehicle,
         isSubmitting,
         showSuccessNotification,
+        showErrorNotification,
+        errorMessage,
         closeRentModal,
         submitRentalRequest
     } = useRentModal();
@@ -125,7 +127,25 @@ const RentCarModal = () => {
                     </div>
                 )}
 
-                <div className={`rent-modal-body ${isSubmitting || showSuccessNotification ? 'hidden' : ''}`}>
+                {/* Error Notification */}
+                {showErrorNotification && (
+                    <div className="error-notification">
+                        <div className="error-icon">✕</div>
+                        <h3>{t('request_failed')}</h3>
+                        <p>{errorMessage}</p>
+                        <div className="error-contact-info">
+                            <p><strong>{t('contact_us_directly')}:</strong></p>
+                            <p>📞 {t('phone_number')}: +84-xxx-xxx-xxx</p>
+                            <p>📧 Email: contact@kttcar.com</p>
+                            <p>🌐 Zalo: +84-xxx-xxx-xxx</p>
+                        </div>
+                        <small>
+                            {t('notification_auto_close')}
+                        </small>
+                    </div>
+                )}
+
+                <div className={`rent-modal-body ${isSubmitting || showSuccessNotification || showErrorNotification ? 'hidden' : ''}`}>
                     {/* Vehicle Summary */}
                     <div className="vehicle-summary">
                         <img
@@ -232,7 +252,7 @@ const RentCarModal = () => {
                 </div>
                 
                 {/* Form Actions Footer - outside scrollable area */}
-                <div className={`rent-modal-footer ${isSubmitting || showSuccessNotification ? 'hidden' : ''}`}>
+                <div className={`rent-modal-footer ${isSubmitting || showSuccessNotification || showErrorNotification ? 'hidden' : ''}`}>
                     <div className="form-actions">
                         <button
                             type="button"

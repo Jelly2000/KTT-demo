@@ -16,6 +16,8 @@ const ConsultationForm = ({ heading = 'consultation_title', subHeading = 'consul
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccessNotification, setShowSuccessNotification] = useState(false);
+  const [showErrorNotification, setShowErrorNotification] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -43,31 +45,44 @@ const ConsultationForm = ({ heading = 'consultation_title', subHeading = 'consul
       const success = await sendConsultationRequest(consultationData);
       
       if (success) {
-        // console.log('Consultation request sent to Telegram successfully');
+        // Show success notification
+        setShowSuccessNotification(true);
+        setIsSubmitting(false);
+
+        // Reset form data
+        setFormData({
+          fullName: '',
+          phoneNumber: '',
+          email: '',
+          subject: '',
+          message: ''
+        });
+
+        // Auto close after 5 seconds
+        setTimeout(() => {
+          setShowSuccessNotification(false);
+        }, 5000);
       } else {
-        console.warn('Failed to send to Telegram, but form was processed');
+        // Show error notification
+        setShowErrorNotification(true);
+        setErrorMessage(t('server_error_message'));
+        setIsSubmitting(false);
+
+        // Auto close after 8 seconds
+        setTimeout(() => {
+          setShowErrorNotification(false);
+        }, 8000);
       }
-
-      // Show success notification
-      setShowSuccessNotification(true);
-      setIsSubmitting(false);
-
-      // Reset form data
-      setFormData({
-        fullName: '',
-        phoneNumber: '',
-        email: '',
-        subject: '',
-        message: ''
-      });
-
-      // Auto close after 5 seconds
-      setTimeout(() => {
-        setShowSuccessNotification(false);
-      }, 5000);
     } catch (error) {
       setIsSubmitting(false);
+      setShowErrorNotification(true);
+      setErrorMessage(t('network_error_message'));
       console.error('Failed to submit consultation request:', error);
+      
+      // Auto close after 8 seconds
+      setTimeout(() => {
+        setShowErrorNotification(false);
+      }, 8000);
     }
   };
 
@@ -84,7 +99,7 @@ const ConsultationForm = ({ heading = 'consultation_title', subHeading = 'consul
   return (
     <>
       {/* Consultation Notification Modal */}
-      {(isSubmitting || showSuccessNotification) && (
+      {(isSubmitting || showSuccessNotification || showErrorNotification) && (
         <div className="consultation-modal">
           <div className="consultation-modal-content">
             {/* Loading State */}
@@ -105,6 +120,24 @@ const ConsultationForm = ({ heading = 'consultation_title', subHeading = 'consul
                 <p>
                   {t('consultation_request_submitted_message')}
                 </p>
+                <small>
+                  {t('notification_auto_close')}
+                </small>
+              </div>
+            )}
+
+            {/* Error Notification */}
+            {showErrorNotification && (
+              <div className="consultation-error-notification">
+                <div className="consultation-error-icon">✕</div>
+                <h3>{t('request_failed')}</h3>
+                <p>{errorMessage}</p>
+                <div className="error-contact-info">
+                  <p><strong>{t('contact_us_directly')}:</strong></p>
+                  <p>📞 {t('phone_number')}: +84-xxx-xxx-xxx</p>
+                  <p>📧 Email: contact@kttcar.com</p>
+                  <p>🌐 Zalo: +84-xxx-xxx-xxx</p>
+                </div>
                 <small>
                   {t('notification_auto_close')}
                 </small>

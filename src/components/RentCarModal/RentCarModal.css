@@ -483,3 +483,323 @@
         font-size: 1rem;
     }
 }
+
+/* Dark Theme Styles */
+[data-theme="dark"] .rent-modal-content {
+    background: var(--card-background);
+    border-color: var(--border-color);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="dark"] .rent-modal-header {
+    background: var(--card-background);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .rent-modal-header h2 {
+    color: var(--primary-color);
+}
+
+[data-theme="dark"] .close-btn {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .close-btn:hover {
+    color: var(--primary-color);
+    background: rgba(255, 215, 0, 0.1);
+}
+
+[data-theme="dark"] .rent-modal-body {
+    background: var(--card-background);
+}
+
+[data-theme="dark"] .vehicle-summary {
+    background: var(--background-alt);
+    border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .summary-details h3 {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .summary-price {
+    color: var(--primary-color);
+}
+
+[data-theme="dark"] .vehicle-info {
+    background: transparent;
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .vehicle-info h3 {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .price {
+    color: var(--primary-color);
+}
+
+[data-theme="dark"] .form-section {
+    border-color: var(--border-color);
+    background: var(--background-alt);
+}
+
+[data-theme="dark"] .form-section h4 {
+    color: var(--text-color);
+    border-color: var(--primary-color);
+}
+
+[data-theme="dark"] .form-group label {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .form-group input,
+[data-theme="dark"] .form-group select,
+[data-theme="dark"] .form-group textarea {
+    background: var(--background-color);
+    border-color: var(--border-color);
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .form-group input:focus,
+[data-theme="dark"] .form-group select:focus,
+[data-theme="dark"] .form-group textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+}
+
+[data-theme="dark"] .form-group input::placeholder,
+[data-theme="dark"] .form-group textarea::placeholder {
+    color: var(--text-color-muted);
+}
+
+[data-theme="dark"] .rent-modal-footer {
+    background: var(--card-background);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .btn-secondary {
+    background: var(--background-alt);
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .btn-secondary:hover {
+    background: var(--border-color);
+    transform: translateY(-2px);
+}
+
+[data-theme="dark"] .btn-primary {
+    background: var(--primary-color);
+    color: var(--btn-text-secondary);
+}
+
+[data-theme="dark"] .btn-primary:hover {
+    background: #E6C200;
+    transform: translateY(-2px);
+}
+
+[data-theme="dark"] .btn-primary:disabled {
+    background: var(--border-color);
+    color: var(--text-color-muted);
+}
+
+[data-theme="dark"] .loading-overlay {
+    background: rgba(26, 26, 26, 0.9);
+}
+
+[data-theme="dark"] .loading-content {
+    background: var(--card-background);
+    border-color: var(--border-color);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="dark"] .loading-text {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .success-notification {
+    background: var(--card-background);
+    border-color: var(--border-color);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="dark"] .success-notification h3 {
+    color: var(--primary-color);
+}
+
+[data-theme="dark"] .success-notification p {
+    color: var(--text-color);
+}
+
+/* Dark theme input date picker styling */
+[data-theme="dark"] .form-group input[type="date"] {
+    background: var(--background-color);
+    border-color: var(--border-color);
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .form-group input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+[data-theme="dark"] .form-group input[type="date"]::-webkit-datetime-edit {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .form-group input[type="date"]::-webkit-datetime-edit-fields-wrapper {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .form-group input[type="date"]::-webkit-datetime-edit-text {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .form-group input[type="date"]::-webkit-datetime-edit-month-field,
+[data-theme="dark"] .form-group input[type="date"]::-webkit-datetime-edit-day-field,
+[data-theme="dark"] .form-group input[type="date"]::-webkit-datetime-edit-year-field {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .date-format-hint {
+    color: var(--text-color-muted);
+}
+
+/* Additional form control styling */
+[data-theme="dark"] .form-control {
+    background: var(--background-color) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-color) !important;
+}
+
+[data-theme="dark"] .date-input {
+    background: var(--background-color) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-color) !important;
+}
+
+/* Ensure all sections are visible in dark mode */
+[data-theme="dark"] .rent-form {
+    background: transparent;
+}
+
+[data-theme="dark"] .form-row {
+    gap: 1rem;
+}
+
+[data-theme="dark"] .form-row .form-group {
+    background: transparent;
+}
+
+/* Make sure modal content is scrollable */
+[data-theme="dark"] .rent-modal-content {
+    background: var(--card-background);
+    max-height: 90vh;
+    overflow: hidden;
+}
+
+[data-theme="dark"] .rent-modal-body {
+    background: var(--card-background);
+    overflow-y: auto;
+    flex: 1;
+}
+
+/* Error Notification Styles */
+.error-notification {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+    margin: 0;
+}
+
+.error-icon {
+    width: 80px;
+    height: 80px;
+    background: #dc3545;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    animation: errorShake 0.6s ease-out;
+}
+
+.error-notification h3 {
+    color: #dc3545;
+    margin: 0 0 1rem;
+    font-size: 1.5rem;
+}
+
+.error-notification p {
+    color: var(--text-color, #333);
+    margin: 0 0 1rem;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    max-width: 400px;
+}
+
+.error-notification .error-contact-info {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1rem 0;
+    text-align: left;
+    max-width: 300px;
+}
+
+.error-notification .error-contact-info p {
+    margin: 0.5rem 0;
+    font-size: 0.95rem;
+    color: var(--text-color, #333);
+}
+
+.error-notification .error-contact-info strong {
+    color: #dc3545;
+}
+
+.error-notification small {
+    color: #666;
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+@keyframes errorShake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-5px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(5px);
+    }
+}
+
+/* Dark theme support for error notification */
+[data-theme="dark"] .error-notification {
+    background: var(--card-background);
+}
+
+[data-theme="dark"] .error-notification .error-contact-info {
+    background: var(--background-alt);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .error-notification .error-contact-info p {
+    color: var(--text-color);
+}

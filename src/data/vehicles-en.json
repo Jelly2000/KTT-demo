@@ -52,7 +52,7 @@
       "slug": "hyundai-custin-2-0",
       "name": "Hyundai Custin 2.0",
       "category": "suv",
-      "seats": 8,
+      "seats": 7,
       "transmission": "automatic",
       "fuel": "gasoline",
       "pricePerDay": 1300000,
@@ -88,7 +88,7 @@
         "Wireless charging",
         "Hyundai SmartSense safety system"
       ],
-      "description": "Hyundai Custin 2.0 - Premium 8-seater MPV with powerful Smartstream 2.0L engine, luxurious design and advanced technology.",
+      "description": "Hyundai Custin 2.0 - Premium 7-seater MPV with powerful Smartstream 2.0L engine, luxurious design and advanced technology.",
       "specifications": {
         "engine": "2.0L Smartstream MPI",
         "power": "159 HP @ 6,500 rpm",

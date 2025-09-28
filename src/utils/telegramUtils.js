@@ -3,9 +3,8 @@
  */
 import i18n from '../i18n.js';
 
-// Telegram Bot Configuration
-const TELEGRAM_BOT_TOKEN = import.meta.env.VITE_TELEGRAM_BOT_TOKEN || '';
-const TELEGRAM_CHAT_ID = import.meta.env.VITE_TELEGRAM_CHAT_ID || '';
+// Server Configuration
+const TELEGRAM_SERVER_URL = 'https://kttnotifyserver.netlify.aps';
 
 /**
  * Convert English source text to Vietnamese
@@ -61,32 +60,31 @@ const translateToVietnamese = (text) => {
 };
 
 /**
- * Send message to Telegram bot
+ * Send message to Telegram bot via server endpoint
  * @param {string} message - Message to send
  * @returns {Promise<boolean>} - Success status
  */
 const sendTelegramMessage = async (message) => {
-  if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
-    console.warn('Telegram bot credentials not configured');
-    return false;
-  }
-
   try {
-    const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
-    const response = await fetch(url, {
+    const response = await fetch(`${TELEGRAM_SERVER_URL}/send-telegram-message`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        chat_id: TELEGRAM_CHAT_ID,
-        text: message,
-        parse_mode: 'HTML',
+        message: message
       }),
     });
 
     const result = await response.json();
-    return result.ok;
+    
+    if (response.ok && result.success) {
+      console.log('Message sent successfully:', result.message);
+      return true;
+    } else {
+      console.error('Failed to send message:', result.error);
+      return false;
+    }
   } catch (error) {
     console.error('Error sending Telegram message:', error);
     return false;
@@ -116,27 +114,27 @@ export const sendCarRentalRequest = async (requestData) => {
 
 
   const message = `
-🚗 <b>${i18n.t('telegram_rental_title')}</b>
+🚗 **${i18n.t('telegram_rental_title')}**
 
-👤 <b>${i18n.t('telegram_customer_info')}</b>
+👤 **${i18n.t('telegram_customer_info')}**
 • ${i18n.t('telegram_name')} ${customerName}
 • ${i18n.t('telegram_phone')} ${customerPhone}
 • ${i18n.t('telegram_email')} ${customerEmail || i18n.t('telegram_no_email')}
 
-🚙 <b>${i18n.t('telegram_vehicle_info')}</b>
+🚙 **${i18n.t('telegram_vehicle_info')}**
 • ${i18n.t('telegram_vehicle')} ${vehicleName}
 • ${i18n.t('telegram_price')} ${pricePerDay?.toLocaleString('vi-VN')}đ/ngày
 
-📅 <b>${i18n.t('telegram_rental_period')}</b>
+📅 **${i18n.t('telegram_rental_period')}**
 • ${i18n.t('telegram_pickup_date')} ${startDate}
 • ${i18n.t('telegram_return_date')} ${endDate}
 • Số ngày: ${totalDays} ngày
 • Tổng chi phí dự kiến: ${estimatedCost?.toLocaleString('vi-VN')}đ
 
-📝 <b>${i18n.t('telegram_additional_notes')}</b>
+📝 **${i18n.t('telegram_additional_notes')}**
 ${translateToVietnamese(additionalNotes) || i18n.t('telegram_default_consultation')}
 
-📍 <b>${i18n.t('telegram_source')}</b> ${getVietnameseSource(source)}
+📍 **${i18n.t('telegram_source')}** ${getVietnameseSource(source)}
 
 ⏰ Thời gian yêu cầu: ${new Date().toLocaleString('vi-VN')}
   `;
@@ -162,18 +160,18 @@ export const sendContactFormSubmission = async (contactData) => {
 
 
   const telegramMessage = `
-📞 <b>${i18n.t('telegram_contact_title')}</b>
+📞 **${i18n.t('telegram_contact_title')}**
 
-👤 <b>${i18n.t('telegram_customer_info')}</b>
+👤 **${i18n.t('telegram_customer_info')}**
 • ${i18n.t('telegram_name')} ${name}
 • ${i18n.t('telegram_phone')} ${phone}
 • ${i18n.t('telegram_email')} ${email || i18n.t('telegram_no_email')}
 
-📋 <b>${i18n.t('telegram_contact_content')}</b>
+📋 **${i18n.t('telegram_contact_content')}**
 • ${i18n.t('telegram_subject')} ${translateToVietnamese(subject) || i18n.t('telegram_no_subject')}
 • ${i18n.t('telegram_message')} ${translateToVietnamese(message)}
 
-📍 <b>${i18n.t('telegram_source')}</b> ${getVietnameseSource(source)}
+📍 **${i18n.t('telegram_source')}** ${getVietnameseSource(source)}
 
 ⏰ ${i18n.t('telegram_request_time')} ${new Date().toLocaleString('vi-VN')}
   `;
@@ -211,20 +209,20 @@ export const sendConsultationRequest = async (consultationData) => {
   };
 
   const telegramMessage = `
-💼 <b>${i18n.t('telegram_consultation_title')}</b>
+💼 **${i18n.t('telegram_consultation_title')}**
 
-👤 <b>${i18n.t('telegram_customer_info')}</b>
+👤 **${i18n.t('telegram_customer_info')}**
 • ${i18n.t('telegram_name')} ${name}
 • ${i18n.t('telegram_phone')} ${phone}
 • ${i18n.t('telegram_email')} ${email || i18n.t('telegram_no_email')}
 
-🔧 <b>${i18n.t('telegram_service_interest')}</b>
+🔧 **${i18n.t('telegram_service_interest')}**
 • ${i18n.t('telegram_service_type')} ${translateToVietnamese(serviceType) || i18n.t('telegram_rental_service')}
 
-📝 <b>${i18n.t('telegram_content')}</b>
+📝 **${i18n.t('telegram_content')}**
 ${translateToVietnamese(message) || i18n.t('telegram_default_consultation')}
 
-📍 <b>${i18n.t('telegram_source')}</b> ${getVietnameseSource(source)}
+📍 **${i18n.t('telegram_source')}** ${getVietnameseSource(source)}
 
 ⏰ ${i18n.t('telegram_request_time')} ${new Date().toLocaleString('vi-VN')}
   `;
@@ -248,7 +246,7 @@ export const sendTelegramNotification = async (title, content, type = 'info') =>
   };
 
   const message = `
-${icons[type]} <b>${title}</b>
+${icons[type]} **${title}**
 
 ${content}
 
@@ -264,25 +262,16 @@ ${content}
  * @returns {string} - Formatted phone number
  */
 export const formatPhoneNumber = (phone) => {
-  // Remove all non-digit characters
-  const cleaned = phone?.replace(/\D/g, '');
-  
-  // Format Vietnamese phone numbers
-//   if (cleaned.startsWith('84')) {
-//     return `+${cleaned}`;
-//   } else if (cleaned.startsWith('0')) {
-//     return `+84${cleaned.slice(1)}`;
-//   }
-  
+  // Simply return the phone as-is since server handles formatting
   return phone;
 };
 
 /**
- * Validate Telegram bot configuration
+ * Validate Telegram server configuration
  * @returns {boolean} - Configuration status
  */
 export const validateTelegramConfig = () => {
-  return !!(TELEGRAM_BOT_TOKEN && TELEGRAM_CHAT_ID);
+  return !!TELEGRAM_SERVER_URL;
 };
 
 export default {

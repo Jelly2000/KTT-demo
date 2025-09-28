@@ -17,12 +17,15 @@ export const RentModalProvider = ({ children }) => {
     const [selectedVehicle, setSelectedVehicle] = useState(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [showSuccessNotification, setShowSuccessNotification] = useState(false);
+    const [showErrorNotification, setShowErrorNotification] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
 
     const openRentModal = (vehicle) => {
         setSelectedVehicle(vehicle);
         setIsRentModalOpen(true);
         setShowSuccessNotification(false);
+        setShowErrorNotification(false);
+        setErrorMessage('');
     };
 
     const closeRentModal = () => {
@@ -30,6 +33,8 @@ export const RentModalProvider = ({ children }) => {
         setSelectedVehicle(null);
         setIsSubmitting(false);
         setShowSuccessNotification(false);
+        setShowErrorNotification(false);
+        setErrorMessage('');
     };
 
     const submitRentalRequest = async (formData) => {
@@ -72,22 +77,34 @@ export const RentModalProvider = ({ children }) => {
             const success = await sendCarRentalRequest(rentalData);
             
             if (success) {
-                // console.log('Rental request sent to Telegram successfully');
+                // Show success notification
+                setShowSuccessNotification(true);
+                setIsSubmitting(false);
+                
+                // Auto close after 5 seconds
+                setTimeout(() => {
+                    closeRentModal();
+                }, 5000);
             } else {
-                // console.log('Failed to send to Telegram, but form was processed');
+                // Show error notification
+                setShowErrorNotification(true);
+                setErrorMessage('Server error occurred. Please contact us directly.');
+                setIsSubmitting(false);
+                
+                // Auto close after 8 seconds
+                setTimeout(() => {
+                    setShowErrorNotification(false);
+                }, 8000);
             }
-            
-            // Show success notification
-            setShowSuccessNotification(true);
-            setIsSubmitting(false);
-            
-            // Auto close after 5 seconds
-            setTimeout(() => {
-                closeRentModal();
-            }, 5000);
         } catch (error) {
             setIsSubmitting(false);
-            setErrorMessage('Failed to submit rental request. Please try again.' + error.message);
+            setShowErrorNotification(true);
+            setErrorMessage('Network error occurred. Please try again or contact us directly.');
+            
+            // Auto close after 8 seconds
+            setTimeout(() => {
+                setShowErrorNotification(false);
+            }, 8000);
         }
     };
 
@@ -96,6 +113,7 @@ export const RentModalProvider = ({ children }) => {
         selectedVehicle,
         isSubmitting,
         showSuccessNotification,
+        showErrorNotification,
         openRentModal,
         closeRentModal,
         errorMessage,
