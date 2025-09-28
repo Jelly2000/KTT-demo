@@ -210,9 +210,9 @@ const RentCar = () => {
                     {range.label}
                   </option>
                 )) || [
-                  <option key="low" value="low">{t('under_1m')}</option>,
-                  <option key="mid" value="mid">{t('1m_to_2m')}</option>,
-                  <option key="high" value="high">{t('above_2m')}</option>
+                  <option key="low" value="low">{t('price_under_1m')}</option>,
+                  <option key="mid" value="mid">{t('price_1m_2m')}</option>,
+                  <option key="high" value="high">{t('price_over_3m')}</option>
                 ]}
               </select>
             </div>

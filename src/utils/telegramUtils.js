@@ -1,6 +1,7 @@
 /**
  * Telegram Bot utilities for sending user requests and notifications
  */
+import i18n from '../i18n.js';
 
 // Telegram Bot Configuration
 const TELEGRAM_BOT_TOKEN = import.meta.env.VITE_TELEGRAM_BOT_TOKEN || '';
@@ -115,27 +116,27 @@ export const sendCarRentalRequest = async (requestData) => {
 
 
   const message = `
-🚗 <b>YÊU CẦU THUÊ XE MỚI</b>
+🚗 <b>${i18n.t('telegram_rental_title')}</b>
 
-👤 <b>Thông tin khách hàng:</b>
-• Tên: ${customerName}
-• Số điện thoại: ${customerPhone}
-• Email: ${customerEmail || 'Không cung cấp'}
+👤 <b>${i18n.t('telegram_customer_info')}</b>
+• ${i18n.t('telegram_name')} ${customerName}
+• ${i18n.t('telegram_phone')} ${customerPhone}
+• ${i18n.t('telegram_email')} ${customerEmail || i18n.t('telegram_no_email')}
 
-🚙 <b>Thông tin xe:</b>
-• Xe: ${vehicleName}
-• Giá thuê: ${pricePerDay?.toLocaleString('vi-VN')}đ/ngày
+🚙 <b>${i18n.t('telegram_vehicle_info')}</b>
+• ${i18n.t('telegram_vehicle')} ${vehicleName}
+• ${i18n.t('telegram_price')} ${pricePerDay?.toLocaleString('vi-VN')}đ/ngày
 
-📅 <b>Thời gian thuê:</b>
-• Ngày nhận: ${startDate}
-• Ngày trả: ${endDate}
+📅 <b>${i18n.t('telegram_rental_period')}</b>
+• ${i18n.t('telegram_pickup_date')} ${startDate}
+• ${i18n.t('telegram_return_date')} ${endDate}
 • Số ngày: ${totalDays} ngày
 • Tổng chi phí dự kiến: ${estimatedCost?.toLocaleString('vi-VN')}đ
 
-📝 <b>Ghi chú:</b>
-${translateToVietnamese(additionalNotes) || 'Không có ghi chú thêm'}
+📝 <b>${i18n.t('telegram_additional_notes')}</b>
+${translateToVietnamese(additionalNotes) || i18n.t('telegram_default_consultation')}
 
-📍 <b>Nguồn:</b> ${getVietnameseSource(source)}
+📍 <b>${i18n.t('telegram_source')}</b> ${getVietnameseSource(source)}
 
 ⏰ Thời gian yêu cầu: ${new Date().toLocaleString('vi-VN')}
   `;
@@ -161,20 +162,20 @@ export const sendContactFormSubmission = async (contactData) => {
 
 
   const telegramMessage = `
-📞 <b>LIÊN HỆ MỚI TỪ WEBSITE</b>
+📞 <b>${i18n.t('telegram_contact_title')}</b>
 
-👤 <b>Thông tin khách hàng:</b>
-• Tên: ${name}
-• Số điện thoại: ${phone}
-• Email: ${email || 'Không cung cấp'}
+👤 <b>${i18n.t('telegram_customer_info')}</b>
+• ${i18n.t('telegram_name')} ${name}
+• ${i18n.t('telegram_phone')} ${phone}
+• ${i18n.t('telegram_email')} ${email || i18n.t('telegram_no_email')}
 
-📋 <b>Nội dung liên hệ:</b>
-• Chủ đề: ${translateToVietnamese(subject) || 'Không có chủ đề'}
-• Tin nhắn: ${translateToVietnamese(message)}
+📋 <b>${i18n.t('telegram_contact_content')}</b>
+• ${i18n.t('telegram_subject')} ${translateToVietnamese(subject) || i18n.t('telegram_no_subject')}
+• ${i18n.t('telegram_message')} ${translateToVietnamese(message)}
 
-📍 <b>Nguồn:</b> ${getVietnameseSource(source)}
+📍 <b>${i18n.t('telegram_source')}</b> ${getVietnameseSource(source)}
 
-⏰ Thời gian: ${new Date().toLocaleString('vi-VN')}
+⏰ ${i18n.t('telegram_request_time')} ${new Date().toLocaleString('vi-VN')}
   `;
 
   return await sendTelegramMessage(telegramMessage.trim());
@@ -210,22 +211,22 @@ export const sendConsultationRequest = async (consultationData) => {
   };
 
   const telegramMessage = `
-💼 <b>YÊU CẦU TƯ VẤN MỚI</b>
+💼 <b>${i18n.t('telegram_consultation_title')}</b>
 
-👤 <b>Thông tin khách hàng:</b>
-• Tên: ${name}
-• Số điện thoại: ${phone}
-• Email: ${email || 'Không cung cấp'}
+👤 <b>${i18n.t('telegram_customer_info')}</b>
+• ${i18n.t('telegram_name')} ${name}
+• ${i18n.t('telegram_phone')} ${phone}
+• ${i18n.t('telegram_email')} ${email || i18n.t('telegram_no_email')}
 
-🔧 <b>Dịch vụ quan tâm:</b>
-• Loại dịch vụ: ${translateToVietnamese(serviceType) || 'Thuê xe'}
+🔧 <b>${i18n.t('telegram_service_interest')}</b>
+• ${i18n.t('telegram_service_type')} ${translateToVietnamese(serviceType) || i18n.t('telegram_rental_service')}
 
-📝 <b>Nội dung:</b>
-${translateToVietnamese(message) || 'Khách hàng muốn được tư vấn thêm'}
+📝 <b>${i18n.t('telegram_content')}</b>
+${translateToVietnamese(message) || i18n.t('telegram_default_consultation')}
 
-📍 <b>Nguồn:</b> ${getVietnameseSource(source)}
+📍 <b>${i18n.t('telegram_source')}</b> ${getVietnameseSource(source)}
 
-⏰ Thời gian yêu cầu: ${new Date().toLocaleString('vi-VN')}
+⏰ ${i18n.t('telegram_request_time')} ${new Date().toLocaleString('vi-VN')}
   `;
 
   return await sendTelegramMessage(telegramMessage.trim());
