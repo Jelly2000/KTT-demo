@@ -194,8 +194,12 @@
         display: none;
     }
     
+    .logo-image {
+        height: 40px; /* Reduced from 80px to half */
+    }
+    
     .nav {
-        padding: 1rem;
+        padding: 0.5rem 1rem; /* Reduced padding by half */
     }
     
     .hamburger {

@@ -273,7 +273,16 @@
 }
 
 /* Responsive Design */
+@media (max-width: 1024px) {
+    .page-header {
+        padding: 70px 0 50px;
+    }
+}
+
 @media (max-width: 768px) {
+    .page-header {
+        padding: 60px 0 40px;
+    }
 
     .contact-info-section,
     .contact-form-section,

@@ -8,7 +8,7 @@
 .page-header {
   background: linear-gradient(135deg, var(--secondary-color) 0%, #2d2d2d 100%);
   color: white;
-  /* padding: 120px 0 80px; */
+  padding: 120px 0 80px;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -435,7 +435,17 @@
 }
 
 /* Responsive Design */
+@media (max-width: 1024px) {
+  .page-header {
+    padding: 70px 0 50px;
+  }
+}
+
 @media (max-width: 768px) {
+  .page-header {
+    padding: 60px 0 40px;
+  }
+
   .documents-section,
   .deposit-section,
   .timing-section,
@@ -480,7 +490,7 @@
 
 @media (max-width: 480px) {
   .page-header {
-    padding: 100px 0 60px;
+    padding: 50px 0 30px;
   }
 
   .section-title {

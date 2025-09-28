@@ -256,7 +256,19 @@
 }
 
 /* Mobile Responsive */
+@media (max-width: 1024px) {
+    .vehicle-detail-section {
+        padding: 50px 0;
+        margin-top: 50px;
+    }
+}
+
 @media (max-width: 768px) {
+    .vehicle-detail-section {
+        padding: 40px 0;
+        margin-top: 40px;
+    }
+
     .vehicle-detail-grid {
         grid-template-columns: 1fr;
         gap: 2rem;

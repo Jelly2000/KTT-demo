@@ -141,9 +141,15 @@
 }
 
 /* Responsive Design */
+@media (max-width: 1024px) {
+    .hero {
+        padding: 0px 0 35px; /* Adjusted for mobile/tablet header */
+    }
+}
+
 @media (max-width: 768px) {
     .hero {
-        padding: 60px 0 40px;
+        padding: 40px 0 30px; /* Further reduced for smaller mobile screens */
     }
     
     .content-section {

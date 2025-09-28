@@ -122,7 +122,17 @@
     }
 
     /* Responsive Design */
+    @media (max-width: 1024px) {
+        .etc-payment-page {
+            padding-top: 50px;
+        }
+    }
+
     @media (max-width: 768px) {
+        .etc-payment-page {
+            padding-top: 40px;
+        }
+
         .coming-soon-content {
             margin: 0 20px;
             padding: 2rem 1.5rem;
