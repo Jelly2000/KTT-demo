@@ -11,12 +11,12 @@ const ETCPayment = () => {
 
   return (
     <div className="etc-payment-page">
-      <SEO 
+      <SEO
         titleKey="seo_etc_title"
         descriptionKey="seo_etc_description"
         canonicalUrl="https://ktt-rentcar.netlify.app/nap-phi-etc"
       />
-      
+
       {/* Coming Soon Section */}
       <section className="coming-soon-section">
         <div className="container" style={{ marginTop: '50px' }}>
@@ -30,12 +30,13 @@ const ETCPayment = () => {
               <p>{t('etc_description')}</p>
             </div>
             <div className="coming-soon-actions">
-              <Link to="/contact" className="btn btn-primary">
-                {t('contact_us')}
-              </Link>
               <Link to="/" className="btn btn-secondary">
                 {t('back_to_home')}
               </Link>
+              <Link to="/contact" className="btn btn-primary">
+                {t('contact_us')}
+              </Link>
+
             </div>
           </div>
         </div>

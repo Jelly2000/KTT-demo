@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useRentModal } from './RentModalContext';
-import DatePicker from '../DatePicker';
 import './RentCarModal.css';
 
 const RentCarModal = () => {
@@ -68,8 +67,8 @@ const RentCarModal = () => {
         const formData = new FormData(e.target);
         const rentalData = {
             vehicle: vehicle,
-            pickupDate: pickupDate ? pickupDate.toISOString().split('T')[0] : null,
-            returnDate: returnDate ? returnDate.toISOString().split('T')[0] : null,
+            pickupDate: pickupDate || null,
+            returnDate: returnDate || null,
             fullName: formData.get('fullName'),
             phone: formData.get('phone'),
             email: formData.get('email'),
@@ -148,31 +147,32 @@ const RentCarModal = () => {
                             <h4>{t('rental_information')}</h4>
                             <div className="form-group">
                                 <label htmlFor="pickup-date">
-                                    {t('pickup_date')}
+                                    {t('pickup_date')} ({t('date_format_hint')})
                                 </label>
-                                <DatePicker
+                                <input
+                                    type="date"
                                     id="pickup-date"
                                     name="pickupDate"
-                                    value={pickupDate}
+                                    value={pickupDate || ''}
                                     onChange={(e) => setPickupDate(e.target.value)}
-                                    placeholder="DD/MM/YYYY"
-                                    minDate={new Date()}
-                                    maxDate={returnDate || undefined}
+                                    min={new Date().toISOString().split('T')[0]}
                                     required
+                                    className="form-control date-input"
                                 />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="return-date">
-                                    {t('rental_return_date')}
+                                    {t('rental_return_date')} ({t('date_format_hint')})
                                 </label>
-                                <DatePicker
+                                <input
+                                    type="date"
                                     id="return-date"
                                     name="returnDate"
-                                    value={returnDate}
+                                    value={returnDate || ''}
                                     onChange={(e) => setReturnDate(e.target.value)}
-                                    placeholder="DD/MM/YYYY"
-                                    minDate={pickupDate || new Date()}
+                                    min={pickupDate || new Date().toISOString().split('T')[0]}
                                     required
+                                    className="form-control date-input"
                                 />
                             </div>
                         </div>

@@ -6,7 +6,7 @@
 
 /* Page Header */
 .page-header {
-    background: linear-gradient(135deg, var(--secondary-color) 0%, #2d2d2d 100%);
+    background: linear-gradient(135deg, #a3954b 0%, #2d2d2d 100%);
     color: white;
     padding: 120px 0 80px;
     text-align: center;

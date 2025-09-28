@@ -11,12 +11,12 @@ const PVIInsurance = () => {
 
   return (
     <div className="pvi-insurance-page">
-      <SEO 
+      <SEO
         titleKey="seo_pvi_title"
         descriptionKey="seo_pvi_description"
         canonicalUrl="https://ktt-rentcar.netlify.app/bao-hiem-pvi"
       />
-      
+
       {/* Coming Soon Section */}
       <section className="coming-soon-section">
         <div className="container" style={{ marginTop: '50px' }}>
@@ -30,12 +30,13 @@ const PVIInsurance = () => {
               <p>{t('pvi_description')}</p>
             </div>
             <div className="coming-soon-actions">
-              <Link to="/contact" className="btn btn-primary">
-                {t('contact_us')}
-              </Link>
               <Link to="/" className="btn btn-secondary">
                 {t('back_to_home')}
               </Link>
+              <Link to="/contact" className="btn btn-primary">
+                {t('contact_us')}
+              </Link>
+
             </div>
           </div>
         </div>
