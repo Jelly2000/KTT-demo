@@ -27,7 +27,9 @@ const SEO = ({
   const baseUrl = 'https://kttcar.com';
   const currentPath = window.location.pathname;
   const currentUrl = `${baseUrl}${currentPath}`;
-  const defaultImage = `${baseUrl}/logo.webp`;
+  // Use absolute URL for better social sharing compatibility
+  const defaultImage = 'https://kttcar.com/logo.webp';
+  const socialImage = ogImage || defaultImage;
 
   return (
     <Helmet>
@@ -53,16 +55,23 @@ const SEO = ({
       <meta property="og:url" content={canonicalUrl || currentUrl} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta property="og:image" content={ogImage || defaultImage} />
+      <meta property="og:image" content={socialImage} />
+      <meta property="og:image:secure_url" content={socialImage} />
+      <meta property="og:image:width" content="786" />
+      <meta property="og:image:height" content="678" />
+      <meta property="og:image:type" content="image/webp" />
+      <meta property="og:image:alt" content={`${title} - KTT Car`} />
       <meta property="og:site_name" content="KTT Car" />
       <meta property="og:locale" content={i18n.language === 'vi' ? 'vi_VN' : 'en_US'} />
       
       {/* Twitter */}
-      <meta property="twitter:card" content="summary_large_image" />
-      <meta property="twitter:url" content={canonicalUrl || currentUrl} />
+      <meta name="twitter:card" content="summary_large_image" />
       <meta property="twitter:title" content={title} />
       <meta property="twitter:description" content={description} />
-      <meta property="twitter:image" content={ogImage || defaultImage} />
+      <meta property="twitter:image" content={socialImage} />
+      <meta property="twitter:image:alt" content={`${title} - KTT Car`} />
+      
+
       
       {/* Language alternatives */}
       <link rel="alternate" hrefLang="vi" href={currentUrl.replace('/en/', '/').replace('?lang=en', '')} />

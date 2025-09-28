@@ -1,0 +1,41 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+  
+  <!-- Overlay -->
+  <rect width="1200" height="630" fill="rgba(0,0,0,0.1)"/>
+  
+  <!-- Car Icon -->
+  <text x="1050" y="550" font-family="Arial, sans-serif" font-size="120" fill="rgba(255,255,255,0.3)">🚗</text>
+  
+  <!-- Main Content -->
+  <g transform="translate(600, 315)">
+    <!-- Logo -->
+    <text x="0" y="-150" text-anchor="middle" font-family="Arial, sans-serif" font-size="54" font-weight="bold" fill="white" filter="url(#shadow)">🚗 KTT Car</text>
+    
+    <!-- Title -->
+    <text x="0" y="-80" text-anchor="middle" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="white" filter="url(#shadow)">THUÊ XE TỰ LÁI TP.HCM</text>
+    
+    <!-- Subtitle -->
+    <text x="0" y="-20" text-anchor="middle" font-family="Arial, sans-serif" font-size="32" fill="rgba(255,255,255,0.9)" filter="url(#shadow)">Giá rẻ • Uy tín • Giao tận nơi</text>
+    
+    <!-- Features -->
+    <text x="-120" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" fill="rgba(255,255,255,0.8)">Hyundai</text>
+    <text x="0" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" fill="rgba(255,255,255,0.8)">Kia</text>
+    <text x="120" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" fill="rgba(255,255,255,0.8)">Mercedes</text>
+    
+    <!-- Call to action -->
+    <text x="0" y="90" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#4CAF50" font-weight="bold">Từ 800k/ngày - Đặt ngay!</text>
+  </g>
+</svg>

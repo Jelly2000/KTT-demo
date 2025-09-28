@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate OG Image</title>
+    <style>
+        canvas {
+            border: 1px solid #ccc;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Generate Social Sharing Image</h1>
+    <canvas id="canvas" width="1200" height="630"></canvas>
+    <br>
+    <button onclick="downloadImage()">Download PNG</button>
+    
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        function createOGImage() {
+            // Create gradient background
+            const gradient = ctx.createLinearGradient(0, 0, 1200, 630);
+            gradient.addColorStop(0, '#667eea');
+            gradient.addColorStop(1, '#764ba2');
+            
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 1200, 630);
+            
+            // Add main text
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 72px Arial, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('KTT CAR', 600, 200);
+            
+            // Add subtitle
+            ctx.font = 'bold 48px Arial, sans-serif';
+            ctx.fillText('THUÊ XE TỰ LÁI TP.HCM', 600, 280);
+            
+            // Add features
+            ctx.font = '32px Arial, sans-serif';
+            ctx.fillText('Giá rẻ • Uy tín • Giao tận nơi', 600, 350);
+            
+            // Add car icons (using text emojis)
+            ctx.font = '60px Arial, sans-serif';
+            ctx.fillText('🚗 🚙 🚕', 600, 430);
+            
+            // Add pricing
+            ctx.font = 'bold 36px Arial, sans-serif';
+            ctx.fillStyle = '#FFD700';
+            ctx.fillText('Từ 800k/ngày - Đặt ngay!', 600, 500);
+            
+            // Add brands
+            ctx.fillStyle = '#ffffff';
+            ctx.font = '24px Arial, sans-serif';
+            ctx.fillText('Hyundai • Kia • Mercedes • MG • Mitsubishi', 600, 560);
+        }
+        
+        function downloadImage() {
+            const link = document.createElement('a');
+            link.download = 'og-image.png';
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+        
+        // Generate image on load
+        createOGImage();
+    </script>
+</body>
+</html>
