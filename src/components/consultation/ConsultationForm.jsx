@@ -43,7 +43,7 @@ const ConsultationForm = ({ heading = 'consultation_title', subHeading = 'consul
       const success = await sendConsultationRequest(consultationData);
       
       if (success) {
-        console.log('Consultation request sent to Telegram successfully');
+        // console.log('Consultation request sent to Telegram successfully');
       } else {
         console.warn('Failed to send to Telegram, but form was processed');
       }

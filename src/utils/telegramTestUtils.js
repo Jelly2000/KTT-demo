@@ -14,10 +14,10 @@ import {
 // Test configuration
 export const testTelegramConfig = () => {
   const isValid = validateTelegramConfig();
-  console.log('Telegram Configuration:', isValid ? '✅ Valid' : '❌ Invalid');
+  // console.log('Telegram Configuration:', isValid ? '✅ Valid' : '❌ Invalid');
   
   if (!isValid) {
-    console.log('Make sure you have set VITE_TELEGRAM_BOT_TOKEN and VITE_TELEGRAM_CHAT_ID in your .env file');
+    // console.log('Make sure you have set VITE_TELEGRAM_BOT_TOKEN and VITE_TELEGRAM_CHAT_ID in your .env file');
   }
   
   return isValid;
@@ -27,14 +27,14 @@ export const testTelegramConfig = () => {
 export const testSimpleNotification = async () => {
   if (!testTelegramConfig()) return;
   
-  console.log('🧪 Testing simple notification...');
+  // console.log('🧪 Testing simple notification...');
   const success = await sendTelegramNotification(
     'Thông Báo Test',
     'Đây là tin nhắn test từ website của bạn. Nếu bạn nhận được tin nhắn này, tích hợp Telegram đang hoạt động tốt! 🎉',
     'success'
   );
   
-  console.log('Test result:', success ? '✅ Success' : '❌ Failed');
+  // console.log('Test result:', success ? '✅ Success' : '❌ Failed');
   return success;
 };
 
@@ -42,7 +42,7 @@ export const testSimpleNotification = async () => {
 export const testCarRentalRequest = async () => {
   if (!testTelegramConfig()) return;
   
-  console.log('🧪 Testing car rental request...');
+  // console.log('🧪 Testing car rental request...');
   const testData = {
     vehicleName: 'Hyundai Accent (Test)',
     vehicleId: 1,
@@ -60,7 +60,7 @@ export const testCarRentalRequest = async () => {
   };
   
   const success = await sendCarRentalRequest(testData);
-  console.log('Test result:', success ? '✅ Success' : '❌ Failed');
+  // console.log('Test result:', success ? '✅ Success' : '❌ Failed');
   return success;
 };
 
@@ -68,7 +68,7 @@ export const testCarRentalRequest = async () => {
 export const testConsultationRequest = async () => {
   if (!testTelegramConfig()) return;
   
-  console.log('🧪 Testing consultation request...');
+  // console.log('🧪 Testing consultation request...');
   const testData = {
     name: 'Trần Thị Test',
     phone: '0987654321',
@@ -80,7 +80,7 @@ export const testConsultationRequest = async () => {
   };
   
   const success = await sendConsultationRequest(testData);
-  console.log('Test result:', success ? '✅ Success' : '❌ Failed');
+  // console.log('Test result:', success ? '✅ Success' : '❌ Failed');
   return success;
 };
 
@@ -88,7 +88,7 @@ export const testConsultationRequest = async () => {
 export const testContactFormSubmission = async () => {
   if (!testTelegramConfig()) return;
   
-  console.log('🧪 Testing contact form submission...');
+  // console.log('🧪 Testing contact form submission...');
   const testData = {
     name: 'Lê Văn Test',
     phone: '0912345678',
@@ -99,13 +99,13 @@ export const testContactFormSubmission = async () => {
   };
   
   const success = await sendContactFormSubmission(testData);
-  console.log('Test result:', success ? '✅ Success' : '❌ Failed');
+  // console.log('Test result:', success ? '✅ Success' : '❌ Failed');
   return success;
 };
 
 // Run all tests
 export const runAllTests = async () => {
-  console.log('🚀 Running all Telegram integration tests...\n');
+  // console.log('🚀 Running all Telegram integration tests...\n');
   
   const results = {
     config: testTelegramConfig(),
@@ -115,29 +115,29 @@ export const runAllTests = async () => {
     contact: await testContactFormSubmission()
   };
   
-  console.log('\n📊 Test Results Summary:');
-  console.log('Configuration:', results.config ? '✅' : '❌');
-  console.log('Simple Notification:', results.notification ? '✅' : '❌');
-  console.log('Car Rental Request:', results.rental ? '✅' : '❌');
-  console.log('Consultation Request:', results.consultation ? '✅' : '❌');
-  console.log('Contact Form:', results.contact ? '✅' : '❌');
+  // console.log('\n📊 Test Results Summary:');
+  // console.log('Configuration:', results.config ? '✅' : '❌');
+  // console.log('Simple Notification:', results.notification ? '✅' : '❌');
+  // console.log('Car Rental Request:', results.rental ? '✅' : '❌');
+  // console.log('Consultation Request:', results.consultation ? '✅' : '❌');
+  // console.log('Contact Form:', results.contact ? '✅' : '❌');
   
   const passed = Object.values(results).filter(Boolean).length;
   const total = Object.keys(results).length;
   
-  console.log(`\n🎯 Overall: ${passed}/${total} tests passed`);
+  // console.log(`\n🎯 Overall: ${passed}/${total} tests passed`);
   
   if (passed === total) {
-    console.log('🎉 All tests passed! Telegram integration is working perfectly.');
+    // console.log('🎉 All tests passed! Telegram integration is working perfectly.');
   } else {
-    console.log('⚠️ Some tests failed. Check your configuration and try again.');
+    // console.log('⚠️ Some tests failed. Check your configuration and try again.');
   }
   
   return results;
 };
 
 // Usage instructions
-console.log(`
+// console.log(`
 🤖 Telegram Bot Test Utilities
 
 To test your Telegram integration, run these commands in the browser console:

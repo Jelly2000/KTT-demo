@@ -72,9 +72,9 @@ export const RentModalProvider = ({ children }) => {
             const success = await sendCarRentalRequest(rentalData);
             
             if (success) {
-                console.log('Rental request sent to Telegram successfully');
+                // console.log('Rental request sent to Telegram successfully');
             } else {
-                console.log('Failed to send to Telegram, but form was processed');
+                // console.log('Failed to send to Telegram, but form was processed');
             }
             
             // Show success notification

@@ -67,5 +67,5 @@ const html = `<!DOCTYPE html>
 </html>`;
 
 fs.writeFileSync('social-image-template.html', html);
-console.log('Created social-image-template.html');
-console.log('Open this file in browser and take a 1200x630 screenshot, or use a headless browser to generate PNG');
+// console.log('Created social-image-template.html');
+// console.log('Open this file in browser and take a 1200x630 screenshot, or use a headless browser to generate PNG');

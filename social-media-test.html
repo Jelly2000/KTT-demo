@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Social Media Image Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test-result { padding: 10px; margin: 10px 0; border: 1px solid #ccc; }
+        .success { background: #d4edda; border-color: #c3e6cb; }
+        .error { background: #f8d7da; border-color: #f5c6cb; }
+        img { max-width: 200px; }
+    </style>
+</head>
+<body>
+    <h1>Social Media Image Load Test</h1>
+    
+    <div class="test-result">
+        <h3>Testing: logo.webp</h3>
+        <img src="https://ktt-rentcar.netlify.app/logo.webp" alt="KTT Car Logo" 
+             onload="this.parentNode.className='test-result success'" 
+             onerror="this.parentNode.className='test-result error'; this.nextSibling.style.display='block'">
+        <div style="display:none;">❌ Failed to load logo.webp</div>
+    </div>
+
+    <div class="test-result">
+        <h3>Current Meta Tags:</h3>
+        <pre>
+&lt;meta property="og:image" content="https://ktt-rentcar.netlify.app/logo.webp"&gt;
+&lt;meta property="og:image:type" content="image/webp"&gt;
+&lt;meta property="og:image:width" content="400"&gt;
+&lt;meta property="og:image:height" content="400"&gt;
+&lt;meta name="twitter:image" content="https://ktt-rentcar.netlify.app/logo.webp"&gt;
+        </pre>
+    </div>
+
+    <div class="test-result">
+        <h3>Benefits of This Fix:</h3>
+        <ul>
+            <li>✅ Using existing logo.webp (smaller file size)</li>
+            <li>✅ No more CSP violations</li>
+            <li>✅ All URLs point to correct Netlify domain</li>
+            <li>✅ WebP format is widely supported</li>
+            <li>✅ Proper dimensions for social media</li>
+        </ul>
+    </div>
+
+    <div class="test-result">
+        <h3>Next Steps:</h3>
+        <ol>
+            <li>Deploy this build to Netlify</li>
+            <li>Test with Facebook Debugger: <a href="https://developers.facebook.com/tools/debug/" target="_blank">Open</a></li>
+            <li>Test with Twitter Card Validator: <a href="https://cards-dev.twitter.com/validator" target="_blank">Open</a></li>
+            <li>Clear browser cache if needed</li>
+        </ol>
+    </div>
+</body>
+</html>

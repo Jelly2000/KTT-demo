@@ -24,11 +24,11 @@ const SEO = ({
 
   const title = customTitle || (titleKey ? replaceVariables(t(titleKey), variables) : 'KTT Car - Dịch vụ cho thuê xe hàng đầu Việt Nam');
   const description = customDescription || (descriptionKey ? replaceVariables(t(descriptionKey), variables) : t('hero_subtitle'));
-  const baseUrl = 'https://kttcar.com';
+  const baseUrl = 'https://ktt-rentcar.netlify.app';
   const currentPath = window.location.pathname;
   const currentUrl = `${baseUrl}${currentPath}`;
   // Use absolute URL for better social sharing compatibility
-  const defaultImage = 'https://kttcar.com/logo.webp';
+  const defaultImage = 'https://ktt-rentcar.netlify.app/social-preview.jpg';
   const socialImage = ogImage || defaultImage;
 
   return (

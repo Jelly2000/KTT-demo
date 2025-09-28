@@ -82,7 +82,7 @@ const RentCarModal = () => {
     if (!isRentModalOpen || !selectedVehicle) return null;
 
     // Debug logging
-    console.log('selectedVehicle:', selectedVehicle);
+    // console.log('selectedVehicle:', selectedVehicle);
 
     // Ensure vehicle object has consistent structure
     const vehicle = {
