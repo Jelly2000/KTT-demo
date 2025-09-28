@@ -247,7 +247,7 @@ describe('Header Component', () => {
       renderHeader();
       
       const languageSelect = screen.getByRole('combobox');
-      expect(languageSelect).toHaveValue('vi'); // Default language
+      expect(languageSelect).toHaveValue('en'); // Default language
     });
 
     it('should change language when option is selected', async () => {

@@ -50,7 +50,6 @@ const Home = () => {
         titleKey="seo_home_title"
         descriptionKey="seo_home_description"
         structuredData={structuredData}
-        canonicalUrl="https://kttcar.com/"
       />
       
       {/* Hero Section */}
@@ -132,7 +131,7 @@ const Home = () => {
                 id={vehicle.id}
                 image={vehicle.image}
                 vehicleName={vehicle.name}
-                price={`${formatPrice(vehicle.pricePerDay)}/ngày`}
+                price={`${formatPrice(vehicle.pricePerDay)}${t('per_day')}`}
                 features={vehicle.features}
                 rating={vehicle.rating}
                 availability={vehicle.availability}

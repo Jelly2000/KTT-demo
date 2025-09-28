@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useRentModal } from '../../components/RentCarModal';
-import { getVehicleById, getVehicleBySlug } from '../../utils/vehicleUtils';
+import { getVehicleById } from '../../utils/vehicleUtils';
 import SEO from '../../components/SEO/SEO';
 import './VehicleDetail.css';
 
 const VehicleDetail = () => {
-    const { slug } = useParams();
+    const { id } = useParams();
     const navigate = useNavigate();
     const { t, i18n } = useTranslation();
     const { openRentModal } = useRentModal();
@@ -17,12 +17,12 @@ const VehicleDetail = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const foundVehicle = getVehicleBySlug(slug, i18n.language);
+        const foundVehicle = getVehicleById(parseInt(id), i18n.language);
         if (foundVehicle) {
             setVehicle(foundVehicle);
         }
         setLoading(false);
-    }, [slug, i18n.language]);
+    }, [id, i18n.language]);
 
     // Keyboard navigation for modal
     useEffect(() => {
@@ -174,7 +174,6 @@ const VehicleDetail = () => {
                 structuredData={structuredData}
                 ogImage={vehicle.image}
                 ogType="product"
-                canonicalUrl={`https://kttcar.com/thue-xe/${slug}`}
             />
             
             {/* Vehicle Details Section - matching demo structure */}
@@ -266,7 +265,7 @@ const VehicleDetail = () => {
                         <div className="vehicle-info">
                             <div className="vehicle-header">
                                 <h2 className="vehicle-title" id="vehicle-title">{vehicle.name}</h2>
-                                <div className="vehicle-price" id="vehicle-price">{formatPrice(vehicle.pricePerDay)}/ngày</div>
+                                <div className="vehicle-price" id="vehicle-price">{formatPrice(vehicle.pricePerDay)}{t('per_day')}</div>
                                 <div className="vehicle-rating">
                                     <span className="stars">⭐⭐⭐⭐⭐</span>
                                     <span className="rating-text">

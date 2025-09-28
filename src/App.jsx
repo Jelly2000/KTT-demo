@@ -4,6 +4,7 @@ import { HelmetProvider } from 'react-helmet-async'
 import Header from './components/header/Header'
 import Footer from './components/Footer/Footer'
 import FloatingContacts from './components/FloatingContacts/FloatingContacts'
+import ScrollToTop from './components/ScrollToTop/ScrollToTop'
 import RentCarModal, { RentModalProvider } from './components/RentCarModal'
 import Home from './pages/home/Home'
 import RentCar from './pages/rent-car/RentCar'
@@ -20,6 +21,7 @@ function App() {
       <Router>
         <RentModalProvider>
           <div className="app">
+            <ScrollToTop />
             <Header />
             <main className="main-content">
               <Routes>

@@ -26,3 +26,6 @@ demo_UI
 
 # secrets
 .env
+
+# docs
+*.md

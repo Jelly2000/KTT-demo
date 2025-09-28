@@ -120,7 +120,6 @@ const RentCar = () => {
         titleKey="seo_rentcar_title"
         descriptionKey="seo_rentcar_description"
         structuredData={structuredData}
-        canonicalUrl="https://kttcar.com/thue-xe"
       />
       
       {/* Page Header */}
@@ -233,7 +232,7 @@ const RentCar = () => {
                   id={vehicle.id}
                   image={vehicle.image}
                   vehicleName={vehicle.name}
-                  price={`${formatPrice(vehicle.pricePerDay)}/ngày`}
+                  price={`${formatPrice(vehicle.pricePerDay)}${t('per_day')}`}
                   features={vehicle.features}
                   rating={vehicle.rating}
                   availability={vehicle.availability}
