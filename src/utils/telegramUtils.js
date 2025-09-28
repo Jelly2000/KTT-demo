@@ -2,9 +2,20 @@
  * Telegram Bot utilities for sending user requests and notifications
  */
 import i18n from '../i18n.js';
+import viTranslations from '../locales/vi.json';
 
 // Server Configuration
 const TELEGRAM_SERVER_URL = 'https://kttnotifyserver.netlify.app';
+
+/**
+ * Get Vietnamese translation for Telegram messages
+ * Always returns Vietnamese text regardless of current language setting
+ * @param {string} key - Translation key
+ * @returns {string} - Vietnamese translation
+ */
+const getVietnameseText = (key) => {
+  return viTranslations[key] || key;
+};
 
 /**
  * Convert English source text to Vietnamese
@@ -114,27 +125,27 @@ export const sendCarRentalRequest = async (requestData) => {
 
 
   const message = `
-🚗 **${i18n.t('telegram_rental_title')}**
+🚗 **${getVietnameseText('telegram_rental_title')}**
 
-👤 **${i18n.t('telegram_customer_info')}**
-• ${i18n.t('telegram_name')} ${customerName}
-• ${i18n.t('telegram_phone')} ${customerPhone}
-• ${i18n.t('telegram_email')} ${customerEmail || i18n.t('telegram_no_email')}
+👤 **${getVietnameseText('telegram_customer_info')}**
+• ${getVietnameseText('telegram_name')} ${customerName}
+• ${getVietnameseText('telegram_phone')} ${customerPhone}
+• ${getVietnameseText('telegram_email')} ${customerEmail || getVietnameseText('telegram_no_email')}
 
-🚙 **${i18n.t('telegram_vehicle_info')}**
-• ${i18n.t('telegram_vehicle')} ${vehicleName}
-• ${i18n.t('telegram_price')} ${pricePerDay?.toLocaleString('vi-VN')}đ/ngày
+🚙 **${getVietnameseText('telegram_vehicle_info')}**
+• ${getVietnameseText('telegram_vehicle')} ${vehicleName}
+• ${getVietnameseText('telegram_price')} ${pricePerDay?.toLocaleString('vi-VN')}đ/ngày
 
-📅 **${i18n.t('telegram_rental_period')}**
-• ${i18n.t('telegram_pickup_date')} ${startDate}
-• ${i18n.t('telegram_return_date')} ${endDate}
+📅 **${getVietnameseText('telegram_rental_period')}**
+• ${getVietnameseText('telegram_pickup_date')} ${startDate}
+• ${getVietnameseText('telegram_return_date')} ${endDate}
 • Số ngày: ${totalDays} ngày
 • Tổng chi phí dự kiến: ${estimatedCost?.toLocaleString('vi-VN')}đ
 
-📝 **${i18n.t('telegram_additional_notes')}**
-${translateToVietnamese(additionalNotes) || i18n.t('telegram_default_consultation')}
+📝 **${getVietnameseText('telegram_additional_notes')}**
+${translateToVietnamese(additionalNotes) || getVietnameseText('telegram_default_consultation')}
 
-📍 **${i18n.t('telegram_source')}** ${getVietnameseSource(source)}
+📍 **${getVietnameseText('telegram_source')}** ${getVietnameseSource(source)}
 
 ⏰ Thời gian yêu cầu: ${new Date().toLocaleString('vi-VN')}
   `;
@@ -160,20 +171,20 @@ export const sendContactFormSubmission = async (contactData) => {
 
 
   const telegramMessage = `
-📞 **${i18n.t('telegram_contact_title')}**
+📞 **${getVietnameseText('telegram_contact_title')}**
 
-👤 **${i18n.t('telegram_customer_info')}**
-• ${i18n.t('telegram_name')} ${name}
-• ${i18n.t('telegram_phone')} ${phone}
-• ${i18n.t('telegram_email')} ${email || i18n.t('telegram_no_email')}
+👤 **${getVietnameseText('telegram_customer_info')}**
+• ${getVietnameseText('telegram_name')} ${name}
+• ${getVietnameseText('telegram_phone')} ${phone}
+• ${getVietnameseText('telegram_email')} ${email || getVietnameseText('telegram_no_email')}
 
-📋 **${i18n.t('telegram_contact_content')}**
-• ${i18n.t('telegram_subject')} ${translateToVietnamese(subject) || i18n.t('telegram_no_subject')}
-• ${i18n.t('telegram_message')} ${translateToVietnamese(message)}
+📋 **${getVietnameseText('telegram_contact_content')}**
+• ${getVietnameseText('telegram_subject')} ${translateToVietnamese(subject) || getVietnameseText('telegram_no_subject')}
+• ${getVietnameseText('telegram_message')} ${translateToVietnamese(message)}
 
-📍 **${i18n.t('telegram_source')}** ${getVietnameseSource(source)}
+📍 **${getVietnameseText('telegram_source')}** ${getVietnameseSource(source)}
 
-⏰ ${i18n.t('telegram_request_time')} ${new Date().toLocaleString('vi-VN')}
+⏰ ${getVietnameseText('telegram_request_time')} ${new Date().toLocaleString('vi-VN')}
   `;
 
   return await sendTelegramMessage(telegramMessage.trim());
@@ -209,22 +220,22 @@ export const sendConsultationRequest = async (consultationData) => {
   };
 
   const telegramMessage = `
-💼 **${i18n.t('telegram_consultation_title')}**
+💼 **${getVietnameseText('telegram_consultation_title')}**
 
-👤 **${i18n.t('telegram_customer_info')}**
-• ${i18n.t('telegram_name')} ${name}
-• ${i18n.t('telegram_phone')} ${phone}
-• ${i18n.t('telegram_email')} ${email || i18n.t('telegram_no_email')}
+👤 **${getVietnameseText('telegram_customer_info')}**
+• ${getVietnameseText('telegram_name')} ${name}
+• ${getVietnameseText('telegram_phone')} ${phone}
+• ${getVietnameseText('telegram_email')} ${email || getVietnameseText('telegram_no_email')}
 
-🔧 **${i18n.t('telegram_service_interest')}**
-• ${i18n.t('telegram_service_type')} ${translateToVietnamese(serviceType) || i18n.t('telegram_rental_service')}
+🔧 **${getVietnameseText('telegram_service_interest')}**
+• ${getVietnameseText('telegram_service_type')} ${translateToVietnamese(serviceType) || getVietnameseText('telegram_rental_service')}
 
-📝 **${i18n.t('telegram_content')}**
-${translateToVietnamese(message) || i18n.t('telegram_default_consultation')}
+📝 **${getVietnameseText('telegram_content')}**
+${translateToVietnamese(message) || getVietnameseText('telegram_default_consultation')}
 
-📍 **${i18n.t('telegram_source')}** ${getVietnameseSource(source)}
+📍 **${getVietnameseText('telegram_source')}** ${getVietnameseSource(source)}
 
-⏰ ${i18n.t('telegram_request_time')} ${new Date().toLocaleString('vi-VN')}
+⏰ ${getVietnameseText('telegram_request_time')} ${new Date().toLocaleString('vi-VN')}
   `;
 
   return await sendTelegramMessage(telegramMessage.trim());
