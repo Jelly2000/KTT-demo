@@ -245,6 +245,7 @@
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -255,6 +256,7 @@
         opacity: 0;
         transform: translateY(50px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -267,44 +269,44 @@
         max-height: 95vh;
         margin: 0.5rem;
     }
-    
+
     .rent-modal-header,
     .rent-modal-body {
         padding: 1.5rem;
     }
-    
+
     .rent-modal-footer {
         padding: 1.5rem;
     }
-    
+
     .rent-modal-header h2 {
         font-size: 1.5rem;
     }
-    
+
     .vehicle-summary {
         flex-direction: column;
         text-align: center;
     }
-    
+
     .summary-image {
         width: 120px;
         height: 90px;
         align-self: center;
     }
-    
+
     .form-row {
         grid-template-columns: 1fr;
     }
-    
+
     .rent-modal-footer {
         flex-direction: column;
     }
-    
+
     .form-actions {
         flex-direction: column;
         gap: 0.75rem;
     }
-    
+
     .reset-btn,
     .submit-btn {
         width: 100%;
@@ -315,14 +317,14 @@
     .rent-modal {
         padding: 0.5rem;
     }
-    
+
     .rent-modal-header,
     .rent-modal-body,
     .rent-modal-footer,
     .form-section {
         padding: 1rem;
     }
-    
+
     .rent-modal-header h2 {
         font-size: 1.3rem;
     }
@@ -362,8 +364,13 @@
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 /* Success Notification */
@@ -424,9 +431,11 @@
         transform: scale(0.8);
         opacity: 0;
     }
+
     50% {
         transform: scale(1.1);
     }
+
     100% {
         transform: scale(1);
         opacity: 1;
@@ -458,27 +467,27 @@
     .success-notification {
         padding: 1.5rem;
     }
-    
+
     .success-icon {
         width: 60px;
         height: 60px;
         font-size: 2rem;
         margin-bottom: 1rem;
     }
-    
+
     .success-notification h3 {
         font-size: 1.3rem;
     }
-    
+
     .success-notification p {
         font-size: 1rem;
     }
-    
+
     .loading-spinner {
         width: 50px;
         height: 50px;
     }
-    
+
     .loading-text {
         font-size: 1rem;
     }
@@ -779,13 +788,24 @@
 }
 
 @keyframes errorShake {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateX(0);
     }
-    10%, 30%, 50%, 70%, 90% {
+
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
         transform: translateX(-5px);
     }
-    20%, 40%, 60%, 80% {
+
+    20%,
+    40%,
+    60%,
+    80% {
         transform: translateX(5px);
     }
 }
@@ -801,5 +821,10 @@
 }
 
 [data-theme="dark"] .error-notification .error-contact-info p {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .rent-modal-close:hover {
+    background-color: var(--resetbtn-background-color);
     color: var(--text-color);
 }

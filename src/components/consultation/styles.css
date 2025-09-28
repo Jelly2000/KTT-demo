@@ -175,7 +175,7 @@
 }
 
 .reset-btn {
-    background: var(--background-color);
+    background: var(--resetbtn-background-color);
     color: var(--text-color);
     border: 2px solid var(--border-color);
 }
