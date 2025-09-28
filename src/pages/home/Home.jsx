@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import '../shared-styles.css';
 import './Home.css';
 import Heading from '../../components/Heading/Heading';
@@ -11,6 +12,7 @@ import SEO from '../../components/SEO/SEO';
 
 const Home = () => {
   const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
   
   // Get first 3 vehicles for display in current language
   // Re-fetch vehicles when language changes
@@ -30,7 +32,7 @@ const Home = () => {
     "@type": "AutoRental",
     "name": "KTT Car Rental",
     "description": t('seo_home_description'),
-    "url": "https://kttcar.com",
+    "url": "https://ktt-rentcar.netlify.app",
     "telephone": "+84-xxx-xxx-xxx",
     "address": {
       "@type": "PostalAddress",
@@ -60,7 +62,7 @@ const Home = () => {
             {t('hero_subtitle')}
           </p>
           <HighlightedButton
-            onClick={() => console.log('Button clicked')}
+            onClick={() => navigate('/thue-xe')}
           >
             {t('hero_ctaButton')}
           </HighlightedButton>
@@ -106,7 +108,7 @@ const Home = () => {
           </div>
           <HighlightedButton
             className="procedure-cta"
-            onClick={() => console.log('Button clicked')}
+            onClick={() => navigate('/thu-tuc')}
           >
             {t('seemore_procedures')}
           </HighlightedButton>
@@ -140,7 +142,7 @@ const Home = () => {
           </div>
           <HighlightedButton
             className="procedure-cta"
-            onClick={() => console.log('View all vehicles')}
+            onClick={() => navigate('/thue-xe')}
           >
             {t('see_more_vehicles')}
           </HighlightedButton>

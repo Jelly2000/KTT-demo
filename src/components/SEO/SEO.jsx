@@ -28,7 +28,7 @@ const SEO = ({
   const currentPath = window.location.pathname;
   const currentUrl = `${baseUrl}${currentPath}`;
   // Use absolute URL for better social sharing compatibility
-  const defaultImage = 'https://ktt-rentcar.netlify.app/social-preview.jpg';
+  const defaultImage = 'https://ktt-rentcar.netlify.app/logo.webp';
   const socialImage = ogImage || defaultImage;
 
   return (
@@ -57,8 +57,8 @@ const SEO = ({
       <meta property="og:description" content={description} />
       <meta property="og:image" content={socialImage} />
       <meta property="og:image:secure_url" content={socialImage} />
-      <meta property="og:image:width" content="786" />
-      <meta property="og:image:height" content="678" />
+      <meta property="og:image:width" content="400" />
+      <meta property="og:image:height" content="400" />
       <meta property="og:image:type" content="image/webp" />
       <meta property="og:image:alt" content={`${title} - KTT Car`} />
       <meta property="og:site_name" content="KTT Car" />

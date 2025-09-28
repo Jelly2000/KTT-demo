@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { HighlightedButton } from '../../components';
 import SEO from '../../components/SEO/SEO';
 import '../shared-styles.css';
@@ -7,20 +8,21 @@ import './styles.css';
 
 const Procedures = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   return (
     <div className="procedures-page">
       <SEO 
         titleKey="seo_procedure_title"
         descriptionKey="seo_procedure_description"
-        canonicalUrl="https://kttcar.com/thu-tuc"
+        canonicalUrl="https://ktt-rentcar.netlify.app/thu-tuc"
       />      {/* Page Header */}
       <section className="page-header">
         <div className="container">
           <h1 className="page-title">{t('procedures_title')}</h1>
           <p className="page-subtitle">{t('procedures_subtitle')}</p>
           <HighlightedButton
-            onClick={() => window.location.href = '/thue-xe'}
+            onClick={() => navigate('/thue-xe')}
           >
             {t('rent_now')}
           </HighlightedButton>
