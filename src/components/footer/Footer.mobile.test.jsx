@@ -107,10 +107,10 @@ describe('Footer Component - Mobile Responsive Tests', () => {
       const addressHeading = screen.getByRole('heading', { level: 4, name: /address/i });
       expect(addressHeading).toBeInTheDocument();
       
-      expect(screen.getByText(/499\/2 Hương Lộ 3/i)).toBeInTheDocument();
-      expect(screen.getByText(/158 Nguyễn Hữu Tiến/i)).toBeInTheDocument();
+      expect(screen.getByText(/499\/10 Hương Lộ 3/i)).toBeInTheDocument();
+      expect(screen.getByText(/102 Nguyễn Hữu Tiến/i)).toBeInTheDocument();
       expect(screen.getByText(/head office/i)).toBeInTheDocument();
-      expect(screen.getByText(/parking lot/i)).toBeInTheDocument();
+      expect(screen.getByText(/representative office/i)).toBeInTheDocument();
     });
 
     it('should display contact information with labels', () => {
@@ -134,7 +134,7 @@ describe('Footer Component - Mobile Responsive Tests', () => {
         screen.getByText('Hotline:'),
         screen.getByText('Facebook:'),
         screen.getByText(/head office/i),
-        screen.getByText(/parking lot/i)
+        screen.getByText(/representative office/i)
       ];
       
       strongElements.forEach(element => {
@@ -170,7 +170,7 @@ describe('Footer Component - Mobile Responsive Tests', () => {
           expect(section.textContent).toContain('KTT CAR');
         }
         if (index === 1) {
-          expect(section.textContent).toContain('499/2 Hương Lộ 3');
+          expect(section.textContent).toContain('499/10 Hương Lộ 3');
         }
         if (index === 2) {
           expect(section.textContent).toContain('Website:');

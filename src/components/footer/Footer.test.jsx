@@ -78,15 +78,15 @@ describe('Footer Component', () => {
       const headOfficeText = screen.getByText(/head office/i);
       expect(headOfficeText).toBeInTheDocument();
       
-      const headOfficeAddress = screen.getByText(/499\/2 Hương Lộ 3/i);
+      const headOfficeAddress = screen.getByText(/499\/10 Hương Lộ 3/i);
       expect(headOfficeAddress).toBeInTheDocument();
       
-      // Parking lot address
-      const parkingLotText = screen.getByText(/parking lot/i);
-      expect(parkingLotText).toBeInTheDocument();
+      // Representative office address
+      const representativeOfficeText = screen.getByText(/representative office/i);
+      expect(representativeOfficeText).toBeInTheDocument();
       
-      const parkingLotAddress = screen.getByText(/158 Nguyễn Hữu Tiến/i);
-      expect(parkingLotAddress).toBeInTheDocument();
+      const representativeOfficeAddress = screen.getByText(/102 Nguyễn Hữu Tiến/i);
+      expect(representativeOfficeAddress).toBeInTheDocument();
     });
 
     it('should render contact section with correct heading', () => {
@@ -190,9 +190,9 @@ describe('Footer Component', () => {
       const headOfficeLabel = screen.getByText(/head office/i);
       expect(headOfficeLabel.tagName).toBe('STRONG');
       
-      // Parking lot label
-      const parkingLotLabel = screen.getByText(/parking lot/i);
-      expect(parkingLotLabel.tagName).toBe('STRONG');
+      // Representative office label
+      const representativeOfficeLabel = screen.getByText(/representative office/i);
+      expect(representativeOfficeLabel.tagName).toBe('STRONG');
     });
   });
 
@@ -264,10 +264,10 @@ describe('Footer Component', () => {
       renderFooter();
       
       // Head office address
-      expect(screen.getByText(/499\/2 Hương Lộ 3.*Bình Hưng Hòa.*Bình Tân.*HCM/i)).toBeInTheDocument();
+      expect(screen.getByText(/499\/10 Hương Lộ 3.*Bình Hưng Hoà.*TP\.HCM/i)).toBeInTheDocument();
       
-      // Parking lot address
-      expect(screen.getByText(/158 Nguyễn Hữu Tiến.*Tây Thạnh.*Tân Phú.*HCM/i)).toBeInTheDocument();
+      // Representative office address
+      expect(screen.getByText(/102 Nguyễn Hữu Tiến.*Tây Thạnh.*TP\.HCM/i)).toBeInTheDocument();
     });
 
     it('should display correct contact information', () => {
@@ -291,8 +291,8 @@ describe('Footer Component', () => {
       // All text should be present and readable
       const footerElement = screen.getByRole('contentinfo');
       expect(footerElement.textContent).toContain('KTT CAR');
-      expect(footerElement.textContent).toContain('499/2 Hương Lộ 3');
-      expect(footerElement.textContent).toContain('158 Nguyễn Hữu Tiến');
+      expect(footerElement.textContent).toContain('499/10 Hương Lộ 3');
+      expect(footerElement.textContent).toContain('102 Nguyễn Hữu Tiến');
       expect(footerElement.textContent).toContain('079.8888.373');
       expect(footerElement.textContent).toContain('jackynguyen23@gmail.com');
     });

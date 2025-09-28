@@ -21,12 +21,12 @@ const Footer = () => {
             <p>
               <strong>{t('footer_address_headOffice')}</strong>
               <br />
-              499/2 Hương Lộ 3, P.Bình Hưng Hòa, Q.Bình Tân, HCM
+              499/10 Hương Lộ 3, P.Bình Hưng Hoà, TP.HCM
             </p>
             <p>
-              <strong>{t('footer_address_parkingLot')}</strong>
+              <strong>{t('footer_address_representativeOffice')}</strong>
               <br />
-              158 Nguyễn Hữu Tiến, P.Tây Thạnh, Q.Tân Phú, HCM
+              102 Nguyễn Hữu Tiến, P.Tây Thạnh, TP.HCM
             </p>
           </div>
           

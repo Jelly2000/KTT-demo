@@ -10,6 +10,7 @@ const RentCar = () => {
   const { t, i18n } = useTranslation();
   const [filters, setFilters] = useState({
     category: '',
+    seats: '',
     priceRange: '',
     transmission: '',
     fuel: '',
@@ -35,6 +36,15 @@ const RentCar = () => {
     // Filter by category
     if (filters.category) {
       filtered = filtered.filter(vehicle => vehicle.category === filters.category);
+    }
+
+    // Filter by seats
+    if (filters.seats) {
+      if (filters.seats === '4-5') {
+        filtered = filtered.filter(vehicle => vehicle.seats >= 4 && vehicle.seats <= 5);
+      } else if (filters.seats === '7') {
+        filtered = filtered.filter(vehicle => vehicle.seats >= 7 && vehicle.seats <= 8);
+      }
     }
 
     // Filter by price range
@@ -79,6 +89,7 @@ const RentCar = () => {
   const handleClearFilters = () => {
     setFilters({
       category: '',
+      seats: '',
       priceRange: '',
       transmission: '',
       fuel: '',
@@ -162,6 +173,25 @@ const RentCar = () => {
                     {category.name}
                   </option>
                 ))}
+              </select>
+            </div>
+
+            {/* Seats Filter */}
+            <div className="filter-group">
+              <select
+                value={filters.seats}
+                onChange={(e) => handleFilterChange('seats', e.target.value)}
+                className="filter-select"
+              >
+                <option value="">
+                  {t('all_seats')}
+                </option>
+                <option value="4-5">
+                  {t('seats_4_5')}
+                </option>
+                <option value="7">
+                  {t('seats_7')}
+                </option>
               </select>
             </div>
 
