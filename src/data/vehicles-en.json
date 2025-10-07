@@ -25,15 +25,15 @@
         "/vehicles/hyundai-accent/12.jpg",
         "/vehicles/hyundai-accent/13.jpg"
       ],
-      "features": [
-        "Automatic air conditioning",
-        "Bluetooth connectivity",
-        "Rear camera",
-        "Rear parking sensors",
-        "6-speaker audio system",
-        "Push-button start",
-        "Smart key system"
-      ],
+        "features": [
+          "Automatic air conditioning",
+          "Youtube Premium entertainment display",
+          "Rear camera",
+          "HUD, VIETMAP speed warning",
+          "6-speaker audio system",
+          "Maxx Data Wifi",
+          "Phone-based car locking"
+        ],
       "description": "New generation Hyundai Accent with modern design, fuel-efficient Gamma 1.4L MPI engine, and high standard safety equipment.",
       "specifications": {
         "engine": "1.4L Gamma MPI",
@@ -78,16 +78,16 @@
         "/vehicles/hyundai-custin-2-0/17.jpg",
         "/vehicles/hyundai-custin-2-0/18.jpg"
       ],
-      "features": [
-        "3-zone independent air conditioning",
-        "12.3\" touchscreen display",
-        "360-degree camera",
-        "Automatic sliding doors",
-        "Premium leather seats",
-        "Infinity 8-speaker audio",
-        "Wireless charging",
-        "Hyundai SmartSense safety system"
-      ],
+        "features": [
+          "3-zone independent air conditioning",
+          "Youtube Premium entertainment display",
+          "360-degree camera",
+          "HUD, VIETMAP speed warning",
+          "Premium leather seats",
+          "Infinity 8-speaker audio",
+          "Wireless charging",
+          "Hyundai SmartSense safety system"
+        ],
       "description": "Hyundai Custin 2.0 - Premium 7-seater MPV with powerful Smartstream 2.0L engine, luxurious design and advanced technology.",
       "specifications": {
         "engine": "2.0L Smartstream MPI",
@@ -126,16 +126,16 @@
         "/vehicles/hyundai-elantra/12.jpg",
         "/vehicles/hyundai-elantra/13.jpg"
       ],
-      "features": [
-        "Dual-zone automatic air conditioning",
-        "10.25\" touchscreen display",
-        "Rear camera",
-        "Blind spot warning",
-        "Adaptive cruise control",
-        "Bose audio system",
-        "Heated seats",
-        "Remote engine start"
-      ],
+        "features": [
+          "Dual-zone automatic air conditioning",
+          "Youtube Premium entertainment display",
+          "Rear camera",
+          "Blind spot warning",
+          "HUD, VIETMAP speed warning",
+          "Bose audio system",
+          "Maxx Data Wifi",
+          "Phone-based car locking"
+        ],
       "description": "7th generation Hyundai Elantra with Parametric Dynamic design, Smartstream 2.0L engine and advanced Hyundai SmartSense technology.",
       "specifications": {
         "engine": "2.0L Smartstream MPI",
@@ -171,16 +171,17 @@
         "/vehicles/hyundai-santafe-2-5t/9.jpg",
         "/vehicles/hyundai-santafe-2-5t/10.jpg"
       ],
-      "features": [
-        "3-zone independent air conditioning",
-        "12.3\" touchscreen display",
-        "360-degree camera system",
-        "Panoramic sunroof",
-        "Premium Nappa leather seats",
-        "Harman Kardon audio system",
-        "Wireless charging pad",
-        "SmartSense safety system"
-      ],
+        "features": [
+          "3-zone independent air conditioning",
+          "Youtube Premium entertainment display",
+          "360-degree camera",
+          "HUD, VIETMAP speed warning",
+          "Maxx Data Wifi",
+          "Harman Kardon audio system",
+          "Wireless charging",
+          "SmartSense safety system",
+          "Phone-based car locking"
+        ],
       "description": "Hyundai Santa Fe 2.5T - Premium 7-seater SUV with powerful 2.5L turbo engine, Bold & Tough design and cutting-edge technology.",
       "specifications": {
         "engine": "2.5L Smartstream T-GDI",
@@ -222,16 +223,16 @@
         "/vehicles/hyundai-venue/15.jpg",
         "/vehicles/hyundai-venue/16.jpg"
       ],
-      "features": [
-        "Automatic air conditioning",
-        "8\" touchscreen display",
-        "Rear camera",
-        "Bluetooth connectivity",
-        "Dual USB ports",
-        "Steering wheel audio controls",
-        "LED lighting",
-        "Push-button start"
-      ],
+        "features": [
+          "Automatic air conditioning",
+          "Youtube Premium entertainment display",
+          "Rear camera",
+          "HUD, VIETMAP speed warning",
+          "Maxx Data Wifi",
+          "Steering wheel audio controls",
+          "LED lighting",
+          "Phone-based car locking"
+        ],
       "description": "Hyundai Venue - Compact urban SUV with youthful design, efficient 1.0L T-GDI turbo engine and modern technology features.",
       "specifications": {
         "engine": "1.0L T-GDI Turbo",
@@ -278,16 +279,17 @@
         "/vehicles/kia-carnival-signature/20.jpg",
         "/vehicles/kia-carnival-signature/21.jpg"
       ],
-      "features": [
-        "3-zone independent air conditioning",
-        "Premium Nappa leather seats",
-        "Electric sliding doors",
-        "12.3\" entertainment display",
-        "360-degree camera system",
-        "Harman Kardon 12-speaker audio",
-        "Wireless charging pad",
-        "Adaptive cruise control"
-      ],
+        "features": [
+          "3-zone independent air conditioning",
+          "Maxx Data Wifi",
+          "HUD, VIETMAP speed warning",
+          "Youtube Premium entertainment display",
+          "360-degree camera",
+          "Harman Kardon 12-speaker audio",
+          "Wireless charging",
+          "Adaptive cruise control",
+          "Phone-based car locking"
+        ],
       "description": "Kia Carnival Signature - Luxury 8-seater MPV with powerful 2.2L CRDi diesel engine, ultra-premium interior and advanced safety technology.",
       "specifications": {
         "engine": "2.2L Smartstream D CRDi",
@@ -334,16 +336,17 @@
         "/vehicles/kia-carnival-signature-new/20.jpg",
         "/vehicles/kia-carnival-signature-new/21.jpg"
       ],
-      "features": [
-        "Premium 3-zone independent air conditioning",
-        "Nappa leather seats with massage",
-        "Dual electric sliding doors",
-        "12.3\" 4K entertainment display",
-        "High-resolution 360-degree camera",
-        "Harman Kardon 12-speaker premium audio",
-        "Dual wireless charging pads",
-        "Drive Wise safety system"
-      ],
+        "features": [
+          "Premium 3-zone independent air conditioning",
+          "Maxx Data Wifi",
+          "HUD, VIETMAP speed warning",
+          "Youtube Premium entertainment display",
+          "High-resolution 360-degree camera",
+          "Harman Kardon 12-speaker premium audio",
+          "Dual wireless charging pads",
+          "Drive Wise safety system",
+          "Phone-based car locking"
+        ],
       "description": "Kia Carnival Signature New - Latest version with 3.5L V6 gasoline engine, enhanced luxury design and most advanced technology.",
       "specifications": {
         "engine": "3.5L V6 GDI",
@@ -381,16 +384,16 @@
         "/vehicles/kia-sedona/11.jpg",
         "/vehicles/kia-sedona/12.jpg"
       ],
-      "features": [
-        "Dual-zone automatic air conditioning",
-        "Premium leather seats",
-        "Electric sliding doors",
-        "8\" touchscreen display",
-        "Rear camera",
-        "6-speaker audio system",
-        "Bluetooth connectivity",
-        "ESC safety system"
-      ],
+        "features": [
+          "Dual-zone automatic air conditioning",
+          "Maxx Data Wifi",
+          "HUD, VIETMAP speed warning",
+          "Youtube Premium entertainment display",
+          "360 camera",
+          "6-speaker audio system",
+          "Phone-based car locking",
+          "ESC safety system"
+        ],
       "description": "Kia Sedona - Practical 7-seater MPV with fuel-efficient 2.2L diesel engine, functional design and spacious interior.",
       "specifications": {
         "engine": "2.2L CRDi Diesel",
@@ -431,16 +434,16 @@
         "/vehicles/mercedes-c300-amg/14.jpg",
         "/vehicles/mercedes-c300-amg/15.jpg"
       ],
-      "features": [
-        "THERMOTRONIC automatic air conditioning",
-        "Premium ARTICO leather seats",
-        "11.9\" MBUX display",
-        "Burmester surround sound system",
-        "360-degree camera system",
-        "Adaptive cruise control",
-        "Multibeam LED intelligent lighting",
-        "MBUX remote engine start"
-      ],
+        "features": [
+          "THERMOTRONIC automatic air conditioning",
+          "HUD, VIETMAP speed warning",
+          "Youtube Premium entertainment display",
+          "Burmester surround sound system",
+          "360-degree camera",
+          "Maxx Data Wifi",
+          "Multibeam LED intelligent lighting",
+          "Phone-based car locking"
+        ],
       "description": "Mercedes-Benz C300 AMG - Luxury sedan with mild-hybrid 2.0L engine, sporty AMG design and advanced MBUX technology.",
       "specifications": {
         "engine": "2.0L Turbo + EQBoost",
@@ -482,16 +485,16 @@
         "/vehicles/mg5/15.jpg",
         "/vehicles/mg5/16.jpg"
       ],
-      "features": [
-        "Automatic air conditioning",
-        "10.25\" touchscreen display",
-        "HD rear camera",
-        "Dual Bluetooth connectivity",
-        "USB-C ports",
-        "Full LED lighting",
-        "Cruise control",
-        "Push-button start"
-      ],
+        "features": [
+          "Automatic air conditioning",
+          "Youtube Premium entertainment display",
+          "HD rear camera",
+          "HUD, VIETMAP speed warning",
+          "Maxx Data Wifi",
+          "Full LED lighting",
+          "Cruise control",
+          "Phone-based car locking"
+        ],
       "description": "MG5 - Compact C-segment sedan with youthful design, efficient 1.5L engine and modern technology at an affordable price.",
       "specifications": {
         "engine": "1.5L VTi-TECH",
@@ -532,16 +535,17 @@
         "/vehicles/mitsubishi-xpander-premium/14.jpg",
         "/vehicles/mitsubishi-xpander-premium/15.jpg"
       ],
-      "features": [
-        "Automatic air conditioning",
-        "9\" touchscreen display",
-        "Rear camera",
-        "Bluetooth connectivity",
-        "Dual USB ports",
-        "LED lighting",
-        "Cruise control",
-        "RISE safety system"
-      ],
+        "features": [
+          "Automatic air conditioning",
+          "Youtube Premium entertainment display",
+          "Rear camera",
+          "HUD, VIETMAP speed warning",
+          "Maxx Data Wifi",
+          "LED lighting",
+          "Cruise control",
+          "RISE safety system",
+          "Phone-based car locking"
+        ],
       "description": "Mitsubishi Xpander Premium - Versatile 7-seater MPV with MIVEC 1.5L engine, Dynamic Shield design and flexible interior space for families.",
       "specifications": {
         "engine": "1.5L MIVEC",
