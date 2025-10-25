@@ -9,5 +9,4 @@ export { default as FloatingContacts } from './FloatingContacts/FloatingContacts
 export { default as DatePicker } from './DatePicker';
 export { default as SEO } from './SEO/SEO';
 export { default as ScrollToTop } from './ScrollToTop/ScrollToTop';
-export { default as ErrorNotificationForm } from './ErrorNotification/ErrorNotificationForm';
 
