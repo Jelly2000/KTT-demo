@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { sendConsultationRequest, formatPhoneNumber } from '../../utils/zaloUtils';
 import './styles.css';
-import ErrorNotificationForm from '../ErrorNotification/ErrorNotificationForm';
-
 
 const ConsultationForm = ({ heading = 'consultation_title', subHeading = 'consultation_subtitle' }) => {
   const { t } = useTranslation();
@@ -63,7 +61,7 @@ const ConsultationForm = ({ heading = 'consultation_title', subHeading = 'consul
         // Auto close after 5 seconds
         setTimeout(() => {
           setShowSuccessNotification(false);
-        }, 5000);
+        }, 3000);
       } else {
         // Show error notification
         setShowErrorNotification(true);
@@ -73,16 +71,18 @@ const ConsultationForm = ({ heading = 'consultation_title', subHeading = 'consul
         // Auto close after 8 seconds
         setTimeout(() => {
           setShowErrorNotification(false);
-        }, 8000);
+        }, 3000);
       }
     } catch (error) {
       setIsSubmitting(false);
       setShowErrorNotification(true);
       setErrorMessage(t('network_error_message'));
+      console.error('Failed to submit consultation request:', error);
+
       // Auto close after 8 seconds
       setTimeout(() => {
         setShowErrorNotification(false);
-      }, 8000);
+      }, 3000);
     }
   };
 
@@ -125,7 +125,24 @@ const ConsultationForm = ({ heading = 'consultation_title', subHeading = 'consul
                 </small>
               </div>
             )}
-            <ErrorNotificationForm showError={showErrorNotification} />
+
+            {/* Error Notification */}
+            {showErrorNotification && (
+              <div className="error-notification">
+                <div className="error-icon">✕</div>
+                <h3>{t('request_failed')}</h3>
+                {/* <p>{errorMessage}</p> */}
+                {/* <div className="error-contact-info"> */}
+                <p><strong>{t('contact_us_directly')}</strong></p>
+                {/* <p>📞 {t('phone_number')}: +84-xxx-xxx-xxx</p>
+                            <p>📧 Email: contact@kttcar.com</p>
+                            <p>🌐 Zalo: +84-xxx-xxx-xxx</p> */}
+                {/* </div> */}
+                <small>
+                  {t('notification_auto_close')}
+                </small>
+              </div>
+            )}
           </div>
         </div>
       )}
