@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { sendConsultationRequest, formatPhoneNumber } from '../../utils/telegramUtils';
+import { sendConsultationRequest, formatPhoneNumber } from '../../utils/zaloUtils';
 import './styles.css';
 
 const ConsultationForm = ({ heading = 'consultation_title', subHeading = 'consultation_subtitle' }) => {
@@ -42,9 +42,9 @@ const ConsultationForm = ({ heading = 'consultation_title', subHeading = 'consul
         source: 'Form Tư Vấn Trang Chủ'
       };
       
-      const success = await sendConsultationRequest(consultationData);
+      const result = await sendConsultationRequest(consultationData);
       
-      if (success) {
+      if (result.success) {
         // Show success notification
         setShowSuccessNotification(true);
         setIsSubmitting(false);
@@ -65,7 +65,7 @@ const ConsultationForm = ({ heading = 'consultation_title', subHeading = 'consul
       } else {
         // Show error notification
         setShowErrorNotification(true);
-        setErrorMessage(t('server_error_message'));
+        setErrorMessage(result.error || t('server_error_message'));
         setIsSubmitting(false);
 
         // Auto close after 8 seconds

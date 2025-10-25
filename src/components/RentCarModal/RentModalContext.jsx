@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
-import { sendCarRentalRequest, formatPhoneNumber } from '../../utils/telegramUtils';
+import { sendCarRentalRequest, formatPhoneNumber } from '../../utils/zaloUtils';
 import { getVehicleById } from '../../utils/vehicleUtils';
 
 const RentModalContext = createContext();
@@ -73,10 +73,10 @@ export const RentModalProvider = ({ children }) => {
                 source: 'Modal Thuê Xe'
             };
             
-            // Send to Telegram
-            const success = await sendCarRentalRequest(rentalData);
+            // Send to Zalo
+            const result = await sendCarRentalRequest(rentalData);
             
-            if (success) {
+            if (result.success) {
                 // Show success notification
                 setShowSuccessNotification(true);
                 setIsSubmitting(false);
@@ -88,7 +88,7 @@ export const RentModalProvider = ({ children }) => {
             } else {
                 // Show error notification
                 setShowErrorNotification(true);
-                setErrorMessage('Server error occurred. Please contact us directly.');
+                setErrorMessage(result.error || 'Server error occurred. Please contact us directly.');
                 setIsSubmitting(false);
                 
                 // Auto close after 8 seconds
