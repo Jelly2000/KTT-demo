@@ -105,10 +105,10 @@ const RentCarModal = () => {
 
                 {/* Loading Overlay */}
                 {isSubmitting && (
-                    <div className="loading-overlay">
-                        <div className="loading-spinner"></div>
-                        <p className="loading-text">
-                            {t('submitting_request')}
+                    <div className="consultation-loading-overlay">
+                        <div className="consultation-loading-spinner"></div>
+                        <p className="consultation-loading-text">
+                        {t('submitting_request')}
                         </p>
                     </div>
                 )}

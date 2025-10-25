@@ -128,8 +128,8 @@ const ConsultationForm = ({ heading = 'consultation_title', subHeading = 'consul
 
             {/* Error Notification */}
             {showErrorNotification && (
-              <div className="error-notification">
-                <div className="error-icon">✕</div>
+              <div className="consultation-error-notification">
+                <div className="consultation-error-icon">✕</div>
                 <h3>{t('request_failed')}</h3>
                 {/* <p>{errorMessage}</p> */}
                 {/* <div className="error-contact-info"> */}

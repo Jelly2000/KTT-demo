@@ -247,9 +247,9 @@
 }
 
 .consultation-modal-content {
-    background: white;
+    background: var(--card-background);
     border-radius: 16px;
-    border: 2px solid #ddd;
+    border: 2px solid var(--border-color);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     max-width: 500px;
     width: 100%;
@@ -266,7 +266,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: white;
+    background: var(--card-background);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -280,8 +280,8 @@
 .consultation-loading-spinner {
     width: 60px;
     height: 60px;
-    border: 4px solid #f3f3f3;
-    border-top: 4px solid var(--primary-color, #FFD700);
+    border: 4px solid var(--border-color);
+    border-top: 4px solid var(--primary-color);
     border-radius: 50%;
     animation: consultationSpin 1s linear infinite;
     margin-bottom: 1rem;
@@ -289,7 +289,7 @@
 
 .consultation-loading-text {
     font-size: 1.1rem;
-    color: var(--text-color, #333);
+    color: var(--text-color);
     margin: 0;
     font-weight: 500;
 }
@@ -326,7 +326,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: white;
+    background: var(--card-background);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -360,7 +360,7 @@
 }
 
 .consultation-success-notification p {
-    color: var(--text-color, #333);
+    color: var(--text-color);
     margin: 0 0 1rem;
     font-size: 1.1rem;
     line-height: 1.5;
@@ -368,7 +368,7 @@
 }
 
 .consultation-success-notification small {
-    color: #666;
+    color: var(--text-color-muted);
     font-size: 0.9rem;
     font-style: italic;
 }
@@ -434,7 +434,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: white;
+    background: var(--card-background);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -468,7 +468,7 @@
 }
 
 .consultation-error-notification p {
-    color: var(--text-color, #333);
+    color: var(--text-color);
     margin: 0 0 1rem;
     font-size: 1.1rem;
     line-height: 1.5;
@@ -476,8 +476,8 @@
 }
 
 .consultation-error-notification .error-contact-info {
-    background: #f8f9fa;
-    border: 1px solid #dee2e6;
+    background: var(--background-alt);
+    border: 1px solid var(--border-color);
     border-radius: 8px;
     padding: 1rem;
     margin: 1rem 0;
@@ -488,7 +488,7 @@
 .consultation-error-notification .error-contact-info p {
     margin: 0.5rem 0;
     font-size: 0.95rem;
-    color: var(--text-color, #333);
+    color: var(--text-color);
 }
 
 .consultation-error-notification .error-contact-info strong {
@@ -496,7 +496,7 @@
 }
 
 .consultation-error-notification small {
-    color: #666;
+    color: var(--text-color-muted);
     font-size: 0.9rem;
     font-style: italic;
 }
@@ -513,19 +513,7 @@
     }
 }
 
-/* Dark mode support for error notification */
-[data-theme="dark"] .consultation-error-notification {
-    background: var(--card-background);
-}
 
-[data-theme="dark"] .consultation-error-notification .error-contact-info {
-    background: var(--background-alt);
-    border-color: var(--border-color);
-}
-
-[data-theme="dark"] .consultation-error-notification .error-contact-info p {
-    color: var(--text-color);
-}
 
 @media (max-width: 480px) {
     .consultation-modal {

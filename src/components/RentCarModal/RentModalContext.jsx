@@ -84,7 +84,7 @@ export const RentModalProvider = ({ children }) => {
                 // Auto close after 5 seconds
                 setTimeout(() => {
                     closeRentModal();
-                }, 5000);
+                }, 3000);
             } else {
                 // Show error notification
                 setShowErrorNotification(true);
@@ -94,7 +94,7 @@ export const RentModalProvider = ({ children }) => {
                 // Auto close after 8 seconds
                 setTimeout(() => {
                     setShowErrorNotification(false);
-                }, 8000);
+                }, 3000);
             }
         } catch (error) {
             setIsSubmitting(false);
@@ -104,7 +104,7 @@ export const RentModalProvider = ({ children }) => {
             // Auto close after 8 seconds
             setTimeout(() => {
                 setShowErrorNotification(false);
-            }, 8000);
+            }, 3000);
         }
     };
 
