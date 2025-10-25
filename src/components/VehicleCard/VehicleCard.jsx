@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useMemo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 import { useRentModal } from '../RentCarModal';
 import { getVehicleName, getVehicleDescription, getVehicleFeatures } from '../../utils/vehicleUtils';
 import './VehicleCard.css';
 
-const VehicleCard = ({ 
+const VehicleCard = React.memo(({ 
     vehicle,
     id, 
     image, 
@@ -111,6 +111,6 @@ const VehicleCard = ({
             </div>
         </div>
     )
-}
+});
 
 export default VehicleCard;
