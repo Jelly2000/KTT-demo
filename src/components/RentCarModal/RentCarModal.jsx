@@ -178,6 +178,7 @@ const RentCarModal = () => {
                                     min={new Date().toISOString().split('T')[0]}
                                     required
                                     className="form-control date-input"
+                                    data-testid="datepicker-pickupDate"
                                 />
                             </div>
                             <div className="form-group">
@@ -193,6 +194,7 @@ const RentCarModal = () => {
                                     min={pickupDate || new Date().toISOString().split('T')[0]}
                                     required
                                     className="form-control date-input"
+                                    data-testid="datepicker-returnDate"
                                 />
                             </div>
                         </div>

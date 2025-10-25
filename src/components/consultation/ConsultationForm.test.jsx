@@ -4,14 +4,14 @@ import { I18nextProvider } from 'react-i18next';
 import i18n from '../../i18n';
 import ConsultationForm from './ConsultationForm';
 
-// Mock telegramUtils
-vi.mock('../../utils/telegramUtils', () => ({
+// Mock zaloUtils
+vi.mock('../../utils/zaloUtils', () => ({
   sendConsultationRequest: vi.fn(),
   formatPhoneNumber: vi.fn(phone => phone)
 }));
 
 // Get mocked functions
-import { sendConsultationRequest, formatPhoneNumber } from '../../utils/telegramUtils';
+import { sendConsultationRequest, formatPhoneNumber } from '../../utils/zaloUtils';
 const mockSendConsultationRequest = vi.mocked(sendConsultationRequest);
 const mockFormatPhoneNumber = vi.mocked(formatPhoneNumber);
 
@@ -90,25 +90,25 @@ describe('ConsultationForm Component', () => {
   });
 
   it('submits form successfully', async () => {
-    mockSendConsultationRequest.mockResolvedValue(true);
+    mockSendConsultationRequest.mockResolvedValue({ success: true });
     
     renderConsultationForm();
     
     // Fill out form
-    fireEvent.change(screen.getByPlaceholderText('Full Name'), { 
-      target: { value: 'John Doe' } 
+    fireEvent.change(screen.getByLabelText(/Full Name/i), { 
+      target: { name: 'fullName', value: 'John Doe' } 
     });
-    fireEvent.change(screen.getByPlaceholderText('Phone Number'), { 
-      target: { value: '0901234567' } 
+    fireEvent.change(screen.getByLabelText(/Phone Number/i), { 
+      target: { name: 'phoneNumber', value: '0901234567' } 
     });
-    fireEvent.change(screen.getByPlaceholderText('Email'), { 
-      target: { value: 'john@example.com' } 
+    fireEvent.change(screen.getByLabelText(/Email/i), { 
+      target: { name: 'email', value: 'john@example.com' } 
     });
-    fireEvent.change(screen.getByRole('combobox'), { 
-      target: { value: 'car_rental' } 
+    fireEvent.change(screen.getByLabelText(/Subject/i), { 
+      target: { name: 'subject', value: 'car_rental' } 
     });
-    fireEvent.change(screen.getByPlaceholderText('Message'), { 
-      target: { value: 'Need car rental info' } 
+    fireEvent.change(screen.getByLabelText(/Message/i), { 
+      target: { name: 'message', value: 'Need car rental info' } 
     });
     
     // Submit form
@@ -142,17 +142,17 @@ describe('ConsultationForm Component', () => {
     renderConsultationForm();
     
     // Fill all required fields
-    fireEvent.change(screen.getByPlaceholderText('Full Name'), { 
-      target: { value: 'John Doe' } 
+    fireEvent.change(screen.getByLabelText(/Full Name/i), { 
+      target: { name: 'fullName', value: 'John Doe' } 
     });
-    fireEvent.change(screen.getByPlaceholderText('Phone Number'), { 
-      target: { value: '0901234567' } 
+    fireEvent.change(screen.getByLabelText(/Phone Number/i), { 
+      target: { name: 'phoneNumber', value: '0901234567' } 
     });
-    fireEvent.change(screen.getByRole('combobox'), { 
-      target: { value: 'car_rental' } 
+    fireEvent.change(screen.getByLabelText(/Subject/i), { 
+      target: { name: 'subject', value: 'car_rental' } 
     });
-    fireEvent.change(screen.getByPlaceholderText('Message'), { 
-      target: { value: 'Test message' } 
+    fireEvent.change(screen.getByLabelText(/Message/i), { 
+      target: { name: 'message', value: 'Test message' } 
     });
     
     const submitButton = screen.getByRole('button', { name: /Send Message/i });
@@ -213,23 +213,23 @@ describe('ConsultationForm Component', () => {
   });
 
   it('formats phone number before submission', async () => {
-    mockSendConsultationRequest.mockResolvedValue(true);
+    mockSendConsultationRequest.mockResolvedValue({ success: true });
     mockFormatPhoneNumber.mockReturnValue('+84901234567');
     
     renderConsultationForm();
     
     // Fill all required fields
-    fireEvent.change(screen.getByPlaceholderText('Full Name'), { 
-      target: { value: 'John Doe' } 
+    fireEvent.change(screen.getByLabelText(/Full Name/i), { 
+      target: { name: 'fullName', value: 'John Doe' } 
     });
-    fireEvent.change(screen.getByPlaceholderText('Phone Number'), { 
-      target: { value: '0901234567' } 
+    fireEvent.change(screen.getByLabelText(/Phone Number/i), { 
+      target: { name: 'phoneNumber', value: '0901234567' } 
     });
-    fireEvent.change(screen.getByRole('combobox'), { 
-      target: { value: 'car_rental' } 
+    fireEvent.change(screen.getByLabelText(/Subject/i), { 
+      target: { name: 'subject', value: 'car_rental' } 
     });
-    fireEvent.change(screen.getByPlaceholderText('Message'), { 
-      target: { value: 'Test message' } 
+    fireEvent.change(screen.getByLabelText(/Message/i), { 
+      target: { name: 'message', value: 'Test message' } 
     });
     
     const submitButton = screen.getByRole('button', { name: /Send Message/i });
@@ -249,22 +249,22 @@ describe('ConsultationForm Component', () => {
   });
 
   it('shows success notification after form submission', async () => {
-    mockSendConsultationRequest.mockResolvedValue(true);
+    mockSendConsultationRequest.mockResolvedValue({ success: true });
     
     renderConsultationForm();
     
     // Fill all required fields
-    fireEvent.change(screen.getByPlaceholderText('Full Name'), { 
-      target: { value: 'John Doe' } 
+    fireEvent.change(screen.getByLabelText(/Full Name/i), { 
+      target: { name: 'fullName', value: 'John Doe' } 
     });
-    fireEvent.change(screen.getByPlaceholderText('Phone Number'), { 
-      target: { value: '0901234567' } 
+    fireEvent.change(screen.getByLabelText(/Phone Number/i), { 
+      target: { name: 'phoneNumber', value: '0901234567' } 
     });
-    fireEvent.change(screen.getByRole('combobox'), { 
-      target: { value: 'car_rental' } 
+    fireEvent.change(screen.getByLabelText(/Subject/i), { 
+      target: { name: 'subject', value: 'car_rental' } 
     });
-    fireEvent.change(screen.getByPlaceholderText('Message'), { 
-      target: { value: 'Test message' } 
+    fireEvent.change(screen.getByLabelText(/Message/i), { 
+      target: { name: 'message', value: 'Test message' } 
     });
     
     const submitButton = screen.getByRole('button', { name: /Send Message/i });
@@ -272,7 +272,7 @@ describe('ConsultationForm Component', () => {
     
     // Wait for success notification
     await waitFor(() => {
-      expect(screen.getByText(/success/i)).toBeInTheDocument();
+      expect(screen.getByText(/Request Submitted Successfully!/i)).toBeInTheDocument();
     });
   });
 
