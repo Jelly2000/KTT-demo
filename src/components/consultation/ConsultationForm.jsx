@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { sendConsultationRequest, formatPhoneNumber } from '../../utils/zaloUtils';
 import './styles.css';
+import ErrorNotificationForm from '../ErrorNotification/ErrorNotificationForm';
+
 
 const ConsultationForm = ({ heading = 'consultation_title', subHeading = 'consultation_subtitle' }) => {
   const { t } = useTranslation();
@@ -41,9 +43,9 @@ const ConsultationForm = ({ heading = 'consultation_title', subHeading = 'consul
         message: formData.message,
         source: 'Form Tư Vấn Trang Chủ'
       };
-      
+
       const result = await sendConsultationRequest(consultationData);
-      
+
       if (result.success) {
         // Show success notification
         setShowSuccessNotification(true);
@@ -77,8 +79,6 @@ const ConsultationForm = ({ heading = 'consultation_title', subHeading = 'consul
       setIsSubmitting(false);
       setShowErrorNotification(true);
       setErrorMessage(t('network_error_message'));
-      console.error('Failed to submit consultation request:', error);
-      
       // Auto close after 8 seconds
       setTimeout(() => {
         setShowErrorNotification(false);
@@ -125,24 +125,7 @@ const ConsultationForm = ({ heading = 'consultation_title', subHeading = 'consul
                 </small>
               </div>
             )}
-
-            {/* Error Notification */}
-            {showErrorNotification && (
-              <div className="consultation-error-notification">
-                <div className="consultation-error-icon">✕</div>
-                <h3>{t('request_failed')}</h3>
-                <p>{errorMessage}</p>
-                <div className="error-contact-info">
-                  <p><strong>{t('contact_us_directly')}:</strong></p>
-                  <p>📞 {t('phone_number')}: +84-xxx-xxx-xxx</p>
-                  <p>📧 Email: contact@kttcar.com</p>
-                  <p>🌐 Zalo: +84-xxx-xxx-xxx</p>
-                </div>
-                <small>
-                  {t('notification_auto_close')}
-                </small>
-              </div>
-            )}
+            <ErrorNotificationForm showError={showErrorNotification} />
           </div>
         </div>
       )}
