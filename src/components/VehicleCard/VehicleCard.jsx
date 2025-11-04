@@ -1,8 +1,8 @@
-import React, { useMemo, useCallback } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useRentModal } from '../RentCarModal';
-import { getVehicleName, getVehicleDescription, getVehicleFeatures } from '../../utils/vehicleUtils';
+import { getVehicleName, getVehicleFeatures } from '../../utils/vehicleUtils';
 import './VehicleCard.css';
 
 const VehicleCard = React.memo(({ 
@@ -17,7 +17,6 @@ const VehicleCard = React.memo(({
     viewMode = 'grid' 
 }) => {
     const { t, i18n } = useTranslation();
-    const navigate = useNavigate();
     const { openRentModal } = useRentModal();
     
     // Get localized vehicle data

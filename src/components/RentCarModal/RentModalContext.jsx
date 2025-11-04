@@ -1,6 +1,8 @@
+/* eslint-disable react-refresh/only-export-components */
 import React, { createContext, useContext, useState } from 'react';
 import { sendCarRentalRequest, formatPhoneNumber } from '../../utils/zaloUtils';
 import { getVehicleById } from '../../utils/vehicleUtils';
+import { ERROR_MESSAGES } from './constants';
 
 const RentModalContext = createContext();
 
@@ -96,10 +98,10 @@ export const RentModalProvider = ({ children }) => {
                     setShowErrorNotification(false);
                 }, 3000);
             }
-        } catch (error) {
+        } catch {
             setIsSubmitting(false);
             setShowErrorNotification(true);
-            setErrorMessage('Network error occurred. Please try again or contact us directly.');
+            setErrorMessage(ERROR_MESSAGES.NETWORK_ERROR);
             
             // Auto close after 8 seconds
             setTimeout(() => {

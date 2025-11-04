@@ -2,8 +2,6 @@
  * Zalo messaging utilities for sending user requests and notifications
  * Migrated from Telegram to use server-side Zalo integration
  */
-import i18n from '../i18n.js';
-import viTranslations from '../locales/vi.json';
 
 // Server Configuration
 const ZALO_SERVER_URL = import.meta.env.VITE_ZALO_SERVER_URL || 'https://ktt-server.onrender.com';
@@ -14,9 +12,9 @@ const ZALO_SERVER_URL = import.meta.env.VITE_ZALO_SERVER_URL || 'https://ktt-ser
  * @param {string} key - Translation key
  * @returns {string} - Vietnamese translation
  */
-const getVietnameseText = (key) => {
-  return viTranslations[key] || key;
-};
+// const getVietnameseText = (key) => {
+//   return viTranslations[key] || key;
+// };
 
 /**
  * Convert English source text to Vietnamese

@@ -125,7 +125,7 @@ export const filterVehicles = (criteria, language) => {
  * @param {string} language - Language code ('vi' or 'en')
  * @returns {string} - Localized vehicle name
  */
-export const getVehicleName = (vehicle, language) => {
+export const getVehicleName = (vehicle) => {
   return vehicle?.name || '';
 };
 
@@ -135,7 +135,7 @@ export const getVehicleName = (vehicle, language) => {
  * @param {string} language - Language code ('vi' or 'en')
  * @returns {string} - Localized vehicle description
  */
-export const getVehicleDescription = (vehicle, language) => {
+export const getVehicleDescription = (vehicle) => {
   return vehicle?.description || '';
 };
 
@@ -145,6 +145,6 @@ export const getVehicleDescription = (vehicle, language) => {
  * @param {string} language - Language code ('vi' or 'en')
  * @returns {Array} - Array of localized features
  */
-export const getVehicleFeatures = (vehicle, language) => {
+export const getVehicleFeatures = (vehicle) => {
   return vehicle?.features || [];
 };

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useRentModal } from '../../components/RentCarModal';
@@ -40,7 +40,7 @@ const VehicleDetail = () => {
 
         document.addEventListener('keydown', handleKeyDown);
         return () => document.removeEventListener('keydown', handleKeyDown);
-    }, [isModalOpen, vehicle]);
+    }, [isModalOpen, vehicle, nextImageModal, prevImageModal]);
 
     // Prevent body scroll when modal is open
     useEffect(() => {
@@ -75,17 +75,17 @@ const VehicleDetail = () => {
         setIsModalOpen(false);
     };
 
-    const nextImageModal = () => {
+    const nextImageModal = useCallback(() => {
         if (vehicle && vehicle.gallery && vehicle.gallery.length > 1) {
             setCurrentImageIndex((prev) => (prev + 1) % vehicle.gallery.length);
         }
-    };
+    }, [vehicle]);
 
-    const prevImageModal = () => {
+    const prevImageModal = useCallback(() => {
         if (vehicle && vehicle.gallery && vehicle.gallery.length > 1) {
             setCurrentImageIndex((prev) => (prev - 1 + vehicle.gallery.length) % vehicle.gallery.length);
         }
-    };
+    }, [vehicle]);
 
 
 

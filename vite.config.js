@@ -2,10 +2,10 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   plugins: [react()],
   build: {
-    sourcemap: process.env.VITE_SOURCEMAP === 'true',
+    sourcemap: mode === 'development',
     rollupOptions: {
       output: {
         manualChunks: {
@@ -23,4 +23,4 @@ export default defineConfig({
     // Enable HTTP/2 for better concurrent loading
     https: false,
   }
-})
+}))

@@ -1,7 +1,6 @@
 /**
  * Telegram Bot utilities for sending user requests and notifications
  */
-import i18n from '../i18n.js';
 import viTranslations from '../locales/vi.json';
 
 // Server Configuration

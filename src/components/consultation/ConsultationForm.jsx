@@ -17,7 +17,6 @@ const ConsultationForm = ({ heading = 'consultation_title', subHeading = 'consul
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccessNotification, setShowSuccessNotification] = useState(false);
   const [showErrorNotification, setShowErrorNotification] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -65,7 +64,6 @@ const ConsultationForm = ({ heading = 'consultation_title', subHeading = 'consul
       } else {
         // Show error notification
         setShowErrorNotification(true);
-        setErrorMessage(result.error || t('server_error_message'));
         setIsSubmitting(false);
 
         // Auto close after 8 seconds
@@ -76,7 +74,6 @@ const ConsultationForm = ({ heading = 'consultation_title', subHeading = 'consul
     } catch (error) {
       setIsSubmitting(false);
       setShowErrorNotification(true);
-      setErrorMessage(t('network_error_message'));
       console.error('Failed to submit consultation request:', error);
 
       // Auto close after 8 seconds

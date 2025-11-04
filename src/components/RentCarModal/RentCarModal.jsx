@@ -5,14 +5,13 @@ import { useRentModal } from './RentModalContext';
 import './RentCarModal.css';
 
 const RentCarModal = () => {
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     const {
         isRentModalOpen,
         selectedVehicle,
         isSubmitting,
         showSuccessNotification,
         showErrorNotification,
-        errorMessage,
         closeRentModal,
         submitRentalRequest
     } = useRentModal();

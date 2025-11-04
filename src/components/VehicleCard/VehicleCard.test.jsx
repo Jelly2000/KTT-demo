@@ -15,9 +15,9 @@ vi.mock('../RentCarModal', () => ({
 
 // Mock vehicleUtils
 vi.mock('../../utils/vehicleUtils', () => ({
-  getVehicleName: vi.fn((vehicle, lang) => vehicle?.name || 'Test Vehicle'),
-  getVehicleDescription: vi.fn((vehicle, lang) => 'Test Description'),
-  getVehicleFeatures: vi.fn((vehicle, lang) => vehicle?.features || ['Air Conditioning', 'GPS', 'Bluetooth'])
+  getVehicleName: vi.fn(() => 'Test Vehicle'),
+  getVehicleDescription: vi.fn(() => 'Test Description'),
+  getVehicleFeatures: vi.fn(() => ['Air Conditioning', 'GPS', 'Bluetooth'])
 }));
 
 // Helper function to render VehicleCard with providers

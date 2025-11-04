@@ -8,16 +8,6 @@ import './styles.css';
 const Contact = () => {
   const { t } = useTranslation();
 
-  const handleReset = () => {
-    setFormData({
-      name: '',
-      phone: '',
-      email: '',
-      subject: '',
-      message: ''
-    });
-  };
-
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "ContactPage",

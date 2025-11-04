@@ -137,31 +137,29 @@ export const runAllTests = async () => {
 };
 
 // Usage instructions
-// console.log(`
-🤖 Telegram Bot Test Utilities
-
-To test your Telegram integration, run these commands in the browser console:
-
-1. Test configuration:
-   testTelegramConfig()
-
-2. Test simple notification:
-   testSimpleNotification()
-
-3. Test car rental request:
-   testCarRentalRequest()
-
-4. Test consultation request:
-   testConsultationRequest()
-
-5. Test contact form:
-   testContactFormSubmission()
-
-6. Run all tests:
-   runAllTests()
-
-Make sure you have configured your .env file first!
-`);
+// Telegram Bot Test Utilities
+//
+// To test your Telegram integration, run these commands in the browser console:
+//
+// 1. Test configuration:
+//    testTelegramConfig()
+//
+// 2. Test simple notification:
+//    testSimpleNotification()
+//
+// 3. Test car rental request:
+//    testCarRentalRequest()
+//
+// 4. Test consultation request:
+//    testConsultationRequest()
+//
+// 5. Test contact form:
+//    testContactFormSubmission()
+//
+// 6. Run all tests:
+//    runAllTests()
+//
+// Make sure you have configured your .env file first!
 
 export default {
   testTelegramConfig,

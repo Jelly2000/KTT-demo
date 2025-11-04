@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import '../shared-styles.css';
 import './styles.css';
 import { VehicleCard } from '../../components';
-import { getVehicles, getCategories, getFilters } from '../../utils/vehicleUtils';
+import { getVehicles, getFilters } from '../../utils/vehicleUtils';
 import SEO from '../../components/SEO/SEO';
 
 const RentCar = () => {
@@ -19,7 +19,6 @@ const RentCar = () => {
   // Get vehicles and metadata in current language
   // Re-fetch when language changes
   const vehicles = React.useMemo(() => getVehicles(i18n.language), [i18n.language]);
-  const categories = React.useMemo(() => getCategories(i18n.language), [i18n.language]);
   const filterOptions = React.useMemo(() => getFilters(i18n.language), [i18n.language]);
 
   // Filter and sort vehicles
@@ -79,7 +78,7 @@ const RentCar = () => {
     }
 
     return filtered;
-  }, [filters]);
+  }, [filters, filterOptions.priceRanges, vehicles]);
 
   const handleFilterChange = (filterType, value) => {
     setFilters(prev => ({
