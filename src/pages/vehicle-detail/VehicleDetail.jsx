@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useRentModal } from '../../components/RentCarModal';
@@ -45,17 +45,17 @@ const VehicleDetail = () => {
         setIsModalOpen(false);
     };
 
-    const nextImageModal = () => {
+    const nextImageModal = useCallback(() => {
         if (vehicle && vehicle.gallery && vehicle.gallery.length > 1) {
             setCurrentImageIndex((prev) => (prev + 1) % vehicle.gallery.length);
         }
-    };
+    }, [vehicle]);
 
-    const prevImageModal = () => {
+    const prevImageModal = useCallback(() => {
         if (vehicle && vehicle.gallery && vehicle.gallery.length > 1) {
             setCurrentImageIndex((prev) => (prev - 1 + vehicle.gallery.length) % vehicle.gallery.length);
         }
-    };
+    }, [vehicle]);
 
     // Keyboard navigation for modal
     useEffect(() => {
@@ -86,7 +86,7 @@ const VehicleDetail = () => {
         return () => {
             document.body.style.overflow = 'unset';
         };
-    }, [isModalOpen]);
+    }, [isModalOpen, nextImageModal, prevImageModal]);
 
     if (loading) {
         return (
