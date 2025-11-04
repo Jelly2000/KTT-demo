@@ -7,10 +7,13 @@ const LazyImage = ({
   style = {},
   className = "",
   onClick,
-  placeholder = null 
+  placeholder = null,
+  rootMargin = "100px", // Load images 100px before they enter viewport
+  threshold = 0.1
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isInView, setIsInView] = useState(false);
+  const [hasError, setHasError] = useState(false);
   const imgRef = useRef();
 
   useEffect(() => {
@@ -22,8 +25,8 @@ const LazyImage = ({
         }
       },
       {
-        threshold: 0.1,
-        rootMargin: '50px'
+        threshold,
+        rootMargin
       }
     );
 
@@ -38,14 +41,20 @@ const LazyImage = ({
     setIsLoaded(true);
   };
 
+  const handleError = () => {
+    setHasError(true);
+    setIsLoaded(true); // Hide loading state even on error
+  };
+
   return (
     <div ref={imgRef} style={{ ...style, position: 'relative' }} className={className}>
-      {isInView && (
+      {isInView && !hasError && (
         <img
           src={src}
           alt={alt}
           loading={loading}
           onLoad={handleLoad}
+          onError={handleError}
           onClick={onClick}
           style={{
             ...style,
@@ -54,7 +63,7 @@ const LazyImage = ({
           }}
         />
       )}
-      {!isLoaded && placeholder && (
+      {(!isLoaded || hasError) && (
         <div style={{
           position: 'absolute',
           top: 0,
@@ -64,10 +73,22 @@ const LazyImage = ({
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          background: 'linear-gradient(45deg, #f0f0f0, #e0e0e0)',
+          background: hasError 
+            ? 'linear-gradient(45deg, #ffebee, #ffcdd2)' 
+            : 'linear-gradient(45deg, #f0f0f0, #e0e0e0)',
           ...style
         }}>
-          {placeholder}
+          {hasError ? (
+            <div style={{ fontSize: '2rem', color: '#999' }}>
+              📷❌
+            </div>
+          ) : (
+            placeholder || (
+              <div style={{ fontSize: '2rem', color: '#999' }}>
+                📷
+              </div>
+            )
+          )}
         </div>
       )}
     </div>

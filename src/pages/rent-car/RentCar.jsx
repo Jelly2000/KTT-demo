@@ -1,8 +1,9 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useDebounce } from '../../hooks/usePerformance';
 import '../shared-styles.css';
 import './styles.css';
-import { VehicleCard } from '../../components';
+import { VehicleCard, VehicleGrid } from '../../components';
 import { getVehicles, getFilters } from '../../utils/vehicleUtils';
 import SEO from '../../components/SEO/SEO';
 
@@ -20,6 +21,9 @@ const RentCar = () => {
   // Re-fetch when language changes
   const vehicles = React.useMemo(() => getVehicles(i18n.language), [i18n.language]);
   const filterOptions = React.useMemo(() => getFilters(i18n.language), [i18n.language]);
+
+  // Debounce search input for better performance
+  const debouncedSearch = useDebounce(filters.search, 300);
 
   // Filter and sort vehicles
   const filteredVehicles = useMemo(() => {
@@ -68,9 +72,9 @@ const RentCar = () => {
       filtered = filtered.filter(vehicle => vehicle.fuel === filters.fuel);
     }
 
-    // Search filter
-    if (filters.search) {
-      const searchTerm = filters.search.toLowerCase();
+    // Search filter (using debounced search)
+    if (debouncedSearch) {
+      const searchTerm = debouncedSearch.toLowerCase();
       filtered = filtered.filter(vehicle => 
         vehicle.name.toLowerCase().includes(searchTerm) ||
         vehicle.features.some(feature => feature.toLowerCase().includes(searchTerm))
@@ -78,16 +82,16 @@ const RentCar = () => {
     }
 
     return filtered;
-  }, [filters, filterOptions.priceRanges, vehicles]);
+  }, [filters, debouncedSearch, filterOptions.priceRanges, vehicles]);
 
-  const handleFilterChange = (filterType, value) => {
+  const handleFilterChange = useCallback((filterType, value) => {
     setFilters(prev => ({
       ...prev,
       [filterType]: value
     }));
-  };
+  }, []);
 
-  const handleClearFilters = () => {
+  const handleClearFilters = useCallback(() => {
     setFilters({
       brand: '',
       seats: '',
@@ -95,7 +99,7 @@ const RentCar = () => {
       search: '',
       availability: 'all'
     });
-  };
+  }, []);
 
   const formatPrice = (price) => {
     return new Intl.NumberFormat('vi-VN', {
@@ -224,33 +228,24 @@ const RentCar = () => {
             </div>
           </div>
 
-          {/* Vehicles Grid */}
-          <div className="vehicles-container grid">
-            {filteredVehicles.length > 0 ? (
-              filteredVehicles.map(vehicle => (
-                <VehicleCard
-                  key={vehicle.id}
-                  vehicle={vehicle}
-                  id={vehicle.id}
-                  image={vehicle.image}
-                  vehicleName={vehicle.name}
-                  price={`${formatPrice(vehicle.pricePerDay)}${t('per_day')}`}
-                  features={vehicle.features}
-                  rating={vehicle.rating}
-                  availability={vehicle.availability}
-                />
-              ))
-            ) : (
-              <div className="no-results">
-                <h3>
-                  {t('no_results')}
-                </h3>
-                <p>
-                  {t('no_results_message')}
-                </p>
-              </div>
+          {/* Vehicles Grid with Lazy Loading */}
+          <VehicleGrid
+            vehicles={filteredVehicles}
+            className="grid"
+            renderVehicle={(vehicle) => (
+              <VehicleCard
+                key={vehicle.id}
+                vehicle={vehicle}
+                id={vehicle.id}
+                image={vehicle.image}
+                vehicleName={vehicle.name}
+                price={`${formatPrice(vehicle.pricePerDay)}${t('per_day')}`}
+                features={vehicle.features}
+                rating={vehicle.rating}
+                availability={vehicle.availability}
+              />
             )}
-          </div>
+          />
         </div>
       </section>
     </div>

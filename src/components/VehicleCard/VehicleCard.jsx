@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { useRentModal } from '../RentCarModal';
 import { getVehicleName, getVehicleFeatures } from '../../utils/vehicleUtils';
+import VehicleImageLoader from '../LazyImage/VehicleImageLoader';
 import './VehicleCard.css';
 
 const VehicleCard = React.memo(({ 
@@ -33,28 +34,12 @@ const VehicleCard = React.memo(({
     return (
         <div className={`car-card ${viewMode} ${!availability ? 'unavailable' : ''}`} role="button" tabIndex="0" aria-label={`View details for ${vehicleName}`}>
             <div className="car-image" aria-hidden="true">
-                {image ? (
-                    <img 
-                        src={image} 
-                        alt={`Thuê xe ${vehicleName} tự lái TP.HCM - giao tận nơi, giá rẻ - KTT Car`} 
-                        loading="lazy"
-                        style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: viewMode === 'grid' ? '15px 15px 0 0' : '15px 0 0 15px' }} 
-                    />
-                ) : (
-                    <div style={{ 
-                        width: '100%', 
-                        height: viewMode === 'grid' ? '200px' : '150px', 
-                        background: 'linear-gradient(45deg, #f0f0f0, #e0e0e0)', 
-                        display: 'flex', 
-                        alignItems: 'center', 
-                        justifyContent: 'center', 
-                        fontSize: '3rem', 
-                        color: '#999',
-                        borderRadius: viewMode === 'grid' ? '15px 15px 0 0' : '15px 0 0 15px'
-                    }}>
-                        🚗
-                    </div>
-                )}
+                <VehicleImageLoader
+                    src={image || '/placeholder-car.jpg'} 
+                    alt={`Thuê xe ${localizedVehicleName} tự lái TP.HCM - giao tận nơi, giá rẻ - KTT Car`}
+                    vehicleName={localizedVehicleName}
+                    viewMode={viewMode}
+                />
                 {!availability && (
                     <div className="unavailable-overlay">
                         <span>{unavailableText}</span>
@@ -110,6 +95,20 @@ const VehicleCard = React.memo(({
             </div>
         </div>
     )
+}, (prevProps, nextProps) => {
+    // Custom comparison for better memoization
+    return (
+        prevProps.id === nextProps.id &&
+        prevProps.image === nextProps.image &&
+        prevProps.vehicleName === nextProps.vehicleName &&
+        prevProps.price === nextProps.price &&
+        prevProps.rating === nextProps.rating &&
+        prevProps.availability === nextProps.availability &&
+        prevProps.viewMode === nextProps.viewMode &&
+        JSON.stringify(prevProps.features) === JSON.stringify(nextProps.features)
+    );
 });
+
+VehicleCard.displayName = 'VehicleCard';
 
 export default VehicleCard;

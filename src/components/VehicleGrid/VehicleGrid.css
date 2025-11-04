@@ -1,0 +1,124 @@
+/* Vehicle Grid Styles */
+.vehicle-grid-container {
+  width: 100%;
+}
+
+.vehicles-container {
+  display: grid;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.vehicles-container.grid {
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+}
+
+.vehicles-container.list {
+  grid-template-columns: 1fr;
+}
+
+/* Loading States */
+.loading-more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  margin: 1rem 0;
+}
+
+.loading-spinner {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #666;
+  font-size: 1rem;
+}
+
+.load-more-container {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.load-more-btn {
+  padding: 12px 24px;
+  background-color: #FFD700;
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.load-more-btn:hover {
+  background-color: #FFC107;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.load-more-btn:active {
+  transform: translateY(0);
+}
+
+.results-summary {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.no-results {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: var(--card-background, #fff);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin: 2rem 0;
+}
+
+.no-results h3 {
+  color: #333;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.no-results p {
+  color: #666;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .vehicles-container.grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .load-more-btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+  
+  .loading-more {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .vehicles-container {
+    gap: 1rem;
+  }
+  
+  .no-results {
+    padding: 2rem 1rem;
+    margin: 1rem 0;
+  }
+  
+  .no-results h3 {
+    font-size: 1.3rem;
+  }
+}
