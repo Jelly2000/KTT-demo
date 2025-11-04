@@ -24,37 +24,7 @@ const VehicleDetail = () => {
         setLoading(false);
     }, [slug, i18n.language]);
 
-    // Keyboard navigation for modal
-    useEffect(() => {
-        const handleKeyDown = (e) => {
-            if (!isModalOpen) return;
-            
-            if (e.key === 'Escape') {
-                closeModal();
-            } else if (e.key === 'ArrowLeft') {
-                prevImageModal();
-            } else if (e.key === 'ArrowRight') {
-                nextImageModal();
-            }
-        };
-
-        document.addEventListener('keydown', handleKeyDown);
-        return () => document.removeEventListener('keydown', handleKeyDown);
-    }, [isModalOpen, vehicle, nextImageModal, prevImageModal]);
-
-    // Prevent body scroll when modal is open
-    useEffect(() => {
-        if (isModalOpen) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'unset';
-        }
-        
-        return () => {
-            document.body.style.overflow = 'unset';
-        };
-    }, [isModalOpen]);
-
+    // Define all modal-related functions
     const nextImage = () => {
         if (vehicle && vehicle.gallery && vehicle.gallery.length > 1) {
             setCurrentImageIndex((prev) => (prev + 1) % vehicle.gallery.length);
@@ -75,19 +45,48 @@ const VehicleDetail = () => {
         setIsModalOpen(false);
     };
 
-    const nextImageModal = useCallback(() => {
+    const nextImageModal = () => {
         if (vehicle && vehicle.gallery && vehicle.gallery.length > 1) {
             setCurrentImageIndex((prev) => (prev + 1) % vehicle.gallery.length);
         }
-    }, [vehicle]);
+    };
 
-    const prevImageModal = useCallback(() => {
+    const prevImageModal = () => {
         if (vehicle && vehicle.gallery && vehicle.gallery.length > 1) {
             setCurrentImageIndex((prev) => (prev - 1 + vehicle.gallery.length) % vehicle.gallery.length);
         }
-    }, [vehicle]);
+    };
 
+    // Keyboard navigation for modal
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (!isModalOpen) return;
+            
+            if (e.key === 'Escape') {
+                closeModal();
+            } else if (e.key === 'ArrowLeft') {
+                prevImageModal();
+            } else if (e.key === 'ArrowRight') {
+                nextImageModal();
+            }
+        };
 
+        document.addEventListener('keydown', handleKeyDown);
+        return () => document.removeEventListener('keydown', handleKeyDown);
+    }, [isModalOpen]);
+
+    // Prevent body scroll when modal is open
+    useEffect(() => {
+        if (isModalOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+        
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
+    }, [isModalOpen]);
 
     if (loading) {
         return (
