@@ -6,6 +6,7 @@ import Footer from './components/Footer/Footer'
 import FloatingContacts from './components/FloatingContacts/FloatingContacts'
 import ScrollToTop from './components/ScrollToTop/ScrollToTop'
 import RentCarModal, { RentModalProvider } from './components/RentCarModal'
+import useHealthCheck from './hooks/useHealthCheck'
 
 // Lazy load components
 const Home = React.lazy(() => import('./pages/home/Home'))
@@ -20,6 +21,9 @@ import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner'
 import './App.css'
 
 function App() {
+  // Initialize health check system
+  useHealthCheck();
+
   return (
     <HelmetProvider>
       <Router>

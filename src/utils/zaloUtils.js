@@ -230,9 +230,36 @@ ${content}
   return await sendZaloMessage(notificationMessage);
 };
 
+/**
+ * Send health check ping to server
+ * @returns {Promise<boolean>} - Returns true if health check successful
+ */
+const sendHealthCheck = async () => {
+  try {
+    const response = await fetch(`${ZALO_SERVER_URL}/api/zalo/health`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (response.ok) {
+      console.log('✅ Health check successful:', new Date().toISOString());
+      return true;
+    } else {
+      console.warn('⚠️ Health check failed with status:', response.status);
+      return false;
+    }
+  } catch (error) {
+    console.error('❌ Health check error:', error.message);
+    return false;
+  }
+};
+
 export default {
   sendCarRentalRequest,
   sendConsultationRequest,
   sendNotification,
-  formatPhoneNumber
+  formatPhoneNumber,
+  sendHealthCheck
 };
