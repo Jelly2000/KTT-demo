@@ -12,12 +12,12 @@ const useHealthCheck = () => {
     // Initial health check on mount
     zaloUtils.sendHealthCheck();
 
-    // Set up periodic health checks every 5 hours (5 * 60 * 60 * 1000 ms)
-    const FIVE_HOURS = 5 * 60 * 60 * 1000;
+    // Set up periodic health checks every 20 minutes (20 * 60 * 1000 ms)
+    const TWENTY_MINUTES = 20 * 60 * 1000;
     
     intervalRef.current = setInterval(() => {
       zaloUtils.sendHealthCheck();
-    }, FIVE_HOURS);
+    }, TWENTY_MINUTES);
 
     // Cleanup function to clear interval when component unmounts
     return () => {
