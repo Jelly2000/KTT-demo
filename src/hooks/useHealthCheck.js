@@ -3,7 +3,6 @@ import zaloUtils from '../utils/zaloUtils';
 
 /**
  * Custom hook to perform periodic health checks
- * Sends a health check request every 5 hours to keep the server alive
  */
 const useHealthCheck = () => {
   const intervalRef = useRef(null);
@@ -12,12 +11,12 @@ const useHealthCheck = () => {
     // Initial health check on mount
     zaloUtils.sendHealthCheck();
 
-    // Set up periodic health checks every 20 minutes (20 * 60 * 1000 ms)
-    const TWENTY_MINUTES = 20 * 60 * 1000;
+    // Set up periodic health checks every 10 minutes (10 * 60 * 1000 ms)
+    const SERVER_HEALTH_CHECK_INTERVAL = 10 * 60 * 1000;
     
     intervalRef.current = setInterval(() => {
       zaloUtils.sendHealthCheck();
-    }, TWENTY_MINUTES);
+    }, SERVER_HEALTH_CHECK_INTERVAL);
 
     // Cleanup function to clear interval when component unmounts
     return () => {
