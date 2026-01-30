@@ -29,6 +29,25 @@ Object.defineProperty(window, 'matchMedia', {
   }),
 });
 
+// Mock IntersectionObserver
+/* eslint-disable no-undef */
+global.IntersectionObserver = class IntersectionObserver {
+  constructor(callback, options) {
+    this.callback = callback;
+    this.options = options;
+  }
+
+  observe(target) {
+    // Immediately trigger the callback as if the element is visible
+    this.callback([{ isIntersecting: true, target }], this);
+  }
+
+  unobserve() {}
+
+  disconnect() {}
+};
+/* eslint-enable no-undef */
+
 // Mock localStorage
 const localStorageMock = {
   getItem: (key) => localStorageMock[key] || null,

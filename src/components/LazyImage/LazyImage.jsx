@@ -35,7 +35,7 @@ const LazyImage = ({
     }
 
     return () => observer.disconnect();
-  }, []);
+  }, [rootMargin, threshold]);
 
   const handleLoad = () => {
     setIsLoaded(true);

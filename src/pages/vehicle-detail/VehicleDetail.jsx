@@ -41,9 +41,9 @@ const VehicleDetail = () => {
         setIsModalOpen(true);
     };
 
-    const closeModal = () => {
+    const closeModal = useCallback(() => {
         setIsModalOpen(false);
-    };
+    }, []);
 
     const nextImageModal = useCallback(() => {
         if (vehicle && vehicle.gallery && vehicle.gallery.length > 1) {
@@ -73,7 +73,7 @@ const VehicleDetail = () => {
 
         document.addEventListener('keydown', handleKeyDown);
         return () => document.removeEventListener('keydown', handleKeyDown);
-    }, [isModalOpen]);
+    }, [isModalOpen, closeModal, nextImageModal, prevImageModal]);
 
     // Prevent body scroll when modal is open
     useEffect(() => {
@@ -86,7 +86,7 @@ const VehicleDetail = () => {
         return () => {
             document.body.style.overflow = 'unset';
         };
-    }, [isModalOpen, nextImageModal, prevImageModal]);
+    }, [isModalOpen]);
 
     if (loading) {
         return (
