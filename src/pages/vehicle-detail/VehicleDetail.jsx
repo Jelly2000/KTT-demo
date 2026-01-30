@@ -73,7 +73,7 @@ const VehicleDetail = () => {
 
         document.addEventListener('keydown', handleKeyDown);
         return () => document.removeEventListener('keydown', handleKeyDown);
-    }, [isModalOpen]);
+    }, [isModalOpen, nextImageModal, prevImageModal]);
 
     // Prevent body scroll when modal is open
     useEffect(() => {

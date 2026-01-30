@@ -3,7 +3,6 @@ import React, { useState, useRef, useEffect } from 'react';
 const VehicleImageLoader = ({ 
   src, 
   alt, 
-  vehicleName,
   style = {},
   className = "",
   onClick,
