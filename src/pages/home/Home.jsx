@@ -32,8 +32,8 @@ const Home = () => {
     "@type": "AutoRental",
     "name": "KTT Car Rental",
     "description": t('seo_home_description'),
-    "url": "https://ktt-rentcar.netlify.app",
-    "telephone": "+84-xxx-xxx-xxx",
+    "url": "https://www.kttcar.com",
+    "telephone": "+84798888373",
     "address": {
       "@type": "PostalAddress",
       "addressCountry": "VN",

@@ -16,7 +16,7 @@ const Contact = () => {
     "mainEntity": {
       "@type": "Organization",
       "name": "KTT Car Rental",
-      "telephone": "+84-xxx-xxx-xxx",
+      "telephone": "+84798888373",
       "address": {
         "@type": "PostalAddress",
         "addressCountry": "VN",
