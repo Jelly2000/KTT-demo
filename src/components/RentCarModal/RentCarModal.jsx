@@ -131,13 +131,10 @@ const RentCarModal = () => {
                     <div className="error-notification">
                         <div className="error-icon">✕</div>
                         <h3>{t('request_failed')}</h3>
-                        {/* <p>{errorMessage}</p> */}
-                        {/* <div className="error-contact-info"> */}
-                            <p><strong>{t('contact_us_directly')}</strong></p>
-                            {/* <p>📞 {t('phone_number')}: +84-xxx-xxx-xxx</p>
-                            <p>📧 Email: contact@kttcar.com</p>
-                            <p>🌐 Zalo: +84-xxx-xxx-xxx</p> */}
-                        {/* </div> */}
+                        <p><strong>{t('contact_us_directly')}</strong></p>
+                        <p>📞 {t('phone_number')}: 079.8888.373</p>
+                        <p>📧 Email: jackynguyen23@gmail.com</p>
+                        <p>🌐 Zalo: 079.8888.373</p>
                         <small>
                             {t('notification_auto_close')}
                         </small>
