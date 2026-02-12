@@ -18,6 +18,29 @@ const UpdateVehicle = () => {
     const [showSuccessNotification, setShowSuccessNotification] = useState(false);
     const [showErrorNotification, setShowErrorNotification] = useState(false);
 
+    // Helper function to create form data from vehicle object
+    const createFormDataFromVehicle = (vehicle) => ({
+        id: vehicle.id,
+        name: vehicle.name,
+        slug: vehicle.slug,
+        category: vehicle.category,
+        seats: vehicle.seats,
+        transmission: vehicle.transmission,
+        fuel: vehicle.fuel,
+        pricePerDay: vehicle.pricePerDay,
+        description: vehicle.description,
+        availability: vehicle.availability,
+        // Number plate is read-only - cannot be edited
+        numberPlate: vehicle.numberPlate || 'N/A',
+        features: vehicle.features ? vehicle.features.join('\n') : '',
+        engine: vehicle.specifications?.engine || '',
+        power: vehicle.specifications?.power || '',
+        torque: vehicle.specifications?.torque || '',
+        fuelConsumption: vehicle.specifications?.fuelConsumption || '',
+        tankCapacity: vehicle.specifications?.tankCapacity || '',
+        transmissionSpec: vehicle.specifications?.transmission || ''
+    });
+
     // Load vehicles list
     useEffect(() => {
         const vehiclesList = getVehicles(i18n.language);
@@ -29,27 +52,7 @@ const UpdateVehicle = () => {
         if (selectedVehicleId) {
             const vehicle = getVehicleById(parseInt(selectedVehicleId), i18n.language);
             if (vehicle) {
-                setFormData({
-                    id: vehicle.id,
-                    name: vehicle.name,
-                    slug: vehicle.slug,
-                    category: vehicle.category,
-                    seats: vehicle.seats,
-                    transmission: vehicle.transmission,
-                    fuel: vehicle.fuel,
-                    pricePerDay: vehicle.pricePerDay,
-                    description: vehicle.description,
-                    availability: vehicle.availability,
-                    // Number plate is read-only - cannot be edited
-                    numberPlate: vehicle.numberPlate || 'N/A',
-                    features: vehicle.features ? vehicle.features.join('\n') : '',
-                    engine: vehicle.specifications?.engine || '',
-                    power: vehicle.specifications?.power || '',
-                    torque: vehicle.specifications?.torque || '',
-                    fuelConsumption: vehicle.specifications?.fuelConsumption || '',
-                    tankCapacity: vehicle.specifications?.tankCapacity || '',
-                    transmissionSpec: vehicle.specifications?.transmission || ''
-                });
+                setFormData(createFormDataFromVehicle(vehicle));
             }
         } else {
             setFormData(null);
@@ -115,26 +118,7 @@ const UpdateVehicle = () => {
         if (selectedVehicleId) {
             const vehicle = getVehicleById(parseInt(selectedVehicleId), i18n.language);
             if (vehicle) {
-                setFormData({
-                    id: vehicle.id,
-                    name: vehicle.name,
-                    slug: vehicle.slug,
-                    category: vehicle.category,
-                    seats: vehicle.seats,
-                    transmission: vehicle.transmission,
-                    fuel: vehicle.fuel,
-                    pricePerDay: vehicle.pricePerDay,
-                    description: vehicle.description,
-                    availability: vehicle.availability,
-                    numberPlate: vehicle.numberPlate || 'N/A',
-                    features: vehicle.features ? vehicle.features.join('\n') : '',
-                    engine: vehicle.specifications?.engine || '',
-                    power: vehicle.specifications?.power || '',
-                    torque: vehicle.specifications?.torque || '',
-                    fuelConsumption: vehicle.specifications?.fuelConsumption || '',
-                    tankCapacity: vehicle.specifications?.tankCapacity || '',
-                    transmissionSpec: vehicle.specifications?.transmission || ''
-                });
+                setFormData(createFormDataFromVehicle(vehicle));
             }
         }
     };
