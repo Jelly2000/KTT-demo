@@ -6,6 +6,7 @@ import Footer from './components/footer/Footer'
 import FloatingContacts from './components/FloatingContacts/FloatingContacts'
 import ScrollToTop from './components/ScrollToTop/ScrollToTop'
 import RentCarModal, { RentModalProvider } from './components/RentCarModal'
+import { UserProvider } from './context'
 import useHealthCheck from './hooks/useHealthCheck'
 
 // Lazy load components
@@ -16,6 +17,7 @@ const Procedures = React.lazy(() => import('./pages/procedure/Procedures'))
 const Contact = React.lazy(() => import('./pages/contact/Contact'))
 const ETCPayment = React.lazy(() => import('./pages/etc-payment/ETCPayment'))
 const PVIInsurance = React.lazy(() => import('./pages/pvi/PVIInsurance'))
+const AddNewUser = React.lazy(() => import('./pages/add-user/AddNewUser'))
 
 import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner'
 import './App.css'
@@ -27,28 +29,31 @@ function App() {
   return (
     <HelmetProvider>
       <Router>
-        <RentModalProvider>
-          <div className="app">
-            <ScrollToTop />
-            <Header />
-            <main className="main-content">
-              <Suspense fallback={<LoadingSpinner />}>
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/thue-xe" element={<RentCar />} />
-                  <Route path="/thue-xe/:slug" element={<VehicleDetail />} />
-                  <Route path="/thu-tuc" element={<Procedures />} />
-                  <Route path="/contact" element={<Contact />} />
-                  <Route path="/nap-phi-etc" element={<ETCPayment />} />
-                  <Route path="/bao-hiem-pvi" element={<PVIInsurance />} />
-                </Routes>
-              </Suspense>
-            </main>
-            <Footer />
-            <FloatingContacts />
-            <RentCarModal />
-          </div>
-        </RentModalProvider>
+        <UserProvider>
+          <RentModalProvider>
+            <div className="app">
+              <ScrollToTop />
+              <Header />
+              <main className="main-content">
+                <Suspense fallback={<LoadingSpinner />}>
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/thue-xe" element={<RentCar />} />
+                    <Route path="/thue-xe/:slug" element={<VehicleDetail />} />
+                    <Route path="/thu-tuc" element={<Procedures />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="/nap-phi-etc" element={<ETCPayment />} />
+                    <Route path="/bao-hiem-pvi" element={<PVIInsurance />} />
+                    <Route path="/add-user" element={<AddNewUser />} />
+                  </Routes>
+                </Suspense>
+              </main>
+              <Footer />
+              <FloatingContacts />
+              <RentCarModal />
+            </div>
+          </RentModalProvider>
+        </UserProvider>
       </Router>
     </HelmetProvider>
   )
