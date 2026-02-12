@@ -16,6 +16,7 @@ const Procedures = React.lazy(() => import('./pages/procedure/Procedures'))
 const Contact = React.lazy(() => import('./pages/contact/Contact'))
 const ETCPayment = React.lazy(() => import('./pages/etc-payment/ETCPayment'))
 const PVIInsurance = React.lazy(() => import('./pages/pvi/PVIInsurance'))
+const UpdateVehicle = React.lazy(() => import('./pages/update-vehicle/UpdateVehicle'))
 
 import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner'
 import './App.css'
@@ -41,6 +42,7 @@ function App() {
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/nap-phi-etc" element={<ETCPayment />} />
                   <Route path="/bao-hiem-pvi" element={<PVIInsurance />} />
+                  <Route path="/cap-nhat-xe" element={<UpdateVehicle />} />
                 </Routes>
               </Suspense>
             </main>

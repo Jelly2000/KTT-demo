@@ -1,0 +1,555 @@
+/* Update Vehicle Page Styles */
+.update-vehicle-page {
+    min-height: 100vh;
+    padding-top: 80px;
+}
+
+/* Form Section */
+.update-form-section {
+    padding: 60px 0;
+}
+
+.update-form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Vehicle Selection */
+.vehicle-selection {
+    margin-bottom: 2rem;
+    padding: 2rem;
+    background: var(--card-background);
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow);
+}
+
+/* Update Form */
+.update-form {
+    background: var(--card-background);
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow);
+}
+
+.form-section-header {
+    margin: 2rem 0 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.form-section-header:first-child {
+    margin-top: 0;
+}
+
+.form-section-header h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin: 0;
+}
+
+/* Form Elements */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.form-field {
+    position: relative;
+}
+
+.field-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--text-color);
+    font-weight: 500;
+    font-size: 0.95rem;
+    flex-wrap: wrap;
+}
+
+.required-asterisk {
+    color: #e74c3c;
+}
+
+.readonly-badge {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.5rem;
+    background: #6c757d;
+    color: white;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.hint-text {
+    font-size: 0.8rem;
+    color: var(--text-color);
+    opacity: 0.6;
+    font-weight: 400;
+}
+
+.field-input,
+.field-textarea,
+.select-input {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    background: var(--card-background);
+    color: var(--text-color);
+    font-size: 1rem;
+    transition: var(--transition);
+    box-sizing: border-box;
+}
+
+.field-input:focus,
+.field-textarea:focus,
+.select-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+}
+
+.field-input::placeholder,
+.field-textarea::placeholder {
+    color: var(--text-color);
+    opacity: 0.6;
+}
+
+.field-textarea {
+    resize: vertical;
+    min-height: 100px;
+    font-family: inherit;
+}
+
+/* Readonly Input */
+.readonly-input {
+    background: var(--background-alt, #f5f5f5);
+    color: var(--text-color);
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* Select Wrapper */
+.select-wrapper {
+    position: relative;
+}
+
+.select-input {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: none;
+    cursor: pointer;
+}
+
+.select-arrow {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--text-color);
+    opacity: 0.6;
+}
+
+/* Checkbox */
+.availability-field {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    padding: 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    transition: var(--transition);
+}
+
+.checkbox-label:hover {
+    border-color: var(--primary-color);
+}
+
+.checkbox-input {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: var(--primary-color);
+}
+
+.checkbox-text {
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+/* Form Actions */
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.submit-btn,
+.reset-btn {
+    flex: 1;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.submit-btn {
+    background: linear-gradient(45deg, var(--primary-color), #FFA500);
+    color: var(--btn-text-secondary);
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+}
+
+.submit-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(255, 215, 0, 0.4);
+}
+
+.reset-btn {
+    background: var(--resetbtn-background-color);
+    color: var(--text-color);
+    border: 2px solid var(--border-color);
+}
+
+.reset-btn:hover:not(:disabled) {
+    background: var(--border-color);
+    transform: translateY(-2px);
+}
+
+.submit-btn:disabled,
+.reset-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+    transform: none;
+}
+
+/* No Vehicle Selected Message */
+.no-vehicle-selected {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: var(--card-background);
+    border-radius: 16px;
+    border: 2px dashed var(--border-color);
+}
+
+.empty-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.no-vehicle-selected p {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    opacity: 0.8;
+    margin: 0;
+}
+
+/* Modal Styles */
+.update-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    padding: 1rem;
+    animation: fadeIn 0.3s ease;
+}
+
+.update-modal-content {
+    background: var(--card-background);
+    border-radius: 16px;
+    border: 2px solid var(--border-color);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    width: 100%;
+    min-height: 300px;
+    position: relative;
+    animation: slideUp 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Loading Overlay */
+.update-loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--card-background);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+    border-radius: 16px;
+    padding: 2rem;
+}
+
+.update-loading-spinner {
+    width: 60px;
+    height: 60px;
+    border: 4px solid var(--border-color);
+    border-top: 4px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+.update-loading-text {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Success Notification */
+.update-success-notification {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--card-background);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+}
+
+.update-success-icon {
+    width: 80px;
+    height: 80px;
+    background: #28a745;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    animation: successPulse 0.6s ease-out;
+}
+
+.update-success-notification h3 {
+    color: #28a745;
+    margin: 0 0 1rem;
+    font-size: 1.5rem;
+}
+
+.update-success-notification p {
+    color: var(--text-color);
+    margin: 0 0 1rem;
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+.update-success-notification small {
+    color: var(--text-color-muted);
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+/* Error Notification */
+.update-error-notification {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--card-background);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+}
+
+.update-error-icon {
+    width: 80px;
+    height: 80px;
+    background: #dc3545;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    animation: errorShake 0.6s ease-out;
+}
+
+.update-error-notification h3 {
+    color: #dc3545;
+    margin: 0 0 1rem;
+    font-size: 1.5rem;
+}
+
+.update-error-notification p {
+    color: var(--text-color);
+    margin: 0 0 1rem;
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+.update-error-notification small {
+    color: var(--text-color-muted);
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes successPulse {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes errorShake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-5px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(5px);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .update-vehicle-page {
+        padding-top: 60px;
+    }
+
+    .update-form-section {
+        padding: 40px 0;
+    }
+
+    .vehicle-selection,
+    .update-form {
+        padding: 1.5rem;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .submit-btn,
+    .reset-btn {
+        width: 100%;
+    }
+
+    .update-modal-content {
+        max-width: 95vw;
+        margin: 1rem;
+        min-height: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .vehicle-selection,
+    .update-form {
+        padding: 1rem;
+    }
+
+    .form-section-header h3 {
+        font-size: 1.1rem;
+    }
+
+    .field-input,
+    .field-textarea,
+    .select-input {
+        padding: 0.875rem;
+        font-size: 0.95rem;
+    }
+
+    .empty-icon {
+        font-size: 3rem;
+    }
+
+    .no-vehicle-selected {
+        padding: 3rem 1.5rem;
+    }
+}
