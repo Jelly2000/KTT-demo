@@ -1,8 +1,9 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
 import { useRentModal } from '../../components/RentCarModal';
-import { getVehicleBySlugAsync } from '../../utils/vehicleUtils';
+import { clearVehicleDetail, fetchVehicleDetailBySlug, selectVehicleDetail, selectVehicleDetailStatus } from '../../store/vehicleSlice';
 import SEO from '../../components/SEO/SEO';
 import './VehicleDetail.css';
 
@@ -10,31 +11,22 @@ const VehicleDetail = () => {
     const { slug } = useParams();
     const navigate = useNavigate();
     const { t, i18n } = useTranslation();
+    const dispatch = useDispatch();
     const { openRentModal } = useRentModal();
-    const [vehicle, setVehicle] = useState(null);
+    const vehicle = useSelector(selectVehicleDetail);
+    const detailStatus = useSelector(selectVehicleDetailStatus);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        let isMounted = true;
-
-        const loadVehicle = async () => {
-            setLoading(true);
-            const foundVehicle = await getVehicleBySlugAsync(slug, i18n.language);
-
-            if (isMounted) {
-                setVehicle(foundVehicle);
-                setLoading(false);
-            }
-        };
-
-        loadVehicle();
+        setCurrentImageIndex(0);
+        dispatch(clearVehicleDetail());
+        dispatch(fetchVehicleDetailBySlug({ slug, language: i18n.language }));
 
         return () => {
-            isMounted = false;
+            dispatch(clearVehicleDetail());
         };
-    }, [slug, i18n.language]);
+    }, [dispatch, i18n.language, slug]);
 
     // Define all modal-related functions
     const nextImage = () => {
@@ -100,7 +92,7 @@ const VehicleDetail = () => {
         };
     }, [isModalOpen, nextImageModal, prevImageModal]);
 
-    if (loading) {
+    if (detailStatus === 'loading' || detailStatus === 'idle') {
         return (
             <div className="container" style={{ textAlign: 'center', padding: '3rem 0' }}>
                 <p>{t('loading_text')}</p>

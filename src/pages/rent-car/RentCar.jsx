@@ -1,16 +1,20 @@
 import React, { useState, useMemo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
 import { useDebounce } from '../../hooks/usePerformance';
 import '../shared-styles.css';
 import './styles.css';
 import { VehicleCard, VehicleGrid } from '../../components';
-import { fetchVehicles, getFilters } from '../../utils/vehicleUtils';
+import { getFilters } from '../../utils/vehicleUtils';
+import { fetchVehiclesList, selectVehicleListStatus, selectVehiclesByLanguage } from '../../store/vehicleSlice';
 import SEO from '../../components/SEO/SEO';
 
 const RentCar = () => {
   const { t, i18n } = useTranslation();
-  const [vehicles, setVehicles] = useState([]);
-  const [isLoadingVehicles, setIsLoadingVehicles] = useState(true);
+  const dispatch = useDispatch();
+  const vehicles = useSelector((state) => selectVehiclesByLanguage(state, i18n.language));
+  const listStatus = useSelector((state) => selectVehicleListStatus(state, i18n.language));
+  const isLoadingVehicles = listStatus === 'loading' || listStatus === 'idle';
   const [filters, setFilters] = useState({
     brand: '',
     seats: '',
@@ -24,24 +28,8 @@ const RentCar = () => {
   const filterOptions = React.useMemo(() => getFilters(i18n.language), [i18n.language]);
 
   React.useEffect(() => {
-    let isMounted = true;
-
-    const loadVehicles = async () => {
-      setIsLoadingVehicles(true);
-      const vehicleList = await fetchVehicles(i18n.language);
-
-      if (isMounted) {
-        setVehicles(vehicleList);
-        setIsLoadingVehicles(false);
-      }
-    };
-
-    loadVehicles();
-
-    return () => {
-      isMounted = false;
-    };
-  }, [i18n.language]);
+    dispatch(fetchVehiclesList({ language: i18n.language }));
+  }, [dispatch, i18n.language]);
 
   // Debounce search input for better performance
   const debouncedSearch = useDebounce(filters.search, 300);

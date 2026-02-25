@@ -6,7 +6,8 @@
 import vehiclesVi from '../data/vehicles-vi.json';
 import vehiclesEn from '../data/vehicles-en.json';
 
-const VEHICLES_API_URL = import.meta.env.VITE_VEHICLES_API_URL || 'https://dssbwbqre9.execute-api.ap-southeast-1.amazonaws.com/dev/api/vehicles/search';
+const VEHICLES_API_BASE_URL = import.meta.env.VITE_VEHICLES_API_BASE_URL || 'https://dssbwbqre9.execute-api.ap-southeast-1.amazonaws.com/dev/api/vehicles';
+const VEHICLES_API_URL = import.meta.env.VITE_VEHICLES_API_URL || `${VEHICLES_API_BASE_URL}/search`;
 const DEFAULT_PAGE = 1;
 const DEFAULT_LIMIT = 100;
 
@@ -138,6 +139,26 @@ const buildVehiclesApiUrl = (page = DEFAULT_PAGE, limit = DEFAULT_LIMIT) => {
   return `${VEHICLES_API_URL}?${params.toString()}`;
 };
 
+const buildVehicleDetailApiUrl = (slug) => {
+  return `${VEHICLES_API_BASE_URL}/${slug}`;
+};
+
+const getVehicleFromDetailPayload = (payload) => {
+  if (!payload || typeof payload !== 'object') {
+    return null;
+  }
+
+  if (payload?.data?.vehicle) {
+    return payload.data.vehicle;
+  }
+
+  if (payload?.data && !Array.isArray(payload.data) && typeof payload.data === 'object') {
+    return payload.data;
+  }
+
+  return null;
+};
+
 export const fetchVehicles = async (language, options = {}) => {
   const normalizedLang = normalizeLanguage(language);
 
@@ -188,6 +209,34 @@ export const getVehicleBySlugAsync = async (slug, language, options = {}) => {
     const vehicleSlug = toSlug(vehicle.slug);
     return vehicleSlug.startsWith(normalizedSlug) || normalizedSlug.startsWith(vehicleSlug);
   }) || null;
+};
+
+export const fetchVehicleBySlug = async (slug, language) => {
+  if (!slug) {
+    return null;
+  }
+
+  const normalizedLang = normalizeLanguage(language);
+
+  try {
+    const response = await fetch(buildVehicleDetailApiUrl(slug));
+
+    if (!response.ok) {
+      throw new Error(`Vehicle detail API request failed with status ${response.status}`);
+    }
+
+    const payload = await response.json();
+    const apiVehicle = getVehicleFromDetailPayload(payload);
+
+    if (!apiVehicle) {
+      throw new Error('Vehicle detail API response does not include vehicle data');
+    }
+
+    return mapApiVehicleToAppModel(apiVehicle, normalizedLang);
+  } catch (error) {
+    console.warn('Falling back to local vehicle detail by slug:', error);
+    return getVehicleBySlug(slug, normalizedLang);
+  }
 };
 
 /**

@@ -1,38 +1,28 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import '../shared-styles.css';
 import './Home.css';
 import Heading from '../../components/Heading/Heading';
 import Card from '../../components/card/Card';
 import HighlightedButton from '../../components/HighlightedButton/HighlightedButton';
 import { VehicleCard, ConsultationForm } from '../../components';
-import { fetchVehicles } from '../../utils/vehicleUtils';
+import { fetchVehiclesList, selectVehiclesByLanguage } from '../../store/vehicleSlice';
 import SEO from '../../components/SEO/SEO';
 
 const Home = () => {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
-  const [featuredVehicles, setFeaturedVehicles] = React.useState([]);
+  const dispatch = useDispatch();
+  const vehicles = useSelector((state) => selectVehiclesByLanguage(state, i18n.language));
+  const featuredVehicles = React.useMemo(() => vehicles.slice(0, 3), [vehicles]);
   
   // Get first 3 vehicles for display in current language
   // Re-fetch vehicles when language changes
   React.useEffect(() => {
-    let isMounted = true;
-
-    const loadVehicles = async () => {
-      const vehicles = await fetchVehicles(i18n.language);
-      if (isMounted) {
-        setFeaturedVehicles(vehicles.slice(0, 3));
-      }
-    };
-
-    loadVehicles();
-
-    return () => {
-      isMounted = false;
-    };
-  }, [i18n.language]);
+    dispatch(fetchVehiclesList({ language: i18n.language }));
+  }, [dispatch, i18n.language]);
   
   const formatPrice = (price) => {
     return new Intl.NumberFormat('vi-VN', {
