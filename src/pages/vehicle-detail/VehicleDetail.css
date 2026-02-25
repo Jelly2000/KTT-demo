@@ -125,7 +125,8 @@
 }
 
 .vehicle-description h3,
-.vehicle-features h3 {
+.vehicle-features h3,
+.vehicle-video h3 {
     font-size: 1.3rem;
     font-weight: 600;
     color: var(--text-color);
@@ -136,6 +137,43 @@
     color: var(--text-color);
     line-height: 1.6;
     font-size: 1.1rem;
+}
+
+.vehicle-video {
+    width: 100%;
+}
+
+.vehicle-video-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    background: var(--card-background);
+}
+
+.vehicle-video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.vehicle-video-wrapper.tiktok-video-wrapper {
+    max-width: 240px;
+    width: 100%;
+    padding-top: 0;
+    aspect-ratio: 9 / 16;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .vehicle-video-wrapper.tiktok-video-wrapper {
+        max-width: 220px;
+    }
 }
 
 .vehicle-features ul {
@@ -204,7 +242,7 @@
 
 /* Vehicle Specifications */
 .vehicle-specs-section {
-    padding: 80px 0;
+    padding: 30px 0;
     background: var(--card-background);
 }
 
@@ -262,6 +300,14 @@
     font-weight: 600;
     color: var(--text-color);
 }
+
+.section-title {
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  color: var(--text-color);
+  position: relative;
+}
+
 
 /* Mobile Responsive */
 @media (max-width: 1024px) {

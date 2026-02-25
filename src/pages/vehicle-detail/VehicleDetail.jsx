@@ -126,6 +126,49 @@ const VehicleDetail = () => {
         }).format(price);
     };
 
+    const getVideoEmbedUrl = (url) => {
+        if (!url) return '';
+
+        try {
+            const parsedUrl = new URL(url);
+            const host = parsedUrl.hostname.replace('www.', '');
+
+            if (host.includes('youtu.be')) {
+                const id = parsedUrl.pathname.replace('/', '');
+                return id ? `https://www.youtube.com/embed/${id}` : '';
+            }
+
+            if (host.includes('youtube.com')) {
+                const id = parsedUrl.searchParams.get('v');
+                if (id) {
+                    return `https://www.youtube.com/embed/${id}`;
+                }
+
+                if (parsedUrl.pathname.startsWith('/embed/')) {
+                    return url;
+                }
+            }
+
+            if (host.includes('tiktok.com')) {
+                if (parsedUrl.pathname.startsWith('/embed/')) {
+                    return url;
+                }
+
+                const parts = parsedUrl.pathname.split('/').filter(Boolean);
+                const videoIndex = parts.indexOf('video');
+                const videoId = videoIndex >= 0 ? parts[videoIndex + 1] : '';
+
+                if (videoId) {
+                    return `https://www.tiktok.com/player/v1/${videoId}`;
+                }
+            }
+        } catch {
+            return '';
+        }
+
+        return '';
+    };
+
     // Get vehicle-specific features for SEO
     const getVehicleFeatures = (vehicleName) => {
         const name = vehicleName.toLowerCase();
@@ -143,6 +186,8 @@ const VehicleDetail = () => {
     };
 
     const vehicleFeatures = getVehicleFeatures(vehicle.name);
+    const videoEmbedUrl = getVideoEmbedUrl(vehicle.videoLink);
+    const isTikTokVideo = videoEmbedUrl.includes('tiktok.com');
 
     const structuredData = {
         "@context": "https://schema.org",
@@ -318,6 +363,24 @@ const VehicleDetail = () => {
             {/* Vehicle Specifications - matching demo */}
             <section className="vehicle-specs-section">
                 <div className="container">
+
+                    {videoEmbedUrl && (
+                        <div className="vehicle-video">
+                            <h2 className="section-title">{t('vehicle_video_title')}</h2>
+                            <div className={`vehicle-video-wrapper ${isTikTokVideo ? 'tiktok-video-wrapper' : ''}`}>
+                                <iframe
+                                    src={videoEmbedUrl}
+                                    title={`${vehicle.name} video`}
+                                    loading="lazy"
+                                    scrolling="no"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    referrerPolicy="strict-origin-when-cross-origin"
+                                    allowFullScreen
+                                />
+                            </div>
+                        </div>
+                    )}
+
                     <h2 className="section-title">
                         {t('technical_specifications_title')}
                     </h2>

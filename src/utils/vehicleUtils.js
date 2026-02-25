@@ -121,6 +121,7 @@ const mapApiVehicleToAppModel = (apiVehicle, language) => {
     coverImage: apiVehicle.cover_image || '',
     displayImage: apiVehicle.display_image || '',
     plateNumber: apiVehicle.plate_number || '',
+    videoLink: apiVehicle.video_link || fallbackVehicle?.videoLink || '',
     make: apiVehicle.make || '',
     model: apiVehicle.model || '',
     trim: apiVehicle.trim || '',
