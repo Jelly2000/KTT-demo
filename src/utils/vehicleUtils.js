@@ -6,6 +6,15 @@
 import vehiclesVi from '../data/vehicles-vi.json';
 import vehiclesEn from '../data/vehicles-en.json';
 
+const VEHICLES_API_URL = import.meta.env.VITE_VEHICLES_API_URL || 'https://dssbwbqre9.execute-api.ap-southeast-1.amazonaws.com/dev/api/vehicles/search';
+const DEFAULT_PAGE = 1;
+const DEFAULT_LIMIT = 100;
+
+const vehiclesCache = {
+  en: null,
+  vi: null
+};
+
 /**
  * Normalize language code to base language
  * @param {string} language - Language code (e.g., 'en-GB', 'en-US', 'vi-VN')
@@ -18,20 +27,175 @@ const normalizeLanguage = (language) => {
   return 'en'; // fallback
 };
 
+const getLocalVehiclesData = (language) => {
+  const normalizedLang = normalizeLanguage(language);
+  return normalizedLang === 'vi' ? vehiclesVi : vehiclesEn;
+};
+
+const getLocalizedText = (value, language) => {
+  const normalizedLang = normalizeLanguage(language);
+
+  if (typeof value === 'string') {
+    return value;
+  }
+
+  if (!value || typeof value !== 'object') {
+    return '';
+  }
+
+  return value[normalizedLang] || value.en || value.vi || '';
+};
+
+const normalizeFuel = (fuel) => {
+  if (!fuel) return '';
+  return fuel === 'petrol' ? 'gasoline' : fuel;
+};
+
+const toSlug = (value) => {
+  if (!value) return '';
+  return String(value)
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+};
+
+const getFallbackVehicleBySlug = (slug, language) => {
+  if (!slug) return null;
+  const localVehicles = getLocalVehiclesData(language).vehicles;
+  return localVehicles.find((vehicle) => vehicle.slug === slug) || null;
+};
+
+const getFallbackVehicle = (apiVehicle, language) => {
+  const localVehicles = getLocalVehiclesData(language).vehicles;
+  const bySlug = getFallbackVehicleBySlug(apiVehicle.slug, language);
+
+  if (bySlug) {
+    return bySlug;
+  }
+
+  const nameSlug = toSlug(apiVehicle.name);
+  return localVehicles.find((vehicle) => {
+    const localSlug = toSlug(vehicle.slug);
+    const localNameSlug = toSlug(vehicle.name);
+
+    return (
+      localSlug.startsWith(nameSlug) ||
+      nameSlug.startsWith(localSlug) ||
+      localNameSlug === nameSlug
+    );
+  }) || null;
+};
+
+const mapApiVehicleToAppModel = (apiVehicle, language) => {
+  const fallbackVehicle = getFallbackVehicle(apiVehicle, language);
+  const image = apiVehicle.display_image || apiVehicle.cover_image || fallbackVehicle?.image || '/placeholder-car.jpg';
+
+  return {
+    id: apiVehicle.id,
+    slug: apiVehicle.slug,
+    name: apiVehicle.name,
+    category: fallbackVehicle?.category || '',
+    seats: apiVehicle.seat_number || fallbackVehicle?.seats || 0,
+    transmission: fallbackVehicle?.transmission || 'automatic',
+    fuel: normalizeFuel(apiVehicle.fuel || fallbackVehicle?.fuel),
+    pricePerDay: apiVehicle.price_per_day || fallbackVehicle?.pricePerDay || 0,
+    pricePerWeek: apiVehicle.price_per_week || 0,
+    pricePerMonth: apiVehicle.price_per_month || 0,
+    image,
+    gallery: fallbackVehicle?.gallery?.length ? fallbackVehicle.gallery : [image],
+    features: Array.isArray(apiVehicle.features)
+      ? apiVehicle.features
+        .map((feature) => getLocalizedText(feature, language))
+        .filter(Boolean)
+      : fallbackVehicle?.features || [],
+    description: getLocalizedText(apiVehicle.description, language) || fallbackVehicle?.description || '',
+    specifications: {
+      ...fallbackVehicle?.specifications,
+      ...apiVehicle.specifications,
+      fuelConsumption: fallbackVehicle?.specifications?.fuelConsumption || ''
+    },
+    availability: (apiVehicle.rent_status || '').toLowerCase() === 'available',
+    rating: apiVehicle.rank_point || fallbackVehicle?.rating || 0,
+    reviewCount: fallbackVehicle?.reviewCount || 0,
+    coverImage: apiVehicle.cover_image || '',
+    displayImage: apiVehicle.display_image || '',
+    plateNumber: apiVehicle.plate_number || '',
+    make: apiVehicle.make || '',
+    model: apiVehicle.model || '',
+    trim: apiVehicle.trim || '',
+    vehicleStatus: apiVehicle.vehicle_status || ''
+  };
+};
+
+const buildVehiclesApiUrl = (page = DEFAULT_PAGE, limit = DEFAULT_LIMIT) => {
+  const params = new URLSearchParams({
+    page: String(page),
+    limit: String(limit)
+  });
+
+  return `${VEHICLES_API_URL}?${params.toString()}`;
+};
+
+export const fetchVehicles = async (language, options = {}) => {
+  const normalizedLang = normalizeLanguage(language);
+
+  if (!options.forceRefresh && vehiclesCache[normalizedLang]) {
+    return vehiclesCache[normalizedLang];
+  }
+
+  const page = options.page || DEFAULT_PAGE;
+  const limit = options.limit || DEFAULT_LIMIT;
+
+  try {
+    const response = await fetch(buildVehiclesApiUrl(page, limit));
+
+    if (!response.ok) {
+      throw new Error(`Vehicles API request failed with status ${response.status}`);
+    }
+
+    const payload = await response.json();
+    const apiVehicles = payload?.data?.vehicles;
+
+    if (!Array.isArray(apiVehicles)) {
+      throw new Error('Vehicles API response does not include data.vehicles array');
+    }
+
+    const mappedVehicles = apiVehicles.map((vehicle) => mapApiVehicleToAppModel(vehicle, normalizedLang));
+    vehiclesCache[normalizedLang] = mappedVehicles;
+
+    return mappedVehicles;
+  } catch (error) {
+    console.warn('Falling back to local vehicles data:', error);
+
+    const fallbackVehicles = getLocalVehiclesData(normalizedLang).vehicles;
+    vehiclesCache[normalizedLang] = fallbackVehicles;
+
+    return fallbackVehicles;
+  }
+};
+
+export const getVehicleBySlugAsync = async (slug, language, options = {}) => {
+  const vehicles = await fetchVehicles(language, options);
+  const exactMatch = vehicles.find((vehicle) => vehicle.slug === slug);
+  if (exactMatch) {
+    return exactMatch;
+  }
+
+  const normalizedSlug = toSlug(slug);
+  return vehicles.find((vehicle) => {
+    const vehicleSlug = toSlug(vehicle.slug);
+    return vehicleSlug.startsWith(normalizedSlug) || normalizedSlug.startsWith(vehicleSlug);
+  }) || null;
+};
+
 /**
  * Get vehicles data for the specified language
  * @param {string} language - Language code ('vi' or 'en' or locale like 'en-GB')
  * @returns {Object} - Vehicles data object with vehicles, categories, and filters
  */
 export const getVehiclesData = (language) => {
-  const normalizedLang = normalizeLanguage(language);
-  switch (normalizedLang) {
-    case 'en':
-      return vehiclesEn;
-    case 'vi':
-    default:
-      return vehiclesVi;
-  }
+  return getLocalVehiclesData(language);
 };
 
 /**

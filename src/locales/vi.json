@@ -258,6 +258,7 @@
   "seats_label": "Số chỗ ngồi",
   "transmission_label": "Hộp số",
   "fuel_label": "Nhiên liệu",
+  "plate_number_label": "Biển số",
   "engine_label": "Động cơ",
   "power_label": "Công suất",
   "fuel_consumption_label": "Tiêu thụ nhiên liệu",

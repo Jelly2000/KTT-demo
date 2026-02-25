@@ -11,5 +11,8 @@
 /thue-xe/10 /thue-xe/mg5  301
 /thue-xe/11 /thue-xe/mitsubishi-xpander-premium  301
 
+# Redirect /vehicle/* to /thue-xe/* (correct pattern)
+/vehicle/:slug  /thue-xe/:slug  301!
+
 # Netlify redirects for SPA
 /*    /index.html   200

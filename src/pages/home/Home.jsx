@@ -7,17 +7,31 @@ import Heading from '../../components/Heading/Heading';
 import Card from '../../components/card/Card';
 import HighlightedButton from '../../components/HighlightedButton/HighlightedButton';
 import { VehicleCard, ConsultationForm } from '../../components';
-import { getVehicles } from '../../utils/vehicleUtils';
+import { fetchVehicles } from '../../utils/vehicleUtils';
 import SEO from '../../components/SEO/SEO';
 
 const Home = () => {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
+  const [featuredVehicles, setFeaturedVehicles] = React.useState([]);
   
   // Get first 3 vehicles for display in current language
   // Re-fetch vehicles when language changes
-  const featuredVehicles = React.useMemo(() => {
-    return getVehicles(i18n.language).slice(0, 3);
+  React.useEffect(() => {
+    let isMounted = true;
+
+    const loadVehicles = async () => {
+      const vehicles = await fetchVehicles(i18n.language);
+      if (isMounted) {
+        setFeaturedVehicles(vehicles.slice(0, 3));
+      }
+    };
+
+    loadVehicles();
+
+    return () => {
+      isMounted = false;
+    };
   }, [i18n.language]);
   
   const formatPrice = (price) => {

@@ -4,11 +4,13 @@ import { useDebounce } from '../../hooks/usePerformance';
 import '../shared-styles.css';
 import './styles.css';
 import { VehicleCard, VehicleGrid } from '../../components';
-import { getVehicles, getFilters } from '../../utils/vehicleUtils';
+import { fetchVehicles, getFilters } from '../../utils/vehicleUtils';
 import SEO from '../../components/SEO/SEO';
 
 const RentCar = () => {
   const { t, i18n } = useTranslation();
+  const [vehicles, setVehicles] = useState([]);
+  const [isLoadingVehicles, setIsLoadingVehicles] = useState(true);
   const [filters, setFilters] = useState({
     brand: '',
     seats: '',
@@ -19,8 +21,27 @@ const RentCar = () => {
 
   // Get vehicles and metadata in current language
   // Re-fetch when language changes
-  const vehicles = React.useMemo(() => getVehicles(i18n.language), [i18n.language]);
   const filterOptions = React.useMemo(() => getFilters(i18n.language), [i18n.language]);
+
+  React.useEffect(() => {
+    let isMounted = true;
+
+    const loadVehicles = async () => {
+      setIsLoadingVehicles(true);
+      const vehicleList = await fetchVehicles(i18n.language);
+
+      if (isMounted) {
+        setVehicles(vehicleList);
+        setIsLoadingVehicles(false);
+      }
+    };
+
+    loadVehicles();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [i18n.language]);
 
   // Debounce search input for better performance
   const debouncedSearch = useDebounce(filters.search, 300);
@@ -223,7 +244,7 @@ const RentCar = () => {
           <div className="results-header">
             <div className="results-info">
               <span className="results-count">
-                {filteredVehicles.length} {t('results_found')}
+                {isLoadingVehicles ? t('loading_text') : `${filteredVehicles.length} ${t('results_found')}`}
               </span>
             </div>
           </div>

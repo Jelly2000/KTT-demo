@@ -93,6 +93,14 @@
     margin-bottom: 1rem;
 }
 
+.vehicle-plate-number {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    opacity: 0.6;
+    margin-top: -0.5rem;
+    margin-bottom: 1rem;
+}
+
 .vehicle-price {
     font-size: 2rem;
     font-weight: 700;

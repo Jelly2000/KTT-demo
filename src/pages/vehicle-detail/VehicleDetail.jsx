@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useRentModal } from '../../components/RentCarModal';
-import { getVehicleBySlug } from '../../utils/vehicleUtils';
+import { getVehicleBySlugAsync } from '../../utils/vehicleUtils';
 import SEO from '../../components/SEO/SEO';
 import './VehicleDetail.css';
 
@@ -17,11 +17,23 @@ const VehicleDetail = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const foundVehicle = getVehicleBySlug(slug, i18n.language);
-        if (foundVehicle) {
-            setVehicle(foundVehicle);
-        }
-        setLoading(false);
+        let isMounted = true;
+
+        const loadVehicle = async () => {
+            setLoading(true);
+            const foundVehicle = await getVehicleBySlugAsync(slug, i18n.language);
+
+            if (isMounted) {
+                setVehicle(foundVehicle);
+                setLoading(false);
+            }
+        };
+
+        loadVehicle();
+
+        return () => {
+            isMounted = false;
+        };
     }, [slug, i18n.language]);
 
     // Define all modal-related functions
@@ -264,6 +276,9 @@ const VehicleDetail = () => {
                         <div className="vehicle-info">
                             <div className="vehicle-header">
                                 <h2 className="vehicle-title" id="vehicle-title">{vehicle.name}</h2>
+                                {vehicle.plateNumber && (
+                                    <div className="vehicle-plate-number">{vehicle.plateNumber}</div>
+                                )}
                                 <div className="vehicle-price" id="vehicle-price">{formatPrice(vehicle.pricePerDay)}{t('per_day')}</div>
                                 <div className="vehicle-rating">
                                     <span className="stars">⭐⭐⭐⭐⭐</span>
