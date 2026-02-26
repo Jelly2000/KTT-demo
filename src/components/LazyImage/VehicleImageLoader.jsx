@@ -111,7 +111,7 @@ const VehicleImageLoader = ({
               color: '#999',
               textAlign: 'center'
             }}>
-              Loading...
+              {t('loading_text')}
             </div>
           )}
         </div>

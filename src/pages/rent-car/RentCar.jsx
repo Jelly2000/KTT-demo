@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
@@ -6,6 +6,7 @@ import '../shared-styles.css';
 import './styles.css';
 import { VehicleCard, VehicleGrid } from '../../components';
 import SEO from '../../components/SEO/SEO';
+import { LoadingSpinner } from "../../components";
 import {
   fetchVehicles,
   selectVehicleError,
@@ -28,6 +29,7 @@ const RentCar = () => {
   const [searchText, setSearchText] = React.useState(initialSearchText);
   const [debouncedSearchText, setDebouncedSearchText] = React.useState(initialSearchText);
   const [currentPage, setCurrentPage] = React.useState(1);
+  const resultsSectionRef = React.useRef(null);
   const pageSize = 10;
 
   React.useEffect(() => {
@@ -100,6 +102,12 @@ const RentCar = () => {
     return '';
   };
 
+  const handlePageChange = (nextPage) => {
+    if (nextPage === currentPage) return;
+    setCurrentPage(nextPage);
+    resultsSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
   const totalPages = Math.ceil((vehicles?.length || 0) / pageSize);
   const paginatedVehicles = React.useMemo(() => {
     const startIndex = (currentPage - 1) * pageSize;
@@ -125,6 +133,69 @@ const RentCar = () => {
       }
     }))
   };
+
+  const renderPagination = useCallback(() => {
+    return   totalPages > 1 && (
+      <div className="pagination-container">
+        <button
+          className="pagination-btn"
+          onClick={() => handlePageChange(Math.max(currentPage - 1, 1))}
+          disabled={currentPage === 1}
+          aria-label="Previous page"
+              >
+                «
+              </button>
+
+              <div className="pagination-pages">
+                {Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => (
+                  <button
+                    key={page}
+                    className={`pagination-btn page-number ${currentPage === page ? 'active' : ''}`}
+                    onClick={() => handlePageChange(page)}
+                    aria-label={`Page ${page}`}
+                  >
+                    {page}
+                  </button>
+                ))}
+              </div>
+
+              <button
+                className="pagination-btn"
+                onClick={() => handlePageChange(Math.min(currentPage + 1, totalPages))}
+                disabled={currentPage === totalPages}
+                aria-label="Next page"
+              >
+                »
+              </button>
+            </div>)
+  }, [currentPage, totalPages, handlePageChange]);
+
+  const renderVehicle = useCallback(() => {
+    console.log('Rendering vehicles with loading:', loading, 'and error:', error);
+    if (loading) {
+      return <LoadingSpinner height="0vh" />; 
+    } else if (error) {
+      return <p>{error}</p>;
+    } else {
+      return <VehicleGrid
+            vehicles={paginatedVehicles}
+            className="grid"
+            renderVehicle={(vehicle) => (
+              <VehicleCard
+                key={vehicle.id}
+                vehicle={vehicle}
+                id={vehicle.id}
+                image={vehicle.image}
+                vehicleName={vehicle.name}
+                price={`${formatPrice(vehicle.pricePerDay)}${t('per_day')}`}
+                features={vehicle.features}
+                rating={vehicle.rating}
+                availability={vehicle.availability}
+              />
+            )}
+          />
+    }
+  },[error, loading, paginatedVehicles, t]);
 
   return (
     <div className="rent-car-page">
@@ -208,7 +279,7 @@ const RentCar = () => {
       </section>
 
       {/* Results Header */}
-      <section className="results-section">
+      <section className="results-section" ref={resultsSectionRef}>
         <div className="container">
           <div className="results-header">
             <div className="results-info">
@@ -217,63 +288,8 @@ const RentCar = () => {
               </span>
             </div>
           </div>
-
-          {loading && <p>{t('loading_text')}</p>}
-          {error && !loading && <p>{error}</p>}
-
-          {/* Vehicles Grid with Lazy Loading */}
-          <VehicleGrid
-            vehicles={paginatedVehicles}
-            className="grid"
-            renderVehicle={(vehicle) => (
-              <VehicleCard
-                key={vehicle.id}
-                vehicle={vehicle}
-                id={vehicle.id}
-                image={vehicle.image}
-                vehicleName={vehicle.name}
-                price={`${formatPrice(vehicle.pricePerDay)}${t('per_day')}`}
-                features={vehicle.features}
-                rating={vehicle.rating}
-                availability={vehicle.availability}
-              />
-            )}
-          />
-
-          {totalPages > 1 && (
-            <div className="pagination-container">
-              <button
-                className="pagination-btn"
-                onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-                disabled={currentPage === 1}
-                aria-label="Previous page"
-              >
-                «
-              </button>
-
-              <div className="pagination-pages">
-                {Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => (
-                  <button
-                    key={page}
-                    className={`pagination-btn page-number ${currentPage === page ? 'active' : ''}`}
-                    onClick={() => setCurrentPage(page)}
-                    aria-label={`Page ${page}`}
-                  >
-                    {page}
-                  </button>
-                ))}
-              </div>
-
-              <button
-                className="pagination-btn"
-                onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-                disabled={currentPage === totalPages}
-                aria-label="Next page"
-              >
-                »
-              </button>
-            </div>
-          )}
+          {renderVehicle()}
+          {renderPagination()}
         </div>
       </section>
     </div>

@@ -22,7 +22,7 @@ import './App.css'
 
 function App() {
   // Initialize health check system
-  useHealthCheck();
+  // useHealthCheck();
 
   return (
     <HelmetProvider>

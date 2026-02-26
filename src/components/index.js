@@ -13,4 +13,4 @@ export { default as ScrollToTop } from './ScrollToTop/ScrollToTop';
 export { default as LazyImage } from './LazyImage/LazyImage';
 export { default as VehicleImageLoader } from './LazyImage/VehicleImageLoader';
 export { default as VehicleGrid } from './VehicleGrid/VehicleGrid';
-
+export { default as LoadingSpinner } from './LoadingSpinner/LoadingSpinner';
