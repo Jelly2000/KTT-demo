@@ -2,14 +2,10 @@ import { render, screen, fireEvent, act } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { RentModalProvider, useRentModal } from './RentModalContext';
 
-// Mock telegramUtils and vehicleUtils
+// Mock telegramUtils
 vi.mock('../../utils/telegramUtils', () => ({
   sendCarRentalRequest: vi.fn(),
   formatPhoneNumber: vi.fn(phone => phone)
-}));
-
-vi.mock('../../utils/vehicleUtils', () => ({
-  getVehicleById: vi.fn()
 }));
 
 // Test component to use the context

@@ -3,7 +3,7 @@ import { useImagePreloader } from '../../hooks/usePerformance';
 import VehicleCardSkeleton from '../VehicleCard/VehicleCardSkeleton';
 import './VehicleGrid.css';
 
-const VehicleGrid = ({ vehicles, renderVehicle, className = '' }) => {
+const VehicleGrid = ({ vehicles = [], renderVehicle, className = '' }) => {
   const [visibleCount, setVisibleCount] = useState(12); // Start with 12 vehicles
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   

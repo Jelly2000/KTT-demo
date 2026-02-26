@@ -18,14 +18,10 @@ vi.mock('../DatePicker', () => ({
   )
 }));
 
-// Mock telegramUtils and vehicleUtils
+// Mock telegramUtils
 vi.mock('../../utils/telegramUtils', () => ({
   sendCarRentalRequest: vi.fn(),
   formatPhoneNumber: vi.fn(phone => phone)
-}));
-
-vi.mock('../../utils/vehicleUtils', () => ({
-  getVehicleById: vi.fn()
 }));
 
 // Test wrapper component

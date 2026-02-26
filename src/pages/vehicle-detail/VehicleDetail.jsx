@@ -1,9 +1,9 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useRentModal } from '../../components/RentCarModal';
-import { clearVehicleDetail, fetchVehicleDetailBySlug, selectVehicleDetail, selectVehicleDetailStatus } from '../../store/vehicleSlice';
+import { selectVehicleBySlug } from '../../store/vehicleSlice';
 import SEO from '../../components/SEO/SEO';
 import './VehicleDetail.css';
 
@@ -11,22 +11,14 @@ const VehicleDetail = () => {
     const { slug } = useParams();
     const navigate = useNavigate();
     const { t, i18n } = useTranslation();
-    const dispatch = useDispatch();
     const { openRentModal } = useRentModal();
-    const vehicle = useSelector(selectVehicleDetail);
-    const detailStatus = useSelector(selectVehicleDetailStatus);
+    const vehicle = useSelector((state) => selectVehicleBySlug(state, slug, i18n.language));
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
         setCurrentImageIndex(0);
-        dispatch(clearVehicleDetail());
-        dispatch(fetchVehicleDetailBySlug({ slug, language: i18n.language }));
-
-        return () => {
-            dispatch(clearVehicleDetail());
-        };
-    }, [dispatch, i18n.language, slug]);
+    }, [i18n.language, slug]);
 
     // Define all modal-related functions
     const nextImage = () => {

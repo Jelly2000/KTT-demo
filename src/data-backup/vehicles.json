@@ -1,0 +1,134 @@
+{
+  "vehicles": [
+    {
+      "id": 1,
+      "name": "Hyundai Accent",
+      "nameEn": "Hyundai Accent",
+      "category": "sedan",
+      "seats": 5,
+      "transmission": "automatic",
+      "fuel": "gasoline",
+      "pricePerDay": 850000,
+      "image": "/vehicles/hyundai-accent/1.jpg",
+      "gallery": [
+        "/vehicles/hyundai-accent/1.jpg",
+        "/vehicles/hyundai-accent/2.jpg",
+        "/vehicles/hyundai-accent/3.jpg",
+        "/vehicles/hyundai-accent/4.jpg",
+        "/vehicles/hyundai-accent/5.jpg",
+        "/vehicles/hyundai-accent/6.jpg",
+        "/vehicles/hyundai-accent/7.jpg",
+        "/vehicles/hyundai-accent/8.jpg",
+        "/vehicles/hyundai-accent/9.jpg",
+        "/vehicles/hyundai-accent/10.jpg",
+        "/vehicles/hyundai-accent/11.jpg",
+        "/vehicles/hyundai-accent/12.jpg",
+        "/vehicles/hyundai-accent/13.jpg"
+      ],
+      "features": [
+        "Điều hòa tự động",
+        "Bluetooth",
+        "Camera lùi",
+        "Cảm biến lùi",
+        "Hệ thống âm thanh 6 loa",
+        "Khởi động bằng nút bấm",
+        "Chìa khóa thông minh"
+      ],
+      "featuresEn": [
+        "Automatic air conditioning",
+        "Bluetooth connectivity",
+        "Rear camera",
+        "Rear parking sensors",
+        "6-speaker audio system",
+        "Push-button start",
+        "Smart key system"
+      ],
+      "description": "Hyundai Accent thế hệ mới với thiết kế hiện đại, động cơ Gamma 1.4L MPI tiết kiệm nhiên liệu và trang bị an toàn tiêu chuẩn cao.",
+      "descriptionEn": "New generation Hyundai Accent with modern design, fuel-efficient Gamma 1.4L MPI engine, and high standard safety equipment.",
+      "specifications": {
+        "engine": "1.4L Gamma MPI",
+        "power": "100 HP @ 6,000 rpm",
+        "torque": "132 Nm @ 4,000 rpm",
+        "fuelConsumption": "5.8L/100km",
+        "tankCapacity": "45L",
+        "transmission": "6-speed Automatic"
+      },
+      "specificationsEn": {
+        "engine": "1.4L Gamma MPI",
+        "power": "100 HP @ 6,000 rpm",
+        "torque": "132 Nm @ 4,000 rpm",
+        "fuelConsumption": "5.8L/100km",
+        "tankCapacity": "45L",
+        "transmission": "6-speed Automatic"
+      },
+      "availability": true,
+      "rating": 4.2,
+      "reviewCount": 87
+    }
+  ],
+  "categories": [
+    {
+      "id": "sedan",
+      "name": "Sedan",
+      "description": "Xe du lịch 4-5 chỗ tiện nghi"
+    },
+    {
+      "id": "suv",
+      "name": "SUV/MPV",
+      "description": "Xe địa hình và đa dụng gia đình"
+    },
+    {
+      "id": "hatchback",
+      "name": "Hatchback",
+      "description": "Xe cỡ nhỏ linh hoạt trong thành phố"
+    }
+  ],
+  "filters": {
+    "seats": [
+      {
+        "id": 4,
+        "label": "4 chỗ",
+        "labelEn": "4 Seats"
+      },
+      {
+        "id": 5,
+        "label": "5 chỗ",
+        "labelEn": "5 Seats"
+      },
+      {
+        "id": 7,
+        "label": "7 chỗ",
+        "labelEn": "7 Seats"
+      },
+      {
+        "id": 8,
+        "label": "8 chỗ",
+        "labelEn": "8 Seats"
+      }
+    ],
+    "transmission": [
+      {
+        "id": "automatic",
+        "label": "Tự động",
+        "labelEn": "Automatic"
+      },
+      {
+        "id": "manual",
+        "label": "Số sàn",
+        "labelEn": "Manual"
+      }
+    ],
+    "fuel": [
+      {
+        "id": "gasoline",
+        "label": "Xăng",
+        "labelEn": "Gasoline"
+      },
+      {
+        "id": "diesel",
+        "label": "Dầu diesel",
+        "labelEn": "Diesel"
+      }
+    ]
+  }
+}

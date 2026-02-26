@@ -1,114 +1,32 @@
-import React, { useState, useMemo, useCallback } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
-import { useDebounce } from '../../hooks/usePerformance';
+import { useSelector } from 'react-redux';
 import '../shared-styles.css';
 import './styles.css';
 import { VehicleCard, VehicleGrid } from '../../components';
-import { getFilters } from '../../utils/vehicleUtils';
-import { fetchVehiclesList, selectVehicleListStatus, selectVehiclesByLanguage } from '../../store/vehicleSlice';
 import SEO from '../../components/SEO/SEO';
 
 const RentCar = () => {
   const { t, i18n } = useTranslation();
-  const dispatch = useDispatch();
-  const vehicles = useSelector((state) => selectVehiclesByLanguage(state, i18n.language));
-  const listStatus = useSelector((state) => selectVehicleListStatus(state, i18n.language));
-  const isLoadingVehicles = listStatus === 'loading' || listStatus === 'idle';
-  const [filters, setFilters] = useState({
+  const vehicles = [];
+  const [filters, setFilters] = React.useState({
     brand: '',
     seats: '',
-    priceRange: '',
-    search: '',
-    availability: 'all'
   });
 
-  // Get vehicles and metadata in current language
-  // Re-fetch when language changes
-  const filterOptions = React.useMemo(() => getFilters(i18n.language), [i18n.language]);
-
-  React.useEffect(() => {
-    dispatch(fetchVehiclesList({ language: i18n.language }));
-  }, [dispatch, i18n.language]);
-
-  // Debounce search input for better performance
-  const debouncedSearch = useDebounce(filters.search, 300);
-
-  // Filter and sort vehicles
-  const filteredVehicles = useMemo(() => {
-    let filtered = vehicles;
-
-    // Filter by availability
-    if (filters.availability === 'available') {
-      filtered = filtered.filter(vehicle => vehicle.availability);
-    }
-
-    // Filter by brand (extract from vehicle name)
-    if (filters.brand) {
-      filtered = filtered.filter(vehicle => {
-        const vehicleName = vehicle.name.toLowerCase();
-        const brandName = filters.brand.toLowerCase();
-        return vehicleName.startsWith(brandName);
-      });
-    }
-
-    // Filter by seats
-    if (filters.seats) {
-      if (filters.seats === '4-5') {
-        filtered = filtered.filter(vehicle => vehicle.seats >= 4 && vehicle.seats <= 5);
-      } else if (filters.seats === '7') {
-        filtered = filtered.filter(vehicle => vehicle.seats >= 7 && vehicle.seats <= 8);
-      }
-    }
-
-    // Filter by price range
-    if (filters.priceRange) {
-      const priceRange = filterOptions.priceRanges?.find(range => range.id === filters.priceRange);
-      if (priceRange) {
-        filtered = filtered.filter(vehicle => 
-          vehicle.pricePerDay >= priceRange.min && vehicle.pricePerDay <= priceRange.max
-        );
-      }
-    }
-
-    // Filter by transmission
-    if (filters.transmission) {
-      filtered = filtered.filter(vehicle => vehicle.transmission === filters.transmission);
-    }
-
-    // Filter by fuel
-    if (filters.fuel) {
-      filtered = filtered.filter(vehicle => vehicle.fuel === filters.fuel);
-    }
-
-    // Search filter (using debounced search)
-    if (debouncedSearch) {
-      const searchTerm = debouncedSearch.toLowerCase();
-      filtered = filtered.filter(vehicle => 
-        vehicle.name.toLowerCase().includes(searchTerm) ||
-        vehicle.features.some(feature => feature.toLowerCase().includes(searchTerm))
-      );
-    }
-
-    return filtered;
-  }, [filters, debouncedSearch, filterOptions.priceRanges, vehicles]);
-
-  const handleFilterChange = useCallback((filterType, value) => {
-    setFilters(prev => ({
-      ...prev,
-      [filterType]: value
+  const handleFilterChange = (filterName, value) => {
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      [filterName]: value,
     }));
-  }, []);
+  };
 
-  const handleClearFilters = useCallback(() => {
-    setFilters({
+  const handleClearFilters = () => {
+    setFilters({  
       brand: '',
       seats: '',
-      priceRange: '',
-      search: '',
-      availability: 'all'
     });
-  }, []);
+  };
 
   const formatPrice = (price) => {
     return new Intl.NumberFormat('vi-VN', {
@@ -122,8 +40,8 @@ const RentCar = () => {
     "@type": "ItemList",
     "name": t('seo_rentcar_title'),
     "description": t('seo_rentcar_description'),
-    "numberOfItems": filteredVehicles.length,
-    "itemListElement": filteredVehicles.slice(0, 10).map((vehicle, index) => ({
+    "numberOfItems": vehicles?.length,
+    "itemListElement": vehicles?.slice(0, 10).map((vehicle, index) => ({
       "@type": "Product",
       "position": index + 1,
       "name": vehicle.name,
@@ -162,7 +80,7 @@ const RentCar = () => {
             {/* Brand Filter - Hãng xe */}
             <div className="filter-group">
               <select
-                value={filters.brand}
+                value={filters?.brand}
                 onChange={(e) => handleFilterChange('brand', e.target.value)}
                 className="filter-select"
               >
@@ -180,7 +98,7 @@ const RentCar = () => {
             {/* Seats Filter - Số chỗ */}
             <div className="filter-group">
               <select
-                value={filters.seats}
+                value={filters?.seats}
                 onChange={(e) => handleFilterChange('seats', e.target.value)}
                 className="filter-select"
               >
@@ -196,27 +114,6 @@ const RentCar = () => {
               </select>
             </div>
 
-            {/* Price Range Filter - Giá tiền */}
-            <div className="filter-group">
-              <select
-                value={filters.priceRange}
-                onChange={(e) => handleFilterChange('priceRange', e.target.value)}
-                className="filter-select"
-              >
-                <option value="">
-                  {t('all_prices')}
-                </option>
-                {filterOptions.priceRanges?.map(range => (
-                  <option key={range.id} value={range.id}>
-                    {range.label}
-                  </option>
-                )) || [
-                  <option key="low" value="low">{t('price_under_1m')}</option>,
-                  <option key="mid" value="mid">{t('price_1m_2m')}</option>,
-                  <option key="high" value="high">{t('price_over_3m')}</option>
-                ]}
-              </select>
-            </div>
 
             {/* Clear Filters */}
             <button onClick={handleClearFilters} className="clear-filters-btn">
@@ -232,14 +129,14 @@ const RentCar = () => {
           <div className="results-header">
             <div className="results-info">
               <span className="results-count">
-                {isLoadingVehicles ? t('loading_text') : `${filteredVehicles.length} ${t('results_found')}`}
+                {`${vehicles?.length} ${t('results_found')}`}
               </span>
             </div>
           </div>
 
           {/* Vehicles Grid with Lazy Loading */}
           <VehicleGrid
-            vehicles={filteredVehicles}
+            vehicles={vehicles}
             className="grid"
             renderVehicle={(vehicle) => (
               <VehicleCard

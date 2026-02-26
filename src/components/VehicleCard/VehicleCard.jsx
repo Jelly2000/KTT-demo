@@ -2,7 +2,6 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { useRentModal } from '../RentCarModal';
-import { getVehicleName, getVehicleFeatures } from '../../utils/vehicleUtils';
 import VehicleImageLoader from '../LazyImage/VehicleImageLoader';
 import './VehicleCard.css';
 
@@ -17,13 +16,13 @@ const VehicleCard = React.memo(({
     availability = true, 
     viewMode = 'grid' 
 }) => {
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     const { openRentModal } = useRentModal();
     
-    // Get localized vehicle data
-    const currentLanguage = i18n.language;
-    const localizedVehicleName = vehicle ? getVehicleName(vehicle, currentLanguage) : vehicleName;
-    const localizedFeatures = vehicle ? getVehicleFeatures(vehicle, currentLanguage) : features;
+    const localizedVehicleName = vehicle?.name || vehicleName;
+    const localizedFeatures = Array.isArray(vehicle?.features) && vehicle.features.length > 0
+        ? vehicle.features
+        : features;
     
     const rentButtonText = t('hero_ctaButton'); // "Thuê xe ngay" 
     const detailsButtonText = t('view_details'); // "Xem chi tiết" 

@@ -1,7 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import React, { createContext, useContext, useState } from 'react';
 import { sendCarRentalRequest, formatPhoneNumber } from '../../utils/zaloUtils';
-import { getVehicleById } from '../../utils/vehicleUtils';
 import { ERROR_MESSAGES } from './constants';
 
 const RentModalContext = createContext();
@@ -49,14 +48,7 @@ export const RentModalProvider = ({ children }) => {
             const totalDays = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
             const estimatedCost = totalDays * (selectedVehicle?.pricePerDay || 0);
             
-            // Get Vietnamese vehicle name from database
-            let vietnameseVehicleName = selectedVehicle?.name || 'Xe không xác định';
-            if (selectedVehicle?.id) {
-                const vehicleVi = getVehicleById(selectedVehicle.id, 'vi');
-                if (vehicleVi) {
-                    vietnameseVehicleName = vehicleVi.name;
-                }
-            }
+            const vietnameseVehicleName = selectedVehicle?.name || 'Xe không xác định';
             
             // Prepare data for Telegram
             const rentalData = {
