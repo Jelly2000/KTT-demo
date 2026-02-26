@@ -43,7 +43,7 @@ const VehicleCard = React.memo(({
         <div className={`car-card ${viewMode} ${!availability ? 'unavailable' : ''}`} role="button" tabIndex="0" aria-label={`View details for ${vehicleName}`}>
             <div className="car-image" aria-hidden="true">
                 <VehicleImageLoader
-                    src={image || '/placeholder-car.jpg'} 
+                    src={image} 
                     alt={`Thuê xe ${localizedVehicleName} tự lái TP.HCM - giao tận nơi, giá rẻ - KTT Car`}
                     vehicleName={localizedVehicleName}
                     viewMode={viewMode}

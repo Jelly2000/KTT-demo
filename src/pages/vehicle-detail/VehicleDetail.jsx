@@ -253,17 +253,18 @@ const VehicleDetail = () => {
                         {/* Vehicle Image with carousel */}
                         <div className="vehicle-image-container">
                             <div className="vehicle-image" id="vehicle-image">
-                                <img 
-                                    src={vehicle?.gallery && vehicle.gallery.length > 0 ? vehicle.gallery[currentImageIndex] : vehicle.image}
-                                    alt={`Thuê xe ${vehicle.name} tự lái tại TP.HCM - Hình ${currentImageIndex + 1} - KTT Car`}
-                                    loading="lazy"
-                                    style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '20px', cursor: 'pointer' }}
-                                    onClick={openModal}
-                                />
+
                                 
                                 {/* Carousel navigation - only show if multiple images */}
-                                {vehicle?.gallery && vehicle.gallery.length > 1 && (
+                                {vehicle?.gallery && vehicle.gallery.length > 1 ? (
                                     <>
+                                        <img 
+                                            src={vehicle?.gallery && vehicle.gallery.length > 0 ? vehicle.gallery[currentImageIndex] : vehicle.image}
+                                            alt={`Thuê xe ${vehicle.name} tự lái tại TP.HCM - Hình ${currentImageIndex + 1} - KTT Car`}
+                                            loading="lazy"
+                                            style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '20px', cursor: 'pointer' }}
+                                            onClick={openModal}
+                                        />
                                         <button 
                                             className="carousel-nav carousel-prev" 
                                             onClick={prevImage}
@@ -307,7 +308,7 @@ const VehicleDetail = () => {
                                             ❯
                                         </button>
                                     </>
-                                )}
+                                ) : '🚗' }
                             </div>
                             
                             {/* Image gallery thumbnails - only show if multiple images */}
