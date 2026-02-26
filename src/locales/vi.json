@@ -323,5 +323,6 @@
   "telegram_no_email": "Không cung cấp",
   "telegram_no_subject": "Không có chủ đề",
   "telegram_default_consultation": "Khách hàng muốn được tư vấn thêm",
+  "image_load_error": "Xe này hiện không có sẵn hình ảnh hoặc có lỗi khi tải ảnh",
   "telegram_rental_service": "Thuê xe"
 }

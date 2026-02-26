@@ -1,9 +1,15 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useRentModal } from '../../components/RentCarModal';
-import { selectVehicleBySlug } from '../../store/vehicleSlice';
+import {
+    fetchVehicleBySlug,
+    selectVehicleBySlug,
+    selectVehicleDetail,
+    selectVehicleDetailError,
+    selectVehicleDetailLoading,
+} from '../../store/vehicleSlice';
 import SEO from '../../components/SEO/SEO';
 import './VehicleDetail.css';
 
@@ -11,10 +17,22 @@ const VehicleDetail = () => {
     const { slug } = useParams();
     const navigate = useNavigate();
     const { t, i18n } = useTranslation();
+    const dispatch = useDispatch();
     const { openRentModal } = useRentModal();
-    const vehicle = useSelector((state) => selectVehicleBySlug(state, slug, i18n.language));
+    const listVehicle = useSelector((state) => selectVehicleBySlug(state, slug));
+    const detailVehicle = useSelector(selectVehicleDetail);
+    const loading = useSelector(selectVehicleDetailLoading);
+    const detailError = useSelector(selectVehicleDetailError);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const activeLanguage = i18n.language === 'en' ? 'en' : 'vi';
+    const vehicle = detailVehicle?.slug === slug ? detailVehicle : listVehicle;
+
+    useEffect(() => {
+        if (slug) {
+            dispatch(fetchVehicleBySlug(slug));
+        }
+    }, [dispatch, slug]);
 
     useEffect(() => {
         setCurrentImageIndex(0);
@@ -84,7 +102,7 @@ const VehicleDetail = () => {
         };
     }, [isModalOpen, nextImageModal, prevImageModal]);
 
-    if (detailStatus === 'loading' || detailStatus === 'idle') {
+    if (loading && !vehicle) {
         return (
             <div className="container" style={{ textAlign: 'center', padding: '3rem 0' }}>
                 <p>{t('loading_text')}</p>
@@ -96,6 +114,7 @@ const VehicleDetail = () => {
         return (
             <div className="container" style={{ textAlign: 'center', padding: '3rem 0', marginTop: '5rem' }}>
                 <h2>{t('vehicle_not_found_title')}</h2>
+                {detailError && <p>{detailError}</p>}
                 <button onClick={() => navigate('/thue-xe')} style={{ marginTop: '1rem' }}>
                     {t('back_to_list_button')}
                 </button>
@@ -172,12 +191,23 @@ const VehicleDetail = () => {
     const vehicleFeatures = getVehicleFeatures(vehicle.name);
     const videoEmbedUrl = getVideoEmbedUrl(vehicle.videoLink);
     const isTikTokVideo = videoEmbedUrl.includes('tiktok.com');
+    const vehicleDescription = typeof vehicle.description === 'string'
+        ? vehicle.description
+        : vehicle.description?.[activeLanguage] || vehicle.description?.vi || vehicle.description?.en || '';
+
+    const localizedFeatures = (vehicle.features || []).map((feature) => {
+        if (typeof feature === 'string') return feature;
+        if (feature && typeof feature === 'object') {
+            return feature[activeLanguage] || feature.vi || feature.en || '';
+        }
+        return '';
+    }).filter(Boolean);
 
     const structuredData = {
         "@context": "https://schema.org",
         "@type": "Product",
         "name": vehicle.name,
-        "description": `${vehicle.description} - ${vehicleFeatures}`,
+        "description": `${vehicleDescription} - ${vehicleFeatures}`,
         "image": vehicle.image,
         "brand": {
             "@type": "Brand",
@@ -319,13 +349,13 @@ const VehicleDetail = () => {
 
                             <div className="vehicle-description">
                                 <h3>{t('description_title')}</h3>
-                                <p id="vehicle-description">{vehicle.description}</p>
+                                <p id="vehicle-description">{vehicleDescription}</p>
                             </div>
 
                             <div className="vehicle-features">
                                 <h3>{t('key_features_title')}</h3>
                                 <ul id="vehicle-features-list">
-                                    {vehicle.features.map((feature, index) => (
+                                    {localizedFeatures.map((feature, index) => (
                                         <li key={index}>• {feature}</li>
                                     ))}
                                 </ul>
@@ -387,7 +417,7 @@ const VehicleDetail = () => {
                             <div className="spec-icon">⛽</div>
                             <div className="spec-content">
                                 <div className="spec-label">{t('fuel_label')}</div>
-                                <div className="spec-value">{vehicle.fuel === 'gasoline' ? 'Xăng' : vehicle.fuel}</div>
+                                <div className="spec-value">{vehicle.fuel === 'gasoline' || vehicle.fuel === 'petrol' ? 'Xăng' : vehicle.fuel}</div>
                             </div>
                         </div>
                         {vehicle.specifications && (

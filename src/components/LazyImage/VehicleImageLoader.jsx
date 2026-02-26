@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const VehicleImageLoader = ({ 
   src, 
@@ -9,6 +10,7 @@ const VehicleImageLoader = ({
   onClick,
   viewMode = 'grid'
 }) => {
+  const { t } = useTranslation();
   const [isLoaded, setIsLoaded] = useState(false);
   const [isInView, setIsInView] = useState(false);
   const [hasError, setHasError] = useState(false);
@@ -131,10 +133,10 @@ const VehicleImageLoader = ({
           color: '#999'
         }}>
           <div style={{ fontSize: '2rem', marginBottom: '8px' }}>
-            📷❌
+            📷
           </div>
           <div style={{ fontSize: '0.8rem', textAlign: 'center' }}>
-            Image not available
+            {t('image_load_error')}
           </div>
         </div>
       )}

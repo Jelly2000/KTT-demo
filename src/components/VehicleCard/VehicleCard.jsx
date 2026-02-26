@@ -16,8 +16,17 @@ const VehicleCard = React.memo(({
     availability = true, 
     viewMode = 'grid' 
 }) => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
     const { openRentModal } = useRentModal();
+    const activeLanguage = i18n.language === 'en' ? 'en' : 'vi';
+
+    const getLocalizedFeature = (feature) => {
+        if (typeof feature === 'string') return feature;
+        if (feature && typeof feature === 'object') {
+            return feature[activeLanguage] || feature.vi || feature.en || '';
+        }
+        return '';
+    };
     
     const localizedVehicleName = vehicle?.name || vehicleName;
     const localizedFeatures = Array.isArray(vehicle?.features) && vehicle.features.length > 0
@@ -65,7 +74,7 @@ const VehicleCard = React.memo(({
                     <p><strong>{featuresText}</strong></p>
                     <ul className="car-features">
                         {localizedFeatures.slice(0, viewMode === 'list' ? 6 : 4).map((feature, index) => (
-                            <li key={index}>• {feature}</li>
+                            <li key={index}>• {getLocalizedFeature(feature)}</li>
                         ))}
                         {localizedFeatures.length > (viewMode === 'list' ? 6 : 4) && (
                             <li className="more-features">

@@ -324,5 +324,6 @@
   "telegram_no_email": "Not provided",
   "telegram_no_subject": "No subject",
   "telegram_default_consultation": "Customer wants additional consultation",
+  "image_load_error": "This vehicle image is currently unavailable or failed to load",
   "telegram_rental_service": "Car rental"
 }
