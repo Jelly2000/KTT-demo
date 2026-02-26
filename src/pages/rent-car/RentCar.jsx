@@ -30,7 +30,7 @@ const RentCar = () => {
   const [debouncedSearchText, setDebouncedSearchText] = React.useState(initialSearchText);
   const [currentPage, setCurrentPage] = React.useState(1);
   const resultsSectionRef = React.useRef(null);
-  const pageSize = 10;
+  const pageSize = 12;
 
   React.useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -79,7 +79,7 @@ const RentCar = () => {
   };
 
   const handleClearFilters = () => {
-    setFilters({  
+    setFilters({
       brand: '',
       seats: '',
     });
@@ -135,75 +135,75 @@ const RentCar = () => {
   };
 
   const renderPagination = useCallback(() => {
-    return   totalPages > 1 && (
+    return totalPages > 1 && (
       <div className="pagination-container">
         <button
           className="pagination-btn"
           onClick={() => handlePageChange(Math.max(currentPage - 1, 1))}
           disabled={currentPage === 1}
           aria-label="Previous page"
-              >
-                «
-              </button>
+        >
+          «
+        </button>
 
-              <div className="pagination-pages">
-                {Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => (
-                  <button
-                    key={page}
-                    className={`pagination-btn page-number ${currentPage === page ? 'active' : ''}`}
-                    onClick={() => handlePageChange(page)}
-                    aria-label={`Page ${page}`}
-                  >
-                    {page}
-                  </button>
-                ))}
-              </div>
+        <div className="pagination-pages">
+          {Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => (
+            <button
+              key={page}
+              className={`pagination-btn page-number ${currentPage === page ? 'active' : ''}`}
+              onClick={() => handlePageChange(page)}
+              aria-label={`Page ${page}`}
+            >
+              {page}
+            </button>
+          ))}
+        </div>
 
-              <button
-                className="pagination-btn"
-                onClick={() => handlePageChange(Math.min(currentPage + 1, totalPages))}
-                disabled={currentPage === totalPages}
-                aria-label="Next page"
-              >
-                »
-              </button>
-            </div>)
+        <button
+          className="pagination-btn"
+          onClick={() => handlePageChange(Math.min(currentPage + 1, totalPages))}
+          disabled={currentPage === totalPages}
+          aria-label="Next page"
+        >
+          »
+        </button>
+      </div>)
   }, [currentPage, totalPages, handlePageChange]);
 
   const renderVehicle = useCallback(() => {
     if (loading) {
-      return <LoadingSpinner height="10vh" showLoadingText={false} />; 
+      return <LoadingSpinner height="10vh" showLoadingText={false} />;
     } else if (error) {
       return <p>{error}</p>;
     } else {
       return <VehicleGrid
-            vehicles={paginatedVehicles}
-            className="grid"
-            renderVehicle={(vehicle) => (
-              <VehicleCard
-                key={vehicle.id}
-                vehicle={vehicle}
-                id={vehicle.id}
-                image={vehicle.image}
-                vehicleName={vehicle.name}
-                price={`${formatPrice(vehicle.pricePerDay)}${t('per_day')}`}
-                features={vehicle.features}
-                rating={vehicle.rating}
-                availability={vehicle.availability}
-              />
-            )}
+        vehicles={paginatedVehicles}
+        className="grid"
+        renderVehicle={(vehicle) => (
+          <VehicleCard
+            key={vehicle.id}
+            vehicle={vehicle}
+            id={vehicle.id}
+            image={vehicle.image}
+            vehicleName={vehicle.name}
+            price={`${formatPrice(vehicle.pricePerDay)}${t('per_day')}`}
+            features={vehicle.features}
+            rating={vehicle.rating}
+            availability={vehicle.availability}
           />
+        )}
+      />
     }
-  },[error, loading, paginatedVehicles, t]);
+  }, [error, loading, paginatedVehicles, t]);
 
   return (
     <div className="rent-car-page">
-      <SEO 
+      <SEO
         titleKey="seo_rentcar_title"
         descriptionKey="seo_rentcar_description"
         structuredData={structuredData}
       />
-      
+
       {/* Page Header */}
       <div className="page-header">
         <div className="container">

@@ -20,9 +20,16 @@ const ConsultationForm = ({ heading = 'consultation_title', subHeading = 'consul
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevData => ({
-      ...prevData,
-      [name]: value
+
+    let newValue = value;
+
+    if (name === 'phoneNumber') {
+      newValue = value.replace(/\D/g, ''); // chỉ giữ số
+    }
+
+    setFormData(prev => ({
+      ...prev,
+      [name]: newValue
     }));
   };
 
@@ -34,13 +41,12 @@ const ConsultationForm = ({ heading = 'consultation_title', subHeading = 'consul
       // Send consultation request to Telegram
       const consultationData = {
         name: formData.fullName,
-        phone: formatPhoneNumber(formData.phoneNumber),
+        phone: formData.phoneNumber,
         email: formData.email,
         serviceType: formData.subject,
         message: formData.message,
         source: 'Form Tư Vấn Trang Chủ'
       };
-
       const result = await sendConsultationRequest(consultationData);
 
       if (result.success) {
@@ -128,13 +134,9 @@ const ConsultationForm = ({ heading = 'consultation_title', subHeading = 'consul
               <div className="consultation-error-notification">
                 <div className="consultation-error-icon">✕</div>
                 <h3>{t('request_failed')}</h3>
-                {/* <p>{errorMessage}</p> */}
-                {/* <div className="error-contact-info"> */}
+
                 <p><strong>{t('contact_us_directly')}</strong></p>
-                {/* <p>📞 {t('phone_number')}: +84-xxx-xxx-xxx</p>
-                            <p>📧 Email: contact@kttcar.com</p>
-                            <p>🌐 Zalo: +84-xxx-xxx-xxx</p> */}
-                {/* </div> */}
+
                 <small>
                   {t('notification_auto_close')}
                 </small>

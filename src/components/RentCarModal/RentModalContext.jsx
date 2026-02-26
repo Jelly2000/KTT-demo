@@ -54,7 +54,7 @@ export const RentModalProvider = ({ children }) => {
             const rentalData = {
                 vehicleName: vietnameseVehicleName,
                 customerName: formData.fullName,
-                customerPhone: formatPhoneNumber(formData.phone),
+                customerPhone: formData.phone,
                 customerEmail: formData.email,
                 startDate: startDate.toLocaleDateString('vi-VN'),
                 endDate: endDate.toLocaleDateString('vi-VN'),

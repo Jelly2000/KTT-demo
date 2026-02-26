@@ -5,16 +5,16 @@ import { useRentModal } from '../RentCarModal';
 import VehicleImageLoader from '../LazyImage/VehicleImageLoader';
 import './VehicleCard.css';
 
-const VehicleCard = React.memo(({ 
+const VehicleCard = React.memo(({
     vehicle,
-    id, 
-    image, 
-    vehicleName, 
-    price, 
-    features = [], 
-    rating, 
-    availability = true, 
-    viewMode = 'grid' 
+    id,
+    image,
+    vehicleName,
+    price,
+    features = [],
+    rating,
+    availability = true,
+    viewMode = 'grid'
 }) => {
     const { t, i18n } = useTranslation();
     const { openRentModal } = useRentModal();
@@ -27,23 +27,23 @@ const VehicleCard = React.memo(({
         }
         return '';
     };
-    
+
     const localizedVehicleName = vehicle?.name || vehicleName;
     const localizedFeatures = Array.isArray(vehicle?.features) && vehicle.features.length > 0
         ? vehicle.features
         : features;
-    
+
     const rentButtonText = t('hero_ctaButton'); // "Thuê xe ngay" 
     const detailsButtonText = t('view_details'); // "Xem chi tiết" 
     const featuresText = t('vehicle_features');
     const availableText = t('vehicle_available');
     const unavailableText = t('vehicle_unavailable');
-    
+
     return (
         <div className={`car-card ${viewMode} ${!availability ? 'unavailable' : ''}`} role="button" tabIndex="0" aria-label={`View details for ${vehicleName}`}>
             <div className="car-image" aria-hidden="true">
                 <VehicleImageLoader
-                    src={image} 
+                    src={image}
                     alt={`Thuê xe ${localizedVehicleName} tự lái TP.HCM - giao tận nơi, giá rẻ - KTT Car`}
                     vehicleName={localizedVehicleName}
                     viewMode={viewMode}
@@ -84,17 +84,17 @@ const VehicleCard = React.memo(({
                     </ul>
                 </div>
                 <div className="car-actions">
-                    <button 
-                        className={`rent-button ${!availability ? 'disabled' : ''}`} 
-                        onClick={() => availability && openRentModal(vehicle || { id, image, name: localizedVehicleName, price })} 
+                    <button
+                        className={`rent-button ${!availability ? 'disabled' : ''}`}
+                        onClick={() => availability && openRentModal(vehicle || { id, image, name: localizedVehicleName, price })}
                         aria-label={`Rent ${localizedVehicleName}`}
                         disabled={!availability}
                     >
                         {rentButtonText}
                     </button>
-                    <Link 
+                    <Link
                         to={`/thue-xe/${vehicle?.slug || id}`}
-                        className="details-button" 
+                        className="details-button"
                         aria-label={`View details for ${localizedVehicleName}`}
                     >
                         {detailsButtonText}

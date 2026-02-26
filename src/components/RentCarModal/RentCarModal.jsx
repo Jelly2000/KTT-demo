@@ -92,6 +92,11 @@ const RentCarModal = () => {
         price: selectedVehicle.price || selectedVehicle.pricePerDay || 0
     };
 
+    const handlePhoneChange = (e) => {
+        const onlyNumbers = e.target.value.replace(/\D/g, '');
+        e.target.value = onlyNumbers;
+    };
+
     return (
         <div className="rent-modal" onClick={closeRentModal}>
             <div className="rent-modal-content" onClick={(e) => e.stopPropagation()}>
@@ -223,6 +228,7 @@ const RentCarModal = () => {
                                         name="phone"
                                         required
                                         pattern="[0-9]{10,11}"
+                                        onChange={handlePhoneChange}
                                         placeholder={t('enter_phone_number')}
                                     />
                                 </div>

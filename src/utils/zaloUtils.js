@@ -3,8 +3,10 @@
  * Migrated from Telegram to use server-side Zalo integration
  */
 
+import axios from "axios";
+
 // Server Configuration
-const ZALO_SERVER_URL = import.meta.env.VITE_ZALO_SERVER_URL || 'https://ktt-server.onrender.com';
+const ZALO_SERVER_URL = import.meta.env.VITE_SERVER_URL;
 
 /**
  * Get Vietnamese translation for Zalo messages
@@ -74,39 +76,38 @@ const translateToVietnamese = (text) => {
  * @param {string} message - Message to send
  * @returns {Promise<{success: boolean, message?: string, error?: string}>} - Response object
  */
-const sendZaloMessage = async (message) => {
+const sendZaloMessage = async (message, url) => {
   try {
-    const response = await fetch(`${ZALO_SERVER_URL}/send-message`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        message: message.substring(0, 2000) // Ensure message doesn't exceed Zalo limit
-      }),
-    });
+    const response = await axios.post(
+      `${ZALO_SERVER_URL}/${url}`,
+      message,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
 
-    const result = await response.json();
-    
-    if (response.ok && result.success) {
-      console.log('Message sent successfully:', result.message);
+    const result = response.data;
+
+    if (result.success) {
       return {
         success: true,
         message: result.message,
-        messageId: result.messageId
+        messageId: result.messageId,
       };
     } else {
-      console.error('Failed to send message:', result.error);
       return {
         success: false,
-        error: result.error || 'Unknown error occurred'
+        error: result.error || 'Unknown error occurred',
       };
     }
   } catch (error) {
-    console.error('Error sending Zalo message:', error);
     return {
       success: false,
-      error: 'Network error or server unavailable'
+      error:
+        error.response?.data?.error ||
+        'Network error or server unavailable',
     };
   }
 };
@@ -124,7 +125,7 @@ export const formatPhoneNumber = (phone) => {
   
   // Format Vietnamese phone numbers
   if (cleanPhone.startsWith('84')) {
-    return `+${cleanPhone}`;
+    return `${cleanPhone}`;
   } else if (cleanPhone.startsWith('0')) {
     return cleanPhone.replace(/(\d{4})(\d{3})(\d{3})/, '$1.$2.$3');
   }
@@ -151,31 +152,23 @@ export const sendCarRentalRequest = async (requestData) => {
     estimatedCost,
     source = 'Website'
   } = requestData;
+  console.log('Original car rental request data:', requestData);
 
-  const message = `🚗 YÊU CẦU THUÊ XE
+  const formattedData = {
+    vehicleName,
+    customerName,
+    customerPhone,
+    customerEmail: customerEmail || 'Chưa cung cấp',
+    pricePerDay: pricePerDay,
+    startDate,
+    endDate,
+    totalDays,
+    estimatedCost,
+    additionalNotes: translateToVietnamese(additionalNotes) || 'Khách hàng muốn được tư vấn thêm',
+    source: getVietnameseSource(source)
 
-👤 THÔNG TIN KHÁCH HÀNG
-• Tên: ${customerName}
-• Điện thoại: ${formatPhoneNumber(customerPhone)}
-• Email: ${customerEmail || 'Chưa cung cấp'}
-
-🚙 THÔNG TIN XE
-• Loại xe: ${vehicleName}
-• Giá thuê: ${pricePerDay?.toLocaleString('vi-VN') || 'Chưa xác định'}đ/ngày
-
-📅 THỜI GIAN THUÊ
-• Ngày nhận xe: ${startDate}
-• Ngày trả xe: ${endDate}
-• Số ngày: ${totalDays} ngày
-• Tổng chi phí dự kiến: ${estimatedCost?.toLocaleString('vi-VN') || 'Chưa xác định'}đ
-
-📝 GHI CHÚ THÊM
-${translateToVietnamese(additionalNotes) || 'Khách hàng muốn được tư vấn thêm'}
-
-📍 Nguồn: ${getVietnameseSource(source)}
-⏰ Thời gian: ${new Date().toLocaleString('vi-VN')}`;
-
-  return await sendZaloMessage(message);
+  }
+  return await sendZaloMessage(formattedData, 'api/zalo/car-rental-request');
 };
 
 /**
@@ -192,24 +185,16 @@ export const sendConsultationRequest = async (formData) => {
     message,
     source = 'Website Contact Form'
   } = formData;
-
-  const consultationMessage = `📞 YÊU CẦU TƯ VẤN
-
-👤 THÔNG TIN KHÁCH HÀNG
-• Tên: ${name}
-• Điện thoại: ${formatPhoneNumber(phone)}
-• Email: ${email || 'Chưa cung cấp'}
-
-📋 CHỦ ĐỀ
-${translateToVietnamese(subject) || 'Tư vấn chung'}
-
-💬 NỘI DUNG
-${translateToVietnamese(message) || 'Khách hàng muốn được tư vấn'}
-
-📍 Nguồn: ${getVietnameseSource(source)}
-⏰ Thời gian: ${new Date().toLocaleString('vi-VN')}`;
-
-  return await sendZaloMessage(consultationMessage);
+  console.log('Original consultation request data:', formData);
+  const formattedData = {
+    name,
+    phone,
+    email: email || 'Chưa cung cấp',
+    subject: translateToVietnamese(subject) || 'Tư vấn chung',
+    message: translateToVietnamese(message) || 'Khách hàng muốn được tư vấn',
+    source: getVietnameseSource(source)
+  }
+  return await sendZaloMessage(formattedData, 'api/zalo/consultation-request');
 };
 
 /**
@@ -227,7 +212,7 @@ ${content}
 📍 Nguồn: ${getVietnameseSource(source)}
 ⏰ Thời gian: ${new Date().toLocaleString('vi-VN')}`;
 
-  return await sendZaloMessage(notificationMessage);
+  return await sendZaloMessage(notificationMessage, 'api/zalo/send-message');
 };
 
 /**
