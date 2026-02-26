@@ -55,33 +55,35 @@ const VehicleCard = React.memo(({
                 )}
             </div>
             <div className="car-info">
-                <div className="car-header">
-                    <h3 className="car-name">{localizedVehicleName}</h3>
-                    {rating && (
-                        <div className="car-rating">
-                            <span className="rating-stars">⭐</span>
-                            <span className="rating-value">{rating}</span>
-                        </div>
-                    )}
-                </div>
-                <div className="car-price">{price}</div>
-                <div className="car-availability">
-                    <span className={`availability-status ${availability ? 'available' : 'unavailable'}`}>
-                        {availability ? availableText : unavailableText}
-                    </span>
-                </div>
-                <div className="car-features-section">
-                    <p><strong>{featuresText}</strong></p>
-                    <ul className="car-features">
-                        {localizedFeatures.slice(0, viewMode === 'list' ? 6 : 4).map((feature, index) => (
-                            <li key={index}>• {getLocalizedFeature(feature)}</li>
-                        ))}
-                        {localizedFeatures.length > (viewMode === 'list' ? 6 : 4) && (
-                            <li className="more-features">
-                                +{localizedFeatures.length - (viewMode === 'list' ? 6 : 4)} {t('more_features_text')}
-                            </li>
+                <div>
+                    <div className="car-header">
+                        <h3 className="car-name">{localizedVehicleName}</h3>
+                        {rating && (
+                            <div className="car-rating">
+                                <span className="rating-stars">⭐</span>
+                                <span className="rating-value">{rating}</span>
+                            </div>
                         )}
-                    </ul>
+                    </div>
+                    <div className="car-price">{price}</div>
+                    <div className="car-availability">
+                        <span className={`availability-status ${availability ? 'available' : 'unavailable'}`}>
+                            {availability ? availableText : unavailableText}
+                        </span>
+                    </div>
+                    <div className="car-features-section">
+                        <p><strong>{featuresText}</strong></p>
+                        <ul className="car-features">
+                            {localizedFeatures.slice(0, viewMode === 'list' ? 6 : 4).map((feature, index) => (
+                                <li key={index}>• {getLocalizedFeature(feature)}</li>
+                            ))}
+                            {localizedFeatures.length > (viewMode === 'list' ? 6 : 4) && (
+                                <li className="more-features">
+                                    +{localizedFeatures.length - (viewMode === 'list' ? 6 : 4)} {t('more_features_text')}
+                                </li>
+                            )}
+                        </ul>
+                    </div>
                 </div>
                 <div className="car-actions">
                     <button

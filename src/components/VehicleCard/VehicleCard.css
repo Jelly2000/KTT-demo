@@ -7,6 +7,9 @@
     transition: var(--transition);
     /* cursor: pointer; */
     border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .car-card:hover {
@@ -27,6 +30,9 @@
 
 .car-info {
     padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
 .car-name {
@@ -64,6 +70,7 @@
     display: flex;
     gap: 0.5rem;
     flex-direction: row;
+    margin-top: auto;
 }
 
 .rent-button {
