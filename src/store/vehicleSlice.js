@@ -20,6 +20,17 @@ const initialState = {
 };
 
 const VEHICLE_API_BASE_URL = import.meta.env.VITE_SERVER_URL || '';
+const MIN_LOADING_DURATION_MS = 2000;
+
+const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+const waitForMinimumLoading = async (startedAt) => {
+  const elapsed = Date.now() - startedAt;
+  const remaining = MIN_LOADING_DURATION_MS - elapsed;
+
+  if (remaining > 0) {
+    await wait(remaining);
+  }
+};
 
 const normalizeVehicle = (vehicle) => {
   const fallbackImage = vehicle.cover_image || vehicle.display_image || null;
@@ -73,6 +84,8 @@ const normalizeVehicleDetail = (vehicle, images = [], specification = null) => {
 export const fetchVehicles = createAsyncThunk(
   'vehicles/fetchVehicles',
   async (filters = {}, { rejectWithValue }) => {
+    const startedAt = Date.now();
+
     try {
       const params = new URLSearchParams();
 
@@ -97,11 +110,14 @@ export const fetchVehicles = createAsyncThunk(
       }
 
       const payload = await response.json();
+      await waitForMinimumLoading(startedAt);
+
       return {
         vehicles: Array.isArray(payload?.data?.vehicles) ? payload.data.vehicles : [],
         total: payload?.data?.total ?? 0,
       };
     } catch (error) {
+      await waitForMinimumLoading(startedAt);
       return rejectWithValue(error.message || 'Failed to fetch vehicles');
     }
   }
@@ -110,6 +126,8 @@ export const fetchVehicles = createAsyncThunk(
 export const fetchVehicleBySlug = createAsyncThunk(
   'vehicles/fetchVehicleBySlug',
   async (slug, { rejectWithValue }) => {
+    const startedAt = Date.now();
+
     try {
       const endpoint = `${VEHICLE_API_BASE_URL}/api/vehicles/${slug}`;
       const response = await fetch(endpoint);
@@ -125,12 +143,15 @@ export const fetchVehicleBySlug = createAsyncThunk(
         throw new Error('Vehicle detail not found');
       }
 
+      await waitForMinimumLoading(startedAt);
+
       return {
         vehicle: detailData.vehicle,
         images: Array.isArray(detailData.images) ? detailData.images : [],
         specification: detailData.specification || null,
       };
     } catch (error) {
+      await waitForMinimumLoading(startedAt);
       return rejectWithValue(error.message || 'Failed to fetch vehicle detail');
     }
   }

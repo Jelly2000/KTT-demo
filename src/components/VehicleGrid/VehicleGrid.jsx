@@ -6,6 +6,7 @@ import './VehicleGrid.css';
 const VehicleGrid = ({ vehicles = [], renderVehicle, className = '' }) => {
   const [visibleCount, setVisibleCount] = useState(12); // Start with 12 vehicles
   const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const MIN_LOADING_DURATION_MS = 2000;
   
   // Preload images for better UX
   useImagePreloader(vehicles, visibleCount, 6);
@@ -22,11 +23,11 @@ const VehicleGrid = ({ vehicles = [], renderVehicle, className = '' }) => {
     
     setIsLoadingMore(true);
     
-    // Simulate loading time for smooth UX
+    // Keep loading visible long enough for smoother UX
     setTimeout(() => {
       setVisibleCount(prev => Math.min(prev + 6, vehicles.length));
       setIsLoadingMore(false);
-    }, 300);
+    }, MIN_LOADING_DURATION_MS);
   }, [isLoadingMore, hasMoreVehicles, vehicles.length]);
 
   // Reset visible count when vehicles array changes (e.g., due to filtering)

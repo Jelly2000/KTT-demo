@@ -171,9 +171,8 @@ const RentCar = () => {
   }, [currentPage, totalPages, handlePageChange]);
 
   const renderVehicle = useCallback(() => {
-    console.log('Rendering vehicles with loading:', loading, 'and error:', error);
     if (loading) {
-      return <LoadingSpinner height="0vh" />; 
+      return <LoadingSpinner height="10vh" showLoadingText={false} />; 
     } else if (error) {
       return <p>{error}</p>;
     } else {
