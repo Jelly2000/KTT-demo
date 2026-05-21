@@ -14,6 +14,29 @@ import {
   selectVehicles,
 } from '../../store/vehicleSlice';
 
+const COMBINED_SEAT_FILTER_VALUE = '4-5';
+const COMBINED_SEAT_COUNTS = new Set([4, 5]);
+
+export const getSeatNumberForRequest = (seatSelection) => {
+  if (!seatSelection || seatSelection === COMBINED_SEAT_FILTER_VALUE) {
+    return undefined;
+  }
+
+  return seatSelection;
+};
+
+export const filterVehiclesBySeatSelection = (vehicles = [], seatSelection = '') => {
+  if (!seatSelection) {
+    return vehicles;
+  }
+
+  if (seatSelection === COMBINED_SEAT_FILTER_VALUE) {
+    return vehicles.filter((vehicle) => COMBINED_SEAT_COUNTS.has(Number(vehicle?.seats ?? vehicle?.seat_number)));
+  }
+
+  return vehicles.filter((vehicle) => Number(vehicle?.seats ?? vehicle?.seat_number) === Number(seatSelection));
+};
+
 const RentCar = () => {
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
@@ -62,7 +85,7 @@ const RentCar = () => {
       fetchVehicles({
         search_text: debouncedSearchText || undefined,
         make: filters.brand || undefined,
-        seat_number: filters.seats || undefined,
+        seat_number: getSeatNumberForRequest(filters.seats),
       })
     );
   }, [debouncedSearchText, dispatch, filters.brand, filters.seats]);
@@ -108,19 +131,23 @@ const RentCar = () => {
     resultsSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
-  const totalPages = Math.ceil((vehicles?.length || 0) / pageSize);
+  const filteredVehicles = React.useMemo(() => {
+    return filterVehiclesBySeatSelection(vehicles || [], filters.seats);
+  }, [filters.seats, vehicles]);
+
+  const totalPages = Math.ceil((filteredVehicles?.length || 0) / pageSize);
   const paginatedVehicles = React.useMemo(() => {
     const startIndex = (currentPage - 1) * pageSize;
-    return (vehicles || []).slice(startIndex, startIndex + pageSize);
-  }, [currentPage, vehicles]);
+    return (filteredVehicles || []).slice(startIndex, startIndex + pageSize);
+  }, [currentPage, filteredVehicles]);
 
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "ItemList",
     "name": t('seo_rentcar_title'),
     "description": t('seo_rentcar_description'),
-    "numberOfItems": vehicles?.length,
-    "itemListElement": vehicles?.slice(0, 10).map((vehicle, index) => ({
+    "numberOfItems": filteredVehicles?.length,
+    "itemListElement": filteredVehicles?.slice(0, 10).map((vehicle, index) => ({
       "@type": "Product",
       "position": index + 1,
       "name": vehicle.name,
@@ -256,11 +283,8 @@ const RentCar = () => {
                 <option value="">
                   {t('all_seats')}
                 </option>
-                <option value="4">
-                  {t('seats_4')}
-                </option>
-                <option value="5">
-                  {t('seats_5')}
+                <option value={COMBINED_SEAT_FILTER_VALUE}>
+                  {t('seats_4_5')}
                 </option>
                 <option value="7">
                   {t('seats_7')}
@@ -283,7 +307,7 @@ const RentCar = () => {
           <div className="results-header">
             <div className="results-info">
               <span className="results-count">
-                {`${vehicles?.length} ${t('results_found')}`}
+                {`${filteredVehicles?.length} ${t('results_found')}`}
               </span>
             </div>
           </div>
