@@ -1,6 +1,6 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { render } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { fireEvent, render, screen } from '@testing-library/react';
+import { MemoryRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import ScrollToTop from './ScrollToTop';
 
 // Mock window.scrollTo
@@ -10,43 +10,57 @@ Object.defineProperty(window, 'scrollTo', {
   writable: true
 });
 
-// Create a test component that changes location
-const TestComponent = ({ path }) => {
-  // Mock useLocation hook
-  const mockUseLocation = vi.fn(() => ({ pathname: path }));
-  vi.doMock('react-router-dom', async () => {
-    const actual = await vi.importActual('react-router-dom');
-    return {
-      ...actual,
-      useLocation: mockUseLocation,
-    };
-  });
-  
-  return <ScrollToTop />;
+const TestRoutes = () => {
+  const navigate = useNavigate();
+
+  return (
+    <>
+      <ScrollToTop />
+      <Routes>
+        <Route
+          path="/rent"
+          element={<button onClick={() => navigate('/detail')}>Open detail</button>}
+        />
+        <Route
+          path="/detail"
+          element={(
+            <>
+              <button onClick={() => navigate(-1)}>Browser back</button>
+              <button onClick={() => navigate('/rent', { state: { restoreScrollY: 320 } })}>
+                Back to list
+              </button>
+            </>
+          )}
+        />
+      </Routes>
+    </>
+  );
 };
 
 describe('ScrollToTop Component', () => {
   beforeEach(() => {
     mockScrollTo.mockClear();
-  });
-
-  afterEach(() => {
-    vi.clearAllMocks();
+    window.sessionStorage.clear();
+    Object.defineProperty(window, 'scrollY', {
+      value: 0,
+      writable: true,
+      configurable: true,
+    });
   });
 
   it('should render without errors', () => {
     render(
-      <BrowserRouter>
+      <MemoryRouter initialEntries={['/rent']}>
         <ScrollToTop />
-      </BrowserRouter>
+      </MemoryRouter>
     );
   });
 
   it('should call window.scrollTo when component mounts', () => {
     render(
-      <BrowserRouter>
+      <MemoryRouter initialEntries={['/rent']}>
         <ScrollToTop />
-      </BrowserRouter>
+      </MemoryRouter>
     );
 
     expect(mockScrollTo).toHaveBeenCalledWith(0, 0);
@@ -54,9 +68,9 @@ describe('ScrollToTop Component', () => {
 
   it('should call window.scrollTo with smooth behavior when smooth prop is true', () => {
     render(
-      <BrowserRouter>
+      <MemoryRouter initialEntries={['/rent']}>
         <ScrollToTop smooth={true} />
-      </BrowserRouter>
+      </MemoryRouter>
     );
 
     expect(mockScrollTo).toHaveBeenCalledWith({
@@ -68,11 +82,40 @@ describe('ScrollToTop Component', () => {
 
   it('should return null (no visual output)', () => {
     const { container } = render(
-      <BrowserRouter>
+      <MemoryRouter initialEntries={['/rent']}>
         <ScrollToTop />
-      </BrowserRouter>
+      </MemoryRouter>
     );
 
     expect(container.firstChild).toBeNull();
+  });
+
+  it('restores the saved scroll position on browser back', () => {
+    render(
+      <MemoryRouter initialEntries={['/rent']}>
+        <TestRoutes />
+      </MemoryRouter>
+    );
+
+    window.scrollY = 480;
+    fireEvent.click(screen.getByRole('button', { name: 'Open detail' }));
+
+    expect(mockScrollTo).toHaveBeenLastCalledWith(0, 0);
+
+    fireEvent.click(screen.getByRole('button', { name: 'Browser back' }));
+
+    expect(mockScrollTo).toHaveBeenLastCalledWith(0, 480);
+  });
+
+  it('restores an explicit scroll position from navigation state', () => {
+    render(
+      <MemoryRouter initialEntries={['/detail']}>
+        <TestRoutes />
+      </MemoryRouter>
+    );
+
+    fireEvent.click(screen.getByRole('button', { name: 'Back to list' }));
+
+    expect(mockScrollTo).toHaveBeenLastCalledWith(0, 320);
   });
 });

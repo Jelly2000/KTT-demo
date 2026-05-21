@@ -1,7 +1,7 @@
 import React, { createContext, useCallback, useContext, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigationType, useSearchParams } from 'react-router-dom';
 import '../shared-styles.css';
 import './styles.css';
 import { VehicleCard, VehicleGrid } from '../../components';
@@ -17,6 +17,7 @@ import {
 const COMBINED_SEAT_FILTER_VALUE = '4-5';
 const COMBINED_SEAT_COUNTS = new Set([4, 5]);
 const VehicleRenderContext = createContext(null);
+const LIST_RESTORE_STORAGE_KEY = 'rent-car-list-restore';
 
 const getInitialPage = (searchParams) => {
   const pageParam = Number(searchParams.get('page') || '1');
@@ -98,6 +99,8 @@ const SeatVehicleSection = React.memo(function SeatVehicleSection({ seatCount, v
 const RentCar = () => {
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
+  const location = useLocation();
+  const navigationType = useNavigationType();
   const [searchParams, setSearchParams] = useSearchParams();
   const vehicles = useSelector(selectVehicles);
   const loading = useSelector(selectVehicleLoading);
@@ -114,6 +117,7 @@ const RentCar = () => {
   const [currentPage, setCurrentPage] = React.useState(() => getInitialPage(searchParams));
   const resultsSectionRef = React.useRef(null);
   const hasHydratedFiltersRef = React.useRef(false);
+  const hasAppliedListRestoreRef = React.useRef(false);
   const pageSize = 12;
 
   React.useEffect(() => {
@@ -123,6 +127,12 @@ const RentCar = () => {
 
     return () => clearTimeout(timeoutId);
   }, [searchText]);
+
+  React.useEffect(() => {
+    if (navigationType !== 'POP') {
+      hasAppliedListRestoreRef.current = false;
+    }
+  }, [navigationType]);
 
   React.useEffect(() => {
     const nextParams = new URLSearchParams(searchParams);
@@ -238,6 +248,43 @@ const RentCar = () => {
 
   const groupedVehicles = useMemo(() => groupVehiclesBySeat(paginatedVehicles), [paginatedVehicles]);
 
+  React.useEffect(() => {
+    if (navigationType !== 'POP' || hasAppliedListRestoreRef.current || groupedVehicles.length === 0) {
+      return;
+    }
+
+    try {
+      const rawRestoreContext = window.sessionStorage.getItem(LIST_RESTORE_STORAGE_KEY);
+      const restoreContext = rawRestoreContext ? JSON.parse(rawRestoreContext) : null;
+      const routeKey = `${location.pathname}${location.search}`;
+
+      if (!restoreContext || restoreContext.routeKey !== routeKey || !restoreContext.slug) {
+        return;
+      }
+
+      const restoreScroll = () => {
+        const targetElement = document.querySelector(`[data-vehicle-slug="${restoreContext.slug}"]`);
+
+        if (!targetElement) {
+          return;
+        }
+
+        const targetTop = targetElement.getBoundingClientRect().top + window.scrollY;
+        const nextScrollY = Math.max(targetTop - (restoreContext.offsetTop || 0), 0);
+
+        window.scrollTo(0, nextScrollY);
+        hasAppliedListRestoreRef.current = true;
+        window.sessionStorage.removeItem(LIST_RESTORE_STORAGE_KEY);
+      };
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(restoreScroll);
+      });
+    } catch {
+      // Ignore malformed restore data and keep default scroll behavior.
+    }
+  }, [groupedVehicles, location.pathname, location.search, navigationType]);
+
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "ItemList",
@@ -318,7 +365,7 @@ const RentCar = () => {
   }), [getSeatSectionTitle, renderVehicleCard]);
 
   const renderVehicleSections = useCallback(() => {
-    if (loading) {
+    if (loading && groupedVehicles.length === 0) {
       return <LoadingSpinner height="10vh" showLoadingText={false} />;
     }
 

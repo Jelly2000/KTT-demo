@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { I18nextProvider } from 'react-i18next';
 import { MemoryRouter } from 'react-router-dom';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
@@ -11,13 +11,14 @@ import RentCar, {
 
 const mockDispatch = vi.fn();
 const mockFetchVehicles = vi.fn((payload) => ({ type: 'vehicles/fetchVehicles', payload }));
+const mockScrollTo = vi.fn();
 
 const mockState = {
   vehicles: {
     vehicles: [
-      { id: 1, name: 'Accent', seats: 4, image: '/accent.jpg', pricePerDay: 1000000, features: [], rating: 5, availability: true },
-      { id: 2, name: 'Venue', seats: 5, image: '/venue.jpg', pricePerDay: 1100000, features: [], rating: 5, availability: true },
-      { id: 3, name: 'Santa Fe', seats: 7, image: '/santafe.jpg', pricePerDay: 1300000, features: [], rating: 5, availability: true },
+      { id: 1, slug: 'accent', name: 'Accent', seats: 4, image: '/accent.jpg', pricePerDay: 1000000, features: [], rating: 5, availability: true },
+      { id: 2, slug: 'venue', name: 'Venue', seats: 5, image: '/venue.jpg', pricePerDay: 1100000, features: [], rating: 5, availability: true },
+      { id: 3, slug: 'santa-fe', name: 'Santa Fe', seats: 7, image: '/santafe.jpg', pricePerDay: 1300000, features: [], rating: 5, availability: true },
     ],
     loading: false,
     error: null,
@@ -37,7 +38,7 @@ vi.mock('../../store/vehicleSlice', () => ({
 }));
 
 vi.mock('../../components', () => ({
-  VehicleCard: ({ vehicleName }) => <div>{vehicleName}</div>,
+  VehicleCard: ({ vehicleName, vehicle, id }) => <div data-vehicle-slug={vehicle?.slug || id}>{vehicleName}</div>,
   VehicleGrid: ({ vehicles, renderVehicle }) => (
     <div>{vehicles.map((vehicle, index) => <div key={vehicle.id}>{renderVehicle(vehicle, index)}</div>)}</div>
   ),
@@ -64,6 +65,23 @@ describe('RentCar seat filters', () => {
   beforeEach(() => {
     mockDispatch.mockClear();
     mockFetchVehicles.mockClear();
+    mockScrollTo.mockClear();
+    mockState.vehicles.loading = false;
+    mockState.vehicles.error = null;
+    window.sessionStorage.clear();
+    Object.defineProperty(window, 'scrollTo', {
+      value: mockScrollTo,
+      writable: true,
+    });
+    Object.defineProperty(window, 'scrollY', {
+      value: 150,
+      writable: true,
+      configurable: true,
+    });
+    global.requestAnimationFrame = (callback) => {
+      callback();
+      return 0;
+    };
   });
 
   it('maps the combined seat filter to local 4 and 5 seat results', async () => {
@@ -132,5 +150,41 @@ describe('RentCar seat filters', () => {
       make: 'Hyundai',
       seat_number: undefined,
     });
+  });
+
+  it('keeps the rendered vehicle list visible while a refresh is in flight', async () => {
+    mockState.vehicles.loading = true;
+
+    await renderRentCar();
+
+    expect(screen.getByText('Accent')).toBeInTheDocument();
+    expect(screen.getByText('Venue')).toBeInTheDocument();
+    expect(screen.queryByText('Loading')).not.toBeInTheDocument();
+  });
+
+  it('restores the previous viewport position from the clicked vehicle anchor on POP navigation', async () => {
+    window.sessionStorage.setItem('rent-car-list-restore', JSON.stringify({
+      routeKey: '/thue-xe',
+      slug: 'venue',
+      offsetTop: 120,
+      scrollY: 640,
+    }));
+
+    const originalGetBoundingClientRect = Element.prototype.getBoundingClientRect;
+    Element.prototype.getBoundingClientRect = vi.fn(function mockGetBoundingClientRect() {
+      if (this.getAttribute?.('data-vehicle-slug') === 'venue') {
+        return { top: 420 };
+      }
+
+      return originalGetBoundingClientRect.call(this);
+    });
+
+    await renderRentCar();
+
+    await waitFor(() => {
+      expect(mockScrollTo).toHaveBeenCalledWith(0, 450);
+    });
+
+    Element.prototype.getBoundingClientRect = originalGetBoundingClientRect;
   });
 });
