@@ -48,11 +48,11 @@ vi.mock('../../components/SEO/SEO', () => ({
   default: () => null,
 }));
 
-const renderRentCar = async () => {
+const renderRentCar = async ({ initialEntries = ['/thue-xe'] } = {}) => {
   await i18n.changeLanguage('en');
 
   return render(
-    <MemoryRouter>
+    <MemoryRouter initialEntries={initialEntries}>
       <I18nextProvider i18n={i18n}>
         <RentCar />
       </I18nextProvider>
@@ -115,5 +115,22 @@ describe('RentCar seat filters', () => {
       { seatCount: 5, vehicles: [mockState.vehicles.vehicles[1]] },
       { seatCount: 7, vehicles: [mockState.vehicles.vehicles[2]] },
     ]);
+  });
+
+  it('restores search and filter selections from the URL', async () => {
+    await renderRentCar({
+      initialEntries: ['/thue-xe?search_text=ven&make=Hyundai&seats=4-5&page=2'],
+    });
+
+    const [brandSelect, seatSelect] = screen.getAllByRole('combobox');
+
+    expect(screen.getByPlaceholderText('Search for cars...')).toHaveValue('ven');
+    expect(brandSelect).toHaveValue('Hyundai');
+    expect(seatSelect).toHaveValue('4-5');
+    expect(mockFetchVehicles).toHaveBeenLastCalledWith({
+      search_text: 'ven',
+      make: 'Hyundai',
+      seat_number: undefined,
+    });
   });
 });

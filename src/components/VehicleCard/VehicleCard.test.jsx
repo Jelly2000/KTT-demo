@@ -1,9 +1,15 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { BrowserRouter } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 import { I18nextProvider } from 'react-i18next';
 import i18n from '../../i18n';
 import VehicleCard from './VehicleCard';
+
+class MockIntersectionObserver {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+}
 
 // Mock the RentModal hook
 const mockOpenRentModal = vi.fn();
@@ -13,8 +19,12 @@ vi.mock('../RentCarModal', () => ({
   })
 }));
 
+vi.mock('../LazyImage/VehicleImageLoader', () => ({
+  default: ({ src, alt }) => (src ? <img src={src} alt={alt} /> : <div>🚗</div>),
+}));
+
 // Helper function to render VehicleCard with providers
-const renderVehicleCard = (props = {}) => {
+const renderVehicleCard = (props = {}, { initialEntries = ['/'] } = {}) => {
   const defaultProps = {
     id: 'test-vehicle-1',
     image: '/test-image.jpg',
@@ -28,16 +38,17 @@ const renderVehicleCard = (props = {}) => {
   };
 
   return render(
-    <BrowserRouter>
+    <MemoryRouter initialEntries={initialEntries}>
       <I18nextProvider i18n={i18n}>
         <VehicleCard {...defaultProps} />
       </I18nextProvider>
-    </BrowserRouter>
+    </MemoryRouter>
   );
 };
 
 describe('VehicleCard Component', () => {
   beforeEach(() => {
+    global.IntersectionObserver = MockIntersectionObserver;
     mockOpenRentModal.mockClear();
   });
 
@@ -150,10 +161,13 @@ describe('VehicleCard Component', () => {
   });
 
   it('renders details link with correct href', () => {
-    renderVehicleCard({ id: 'hyundai-accent-2023' });
+    renderVehicleCard(
+      { id: 'hyundai-accent-2023' },
+      { initialEntries: ['/thue-xe?search_text=accent&make=Hyundai&seats=4-5&page=2'] }
+    );
     
     const detailsLink = screen.getByRole('link', { name: /view details/i });
-    expect(detailsLink).toHaveAttribute('href', '/thue-xe/hyundai-accent-2023');
+    expect(detailsLink).toHaveAttribute('href', '/thue-xe/hyundai-accent-2023?search_text=accent&make=Hyundai&seats=4-5&page=2');
   });
 
   it('renders fallback placeholder when no image provided', () => {

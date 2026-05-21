@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useRentModal } from '../RentCarModal';
 import VehicleImageLoader from '../LazyImage/VehicleImageLoader';
 import './VehicleCard.css';
@@ -17,8 +17,10 @@ const VehicleCard = React.memo(({
     viewMode = 'grid'
 }) => {
     const { t, i18n } = useTranslation();
+    const location = useLocation();
     const { openRentModal } = useRentModal();
     const activeLanguage = i18n.language === 'en' ? 'en' : 'vi';
+    const detailsSearch = location.pathname === '/thue-xe' ? location.search : '';
 
     const getLocalizedFeature = (feature) => {
         if (typeof feature === 'string') return feature;
@@ -95,7 +97,10 @@ const VehicleCard = React.memo(({
                         {rentButtonText}
                     </button>
                     <Link
-                        to={`/thue-xe/${vehicle?.slug || id}`}
+                        to={{
+                            pathname: `/thue-xe/${vehicle?.slug || id}`,
+                            search: detailsSearch,
+                        }}
                         className="details-button"
                         aria-label={`View details for ${localizedVehicleName}`}
                     >

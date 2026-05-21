@@ -18,6 +18,11 @@ const COMBINED_SEAT_FILTER_VALUE = '4-5';
 const COMBINED_SEAT_COUNTS = new Set([4, 5]);
 const VehicleRenderContext = createContext(null);
 
+const getInitialPage = (searchParams) => {
+  const pageParam = Number(searchParams.get('page') || '1');
+  return Number.isInteger(pageParam) && pageParam > 0 ? pageParam : 1;
+};
+
 const getVehicleSeatCount = (vehicle) => Number(vehicle?.seats ?? vehicle?.seat_number ?? 0);
 
 export const groupVehiclesBySeat = (vehicles = []) => {
@@ -98,14 +103,17 @@ const RentCar = () => {
   const loading = useSelector(selectVehicleLoading);
   const error = useSelector(selectVehicleError);
   const initialSearchText = searchParams.get('search_text') || '';
+  const initialBrand = searchParams.get('make') || '';
+  const initialSeats = searchParams.get('seats') || '';
   const [filters, setFilters] = React.useState({
-    brand: '',
-    seats: '',
+    brand: initialBrand,
+    seats: initialSeats,
   });
   const [searchText, setSearchText] = React.useState(initialSearchText);
   const [debouncedSearchText, setDebouncedSearchText] = React.useState(initialSearchText);
-  const [currentPage, setCurrentPage] = React.useState(1);
+  const [currentPage, setCurrentPage] = React.useState(() => getInitialPage(searchParams));
   const resultsSectionRef = React.useRef(null);
+  const hasHydratedFiltersRef = React.useRef(false);
   const pageSize = 12;
 
   React.useEffect(() => {
@@ -117,11 +125,6 @@ const RentCar = () => {
   }, [searchText]);
 
   React.useEffect(() => {
-    const currentSearchText = searchParams.get('search_text') || '';
-    if (currentSearchText === debouncedSearchText) {
-      return;
-    }
-
     const nextParams = new URLSearchParams(searchParams);
 
     if (debouncedSearchText) {
@@ -130,8 +133,30 @@ const RentCar = () => {
       nextParams.delete('search_text');
     }
 
+    if (filters.brand) {
+      nextParams.set('make', filters.brand);
+    } else {
+      nextParams.delete('make');
+    }
+
+    if (filters.seats) {
+      nextParams.set('seats', filters.seats);
+    } else {
+      nextParams.delete('seats');
+    }
+
+    if (currentPage > 1) {
+      nextParams.set('page', String(currentPage));
+    } else {
+      nextParams.delete('page');
+    }
+
+    if (nextParams.toString() === searchParams.toString()) {
+      return;
+    }
+
     setSearchParams(nextParams, { replace: true });
-  }, [debouncedSearchText, searchParams, setSearchParams]);
+  }, [currentPage, debouncedSearchText, filters.brand, filters.seats, searchParams, setSearchParams]);
 
   React.useEffect(() => {
     dispatch(
@@ -144,6 +169,11 @@ const RentCar = () => {
   }, [debouncedSearchText, dispatch, filters.brand, filters.seats]);
 
   React.useEffect(() => {
+    if (!hasHydratedFiltersRef.current) {
+      hasHydratedFiltersRef.current = true;
+      return;
+    }
+
     setCurrentPage(1);
   }, [debouncedSearchText, filters.brand, filters.seats]);
 
