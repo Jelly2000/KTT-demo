@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { createContext, useCallback, useContext, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
@@ -16,6 +16,30 @@ import {
 
 const COMBINED_SEAT_FILTER_VALUE = '4-5';
 const COMBINED_SEAT_COUNTS = new Set([4, 5]);
+const VehicleRenderContext = createContext(null);
+
+const getVehicleSeatCount = (vehicle) => Number(vehicle?.seats ?? vehicle?.seat_number ?? 0);
+
+export const groupVehiclesBySeat = (vehicles = []) => {
+  const groups = new Map();
+
+  vehicles.forEach((vehicle) => {
+    const seatCount = getVehicleSeatCount(vehicle);
+
+    if (!groups.has(seatCount)) {
+      groups.set(seatCount, []);
+    }
+
+    groups.get(seatCount).push(vehicle);
+  });
+
+  return Array.from(groups.entries())
+    .sort(([leftSeatCount], [rightSeatCount]) => leftSeatCount - rightSeatCount)
+    .map(([seatCount, items]) => ({
+      seatCount,
+      vehicles: items,
+    }));
+};
 
 export const getSeatNumberForRequest = (seatSelection) => {
   if (!seatSelection || seatSelection === COMBINED_SEAT_FILTER_VALUE) {
@@ -36,6 +60,35 @@ export const filterVehiclesBySeatSelection = (vehicles = [], seatSelection = '')
 
   return vehicles.filter((vehicle) => Number(vehicle?.seats ?? vehicle?.seat_number) === Number(seatSelection));
 };
+
+const SeatVehicleSection = React.memo(function SeatVehicleSection({ seatCount, vehicles }) {
+  const renderContext = useContext(VehicleRenderContext);
+
+  if (!renderContext) {
+    return null;
+  }
+
+  const {
+    getSeatSectionTitle,
+    renderVehicleCard,
+  } = renderContext;
+
+  return (
+    <section className="seat-group-section" aria-label={getSeatSectionTitle(seatCount)}>
+      <div className="seat-group-header">
+        <div>
+          <h2 className="seat-group-title">{getSeatSectionTitle(seatCount)}</h2>
+        </div>
+      </div>
+
+      <VehicleGrid
+        vehicles={vehicles}
+        className="grid"
+        renderVehicle={renderVehicleCard}
+      />
+    </section>
+  );
+});
 
 const RentCar = () => {
   const { t, i18n } = useTranslation();
@@ -125,29 +178,43 @@ const RentCar = () => {
     return '';
   };
 
-  const handlePageChange = (nextPage) => {
+  const handlePageChange = useCallback((nextPage) => {
     if (nextPage === currentPage) return;
     setCurrentPage(nextPage);
     resultsSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
+  }, [currentPage]);
 
   const filteredVehicles = React.useMemo(() => {
     return filterVehiclesBySeatSelection(vehicles || [], filters.seats);
   }, [filters.seats, vehicles]);
 
-  const totalPages = Math.ceil((filteredVehicles?.length || 0) / pageSize);
+  const sortedVehicles = useMemo(() => {
+    return [...filteredVehicles].sort((leftVehicle, rightVehicle) => {
+      const seatDifference = getVehicleSeatCount(leftVehicle) - getVehicleSeatCount(rightVehicle);
+
+      if (seatDifference !== 0) {
+        return seatDifference;
+      }
+
+      return String(leftVehicle?.name || '').localeCompare(String(rightVehicle?.name || ''));
+    });
+  }, [filteredVehicles]);
+
+  const totalPages = Math.ceil((sortedVehicles?.length || 0) / pageSize);
   const paginatedVehicles = React.useMemo(() => {
     const startIndex = (currentPage - 1) * pageSize;
-    return (filteredVehicles || []).slice(startIndex, startIndex + pageSize);
-  }, [currentPage, filteredVehicles]);
+    return (sortedVehicles || []).slice(startIndex, startIndex + pageSize);
+  }, [currentPage, sortedVehicles]);
+
+  const groupedVehicles = useMemo(() => groupVehiclesBySeat(paginatedVehicles), [paginatedVehicles]);
 
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "ItemList",
     "name": t('seo_rentcar_title'),
     "description": t('seo_rentcar_description'),
-    "numberOfItems": filteredVehicles?.length,
-    "itemListElement": filteredVehicles?.slice(0, 10).map((vehicle, index) => ({
+    "numberOfItems": sortedVehicles?.length,
+    "itemListElement": sortedVehicles?.slice(0, 10).map((vehicle, index) => ({
       "@type": "Product",
       "position": index + 1,
       "name": vehicle.name,
@@ -197,31 +264,62 @@ const RentCar = () => {
       </div>)
   }, [currentPage, totalPages, handlePageChange]);
 
-  const renderVehicle = useCallback(() => {
+  const renderVehicleCard = useCallback((vehicle) => (
+    <VehicleCard
+      key={vehicle.id}
+      vehicle={vehicle}
+      id={vehicle.id}
+      image={vehicle.image}
+      vehicleName={vehicle.name}
+      price={`${formatPrice(vehicle.pricePerDay)}${t('per_day')}`}
+      features={vehicle.features}
+      rating={vehicle.rating}
+      availability={vehicle.availability}
+    />
+  ), [t]);
+
+  const getSeatSectionTitle = useCallback((seatCount) => {
+    return t('seat_group_title', { count: seatCount });
+  }, [t]);
+
+  const vehicleRenderContextValue = useMemo(() => ({
+    getSeatSectionTitle,
+    renderVehicleCard,
+  }), [getSeatSectionTitle, renderVehicleCard]);
+
+  const renderVehicleSections = useCallback(() => {
     if (loading) {
       return <LoadingSpinner height="10vh" showLoadingText={false} />;
-    } else if (error) {
-      return <p>{error}</p>;
-    } else {
-      return <VehicleGrid
-        vehicles={paginatedVehicles}
-        className="grid"
-        renderVehicle={(vehicle) => (
-          <VehicleCard
-            key={vehicle.id}
-            vehicle={vehicle}
-            id={vehicle.id}
-            image={vehicle.image}
-            vehicleName={vehicle.name}
-            price={`${formatPrice(vehicle.pricePerDay)}${t('per_day')}`}
-            features={vehicle.features}
-            rating={vehicle.rating}
-            availability={vehicle.availability}
-          />
-        )}
-      />
     }
-  }, [error, loading, paginatedVehicles, t]);
+
+    if (error) {
+      return <p>{error}</p>;
+    }
+
+    if (groupedVehicles.length === 0) {
+      return (
+        <VehicleGrid
+          vehicles={[]}
+          className="grid"
+          renderVehicle={renderVehicleCard}
+        />
+      );
+    }
+
+    return (
+      <VehicleRenderContext.Provider value={vehicleRenderContextValue}>
+        <div className="seat-group-list">
+          {groupedVehicles.map(({ seatCount, vehicles: seatVehicles }) => (
+            <SeatVehicleSection
+              key={seatCount}
+              seatCount={seatCount}
+              vehicles={seatVehicles}
+            />
+          ))}
+        </div>
+      </VehicleRenderContext.Provider>
+    );
+  }, [error, groupedVehicles, loading, renderVehicleCard, vehicleRenderContextValue]);
 
   return (
     <div className="rent-car-page">
@@ -307,11 +405,11 @@ const RentCar = () => {
           <div className="results-header">
             <div className="results-info">
               <span className="results-count">
-                {`${filteredVehicles?.length} ${t('results_found')}`}
+                {`${sortedVehicles?.length} ${t('results_found')}`}
               </span>
             </div>
           </div>
-          {renderVehicle()}
+          {renderVehicleSections()}
           {renderPagination()}
         </div>
       </section>

@@ -6,6 +6,7 @@ import i18n from '../../i18n';
 import RentCar, {
   filterVehiclesBySeatSelection,
   getSeatNumberForRequest,
+  groupVehiclesBySeat,
 } from './RentCar';
 
 const mockDispatch = vi.fn();
@@ -73,11 +74,20 @@ describe('RentCar seat filters', () => {
     expect(screen.queryByRole('option', { name: '4 Seater Cars' })).not.toBeInTheDocument();
     expect(screen.queryByRole('option', { name: '5 Seater Cars' })).not.toBeInTheDocument();
 
+    const sectionHeadings = screen.getAllByRole('heading', { level: 2 }).map((heading) => heading.textContent);
+    expect(sectionHeadings).toEqual([
+      '4-seat vehicles',
+      '5-seat vehicles',
+      '7-seat vehicles',
+    ]);
+
     fireEvent.change(seatSelect, { target: { value: '4-5' } });
 
     expect(screen.getByText('Accent')).toBeInTheDocument();
     expect(screen.getByText('Venue')).toBeInTheDocument();
     expect(screen.queryByText('Santa Fe')).not.toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 2, name: '4-seat vehicles' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 2, name: '5-seat vehicles' })).toBeInTheDocument();
     expect(screen.getByText(/2 vehicles found/i)).toBeInTheDocument();
     expect(mockFetchVehicles).toHaveBeenLastCalledWith({
       search_text: undefined,
@@ -92,6 +102,18 @@ describe('RentCar seat filters', () => {
     expect(filterVehiclesBySeatSelection(mockState.vehicles.vehicles, '4-5')).toHaveLength(2);
     expect(filterVehiclesBySeatSelection(mockState.vehicles.vehicles, '7')).toEqual([
       mockState.vehicles.vehicles[2],
+    ]);
+  });
+
+  it('groups vehicles by seat count in ascending order before rendering', () => {
+    expect(groupVehiclesBySeat([
+      mockState.vehicles.vehicles[2],
+      mockState.vehicles.vehicles[0],
+      mockState.vehicles.vehicles[1],
+    ])).toEqual([
+      { seatCount: 4, vehicles: [mockState.vehicles.vehicles[0]] },
+      { seatCount: 5, vehicles: [mockState.vehicles.vehicles[1]] },
+      { seatCount: 7, vehicles: [mockState.vehicles.vehicles[2]] },
     ]);
   });
 });

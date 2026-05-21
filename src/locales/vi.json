@@ -71,6 +71,7 @@
   "seats_4": "Xe 4 Chỗ",
   "seats_5": "Xe 5 Chỗ",
   "seats_7": "Xe 7 Chỗ",
+  "seat_group_title": "Xe {{count}} chỗ",
   "sedan": "Sedan",
   "suv": "SUV", 
   "minivan": "Minivan",
