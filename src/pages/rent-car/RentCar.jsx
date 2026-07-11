@@ -19,11 +19,6 @@ const COMBINED_SEAT_COUNTS = new Set([4, 5]);
 const VehicleRenderContext = createContext(null);
 const LIST_RESTORE_STORAGE_KEY = 'rent-car-list-restore';
 
-const getInitialPage = (searchParams) => {
-  const pageParam = Number(searchParams.get('page') || '1');
-  return Number.isInteger(pageParam) && pageParam > 0 ? pageParam : 1;
-};
-
 const getVehicleSeatCount = (vehicle) => Number(vehicle?.seats ?? vehicle?.seat_number ?? 0);
 
 export const groupVehiclesBySeat = (vehicles = []) => {
@@ -114,11 +109,7 @@ const RentCar = () => {
   });
   const [searchText, setSearchText] = React.useState(initialSearchText);
   const [debouncedSearchText, setDebouncedSearchText] = React.useState(initialSearchText);
-  const [currentPage, setCurrentPage] = React.useState(() => getInitialPage(searchParams));
-  const resultsSectionRef = React.useRef(null);
-  const hasHydratedFiltersRef = React.useRef(false);
   const hasAppliedListRestoreRef = React.useRef(false);
-  const pageSize = 12;
 
   React.useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -155,18 +146,12 @@ const RentCar = () => {
       nextParams.delete('seats');
     }
 
-    if (currentPage > 1) {
-      nextParams.set('page', String(currentPage));
-    } else {
-      nextParams.delete('page');
-    }
-
     if (nextParams.toString() === searchParams.toString()) {
       return;
     }
 
     setSearchParams(nextParams, { replace: true });
-  }, [currentPage, debouncedSearchText, filters.brand, filters.seats, searchParams, setSearchParams]);
+  }, [debouncedSearchText, filters.brand, filters.seats, searchParams, setSearchParams]);
 
   React.useEffect(() => {
     dispatch(
@@ -177,15 +162,6 @@ const RentCar = () => {
       })
     );
   }, [debouncedSearchText, dispatch, filters.brand, filters.seats]);
-
-  React.useEffect(() => {
-    if (!hasHydratedFiltersRef.current) {
-      hasHydratedFiltersRef.current = true;
-      return;
-    }
-
-    setCurrentPage(1);
-  }, [debouncedSearchText, filters.brand, filters.seats]);
 
   const handleFilterChange = (filterName, value) => {
     setFilters((prevFilters) => ({
@@ -218,12 +194,6 @@ const RentCar = () => {
     return '';
   };
 
-  const handlePageChange = useCallback((nextPage) => {
-    if (nextPage === currentPage) return;
-    setCurrentPage(nextPage);
-    resultsSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, [currentPage]);
-
   const filteredVehicles = React.useMemo(() => {
     return filterVehiclesBySeatSelection(vehicles || [], filters.seats);
   }, [filters.seats, vehicles]);
@@ -240,13 +210,7 @@ const RentCar = () => {
     });
   }, [filteredVehicles]);
 
-  const totalPages = Math.ceil((sortedVehicles?.length || 0) / pageSize);
-  const paginatedVehicles = React.useMemo(() => {
-    const startIndex = (currentPage - 1) * pageSize;
-    return (sortedVehicles || []).slice(startIndex, startIndex + pageSize);
-  }, [currentPage, sortedVehicles]);
-
-  const groupedVehicles = useMemo(() => groupVehiclesBySeat(paginatedVehicles), [paginatedVehicles]);
+  const groupedVehicles = useMemo(() => groupVehiclesBySeat(sortedVehicles), [sortedVehicles]);
 
   React.useEffect(() => {
     if (navigationType !== 'POP' || hasAppliedListRestoreRef.current || groupedVehicles.length === 0) {
@@ -304,42 +268,6 @@ const RentCar = () => {
       }
     }))
   };
-
-  const renderPagination = useCallback(() => {
-    return totalPages > 1 && (
-      <div className="pagination-container">
-        <button
-          className="pagination-btn"
-          onClick={() => handlePageChange(Math.max(currentPage - 1, 1))}
-          disabled={currentPage === 1}
-          aria-label="Previous page"
-        >
-          «
-        </button>
-
-        <div className="pagination-pages">
-          {Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => (
-            <button
-              key={page}
-              className={`pagination-btn page-number ${currentPage === page ? 'active' : ''}`}
-              onClick={() => handlePageChange(page)}
-              aria-label={`Page ${page}`}
-            >
-              {page}
-            </button>
-          ))}
-        </div>
-
-        <button
-          className="pagination-btn"
-          onClick={() => handlePageChange(Math.min(currentPage + 1, totalPages))}
-          disabled={currentPage === totalPages}
-          aria-label="Next page"
-        >
-          »
-        </button>
-      </div>)
-  }, [currentPage, totalPages, handlePageChange]);
 
   const renderVehicleCard = useCallback((vehicle) => (
     <VehicleCard
@@ -477,7 +405,7 @@ const RentCar = () => {
       </section>
 
       {/* Results Header */}
-      <section className="results-section" ref={resultsSectionRef}>
+      <section className="results-section">
         <div className="container">
           <div className="results-header">
             <div className="results-info">
@@ -487,7 +415,6 @@ const RentCar = () => {
             </div>
           </div>
           {renderVehicleSections()}
-          {renderPagination()}
         </div>
       </section>
     </div>
