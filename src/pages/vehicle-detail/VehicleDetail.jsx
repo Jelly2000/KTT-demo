@@ -437,27 +437,27 @@ const VehicleDetail = () => {
                                 <div className="spec-value">{vehicle.fuel === 'gasoline' || vehicle.fuel === 'petrol' ? 'Xăng' : vehicle.fuel}</div>
                             </div>
                         </div>
-                        {vehicle.specifications && (
+                        {vehicle.specification && (
                             <>
                                 <div className="spec-card">
                                     <div className="spec-icon">🔧</div>
                                     <div className="spec-content">
                                         <div className="spec-label">{t('engine_label')}</div>
-                                        <div className="spec-value">{vehicle.specifications.engine}</div>
+                                        <div className="spec-value">{vehicle.specification.engine}</div>
                                     </div>
                                 </div>
                                 <div className="spec-card">
                                     <div className="spec-icon">💨</div>
                                     <div className="spec-content">
                                         <div className="spec-label">{t('power_label')}</div>
-                                        <div className="spec-value">{vehicle.specifications.power}</div>
+                                        <div className="spec-value">{vehicle.specification.power}</div>
                                     </div>
                                 </div>
                                 <div className="spec-card">
                                     <div className="spec-icon">📊</div>
                                     <div className="spec-content">
                                         <div className="spec-label">{t('fuel_consumption_label')}</div>
-                                        <div className="spec-value">{vehicle.specifications.fuelConsumption}</div>
+                                        <div className="spec-value">{vehicle.specification.fuelConsumption}</div>
                                     </div>
                                 </div>
                             </>

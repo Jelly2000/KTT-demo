@@ -77,7 +77,7 @@ const normalizeVehicleDetail = (vehicle, images = [], specification = null) => {
     ...normalizedVehicle,
     image: coverImage || normalizedVehicle.image,
     gallery,
-    specifications: specification || normalizedVehicle.specifications,
+    specification,
   };
 };
 
