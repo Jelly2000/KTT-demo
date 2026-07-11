@@ -1,9 +1,24 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useRentModal } from '../RentCarModal';
 import VehicleImageLoader from '../LazyImage/VehicleImageLoader';
 import './VehicleCard.css';
+
+const LIST_RESTORE_STORAGE_KEY = 'rent-car-list-restore';
+
+const saveListRestoreContext = ({ routeKey, slug, offsetTop, scrollY }) => {
+    try {
+        window.sessionStorage.setItem(LIST_RESTORE_STORAGE_KEY, JSON.stringify({
+            routeKey,
+            slug,
+            offsetTop,
+            scrollY,
+        }));
+    } catch {
+        // Ignore storage failures and fall back to route-level restoration.
+    }
+};
 
 const VehicleCard = React.memo(({
     vehicle,
@@ -17,8 +32,35 @@ const VehicleCard = React.memo(({
     viewMode = 'grid'
 }) => {
     const { t, i18n } = useTranslation();
+    const location = useLocation();
     const { openRentModal } = useRentModal();
     const activeLanguage = i18n.language === 'en' ? 'en' : 'vi';
+    const detailsSearch = location.pathname === '/thue-xe' ? location.search : '';
+    const routeKey = `${location.pathname}${location.search}`;
+    const detailsState = location.pathname === '/thue-xe'
+        ? {
+            from: {
+                pathname: location.pathname,
+                search: location.search,
+            },
+            scrollY: window.scrollY,
+        }
+        : undefined;
+    const handleDetailsClick = (event) => {
+        if (location.pathname !== '/thue-xe') {
+            return;
+        }
+
+        const cardElement = event.currentTarget.closest('[data-vehicle-slug]');
+        const slug = vehicle?.slug || id;
+
+        saveListRestoreContext({
+            routeKey,
+            slug,
+            offsetTop: cardElement ? cardElement.getBoundingClientRect().top : 0,
+            scrollY: window.scrollY,
+        });
+    };
 
     const getLocalizedFeature = (feature) => {
         if (typeof feature === 'string') return feature;
@@ -40,7 +82,13 @@ const VehicleCard = React.memo(({
     const unavailableText = t('vehicle_unavailable');
 
     return (
-        <div className={`car-card ${viewMode} ${!availability ? 'unavailable' : ''}`} role="button" tabIndex="0" aria-label={`View details for ${vehicleName}`}>
+        <div
+            className={`car-card ${viewMode} ${!availability ? 'unavailable' : ''}`}
+            role="button"
+            tabIndex="0"
+            aria-label={`View details for ${vehicleName}`}
+            data-vehicle-slug={vehicle?.slug || id}
+        >
             <div className="car-image" aria-hidden="true">
                 <VehicleImageLoader
                     src={image}
@@ -95,7 +143,12 @@ const VehicleCard = React.memo(({
                         {rentButtonText}
                     </button>
                     <Link
-                        to={`/thue-xe/${vehicle?.slug || id}`}
+                        to={{
+                            pathname: `/thue-xe/${vehicle?.slug || id}`,
+                            search: detailsSearch,
+                        }}
+                        state={detailsState}
+                        onClick={handleDetailsClick}
                         className="details-button"
                         aria-label={`View details for ${localizedVehicleName}`}
                     >

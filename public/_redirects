@@ -14,5 +14,8 @@
 # Redirect /vehicle/* to /thue-xe/* (correct pattern)
 /vehicle/:slug  /thue-xe/:slug  301!
 
+# Allow ACME challenge for SSL cert renewal
+/.well-known/acme-challenge/*  /.well-known/acme-challenge/:splat  200
+
 # Netlify redirects for SPA
 /*    /index.html   200

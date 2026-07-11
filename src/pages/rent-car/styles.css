@@ -215,6 +215,28 @@
     align-items: center;
 }
 
+.seat-group-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.seat-group-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.seat-group-header {
+    display: block;
+}
+
+.seat-group-title {
+    margin: 0;
+    font-size: clamp(1.4rem, 2vw, 2rem);
+    color: var(--text-color, #333);
+}
+
 .pagination-container {
     margin-top: 2rem;
     display: flex;
@@ -448,6 +470,10 @@
     .page-header {
         padding: 60px 0 40px;
         margin-top: 0; /* Remove extra margin since we adjusted padding */
+    }
+
+    .seat-group-header {
+        display: block;
     }
     
     .filters-container {

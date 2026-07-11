@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRentModal } from '../../components/RentCarModal';
@@ -16,6 +16,7 @@ import './VehicleDetail.css';
 const VehicleDetail = () => {
     const { slug } = useParams();
     const navigate = useNavigate();
+    const location = useLocation();
     const { t, i18n } = useTranslation();
     const dispatch = useDispatch();
     const { openRentModal } = useRentModal();
@@ -27,6 +28,21 @@ const VehicleDetail = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const activeLanguage = i18n.language === 'en' ? 'en' : 'vi';
     const vehicle = detailVehicle?.slug === slug ? detailVehicle : listVehicle;
+    const backToListPath = location.search ? `/thue-xe${location.search}` : '/thue-xe';
+    const returnToList = useCallback(() => {
+        const fromLocation = location.state?.from;
+
+        if (fromLocation?.pathname) {
+            navigate(`${fromLocation.pathname}${fromLocation.search || ''}`, {
+                state: Number.isFinite(location.state?.scrollY)
+                    ? { restoreScrollY: location.state.scrollY }
+                    : undefined,
+            });
+            return;
+        }
+
+        navigate(backToListPath);
+    }, [backToListPath, location.state, navigate]);
 
     useEffect(() => {
         if (slug) {
@@ -115,7 +131,7 @@ const VehicleDetail = () => {
             <div className="container" style={{ textAlign: 'center', padding: '3rem 0', marginTop: '5rem' }}>
                 <h2>{t('vehicle_not_found_title')}</h2>
                 {detailError && <p>{detailError}</p>}
-                <button onClick={() => navigate('/thue-xe')} style={{ marginTop: '1rem' }}>
+                <button onClick={returnToList} style={{ marginTop: '1rem' }}>
                     {t('back_to_list_button')}
                 </button>
             </div>
