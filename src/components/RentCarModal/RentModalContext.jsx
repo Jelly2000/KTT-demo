@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import React, { createContext, useContext, useState } from 'react';
-import { sendCarRentalRequest, formatPhoneNumber } from '../../utils/zaloUtils';
+import { sendCarRentalRequest } from '../../utils/zaloUtils';
 import { ERROR_MESSAGES } from './constants';
 
 const RentModalContext = createContext();

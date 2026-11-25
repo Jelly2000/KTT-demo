@@ -48,7 +48,7 @@ const renderVehicleCard = (props = {}, { initialEntries = ['/'] } = {}) => {
 
 describe('VehicleCard Component', () => {
   beforeEach(() => {
-    global.IntersectionObserver = MockIntersectionObserver;
+    globalThis.IntersectionObserver = MockIntersectionObserver;
     mockOpenRentModal.mockClear();
   });
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { sendConsultationRequest, formatPhoneNumber } from '../../utils/zaloUtils';
+import { sendConsultationRequest } from '../../utils/zaloUtils';
 import './styles.css';
 
 const ConsultationForm = ({ heading = 'consultation_title', subHeading = 'consultation_subtitle' }) => {

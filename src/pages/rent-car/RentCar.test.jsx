@@ -78,7 +78,7 @@ describe('RentCar seat filters', () => {
       writable: true,
       configurable: true,
     });
-    global.requestAnimationFrame = (callback) => {
+    globalThis.requestAnimationFrame = (callback) => {
       callback();
       return 0;
     };

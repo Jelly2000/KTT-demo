@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 const VehicleImageLoader = ({ 
   src, 
   alt, 
-  vehicleName,
   style = {},
   className = "",
   onClick,

@@ -21,6 +21,7 @@ const LIST_RESTORE_STORAGE_KEY = 'rent-car-list-restore';
 
 const getVehicleSeatCount = (vehicle) => Number(vehicle?.seats ?? vehicle?.seat_number ?? 0);
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const groupVehiclesBySeat = (vehicles = []) => {
   const groups = new Map();
 
@@ -42,6 +43,7 @@ export const groupVehiclesBySeat = (vehicles = []) => {
     }));
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const getSeatNumberForRequest = (seatSelection) => {
   if (!seatSelection || seatSelection === COMBINED_SEAT_FILTER_VALUE) {
     return undefined;
@@ -50,6 +52,7 @@ export const getSeatNumberForRequest = (seatSelection) => {
   return seatSelection;
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const filterVehiclesBySeatSelection = (vehicles = [], seatSelection = '') => {
   if (!seatSelection) {
     return vehicles;

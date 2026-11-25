@@ -212,10 +212,8 @@ describe('ConsultationForm Component', () => {
     expect(submitButton).toBeDisabled();
   });
 
-  it('formats phone number before submission', async () => {
+  it('submits the phone number as digits without reformatting', async () => {
     mockSendConsultationRequest.mockResolvedValue({ success: true });
-    mockFormatPhoneNumber.mockReturnValue('+84901234567');
-    
     renderConsultationForm();
     
     // Fill all required fields
@@ -236,10 +234,10 @@ describe('ConsultationForm Component', () => {
     fireEvent.click(submitButton);
     
     await waitFor(() => {
-      expect(mockFormatPhoneNumber).toHaveBeenCalledWith('0901234567');
+      expect(mockFormatPhoneNumber).not.toHaveBeenCalled();
       expect(mockSendConsultationRequest).toHaveBeenCalledWith({
         name: 'John Doe',
-        phone: '+84901234567',
+        phone: '0901234567',
         email: '',
         serviceType: 'car_rental',
         message: 'Test message',
